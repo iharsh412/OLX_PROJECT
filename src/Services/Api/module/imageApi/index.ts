@@ -12,25 +12,24 @@ interface PaginationParams {
   limit?: number;
 }
 
-
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], PaginationParams>({
-      query: ({ start = 0, limit = 10 } = {}) => ({
-        url: 'products',
+      query: () => ({
+        url: 'categories/listall',
         method: 'GET',
-        params: { start, limit }, // Pass pagination parameters
+        // params: { start, limit }, // Pass pagination parameters
       }),
     }),
-      postProducts: builder.mutation({
-        query: (data) => ({
-          url: "products",
-          body: data,
-          method: "POST",
-        })
-      })
+    postProducts: builder.mutation({
+      query: (data) => ({
+        url: 'products',
+        body: data,
+        method: 'POST',
+      }),
     }),
-    overrideExisting: false,
-  });
+  }),
+  overrideExisting: false,
+});
 
-  export const { useGetProductsQuery, usePostProductsMutation } = productApi;
+export const { useGetProductsQuery, usePostProductsMutation } = productApi;

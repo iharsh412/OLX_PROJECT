@@ -1,0 +1,45 @@
+.carSectionWrapper {
+  width: 70vw;
+
+  /* background-color: yellow; */
+  font-family: sans-serif;
+}
+
+/* car add section */
+.carAddSectionWrapper {
+  width: 100%;
+  max-width: 1264px;
+
+  display: flex;
+  height: 280px;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 15px;
+  flex-wrap: wrap;
+}
+
+.carAddSection {
+  width: 100%;
+  max-width: 970px;
+  height: 250px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  flex-wrap: wrap;
+}
+
+.carAddSectionImage {
+  width: 100%;
+  max-width: 970px;
+  height: 100%;
+  padding: 32px;
+}
+
+/* total number of car text styling */
+.carSectionTotalCars {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}

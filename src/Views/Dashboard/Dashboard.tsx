@@ -1,5 +1,5 @@
 import { useGetProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
-import ImagesLayout from "../../Components/Atom/imagesLayout/CarImage"
+import ImagesLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './dashboard.css';
 
 interface Product {
@@ -12,7 +12,8 @@ interface Product {
 
 export default function Dashboard() {
   const { data, error, isLoading } = useGetProductsQuery({});
- 
+
+  console.log(data,"data")
 
   if (isLoading) return <p>Loading products...</p>;
   if (error) return <p>Error loading products.</p>;
