@@ -15,9 +15,10 @@ interface PaginationParams {
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], PaginationParams>({
-      query: () => ({
-        url: 'categories/listall',
+      query: ({ start, limit }) => ({
+        url: `categories/listall/?start=${start}&limit=${limit}`,
         method: 'GET',
+
         // params: { start, limit }, // Pass pagination parameters
       }),
     }),

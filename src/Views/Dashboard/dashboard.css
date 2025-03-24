@@ -2,7 +2,8 @@
 .homeImageSectionWraper {
     width: 80vw;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    flex-direction: column;
    
    
   }
@@ -14,7 +15,14 @@
     width: 100%;
     flex-wrap: wrap; /* Enables wrapping */
     
-    background-color: yellow;
+    /* background-color: yellow; */
+  }
+
+
+  /* load more */
+  .homeImageLoadMore{
+
+    
   }
   
  
