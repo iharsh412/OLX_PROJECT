@@ -1,0 +1,176 @@
+
+/* Login page parent container */
+.loginPageParent {
+  background-color: rgb(250, 241, 254);
+  border-radius: 3px;
+  min-height: 600px;
+  width: 400px;
+  margin: 16px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+}
+
+/* Login page child container */
+.loginPageChild {
+  min-height: 568px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+  
+}
+
+/* Continue with phone section */
+.countinue_with_phone_parent {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  min-height: 44px;
+  box-sizing: border-box;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+.countinue_with_phone_parent:hover {
+  border: 4px solid black;
+}
+
+.continue_with_phone_icon {
+  margin-right: 8px;
+  min-width: 22px;
+  height: 22px;
+}
+
+.continue_with_phone_text {
+  min-height: 18px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* Continue with Google section */
+.continue_with_google_parent {
+  margin-top: 13px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+  min-height: 38px;
+  box-sizing: border-box;
+  border: 1px solid #202124;
+  border-radius: 5px;
+  text-align: center;
+}
+.continue_with_google_parent:hover {
+  background-color: #e0ffff;
+  transition: all 1s;
+}
+.continue_with_google_parent:active {
+  background-color: #6feaea;
+  box-shadow: inset;
+}
+
+.continue_with_google_icon {
+  margin-right: 8px;
+  min-width: 20px;
+  height: 22px;
+}
+
+.continue_with_google_text {
+  min-height: 18px;
+  font-family: 'Google Sans', arial, sans-serif;
+  width: 90%;
+  color: #3c4043;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.65px;
+}
+
+/* Or section */
+.login_Or_section {
+  margin-top: 10px;
+}
+
+/* Login with email section */
+.login_login_with_email {
+  margin-top: 10px;
+  border-bottom: 2px solid black;
+  text-decoration: none;
+  color: black;
+}
+
+/* Footer section */
+.login_footer_parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  bottom: 1px;
+  width: 100%;
+  max-width: 90%;
+  font-size: 13px;
+  color: #003f34a3;
+  text-align: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .loginPageParent {
+    width: 90%;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .loginPageChild {
+    min-height: auto;
+    max-width: 100%;
+  }
+
+  .countinue_with_phone_parent,
+  .continue_with_google_parent {
+    width: 100%;
+    padding: 0 10px;
+    min-height: 40px;
+  }
+
+  .continue_with_phone_text,
+  .continue_with_google_text {
+    font-size: 14px;
+  }
+
+  .login_footer_parent {
+    position: relative;
+    bottom: auto;
+    margin-top: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginPageParent {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+  }
+
+  .loginPageChild {
+    min-height: auto;
+    max-width: 100%;
+  }
+
+  .countinue_with_phone_parent,
+  .continue_with_google_parent {
+    width: 100%;
+    padding: 0 8px;
+    min-height: 36px;
+  }
+
+  .continue_with_phone_text,
+  .continue_with_google_text {
+    font-size: 12px;
+  }
+
+  .login_footer_parent {
+    font-size: 12px;
+  }
+}

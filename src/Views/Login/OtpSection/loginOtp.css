@@ -1,0 +1,66 @@
+.login_otp_section_parent {
+    background-color: rgb(167, 167, 167);
+    border-radius: 3px;
+    min-height: 600px;
+    width: 400px;
+    margin: 16px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+  }
+  .login_otp_section_child {
+    width: 360px;
+    height: 468px;
+    padding: 16px 20px;
+    padding: 10px;
+  
+    display: flex;
+    flex-direction: column;
+    font-family: 'Roboto', A2rial, Helvetica, sans-serif;
+  
+    align-items: center;
+  }
+  .login_otp_section_olx_logo {
+    width: 100%;
+    height: 60px;
+  
+    text-align: center;
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .login_otp_section_text {
+    width: 100%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+  .login_otp_section_text_number {
+    font-size: 14px;
+    width: 100%;
+    margin: 10px;
+  }
+  .login_otp_section_box {
+    width: 100%;
+    height: 90px;
+    margin: 20px;
+  }
+  .login_otp_section_resendSms {
+    font-weight: 700;
+    font-size: 12px;
+    width: 100%;
+    color: #3a77ff;
+    margin-top: 20px;
+    height: 30px;
+    margin: 8px;
+  }
+  .login_otp_section_resendCode {
+    font-weight: 700;
+    font-size: 12px;
+    width: 100%;
+    color: #3a77ff;
+  }
+  

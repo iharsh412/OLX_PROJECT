@@ -1,0 +1,20 @@
+/* Home Image Section Wrapper */
+.homeImageSectionWraper {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+   
+   
+  }
+  
+  /* Home Image Section */
+  .homeImageSection {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap; /* Enables wrapping */
+    
+    background-color: yellow;
+  }
+  
+ 
