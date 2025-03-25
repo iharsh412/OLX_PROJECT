@@ -8,6 +8,15 @@ import addIcon from './icon/add.svg';
 import watch from './extra/watch.png';
 import google from './vector/google.svg';
 import phone from './vector/phone.svg';
+import car from './vector/car.svg';
+import {
+  carTrade,
+  carTradeTech,
+  mobilityOutlook,
+  carWale,
+  bikeWale,
+  OlxWhite,
+} from './vector/URL.ts';
 
 const ICONS = {
   Olx,
@@ -20,5 +29,12 @@ const ICONS = {
   watch,
   google,
   phone,
+  carTrade,
+  carTradeTech,
+  mobilityOutlook,
+  carWale,
+  bikeWale,
+  OlxWhite,
+  car,
 };
 export default ICONS;

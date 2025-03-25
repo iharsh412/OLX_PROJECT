@@ -1,0 +1,8 @@
+.sellCategory {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.sellCategoryOptions {
+  height: 48px;
+}

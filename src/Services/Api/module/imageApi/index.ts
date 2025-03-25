@@ -16,7 +16,7 @@ export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], PaginationParams>({
       query: () => ({
-        url: 'categories/listall',
+        url: 'categories/listall?page=1&limit=3',
         method: 'GET',
         // params: { start, limit }, // Pass pagination parameters
       }),

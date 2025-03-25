@@ -1,9 +1,9 @@
-import "./placeSelector.css";
-import ICONS from "../../../assets";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../Store";
-import { setArea } from "../../../Store/AreaItem";
-import { useState } from "react";
+import './placeSelector.css';
+import ICONS from '../../../assets';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../Store';
+import { setArea } from '../../../Store/AreaItem';
+import { useState } from 'react';
 
 export default function Place() {
   const area = useSelector((state: RootState) => state?.areaItem?.area);
@@ -36,14 +36,16 @@ export default function Place() {
           src={ICONS.upDown}
           alt="upDown"
           className={`home_nav_input_area_upDown ${
-            areaDropdown ? "home_nav_area_updown_rotate" : "home_nav_area_updown_notrotate"
+            areaDropdown
+              ? 'home_nav_area_updown_rotate'
+              : 'home_nav_area_updown_notrotate'
           }`}
         />
       </span>
 
       {areaDropdown && (
         <div className="home_nav_area_dropdown_list">
-          {["Mumbai", "Delhi", "Bangalore", "Hyderabad", "Chennai"].map(
+          {['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai'].map(
             (city) => (
               <button
                 key={city}

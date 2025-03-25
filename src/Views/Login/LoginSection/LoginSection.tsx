@@ -13,6 +13,7 @@ import { RootState } from '../../../Store/index.ts';
 export default function LoginPage() {
 
   const token = useSelector((state:RootState) => state?.common?.token)
+  console.log(token,"token")
   const dispatch = useDispatch();
 
 

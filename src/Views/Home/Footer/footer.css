@@ -1,0 +1,112 @@
+.footerSectionParent {
+    background-color: rgba(0, 47, 52, 1);
+    width: 100%;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.footerSection{
+    width: 80%;
+}
+
+/* Footer sections container */
+.footerSectionChildImages {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow wrapping for responsiveness */
+    gap: 16px; /* Add spacing between items */
+    padding: 16px 0;
+}
+
+/* Common styles for all footer sections */
+.footerSectionOlx,
+.footerSectionCarCarwale,
+.footerSectionBikewale,
+.footerSectionCarTrade,
+.footerSectionMobilityOutlook {
+    width: 144px;
+    height: 60px;
+    background-color: rgba(0, 47, 52, 1);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+/* CarTrade Tech Section (Wider with a border) */
+.footerSectionCarTradeTech {
+    width: 219px;
+    height: auto; /* Make it responsive */
+    padding-right: 48px;
+    background-color: rgba(0, 47, 52, 1);
+    border: none;
+    border-right: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensure images fit properly */
+.footerSectionChildImages img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Footer Text */
+.footerSectionText {
+  
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-size: 12px;
+    flex-wrap: wrap; /* Allow wrapping */
+    /* text-align: center; */
+    padding: 10px 240px;
+}
+
+/* Help Section */
+.footerSectionHelp {
+    background-color: rgba(0, 47, 52, 1);
+    color: white;
+    border: none;
+    text-align: center;
+}
+
+/* 🔹 RESPONSIVE STYLES */
+
+/* Medium Screens (Tablets) */
+@media (max-width: 1024px) {
+    .footerSectionChildImages {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .footerSectionText {
+        flex-direction: column;
+        text-align: center;
+        font-size: 14px;
+    }
+}
+
+/* Small Screens (Mobile) */
+@media (max-width: 768px) {
+    .footerSectionChildImages {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .footerSectionCarTradeTech {
+        border-right: none; /* Remove border on mobile */
+        padding-right: 0;
+    }
+
+    .footerSectionText {
+        flex-direction: column;
+        text-align: center;
+        font-size: 12px;
+    }
+}

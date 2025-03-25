@@ -1,4 +1,3 @@
-
 import './navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
 import ICONS from '../../../assets';
@@ -6,17 +5,15 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../../Store';
 import LanguageSelector from '../../../Components/Atom/LanguageSelector';
 import Place from '../../../Components/Atom/PlaceSelector';
-import Item from "../../../Components/Atom/ItemsSelector"
+import Item from '../../../Components/Atom/ItemsSelector';
 
 export default function Navbar() {
-
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state?.common?.token);
 
-
   function onClickSell() {
     if (token) {
-      console.log("okk")
+      console.log('okk');
       navigate('/sell');
     } else {
       navigate('./login');
@@ -25,18 +22,15 @@ export default function Navbar() {
 
   function onClickCart() {
     if (token) {
-      navigate('/cart')
-    }
-    else {
-      navigate('./login')
+      navigate('/cart');
+    } else {
+      navigate('./login');
     }
   }
-
 
   return (
     <div className="home_nav_wrapper">
       <div className="home_nav">
-
         <span className="home_nav_logo">
           <img src={ICONS.Olx} alt="" />
         </span>
@@ -45,18 +39,14 @@ export default function Navbar() {
           <Place />
         </div>
 
-       
-          <Item />
-      
+        <Item />
 
-        <div className="home_nav_languageWrapper"><LanguageSelector /></div>
-
+        <div className="home_nav_languageWrapper">
+          <LanguageSelector />
+        </div>
 
         <div className="home_nav_cart_login_sell">
-          <button type="button"
-            className="home_nav_cart"
-            onClick={onClickCart}
-          >
+          <button type="button" className="home_nav_cart" onClick={onClickCart}>
             <img
               src={ICONS.heartIcon}
               alt="cart"
