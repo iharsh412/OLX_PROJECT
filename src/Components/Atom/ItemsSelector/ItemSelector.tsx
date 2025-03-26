@@ -7,7 +7,7 @@ import { useState } from "react";
 
 export default function ItemsSelector() {
        const items =  useSelector((state:RootState)=>state?.areaItem?.item);
-       console.log(items,"type of object ")
+    //    console.log(items,"type of object ")
        const dispatch = useDispatch();
        const [object,setObject] = useState(items || "");
 

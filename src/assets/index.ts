@@ -9,6 +9,15 @@ import watch from './extra/watch.png';
 import google from './vector/google.svg';
 import phone from './vector/phone.svg';
 import car from './vector/car.svg';
+import propertis from "./vector/properties.svg"
+import fashion from "./vector/fashion.svg"
+import electronics from "./vector/electronic.svg"
+import furniture from "./vector/furniture.svg"
+import upDownl from "./icon/upDownl.svg"
+import arrow from "./vector/arrow.svg"
+import rupees from "./icon/rupees.svg"
+import camera from "./vector/camera.svg"
+
 import {
   carTrade,
   carTradeTech,
@@ -36,5 +45,13 @@ const ICONS = {
   bikeWale,
   OlxWhite,
   car,
+  furniture,
+  propertis,
+  fashion,
+  electronics,
+  upDownl,
+  rupees,
+  camera,
+  arrow
 };
 export default ICONS;

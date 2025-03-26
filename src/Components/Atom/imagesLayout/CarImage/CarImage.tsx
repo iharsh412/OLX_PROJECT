@@ -1,43 +1,59 @@
+import { useEffect, useState } from 'react';
 import './carImage.css';
-import { ReactNode } from 'react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../Store';
 
 interface ImageProps {
   data: {
-    
-    price: ReactNode;
-    images: string;
+    created_at?: React.ReactNode;
     id: number;
     name: string;
-    imageUrl: string;
+    price: React.ReactNode;
+    display_photo?: string;
+    category?: React.ReactNode;
+    city?: React.ReactNode;
+    district?: React.ReactNode;
+    state?: React.ReactNode;
+    status?: React.ReactNode;
+    subcategory?: React.ReactNode;
+    user?: React.ReactNode;
   };
 }
 
-// eslint-disable-next-line react/function-component-definition
 const Images: React.FC<ImageProps> = ({ data }) => {
-  console.log(data);
-  const [post, { error }] = usePostProductsMutation();
-  const uid = useSelector((state: RootState) => state?.common?.uId);
+  const [post ] = usePostProductsMutation();
+  const [showError, setShowError] = useState(false);
 
   async function onClickCart() {
     try {
-      await post({ uId: uid, pId: data.id });
+      const POST = await post({ id: 1, product_id: data.id }).unwrap();
+      console.log(POST, 'a');
     } catch (e) {
-      console.log(e);
+      console.error('Error adding to cart:', e);
+      setShowError(true);
     }
   }
 
-  if (error) return <div>Error posting product</div>;
+
+
+  useEffect(() => {
+    if ( showError) {
+      const timer = setTimeout(() => {
+        setShowError(false);
+      }, 3000); 
+
+      return () => clearTimeout(timer);
+    }
+  }, [showError]);
+
 
   return (
     <div className="carImages_wrapper">
+      {showError && <div className="error-message">Error posting product</div>}
       <div className="carImages">
         <img
-          src={ICONS.car}
-          alt="watch"
+          src={`https://0e50-112-196-113-3.ngrok-free.app/${data.display_photo}`}
+          alt={data.name}
           className="carImages_image"
         />
         <button
@@ -49,17 +65,20 @@ const Images: React.FC<ImageProps> = ({ data }) => {
         </button>
       </div>
       <div className="carImages_content">
-        <span className="carImage_cost">{data.price}</span>
-        <span className="carImage_distance">2014 -94,000 km</span>
-        <span className="carImage_name">
-          MAHINDRA XUV500 2014 DIESEL 940 HELLO
+        <span className="carImage_cost">
+          <img src={ICONS.rupees} alt="Rs" /> {data.price}
         </span>
+        <span className="carImage_distance">{data.status}</span>
+        <span className="carImage_name">{data.name}</span>
         <span className="carImage_placeAndDate">
-          <span className="carImage_place">SAMUNDRAPUR, MAHARASHTRA</span>
-          <span className="carImage_date">MAR 07</span>
+          <span className="carImage_place">
+            {data.state} {data.city}
+          </span>
+          <span className="carImage_date">{data.created_at}</span>
         </span>
       </div>
     </div>
   );
 };
+
 export default Images;

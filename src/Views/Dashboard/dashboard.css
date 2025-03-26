@@ -1,23 +1,34 @@
 /* Home Image Section Wrapper */
 .homeImageSectionWraper {
-    width: 80vw;
-    display: flex;
-    justify-content: center;
-   
-   
-  }
-  
-  /* Home Image Section */
-  .homeImageSection {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap; /* Enables wrapping */
-    
-    background-color: yellow;
-  }
-  .homeImageSection img {
-    background-color: beige;
-  }
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Home Image Section */
+.homeImageSection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap; /* Enables wrapping */
+}
+
+/* load more section */
+.homeLoadMore {
+  width: 120px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
+  font-weight: 600;
+  margin:50px
  
+}
+
+.homeLoadMore:hover {
   
+  border:4px solid black;
+}

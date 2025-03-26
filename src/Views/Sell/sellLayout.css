@@ -1,0 +1,75 @@
+.sell-section {
+    font-family: 'Roboto', Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; 
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 60px; 
+    box-sizing: border-box;
+}
+
+/* Header */
+.sell-section__header {
+    height: 68px;
+    width: 100%;
+    background: rgba(0, 47, 52, 0.03);
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 24px;
+}
+
+.sell-section__back-button {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.sell-section__back-button img {
+    width: 20px;
+}
+
+.sell-section__back-button:hover {
+    opacity: 0.8;
+}
+
+/* Title */
+.sell-section__title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 32px;
+    color: #002f34;
+    text-align: center;
+    padding: 0 20px;
+}
+
+/* Main content wrapper */
+.sell-section-Outlet {
+    flex-grow: 1;  /* Takes up available space */
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Ensures content stays centered */
+    z-index: 14;
+   
+}
+
+/* Footer */
+.sell-section-footer {
+    box-sizing: content-box;
+    padding-bottom: 300px;
+    width: 100%;
+  
+    background: rgba(0, 47, 52, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: auto; 
+}

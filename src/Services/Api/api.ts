@@ -37,6 +37,7 @@ const baseQueryWithInterceptor = async (
 
 const api = createApi({
   baseQuery: baseQueryWithInterceptor,
+  tagTypes: ['wishlist'],
   endpoints: () => ({}),
 });
 

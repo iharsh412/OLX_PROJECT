@@ -1,86 +1,146 @@
-.sellSection {
-  font-family: 'Roboto', A2rial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+
+
+
+
+/* Category Container */
+.sell-section__category-container {
+  border: 1px solid #ccd5d6;
+  border-radius: 4px;
+  width: calc(100% - 40px);
+  max-width: 838px;
+  background: #fff;
+  margin: 0 20px;
+  box-sizing: border-box;
 }
 
-/* header section */
-.sellSectionHeader {
-  height: 68px;
-  padding: 10px;
-  width: 100vw;
-  background: rgba(0, 47, 52, 0.03);
-  display: flex;
-  align-items: center;
-}
-.sellSectionHeaderButton {
-  background-color: white;
-  border: none;
-  margin-left: 20px;
+.sell-section__subtitle {
+  padding: 24px 20px 16px;
+  font-size: 20px;
+  font-weight: 500;
+  color: #002f34;
+  border-bottom: 1px solid #ccd5d6;
 }
 
-/* post you ad text section */
-.sellSetionPostAd {
-  font-weight: 700;
-  font-size: 24px;
-}
-
-/* sell section form */
-.sellSectionCategoryWrapper {
-  border: 1px solid black;
-  border-radius: 3px;
-  width: 838px;
+/* Categories */
+.sell-section__categories {
   display: flex;
   flex-direction: column;
 }
 
-/* choose category text */
-.sellSectionChooseCategoryText {
-  height: 64px;
-  padding: 24px 30px 16px;
+.sell-section__category-wrapper {
+  position: relative;
+  display: flex;
   width: 100%;
+  flex-wrap: wrap; /* Allow wrapping on small screens */
 }
 
-/* selction category wrapper */
-.sellSectionCategoryListWrapper{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-.sellSectionCategoryCarWrapper{
-    width: 100%;
-    display: flex;
-    position: relative;
-}
-.sellSectionCategoryCar{
-    width: 50%;
-    height:48px;
-    padding: 8px;
-    display: flex;
-    background-color: yellow;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    border-top: 1px solid black;
-   
-}
-.sellSectionCategoryCarText{
- 
-    flex-grow: 1;
-    text-align: left;
-    height: 100%;
-    padding-left: 20px;
-    display: flex;
-   font-size: 16px;
-   align-items: center;
-
+.sell-section__category-button {
+  width: 50%;
+  min-width: 200px; /* Prevent buttons from getting too narrow */
+  height: 48px;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #ccd5d6;
+  border-right: 1px solid #ccd5d6;
+  border-collapse: collapse;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  box-sizing: border-box;
 }
 
-/* subcategories of items */
-.sellSectionCategoryCarSubWrapper{
-  width:50%;
-  background-color: rgb(45, 45, 39);
+.sell-section__category-button:hover {
+  background-color: #f8f9fa;
+}
+
+.sell-section__category-button.active {
+  background-color: #f8f9fa;
+}
+
+.sell-section__category-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.sell-section__category-name {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 16px;
+  color: #002f34;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sell-section__arrow-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+/* Subcategories */
+.sell-section__subcategories {
   position: absolute;
-  right: 0%;
+  right: 0;
+  width: 50%;
+  min-width: 200px; /* Prevent submenu from getting too narrow */
+  background: #fff;
+  border-left: 1px solid #ccd5d6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  border-bottom: 1px solid #ccd5d6;
+  border-top: 1px solid #ccd5d6;
+  border-collapse: collapse;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sell-section__category-button {
+    width: 100%;
+    border-right: none;
+  }
+  
+  .sell-section__subcategories {
+    width: 100%;
+    position: static;
+    box-shadow: none;
+    border-left: none;
+  }
+  
+  .sell-section__title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+  
+  .sell-section__subtitle {
+    font-size: 18px;
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sell-section__header {
+    height: 56px;
+  }
+  
+  .sell-section__title {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .sell-section__category-name {
+    font-size: 14px;
+  }
+  
+  .sell-section__category-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
 }

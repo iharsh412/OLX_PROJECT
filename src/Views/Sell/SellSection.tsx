@@ -1,48 +1,63 @@
-import './sellSection.css';
+import './SellSection.css';
 import ICONS from '../../assets';
 import SubCategory from '../../Components/SellCategory/SellCategory';
 import { useState } from 'react';
 
-const data = ['Cars', 'Properties',"keure","ekrhek","kehrke"];
+const CATEGORIES = [
+  
+  { id: 'mobile', name: 'Mobile', icon: ICONS.propertis },
+  { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
+  { id: 'bikes', name: 'Bikes', icon: ICONS.furniture },
+  { id: 'cars', name: 'Cars', icon: ICONS.car },
+];
 
 export default function SellSection() {
-  const [open, setOpen] = useState<string>('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+
   return (
-    <div className="sellSection">
-      <div className="sellSectionHeader">
-        <button className="sellSectionHeaderButton">
-          <img src={ICONS.addIcon} alt="back" />
-        </button>
-      </div>
-      <span className="sellSetionPostAd">Post your Ad</span>
-      <div className="sellSectionCategoryWrapper">
-        <span className="sellSectionChooseCategoryText">Choose A Category</span>
-        <div className="sellSectionCategoryListWrapper">
-          {data?.map((item) => (
-            <div className="sellSectionCategoryCarWrapper">
+    <>
+      
+      <div className="sell-section__category-container">
+        <h2 className="sell-section__subtitle">Choose A Category</h2>
+
+        <div className="sell-section__categories">
+          {CATEGORIES.map((category) => (
+            <div key={category.id} className="sell-section__category-wrapper">
               <button
                 type="button"
-                className="sellSectionCategoryCar"
-                name={item}
-                onClick={() => {
-                  setOpen(item);
-                }}
+                className={`sell-section__category-button ${
+                  selectedCategory === category.id ? 'active' : ''
+                }`}
+                onClick={() =>
+                  setSelectedCategory(
+                    category.id === selectedCategory ? '' : category.id
+                  )
+                }
               >
-                <img src={ICONS.car} alt="car" />
-                <span className="sellSectionCategoryCarText">{item}</span>
-                <img src={ICONS.upDown} alt="upDown" />
+                <img
+                  src={category.icon}
+                  alt=""
+                  className="sell-section__category-icon"
+                />
+                <span className="sell-section__category-name">
+                  {category.name}
+                </span>
+                <img
+                  src={ICONS.upDownl}
+                  alt=""
+                  className="sell-section__arrow-icon"
+                />
               </button>
-              {open === item ? (
-                <div className="sellSectionCategoryCarSubWrapper">
-                  <SubCategory />
+
+              {selectedCategory === category.id && (
+                <div className="sell-section__subcategories">
+                  <SubCategory categoryId={category.id} />
                 </div>
-              ) : (
-                ''
               )}
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </>
   );
 }
