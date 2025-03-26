@@ -16,7 +16,7 @@ interface Product {
 export default function CartSection() {
   // const uid = useSelector((state: RootState) => state?.common?.uId);
   // const [page] = useState(0);
-  const { data, error, isLoading } = useGetWishlistProductsQuery({ id : 1   });
+  const { data, error, isLoading, refetch } = useGetWishlistProductsQuery({ id : 1   }, {refetchOnMountOrArgChange: true});
 
    console.log(data,"wishlist");
   if (isLoading){ return <div>Loading...</div>;}
@@ -30,7 +30,7 @@ export default function CartSection() {
       <span className="cart_text"> WISHLIST</span>
       <div className="cart_imageSection">
         {data?.map((products: Product) => (
-          <ImageLayout key={products?.id} data={products} />
+          <ImageLayout key={products?.id} data={products} refetch={refetch} />
         ))}
       </div>
     </div>

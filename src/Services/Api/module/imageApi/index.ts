@@ -23,14 +23,9 @@ export const productApi = api.injectEndpoints({
       }),
     }),
     getWishlistProducts: builder.query<Product[], PaginationParams>({
-      query: () => ({
-        url: `categories/Favourites/?id=1`,
-        method: 'GET',
-        providesTags: (result) =>
-          result
-            ? [...result.map(({ id }) => ({ type: 'wishlist' as const, id })), 'wishlist']
-            : ['wishlist'],
-        
+      query: (params) => ({
+        url: `categories/Favourites/`,      
+        params
       }),
     }),
     postProducts: builder.mutation({
@@ -39,7 +34,6 @@ export const productApi = api.injectEndpoints({
         body: data,
         method: 'POST',
       }),
-      invalidatesTags: ['wishlist'],
     }),
   }),
   overrideExisting: false,

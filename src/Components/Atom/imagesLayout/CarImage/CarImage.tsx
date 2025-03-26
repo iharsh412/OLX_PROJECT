@@ -18,15 +18,17 @@ interface ImageProps {
     subcategory?: React.ReactNode;
     user?: React.ReactNode;
   };
+  refetch?: ()=>void;
 }
 
-const Images: React.FC<ImageProps> = ({ data }) => {
+const Images: React.FC<ImageProps> = ({ data, refetch}) => {
   const [post ] = usePostProductsMutation();
   const [showError, setShowError] = useState(false);
 
   async function onClickCart() {
     try {
       const POST = await post({ id: 1, product_id: data.id }).unwrap();
+      refetch?.();
       console.log(POST, 'a');
     } catch (e) {
       console.error('Error adding to cart:', e);
