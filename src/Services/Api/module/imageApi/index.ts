@@ -1,11 +1,5 @@
 import api from '../../api';
-interface Product {
-  id: number;
-  imageUrl: string;
-  price: React.ReactNode;
-  images: string;
-  name: string;
-}
+import {Product} from "../../../../Shared/constant"
 
 interface PaginationParams {
   page?: number;
@@ -19,6 +13,14 @@ export const productApi = api.injectEndpoints({
       query: ({page, limit}) => ({
         url: `categories/listall/?page=${page}&limit=${limit}`,
         method: 'GET',
+        
+      }),
+    }),
+    getProductsDetail: builder.query<Product[], PaginationParams>({
+      query: (params) => ({
+        url: `categories/item`,
+        method: 'GET',
+        params
         
       }),
     }),
@@ -39,4 +41,4 @@ export const productApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetProductsQuery,useGetWishlistProductsQuery, usePostProductsMutation } = productApi;
+export const { useGetProductsQuery,useGetWishlistProductsQuery, usePostProductsMutation,useGetProductsDetailQuery} = productApi;

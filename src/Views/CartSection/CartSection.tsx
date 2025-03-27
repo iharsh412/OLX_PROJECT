@@ -3,23 +3,20 @@ import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi'
 // import { RootState } from '../../Store';
 import ImageLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './CartSection.css';
-
-// import { useState } from 'react';
-interface Product {
-  id: number;
-  imageUrl: string;
-  price: React.ReactNode;
-  images: string;
-  name: string;
-}
+import { Product } from '../../Shared/constant';
 
 export default function CartSection() {
   // const uid = useSelector((state: RootState) => state?.common?.uId);
   // const [page] = useState(0);
-  const { data, error, isLoading, refetch } = useGetWishlistProductsQuery({ id : 1   }, {refetchOnMountOrArgChange: true});
+  const { data, error, isLoading, refetch } = useGetWishlistProductsQuery(
+    { id: 1 },
+    { refetchOnMountOrArgChange: true }
+  );
 
-   console.log(data,"wishlist");
-  if (isLoading){ return <div>Loading...</div>;}
+  console.log(data, 'wishlist');
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
   if (error) return <div>Error loading products</div>;
 
   // console.log(uid, 'uid');

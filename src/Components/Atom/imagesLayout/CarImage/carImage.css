@@ -1,5 +1,6 @@
 /* Car Card Wrapper */
 .carImages_wrapper {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -43,6 +44,14 @@
   padding: 5px;
   box-sizing: border-box;
 }
+.carImage_cart:hover{
+    fill:red;
+    background: #000;
+}
+.carImage_cart_active{
+  background-color: red;
+}
+
 
 /* Content Section */
 .carImages_content {

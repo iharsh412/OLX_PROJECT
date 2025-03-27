@@ -1,0 +1,83 @@
+/* IMAGE DETAIL PARENT */
+.imageDetailWrapper{
+    width: 60vw;
+    height: 700px;
+    background-color: yellow;
+    padding: 10px;
+    font-family: Roboto , A2rial, Helvetica, sans-serif;
+}
+/* image section  detail and description detail */
+
+.imageDetailImagesDetailsDescription{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width:802px;
+    padding:16px;
+    background-color: black;
+
+
+
+}
+/* image section */
+.imageDetailImageSection{
+    width: 100%;
+    height: 480px ;
+    background-color: yellow ;
+
+}
+.imageDetailImageSection img{
+    width: 100%;
+    height: 100%;
+}
+/* image detail description section */
+.imageDetailDetailsDescription{
+    width: 100%;
+    height: 200px;
+    padding: 16px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+
+}
+/* detail section */
+.imageDetailTitle{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* image detail brand name */
+.imageDetailBrand{
+    display: flex;
+    font-size:14px ;
+    font-weight: 400;
+    margin: 15px 0;
+    
+
+}
+.imageDetailBrandValue{
+    margin-left: 200px;
+}
+
+/* DESCRIPTION SECTION
+ */
+ .imageDetailDescription{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+ }
+
+ .imageDetailDescriptionTitle{
+    font-size: 20px;
+    font-weight: 700;
+ }
+ .imageDetailDescriptionValue{
+    display: flex;
+    font-size:14px ;
+    font-weight: 400;
+    margin: 15px 0;
+ }
+
+
+ /* price section  */
+ 

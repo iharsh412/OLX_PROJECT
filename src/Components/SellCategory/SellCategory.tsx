@@ -6,10 +6,9 @@ interface SellCategoryProps {
 
 const SUBCATEGORIES: Record<string, string[]> = {
   cars: ['Cars'],
-  mobile: ['Mobile','Tablet'],
+  mobile: ['Mobile', 'Tablet'],
   electronics: ['Computer', 'TVs', 'Camera'],
-  bikes: ['Bikes','Scooters'],
-  
+  bikes: ['Bikes', 'Scooters'],
 };
 
 export default function SellCategory({ categoryId }: SellCategoryProps) {
@@ -24,7 +23,7 @@ export default function SellCategory({ categoryId }: SellCategoryProps) {
           key={subcategory}
           className="sell-category__option"
           onClick={() => {
-            navigate('attributes' ,{state:{categoryId,subcategory}});
+            navigate('attributes', { state: { categoryId, subcategory } });
           }}
         >
           {subcategory}

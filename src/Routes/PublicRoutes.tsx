@@ -4,8 +4,8 @@ import Dashboard from '../Views/Dashboard';
 import { CustomRouter } from './RootRoutes';
 import { HomeLayout } from '../Views/Home/HomeLayout';
 import Login from '../Views/Login/LoginLayout';
-import LoginWithPhone from "../Views/Login/LoginContinueWithPhoneEmail";
-import LoginPhoneSms from "../Views/Login/OtpSection/LoginOtp"
+import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
+import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {
@@ -14,15 +14,15 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     title: ROUTES_CONFIG.HOMEPAGE.title,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: "login", element: <Login /> }
-      , { path: "loginPhone", element: <LoginWithPhone /> }
-      , { path: "loginphonesms", element: <LoginPhoneSms /> }
-    ]
+      { path: 'login', element: <Login /> },
+      { path: 'loginPhone', element: <LoginWithPhone /> },
+      { path: 'loginphonesms', element: <LoginPhoneSms /> },
+    ],
   },
   {
     path: `${ROUTES_CONFIG.LOGIN.path}`,
     title: ROUTES_CONFIG.LOGIN.title,
-    element: "<Login />",
+    element: '<Login />',
   },
   {
     path: '*',

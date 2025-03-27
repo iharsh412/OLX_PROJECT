@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './carImage.css';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
+import { useNavigate } from 'react-router-dom';
 
 interface ImageProps {
   data: {
@@ -9,7 +10,7 @@ interface ImageProps {
     id: number;
     name: string;
     price: React.ReactNode;
-    display_photo?: string;
+    display_photo?: string | null;
     category?: React.ReactNode;
     city?: React.ReactNode;
     district?: React.ReactNode;
@@ -17,53 +18,72 @@ interface ImageProps {
     status?: React.ReactNode;
     subcategory?: React.ReactNode;
     user?: React.ReactNode;
+    is_favourite?: boolean;
   };
-  refetch?: ()=>void;
+  refetch?: () => void;
+  refetchDashboard?: () => void;
 }
 
-const Images: React.FC<ImageProps> = ({ data, refetch}) => {
-  const [post ] = usePostProductsMutation();
+const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
+  const [post, { isLoading }] = usePostProductsMutation();
   const [showError, setShowError] = useState(false);
-
-  async function onClickCart() {
-    try {
-      const POST = await post({ id: 1, product_id: data.id }).unwrap();
-      refetch?.();
-      console.log(POST, 'a');
-    } catch (e) {
-      console.error('Error adding to cart:', e);
-      setShowError(true);
-    }
-  }
-
-
+  const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
+  const navigate =useNavigate();
+  
 
   useEffect(() => {
-    if ( showError) {
-      const timer = setTimeout(() => {
-        setShowError(false);
-      }, 3000); 
+    setShowAdded(data.is_favourite ? 'Added' : '');
+  }, [data.is_favourite]);
 
+  const onClickCart = async (e:React.MouseEvent) => {
+    e.stopPropagation();
+    if (isLoading) return; 
+
+    try {
+      const response = await post({ id: 1, product_id: data.id }).unwrap();
+      setShowAdded(response.msg === 'Added in Favourites' ? 'Added' : '');
+      refetch?.();
+      refetchDashboard?.();
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      setShowError(true);
+    }
+  };
+
+  const onClickImages = () => {
+       navigate(`/product/${data.name}/${data.id}`);
+  };
+
+  useEffect(() => {
+    if (showError) {
+      const timer = setTimeout(() => setShowError(false), 3000);
       return () => clearTimeout(timer);
     }
   }, [showError]);
 
-
   return (
-    <div className="carImages_wrapper">
+    <div className="carImages_wrapper" onClick={onClickImages}>
       {showError && <div className="error-message">Error posting product</div>}
       <div className="carImages">
         <img
           src={`https://0e50-112-196-113-3.ngrok-free.app/${data.display_photo}`}
           alt={data.name}
           className="carImages_image"
+          loading="lazy"
         />
         <button
           type="button"
           onClick={onClickCart}
           className="carImage_cart_Parent"
+          disabled={isLoading}
         >
-          <img src={ICONS.heartIcon} alt="cart" className="carImage_cart" />
+          <img
+            src={ICONS.heartIcon}
+            alt="cart"
+            className={`carImage_cart ${
+              showAdded === 'Added' ? 'carImage_cart_active' : ''
+            }`}
+          />
         </button>
       </div>
       <div className="carImages_content">
