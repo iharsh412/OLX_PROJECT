@@ -22,7 +22,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_HEADER}>H</div>
+            <div className={CLASSNAME.PROFILE_INITIAL}>{userName?.[0] }</div>
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{userName}</h3>
               <button className={CLASSNAME.PROFILE_EDIT_PROFILE}>

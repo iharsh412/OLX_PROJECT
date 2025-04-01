@@ -1,15 +1,15 @@
 import './loginSection.css';
 import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import ImageSection from './LoginImage.tsx';
 import { signInWithGoogle } from '../../../firebase.ts';
 import ICONS from '../../../assets';
 import { updateAuthTokenRedux } from '../../../Store/Common';
-import { RootState } from '../../../Store/index.ts';
+// import { RootState } from '../../../Store/index.ts';
 
 export default function LoginPage() {
-  const { token } = useSelector((state: RootState) => state?.common);
-  console.log(token, 'token');
+  // const { token } = useSelector((state: RootState) => state?.common);
+  // console.log(token, 'token');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();

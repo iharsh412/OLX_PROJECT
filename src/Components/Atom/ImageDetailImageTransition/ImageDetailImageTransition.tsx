@@ -1,22 +1,26 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './imageDetailImageTransition.css';
-import ICONS from '../../../assets';
+import { ImageSectionProps } from './constant';
 
-const images = [ICONS.watch, ICONS.watch, ICONS.watch, ICONS.watch];
+function ImageSection({ images }: ImageSectionProps) {
+  const imageArray: string[] = images
+    ? Array.isArray(images)
+      ? images
+      : [images]
+    : [];
 
-function ImageSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
     );
   };
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
     );
   };
 
@@ -26,7 +30,7 @@ function ImageSection() {
 
   return (
     <div className="imageDetailimageSection">
-      {images.map((image, index) => (
+      {imageArray.map((image, index) => (
         <div
           key={`LoginImage${index + 1}`}
           className={`imageDetailSlide ${
@@ -34,10 +38,9 @@ function ImageSection() {
           }`}
         >
           <img
-            src={image}
+            src={`${import.meta.env.VITE_BASE_URL}/${image}`}
             alt={`Slide ${index + 1}`}
             className="ActiveImages"
-            style={{ width: '100%', height: 'auto', objectFit: 'contain' }} // Makes the image scale properly
           />
         </div>
       ))}
@@ -60,7 +63,7 @@ function ImageSection() {
       </button>
 
       <div className="imageDeatilLogin_dots_container">
-        {images.map((image, index) => (
+        {imageArray.map((image, index) => (
           <button
             type="button"
             key={`loginDots${index + 1}`}
@@ -70,7 +73,7 @@ function ImageSection() {
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           >
-            <img src={image} alt="" />
+            <img src={`${import.meta.env.VITE_BASE_URL}/${image}`} alt="img" />
           </button>
         ))}
       </div>

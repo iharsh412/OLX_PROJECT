@@ -1,156 +1,224 @@
 .postFormWrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 16PX;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
 }
 
 /* INCLUDE SOME DETAILS TEXT */
 .postForm_detailText {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 /* BRAND */
 .postForm_Brand {
-    margin: 5px 5px 5px 0px;
-    height: 48px;
-    font-size: 18px;
-    padding: 10px;
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 /* YEAR*/
 .postForm_Year {
-    margin: 5px 5px 5px 0px;
-    height: 48px;
-    font-size: 18px;
-    padding: 10px;
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 /* FUEL */
 .postForm_FuelOption button {
-   padding: 10px;
-   margin: 5px;
-   border: 1px solid black;
-   cursor: pointer;
-  
-
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
 }
 
 /* DISTANCE */
 .postForm_Distance {
-    margin: 5px 5px 5px 0px;
-    height: 48px;
-    font-size: 18px;
-    padding: 10px;
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 /* TITLE */
 .postForm_Title {
-    margin: 5px 5px 5px 0px;
-    height: 48px;
-    font-size: 18px;
-    padding: 10px;
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
 }
 
 /* DESCRITION */
 .postForm_Description {
-    margin: 5px 5px 5px 0px;
-    height: 100px;
-    padding: 10px;
-    font-size: 18px;
-
-
+  margin: 5px 5px 5px 0px;
+  height: 100px;
+  padding: 10px;
+  font-size: 18px;
 }
 
 /* LABEL  */
 .post-label {
-    font-size: 14px;
-    margin-top: 15px;
+  font-size: 14px;
+  margin-top: 15px;
 }
 
 /* ERROR MSG */
 .postError {
-    margin-top: 0px;
-    font-size: 0.9rem;
-    padding: 0 5px;
-    color: red;
-
-
+  margin-top: 0px;
+  font-size: 0.9rem;
+  padding: 0 5px;
+  color: red;
 }
 
 .postErrorInput {
-    border: 4px solid red;
+  border: 4px solid red;
 }
 
 /* PRICE SECTION */
 .postForm_PriceWrapper {
-    display: flex;
-    flex-direction: column;
-    padding: 16PX;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
 }
 
 .postForm_Price {
-    margin: 5px 5px 5px 0px;
-    height: 48px;
-    font-size: 18px;
-    padding-left: 50px;
-    width: 100%;
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding-left: 50px;
+  width: 100%;
 }
 
 .postForm_PriceInputWrapper {
-    position: relative;
-    width: 100%;
-    display: flex;
+  position: relative;
+  width: 100%;
+  display: flex;
 }
 
 .postForm_PriceInputWrapper span {
-    position: absolute;
-    top: 15px;
-    left: 10px;
-    padding: 5px 10px;
-    border-right: 1px solid black;
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  padding: 5px 10px;
+  border-right: 1px solid black;
 }
 
 /* PHOTOS SECTION */
-.postForm_UploadText{
-    padding: 16px;
+.postForm_UploadText {
+  padding: 16px;
 }
 .postForm_photo-container {
-    display: flex;
-   
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 16px;
-    /* justify-content: center; */
+  display: flex;
+
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+  /* justify-content: center; */
 }
 
 .postForm_photo-box {
-    width: 80px;
-    height: 80px;
-    border: 1px solid gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  width: 80px;
+  height: 80px;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .postForm_photo-box :focus {
-    border: 2px solid black;
+  border: 2px solid black;
 }
 
 .postForm_photo-preview {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .postForm_photo-upload {
-    cursor: pointer;
-    font-size: 14px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }
 
 .postForm_file-input {
-    display: none;
+  display: none;
+}
+
+/* LOCATION SECTION */
+.postForm_LocationWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+/* STATE SECTION */
+.postForm_State {
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+}
+/* CITY SECTION */
+.postForm_City {
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* SELLER DETAIL  */
+.postForm_SellerWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* SELLER NAME SECTION */
+.postForm_SellerName {
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* VERIFY TEXT */
+.postForm_SellerVerifyText {
+  padding: 5px 0;
+}
+.postForm_SellerCodeText {
+  padding: 5px 0;
+}
+
+/* MOBILE NUMBER */
+.postForm_mobileNumberWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.postForm_mobileNumberWrapper span {
+  position: absolute;
+  top: 50%;
+  padding: 5px;
+  color: rgb(127, 129, 131);
+  border-right: 1px solid rgb(127, 129, 131);
+}
+.postForm_MobileNumber {
+  margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+  padding-left: 50px;
+}
+
+/* POST SECTION */
+.postForm_post{
+    padding: 10px 200px;
+    
+    margin: 10px;
+    margin-left:  25%;
+
 }

@@ -13,28 +13,29 @@
 .imageDetailSlide {
   flex-direction: column;
   width: 80%;
-  height: 80%;
+  height: 40%;
   padding: 10px;
   display: none;
   opacity: 0;
+
   transition: opacity 0.5s ease-in-out; /* Smooth transition for slide changes */
 }
 
 /* Image styling for both active and inactive slides */
 .imageDetailSlide img {
-  object-fit: cover; /* Default for inactive slides */
+  object-fit: contain; /* Default for inactive slides */
   width: 80%;
   height: 80%;
   overflow: hidden;
-  transition: object-fit 0.3s ease; 
+  transition: object-fit 0.3s ease;
   padding: 10px;
-  
+  width: 100%;
 }
 
 /* Active slide styling */
 .imageDetailSlide.imageDetailActive {
   display: flex;
- 
+
   width: 100%;
   height: 100%;
   opacity: 1; /* Ensure active slide is visible */
@@ -70,28 +71,29 @@
 /* Dots container */
 .imageDeatilLogin_dots_container {
   position: absolute;
-  bottom: 10%;
+  bottom: 5%;
   left: 50%;
   transform: translateX(-50%); /* Center dots horizontally */
   display: flex;
   gap: 12px; /* Adjusted gap between dots */
   z-index: 10;
- 
 }
 
 .imageDetailDot {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
 
   border: none;
   border: 1px solid black;
-  background: #002F345C;
+  background: #002f345c;
   cursor: pointer;
-  transition: background-color 0.3s, transform 0.3s; /* Smooth transition for dot color and scaling */
+  transition:
+    background-color 0.3s,
+    transform 0.3s; /* Smooth transition for dot color and scaling */
 }
 
 .imageDetailDot.imageDetailActive {
-  background: #23E5DB;
+  background: #23e5db;
   transform: scale(1.2); /* Highlight active dot */
 }
 

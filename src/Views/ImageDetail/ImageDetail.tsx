@@ -9,16 +9,14 @@ export default function ImageDetail() {
   const id = productId !== undefined ? Number(productId) : undefined;
 
   const { data } = useGetProductsDetailQuery({ id });
-
-  console.log(data);
+   console.log(data,"data")
   const product = Array.isArray(data) ? data[0] : data;
-  console.log(product, 'product');
 
   return (
     <div className="imageDetailWrapper">
       <div className="imageDetailImagesDetailsDescription">
         <div className="imageDetailImageSection">
-          <ImageTransition />
+          <ImageTransition images={product?.display_photo} />
         </div>
         <div className="imageDetailDetailsDescription">
           <div className="imageDetailDetails">
@@ -40,20 +38,25 @@ export default function ImageDetail() {
       {/* images price section */}
       <div className="imageDetailPriceChatSection">
         <div className="imageDetailPriceSection">
-          <span className="imageDetailPriceValue">₹ 3000</span>
-          <span className="imageDetailPriceName">price</span>
+          <span className="imageDetailPriceValue">₹ {product?.price}</span>
+          <span className="imageDetailPriceName">
+            {product?.status} Product
+          </span>
           <div className="imageDetailPriceTags">
-            <span className="imageDetailPricePlace">
-              In Stock jkj5n kjntkrkjnkr kn
-            </span>
-            <span className="imageDetailPriceDate">day</span>
+            <span className="imageDetailPricePlace">{product?.city}</span>
+            <span className="imageDetailPriceDate">{product?.created_at}</span>
           </div>
         </div>
         {/* image chat section */}
         <div className="imageDetailChatSection">
           <div className="imageDetailChatSellerPhotoText">
             <span className="imageDetailChatSeller">
-              <img src={ICONS.watch} alt="img" />
+              <img
+                src={`${
+                  import.meta.env.VITE_BASE_URL
+                }/${product?.display_photo}`}
+                alt="img"
+              />
             </span>
             <span className="imageDetailChatText">OLX India</span>
             <span className="imageDetailChatUpdown">
@@ -66,7 +69,7 @@ export default function ImageDetail() {
         <div className="imageDetailPost">
           <span className="imageDetailPostText"> Posted in</span>
           <span className="imageDetailPostValue">
-            Samundar, maharastra,India
+            {product?.state} {product?.district}
           </span>
         </div>
       </div>

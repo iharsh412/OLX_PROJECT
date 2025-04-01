@@ -11,7 +11,7 @@ export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], PaginationParams>({
       query: ({ page, limit }) => ({
-        url: `categories/listall/?page=${page}&limit=${limit}`,
+        url: `categories/listall/?page=${page}&limit=${limit}&sort=created_at`,
         method: 'GET',
       }),
     }),
@@ -35,6 +35,15 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    postNewProducts: builder.mutation({
+      query: (data) => {
+        return {
+          url: `categories/putad/`,
+          body: data,
+          method: 'POST',
+        };
+      },
+    }),
   }),
   overrideExisting: false,
 });
@@ -44,4 +53,5 @@ export const {
   useGetWishlistProductsQuery,
   usePostProductsMutation,
   useGetProductsDetailQuery,
+  usePostNewProductsMutation,
 } = productApi;

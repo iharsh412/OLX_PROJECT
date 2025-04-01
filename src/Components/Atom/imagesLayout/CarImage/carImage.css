@@ -30,8 +30,17 @@
 
 /* cart option */
 .carImage_cart_Parent {
-  background-color: rgb(253, 253, 253);
+
   border: none;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 34px;
+  height: 34px;
+  background-color: rgb(253, 253, 253);
+  border-radius: 50%;
+  padding: 5px;
+  box-sizing: border-box;
 }
 .carImage_cart {
   position: absolute;

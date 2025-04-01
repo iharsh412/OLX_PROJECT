@@ -12,7 +12,7 @@ export default function Dashboard() {
     { page, limit },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
-
+  console.log(data,"data")
   const [totalImages, setTotalImages] = useState<Product[]>([]);
 
   useEffect(() => {

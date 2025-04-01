@@ -4,7 +4,7 @@
     height: 700px;
     margin-bottom: 100px;
     display: flex;
-    background-color: rgb(238, 241, 241);
+
     padding: 10px;
     font-family: Roboto, Arial, Helvetica, sans-serif;
     box-sizing: border-box; /* Ensures padding is included in the width and height */
@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%; /* Ensures it takes full width */
+    width: 80%; /* Ensures it takes full width */
     padding: 16px;
     box-sizing: border-box; /* Ensures padding is included in the width */
 }
@@ -65,6 +65,7 @@
 
 .imageDetailBrandValue {
     margin-left: 0; /* Removed margin-left to adjust spacing */
+    margin-right: 60%;
 }
 
 /* DESCRIPTION SECTION */
@@ -95,7 +96,7 @@
 .imageDetailPriceSection {
     height: 140px;
     padding: 16px 20px;
-    width: 280px;
+    width: 300px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -123,7 +124,8 @@
 }
 
 .imageDetailPriceDate {
-    margin: 0 40px 0 10px;
+    margin: 0 40px 0 20px;
+    padding: 0 10px;
 }
 
 /* Image detail seller chat section */
