@@ -2,13 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const common = createSlice({
   name: 'common',
-  initialState: { token: null ,uId:null,userName : null},
+  initialState: { token: null, uId: null, userName: null },
   reducers: {
     updateAuthTokenRedux: (state, action) => ({
       ...state,
       token: action.payload.token,
-      uId :action.payload.uId,
-      userName:action.payload.userName
+      uId: action.payload.uId,
+      userName: action.payload.userName,
     }),
   },
 });

@@ -1,1 +1,1 @@
-export {default} from "./SellCategory.tsx"
+export { default } from './SellCategory.tsx';

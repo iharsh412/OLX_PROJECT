@@ -1,1 +1,1 @@
-export {default} from "./PlaceSelector"
+export { default } from './PlaceSelector';

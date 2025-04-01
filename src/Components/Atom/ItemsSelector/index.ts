@@ -1,1 +1,1 @@
-export {default} from "./ItemSelector"
+export { default } from './ItemSelector';

@@ -2,9 +2,7 @@ import { useGetProductsQuery } from '../../Services/Api/module/imageApi/index.ts
 import ImagesLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
-import {Product} from "../../Shared/constant.ts"
-
-
+import { Product } from '../../Shared/constant.ts';
 
 export default function Dashboard() {
   const [page, setPage] = useState(1);

@@ -1,5 +1,5 @@
 import api from '../../api';
-import {Product} from "../../../../Shared/constant"
+import { Product } from '../../../../Shared/constant';
 
 interface PaginationParams {
   page?: number;
@@ -10,24 +10,22 @@ interface PaginationParams {
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getProducts: builder.query<Product[], PaginationParams>({
-      query: ({page, limit}) => ({
+      query: ({ page, limit }) => ({
         url: `categories/listall/?page=${page}&limit=${limit}`,
         method: 'GET',
-        
       }),
     }),
     getProductsDetail: builder.query<Product[], PaginationParams>({
       query: (params) => ({
         url: `categories/item`,
         method: 'GET',
-        params
-        
+        params,
       }),
     }),
     getWishlistProducts: builder.query<Product[], PaginationParams>({
       query: (params) => ({
-        url: `categories/Favourites/`,      
-        params
+        url: `categories/Favourites/`,
+        params,
       }),
     }),
     postProducts: builder.mutation({
@@ -41,4 +39,9 @@ export const productApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetProductsQuery,useGetWishlistProductsQuery, usePostProductsMutation,useGetProductsDetailQuery} = productApi;
+export const {
+  useGetProductsQuery,
+  useGetWishlistProductsQuery,
+  usePostProductsMutation,
+  useGetProductsDetailQuery,
+} = productApi;

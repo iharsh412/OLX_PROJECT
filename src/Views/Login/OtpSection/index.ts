@@ -1,1 +1,1 @@
-export {default} from "./LoginOtp"
+export { default } from './LoginOtp';

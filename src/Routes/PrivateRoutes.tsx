@@ -10,7 +10,7 @@ import SellLayout from '../Views/Sell';
 import SellSection from '../Views/Sell/SellSection';
 import Cart from '../Views/CartSection';
 import Post from '../Components/Post';
-import ProductDetail from "../Views/ImageDetail"
+import ProductDetail from '../Views/ImageDetail';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -29,8 +29,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
       { path: 'loginPhone', element: <LoginWithPhone /> },
       { path: 'loginphonesms', element: <LoginPhoneSms /> },
       { path: 'cart', element: <Cart /> },
-      {path: "product/:productName/:productId", element: <ProductDetail/>},
-      
+      { path: 'product/:productName/:productId', element: <ProductDetail /> },
     ],
   },
   {

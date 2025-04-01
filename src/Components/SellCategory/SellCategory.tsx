@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './SellCategory.css';
+
 interface SellCategoryProps {
   categoryId: string;
 }

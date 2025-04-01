@@ -9,16 +9,16 @@ import watch from './extra/watch.png';
 import google from './vector/google.svg';
 import phone from './vector/phone.svg';
 import car from './vector/car.svg';
-import propertis from "./vector/properties.svg"
-import fashion from "./vector/fashion.svg"
-import electronics from "./vector/electronic.svg"
-import furniture from "./vector/furniture.svg"
-import upDownl from "./icon/upDownl.svg"
-import arrow from "./vector/arrow.svg"
-import rupees from "./icon/rupees.svg"
-import camera from "./vector/camera.svg"
-import notification from "./vector/notification.svg";
-import chat from "./vector/chat.svg"
+import propertis from './vector/properties.svg';
+import fashion from './vector/fashion.svg';
+import electronics from './vector/electronic.svg';
+import furniture from './vector/furniture.svg';
+import upDownl from './icon/upDownl.svg';
+import arrow from './vector/arrow.svg';
+import rupees from './icon/rupees.svg';
+import camera from './vector/camera.svg';
+import notification from './vector/notification.svg';
+import chat from './vector/chat.svg';
 
 import {
   carTrade,
@@ -27,7 +27,7 @@ import {
   carWale,
   bikeWale,
   OlxWhite,
-} from './vector/URL.ts';
+} from './vector/URL';
 
 const ICONS = {
   Olx,
@@ -56,6 +56,6 @@ const ICONS = {
   camera,
   arrow,
   chat,
-  notification
+  notification,
 };
 export default ICONS;

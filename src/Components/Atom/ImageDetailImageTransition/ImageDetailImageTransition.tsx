@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import "./imageDetailImageTransition.css"
+import './imageDetailImageTransition.css';
 import ICONS from '../../../assets';
 
 const images = [ICONS.watch, ICONS.watch, ICONS.watch, ICONS.watch];
@@ -9,13 +9,13 @@ function ImageSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const prevSlide = () => {
-    setCurrentIndex(prevIndex =>
+    setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
   };
 
   const nextSlide = () => {
-    setCurrentIndex(prevIndex =>
+    setCurrentIndex((prevIndex) =>
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
   };
@@ -29,7 +29,9 @@ function ImageSection() {
       {images.map((image, index) => (
         <div
           key={`LoginImage${index + 1}`}
-          className={`imageDetailSlide ${index === currentIndex ? 'imageDetailActive' : ''}`}
+          className={`imageDetailSlide ${
+            index === currentIndex ? 'imageDetailActive' : ''
+          }`}
         >
           <img
             src={image}
@@ -62,10 +64,14 @@ function ImageSection() {
           <button
             type="button"
             key={`loginDots${index + 1}`}
-            className={`imageDetailDot ${currentIndex === index ? 'imageDetailActive' : ''}`}
+            className={`imageDetailDot ${
+              currentIndex === index ? 'imageDetailActive' : ''
+            }`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
-          ><img src={image} alt="" /></button>
+          >
+            <img src={image} alt="" />
+          </button>
         ))}
       </div>
     </div>

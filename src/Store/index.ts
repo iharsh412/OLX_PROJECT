@@ -15,13 +15,13 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import api from '../Services/Api/api';
 import common from './Common';
 import loader from './Loader';
-import language from "./Language";
-import areaItem from "./AreaItem";
+import language from './Language';
+import areaItem from './AreaItem';
 
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['common','language','areaItem'],
+  whitelist: ['common', 'language', 'areaItem'],
 };
 const reducers = combineReducers({
   common,

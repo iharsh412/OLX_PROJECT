@@ -1,8 +1,7 @@
+import { useNavigate, Outlet } from 'react-router-dom';
 import ICONS from '../../assets';
 import Footer from '../Home/Footer';
-import { useNavigate } from 'react-router-dom';
-import { Outlet } from 'react-router-dom';
-import "./sellLayout.css"
+import './sellLayout.css';
 
 export default function SellLayout() {
   const navigate = useNavigate();
@@ -19,10 +18,10 @@ export default function SellLayout() {
       </header>
       <h1 className="sell-section__title">Post your Ad</h1>
       <div className="sell-section-Outlet">
-      <Outlet />
+        <Outlet />
       </div>
       <div className="sell-section-footer">
-      <Footer/>
+        <Footer />
       </div>
     </div>
   );

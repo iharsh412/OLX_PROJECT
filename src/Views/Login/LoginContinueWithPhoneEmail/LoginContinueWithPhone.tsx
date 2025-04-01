@@ -33,10 +33,11 @@ export default function App() {
 
         <button
           type="submit"
-          className={`login_phone_number_next ${phoneNumber && phoneNumber.length === 13
+          className={`login_phone_number_next ${
+            phoneNumber && phoneNumber.length === 13
               ? 'login_phone_number_validation'
               : ''
-            }`}
+          }`}
           onClick={onClickNext}
           disabled={!phoneNumber || phoneNumber.length !== 13}
         >

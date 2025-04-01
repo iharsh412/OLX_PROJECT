@@ -1,1 +1,1 @@
-export {default} from "./CarImage"
+export { default } from './CarImage';

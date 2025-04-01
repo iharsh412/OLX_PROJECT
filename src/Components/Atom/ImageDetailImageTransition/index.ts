@@ -1,1 +1,1 @@
-export {default} from "./ImageDetailImageTransition"
+export { default } from './ImageDetailImageTransition';

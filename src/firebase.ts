@@ -9,7 +9,7 @@ import {
 
 // Firebase configuration
 const firebaseConfig = {
-apiKey: "AIzaSyA3gGG9K5xsKN7nve2WjJHZ4TBr3rc8e6U",
+  apiKey: 'AIzaSyA3gGG9K5xsKN7nve2WjJHZ4TBr3rc8e6U',
   authDomain: 'olx-project-d487b.firebaseapp.com',
   projectId: 'olx-project-d487b',
   storageBucket: 'olx-project-d487b.appspot.com',

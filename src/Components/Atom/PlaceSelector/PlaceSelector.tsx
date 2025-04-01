@@ -1,9 +1,9 @@
 import './placeSelector.css';
-import ICONS from '../../../assets';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import ICONS from '../../../assets';
 import { RootState } from '../../../Store';
 import { setArea } from '../../../Store/AreaItem';
-import { useState } from 'react';
 
 export default function Place() {
   const area = useSelector((state: RootState) => state?.areaItem?.area);

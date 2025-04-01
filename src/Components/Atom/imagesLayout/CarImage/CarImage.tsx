@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import './carImage.css';
+import { useNavigate } from 'react-router-dom';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useNavigate } from 'react-router-dom';
 
 interface ImageProps {
   data: {
@@ -28,16 +28,15 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const [post, { isLoading }] = usePostProductsMutation();
   const [showError, setShowError] = useState(false);
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
-  const navigate =useNavigate();
-  
+  const navigate = useNavigate();
 
   useEffect(() => {
     setShowAdded(data.is_favourite ? 'Added' : '');
   }, [data.is_favourite]);
 
-  const onClickCart = async (e:React.MouseEvent) => {
+  const onClickCart = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isLoading) return; 
+    if (isLoading) return;
 
     try {
       const response = await post({ id: 1, product_id: data.id }).unwrap();
@@ -51,7 +50,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   };
 
   const onClickImages = () => {
-       navigate(`/product/${data.name}/${data.id}`);
+    navigate(`/product/${data.name}/${data.id}`);
   };
 
   useEffect(() => {
@@ -67,7 +66,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       <div className="carImages">
         <img
           // src={`https://0e50-112-196-113-3.ngrok-free.app/${data.display_photo}`}
-          src={`ICONS.watch`}
+          src="ICONS.watch"
           alt={data.name}
           className="carImages_image"
           loading="lazy"

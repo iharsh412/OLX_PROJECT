@@ -2,19 +2,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const loader = createSlice({
   name: 'area',
-  initialState: { area:"India" ,item:null},
+  initialState: { area: 'India', item: null },
   reducers: {
     setArea: (state, action) => ({
       ...state,
       area: action.payload,
     }),
-    setItem:(state,action)=>({
-        ...state,
-       item : action.payload,
-    })
+    setItem: (state, action) => ({
+      ...state,
+      item: action.payload,
+    }),
   },
 });
 
-export const { setArea,setItem} = loader.actions;
+export const { setArea, setItem } = loader.actions;
 
-export default loader.reducer ;
+export default loader.reducer;

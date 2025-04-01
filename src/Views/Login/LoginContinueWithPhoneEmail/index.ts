@@ -1,1 +1,1 @@
-export {default} from "./LoginContinueWithPhone"
+export { default } from './LoginContinueWithPhone';
