@@ -17,6 +17,8 @@ import upDownl from "./icon/upDownl.svg"
 import arrow from "./vector/arrow.svg"
 import rupees from "./icon/rupees.svg"
 import camera from "./vector/camera.svg"
+import notification from "./vector/notification.svg";
+import chat from "./vector/chat.svg"
 
 import {
   carTrade,
@@ -52,6 +54,8 @@ const ICONS = {
   upDownl,
   rupees,
   camera,
-  arrow
+  arrow,
+  chat,
+  notification
 };
 export default ICONS;

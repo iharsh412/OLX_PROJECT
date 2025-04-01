@@ -1,3 +1,4 @@
+/* FOOTER PARENT */
 .footerSectionParent {
     background-color: rgba(0, 47, 52, 1);
     width: 100%;
@@ -6,9 +7,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
-.footerSection{
+
+.footerSection {
     width: 80%;
+    max-width: 1200px; /* Ensures the footer doesn’t stretch too wide */
+    box-sizing: border-box;
 }
 
 /* Footer sections container */
@@ -33,7 +38,8 @@
     border: none;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    padding: 8px;
 }
 
 /* CarTrade Tech Section (Wider with a border) */
@@ -58,14 +64,14 @@
 
 /* Footer Text */
 .footerSectionText {
-  
     display: flex;
     justify-content: space-between;
     color: white;
     font-size: 12px;
     flex-wrap: wrap; /* Allow wrapping */
-    /* text-align: center; */
     padding: 10px 240px;
+    text-align: left;
+    width: 100%; /* Ensures full width on all screens */
 }
 
 /* Help Section */
@@ -74,6 +80,7 @@
     color: white;
     border: none;
     text-align: center;
+    padding: 12px;
 }
 
 /* 🔹 RESPONSIVE STYLES */
@@ -89,24 +96,89 @@
         flex-direction: column;
         text-align: center;
         font-size: 14px;
+        padding: 10px;
+    }
+
+    .footerSectionOlx,
+    .footerSectionCarCarwale,
+    .footerSectionBikewale,
+    .footerSectionCarTrade,
+    .footerSectionMobilityOutlook {
+        width: 120px; /* Slightly smaller widths for tablet view */
+        height: 50px;
+    }
+
+    .footerSectionCarTradeTech {
+        width: 200px;
+        padding-right: 20px;
     }
 }
 
 /* Small Screens (Mobile) */
 @media (max-width: 768px) {
+    .footerSectionParent {
+        padding: 10px;
+    }
+
     .footerSectionChildImages {
         flex-direction: column;
+        align-items: center;
         height: auto;
+        gap: 10px;
+    }
+
+    .footerSectionOlx,
+    .footerSectionCarCarwale,
+    .footerSectionBikewale,
+    .footerSectionCarTrade,
+    .footerSectionMobilityOutlook {
+        width: 120px; /* Adjust widths for mobile */
+        height: 45px;
+        padding: 6px;
     }
 
     .footerSectionCarTradeTech {
         border-right: none; /* Remove border on mobile */
         padding-right: 0;
+        width: 100%;
+        height: auto;
+        margin-bottom: 12px;
     }
 
     .footerSectionText {
         flex-direction: column;
         text-align: center;
         font-size: 12px;
+        padding: 10px 20px; /* Adjust padding for mobile */
+    }
+
+    .footerSectionHelp {
+        padding: 8px; /* Adjust padding for mobile */
+    }
+}
+
+/* Very Small Screens (Extra small mobile) */
+@media (max-width: 480px) {
+    .footerSectionParent {
+        padding: 8px; /* Reduce padding for small screens */
+    }
+
+    .footerSectionText {
+        padding: 8px 10px; /* Reduce padding on small screens */
+    }
+
+    .footerSectionOlx,
+    .footerSectionCarCarwale,
+    .footerSectionBikewale,
+    .footerSectionCarTrade,
+    .footerSectionMobilityOutlook {
+        width: 100px; /* Adjust widths for very small screens */
+        height: 40px;
+    }
+
+    .footerSectionCarTradeTech {
+        width: 100%;
+        padding-right: 0;
+        margin-bottom: 10px;
     }
 }

@@ -66,7 +66,8 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       {showError && <div className="error-message">Error posting product</div>}
       <div className="carImages">
         <img
-          src={`https://0e50-112-196-113-3.ngrok-free.app/${data.display_photo}`}
+          // src={`https://0e50-112-196-113-3.ngrok-free.app/${data.display_photo}`}
+          src={`ICONS.watch`}
           alt={data.name}
           className="carImages_image"
           loading="lazy"

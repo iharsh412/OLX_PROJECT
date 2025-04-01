@@ -6,10 +6,15 @@ import { RootState } from '../../../Store';
 import LanguageSelector from '../../../Components/Atom/LanguageSelector';
 import Place from '../../../Components/Atom/PlaceSelector';
 import Item from '../../../Components/Atom/ItemsSelector';
+import ProfileUpDown from "../../../Components/Atom/LoginUpDown"
+import { useState } from 'react';
+import { CLASSNAME } from './constant';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state?.common?.token);
+  const [openProfile, setOpenProfile] = useState<boolean>(false);
+
 
   function onClickSell() {
     if (token) {
@@ -28,48 +33,63 @@ export default function Navbar() {
     }
   }
 
+  function onClickProfileUpDown() {
+    setOpenProfile(!openProfile);
+  }
+
   return (
-    <div className="home_nav_wrapper">
-      <div className="home_nav">
-        <span className="home_nav_logo">
-          <img src={ICONS.Olx} alt="" />
+    <div className={CLASSNAME.NAV_PARENT}>
+      <div className={CLASSNAME.NAV}>
+        <span className={CLASSNAME.LOGO}>
+          <img src={ICONS.Olx} alt="img" />
         </span>
 
-        <div className="home_nav_place_wrapper">
+        <div className={CLASSNAME.PLACE_WRAPPER}>
           <Place />
         </div>
 
         <Item />
 
-        <div className="home_nav_languageWrapper">
+        <div className={CLASSNAME.LANGUAGE_WRAPPER}>
           <LanguageSelector />
         </div>
 
-        <div className="home_nav_cart_login_sell">
-          <button type="button" className="home_nav_cart" onClick={onClickCart}>
+        <div className={CLASSNAME.CART_LOGIN_SELL}>
+          <button type="button" className={CLASSNAME.CART} onClick={onClickCart}>
             <img
               src={ICONS.heartIcon}
-              alt="cart"
-              className="home_nav_cart_icon"
+              alt="img"
+              className={CLASSNAME.CART_ICON}
             />
           </button>
+          {token ?
+            (<>
+              <button className={CLASSNAME.CHAT}><img src={ICONS.chat} alt="img" /></button>
+              <button className={CLASSNAME.NOTIFICATION}><img src={ICONS.notification} alt="img" />  </button>
+              <div className={CLASSNAME.PROFILE}>
+                <span className={CLASSNAME.PROFILE_PHOTO}><img src={ICONS.watch} alt="img" /></span>
+                <button className={CLASSNAME.PROFILE_UPDOWN} onClick={onClickProfileUpDown}><img src={ICONS.upDown} alt="img" /></button>
+                {openProfile && <ProfileUpDown setOpenProfile={setOpenProfile} />}
+              </div>
 
-          <Link to="/login" className="home_nav_login">
-            {token ? 'Logout' : 'Login'}
-          </Link>
-          <button type="button" className="home_nav_sell" onClick={onClickSell}>
+            </>
+            )
+            : (<Link to="/login" className={CLASSNAME.LOGIN}>
+              Login
+            </Link>)}
+          <button type="button" className={CLASSNAME.SELL} onClick={onClickSell}>
             <img
               src={ICONS.sellImage}
-              alt="sell"
-              className="home_nav_sell_icon"
+              alt="img"
+              className={CLASSNAME.SELL_ICON}
             />
-            <span className="home_nav_sell_inner">
+            <span className={CLASSNAME.SELL_INNER}>
               <img
                 src={ICONS.addIcon}
-                alt="addIcon"
-                className="home_nav_sell_add"
+                alt="img"
+                className={CLASSNAME.SELL_ADD}
               />
-              <span className="home_nav_sell_text">SELL</span>
+              <span className={CLASSNAME.SELL_TEXT}>SELL</span>
             </span>
           </button>
         </div>

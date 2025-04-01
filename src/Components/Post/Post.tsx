@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom';
-import  SellerDetail from "../../Components/Atom/Post/SellerDetail"
+import  SellerDetail from "../Atom/Post/SellerDetail/SellerDetail"
 import './post.css';
 
 export default function Post() {

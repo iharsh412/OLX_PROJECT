@@ -14,7 +14,7 @@
 }
 
 .home_nav {
-  width: 96%;
+  width: 100%;
   height: 68px;
   display: flex;
   align-items: center;
@@ -31,7 +31,7 @@
 /* input area fieldset */
 .home_nav_place_wrapper {
 
-  width: 272px;
+  width: 260px;
   height: 48px;
   box-sizing: border-box;
   margin: 0 5px;
@@ -53,11 +53,64 @@
 
 /* cart section */
 .home_nav_cart {
+  padding: 2px;
+  margin: 2px;
   border: none;
   background-color: rgba(0, 47, 52, 0.03);
-  ;
+  
 }
 
+/* chat section */
+.home_nav_chat {
+  padding: 2px;
+  margin: 2px;
+  border: none;
+  background-color: rgba(0, 47, 52, 0.03);
+}
+
+
+/* notification section */
+.home_nav_notification{
+  padding: 2px;
+  margin: 2px;
+  border: none;
+  background-color: rgba(0, 47, 52, 0.03);
+
+}
+/* profile section */
+.home_nav_profile{
+  padding: 2px;
+  margin: 2px;
+  display: flex;
+  height: 100%;
+  width: 100px;
+  align-items: center;
+  justify-content: center;
+  position: relative;;
+}
+.home_nav_profilephoto{
+  
+  padding: 1px;
+  margin: 1px;
+ 
+}
+.home_nav_profilephoto img{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+  
+}
+.home_nav_profile_upDown{
+  margin: 2px;
+  border: none;
+  background-color: rgba(0, 47, 52, 0.03);
+}
+.home_nav_profile_upDown img{
+  width: 20px;
+  height: 20px;
+
+}
 
 /* sell button css */
 .home_nav_sell {

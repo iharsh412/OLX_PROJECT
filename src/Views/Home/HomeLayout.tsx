@@ -3,6 +3,7 @@ import NavCategory from './NavCategory';
 import { Outlet } from 'react-router-dom';
 import Footer from './Footer';
 import './homeLayout.css';
+// import  ImageDetail from "../ImageDetail"
 export function HomeLayout() {
   return (
     <div className="AppWrapper">
@@ -10,7 +11,7 @@ export function HomeLayout() {
       <NavCategory />
 
       <div className="AppOulet">
-        <Outlet />
+      <Outlet/>
       </div>
       <Footer />
     </div>

@@ -1,23 +1,23 @@
 .home_nav_input_objects {
-   
+
     position: relative;
     height: 48px;
     display: flex;
     border: 2px solid black;
-    border-radius: 4px; /* Add border radius */
+    border-radius: 4px;
     box-sizing: border-box;
     align-items: center;
     justify-content: space-between;
-    flex: 1;
+    flex: 0.9;
     min-width: 40px;
-    width: 100%;
-    transition: border-color 0.3s ease; 
+    width: 50%;
+    transition: border-color 0.3s ease;
 }
 
 
 
 .home_nav_input_objects:focus-within {
-    border-color: #b2d3d3; 
+    border-color: #b2d3d3;
 }
 
 .home_nav_input_objects_field {
@@ -29,8 +29,8 @@
     flex-grow: 1;
     min-width: 0px;
     box-sizing: content-box;
-    background-color: transparent; 
-    color: black; 
+    background-color: transparent;
+    color: black;
 }
 
 .home_nav_input_objects_field:focus {
@@ -48,9 +48,18 @@
     position: absolute;
     background-color: black;
     right: 0%;
-    cursor: pointer; 
-    transition: background-color 0.3s ease;}
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
 .home_nav_input_object_search:hover {
-    background-color: #333; /* Darker background on hover */
+    background-color: #333;
+    /* Darker background on hover */
+}
+
+
+@media (max-width: 768px) {
+    .home_nav_input_objects {
+        flex: 1;
+    }
 }
