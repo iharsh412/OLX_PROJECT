@@ -6,6 +6,8 @@ import { HomeLayout } from '../Views/Home/HomeLayout';
 import Login from '../Views/Login/LoginLayout';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
+import CarSection from '../Views/CarSection';
+
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {
@@ -17,8 +19,10 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
       { path: 'login', element: <Login /> },
       { path: 'loginPhone', element: <LoginWithPhone /> },
       { path: 'loginphonesms', element: <LoginPhoneSms /> },
+      { path: '/:category', element: <CarSection /> },
     ],
   },
+ 
   {
     path: `${ROUTES_CONFIG.LOGIN.path}`,
     title: ROUTES_CONFIG.LOGIN.title,

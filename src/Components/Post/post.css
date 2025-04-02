@@ -1,12 +1,15 @@
 /* wrapper */
-
 .post-wrapper {
-  width: 838px;
+  width: 100%;
+  max-width: 838px;
   /* background-color: yellow; */
   border: 1px solid black;
   border-radius: 4px;
+  margin: 0 auto;
+  padding: 0 16px;
 }
-/* header  selected category text */
+
+/* header selected category text */
 .postSelectedCategory {
   display: flex;
   flex-direction: column;
@@ -16,7 +19,7 @@
 .postSelectedCategoryTitle {
   font-size: 20px;
   font-weight: 700;
-  padding: 0 16px;
+  padding: 16px 0;
   margin: 16px 0;
 }
 
@@ -27,8 +30,48 @@
   font-weight: 400 !important;
 }
 
-/* seler detail */
+/* seller detail */
 .postSellerDetail {
   width: 100%;
   /* height: 400px; */
 }
+
+/* Responsiveness for smaller screens */
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+  .post-wrapper {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 12px;
+  }
+
+  .postSelectedCategoryTitle {
+    font-size: 18px;
+    padding: 12px 0;
+  }
+
+  .postSelectedCategoryName {
+    font-size: 10px !important;
+    padding: 0 12px 12px 12px;
+  }
+}
+
+/* For screens smaller than 480px */
+@media (max-width: 480px) {
+  .postSelectedCategoryTitle {
+    font-size: 16px;
+    margin: 12px 0;
+    padding: 12px 0;
+  }
+
+  .postSelectedCategoryName {
+    font-size: 9px !important;
+    padding: 0 8px 8px 8px;
+  }
+
+  .post-wrapper {
+    padding: 0 8px;
+  }
+}
+

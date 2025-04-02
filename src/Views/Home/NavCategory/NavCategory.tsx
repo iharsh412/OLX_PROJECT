@@ -49,18 +49,18 @@ export default function NavCategory() {
           >
             Mobile Phone
           </button>
-          <button type="button" className="home_navCategory_ForSale">
+          {/* <button type="button" className="home_navCategory_ForSale">
             For Sale: Houses & Apartments
-          </button>
+          </button> */}
           <button type="button" className="home_navCategory_Scooters">
             Scooters
           </button>
           <button type="button" className="home_navCategory_Commercial">
-            Commercial & Other Vehicles
+             Electronics
           </button>
-          <button type="button" className="home_navCategory_ForRent">
+          {/* <button type="button" className="home_navCategory_ForRent">
             For Rent: Houses & Apartments
-          </button>
+          </button> */}
         </div>
       </div>
     </div>

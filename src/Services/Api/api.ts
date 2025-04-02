@@ -8,7 +8,6 @@ import {
 import type { RootState } from '../../Store';
 import { API_BASE_URL } from './Constants';
 import { ResponseOptions } from './api.d';
-console.log("API_BASE_URL",API_BASE_URL);
 
 const baseQuery: BaseQueryFn = fetchBaseQuery({
   baseUrl: API_BASE_URL,

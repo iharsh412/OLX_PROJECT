@@ -20,6 +20,7 @@ export default function SellCategory({ categoryId }: SellCategoryProps) {
     <div className="sell-category">
       {subcategories.map((subcategory) => (
         <button
+         title='Select this category'
           type="button"
           key={subcategory}
           className="sell-category__option"

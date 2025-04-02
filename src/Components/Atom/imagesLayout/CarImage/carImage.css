@@ -11,6 +11,15 @@
   margin: 10px;
   box-sizing: border-box; /* Fixed incorrect content-box */
   padding: 8px;
+  /* background-color: blue; */
+  box-shadow:rgb(95, 95, 95) 0px 0px 10px 0px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
+  
+}
+.carImages_wrapper:hover {
+  transform: scale(1.05); /* Slightly enlarges the box */
+  box-shadow: rgb(248, 242, 242) 0px 0px 15px 2px;
 }
 
 /* Image Section */
@@ -20,7 +29,7 @@
   display: flex;
   height: 194px;
   justify-content: center;
-  background-color: rgb(224, 235, 235);
+  background-color: rgb(26, 228, 228);
 }
 .carImages_image {
   width: 100%;
@@ -52,14 +61,9 @@
   border-radius: 50%;
   padding: 5px;
   box-sizing: border-box;
+  cursor: pointer;
 }
-.carImage_cart:hover{
-    fill:red;
-    background: #000;
-}
-.carImage_cart_active{
-  background-color: red;
-}
+
 
 
 /* Content Section */
@@ -68,6 +72,7 @@
   display: flex;
   flex-direction: column;
   margin: 4px;
+ 
 }
 
 /* Car Price */
@@ -86,19 +91,21 @@
 
 /* Car Distance */
 .carImage_distance {
-  font-size: 14px;
+  font-size: 18px;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
+  padding: 5px 0;
 }
 
 /* Car Name */
 .carImage_name {
-  font-weight: 400;
-  font-size: 14px;
+  font-size: 18px;
   padding: 2px 0;
+  font-weight: 600;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 5px 0;
   overflow: hidden;
 }
 
@@ -106,8 +113,9 @@
 .carImage_placeAndDate {
   width: 100%;
   display: flex;
+  padding: 5px 0;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 12px;
 }
 
 /* 🔹 RESPONSIVE DESIGN */
@@ -128,7 +136,7 @@
   }
 
   .carImage_placeAndDate {
-    font-size: 9px;
+    font-size: 12px;
   }
 }
 
@@ -153,6 +161,6 @@
   }
 
   .carImage_placeAndDate {
-    font-size: 8px;
+    font-size: 10px;
   }
 }

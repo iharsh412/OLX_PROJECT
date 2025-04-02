@@ -42,6 +42,7 @@ function ImageSection() {
       ))}
 
       <button
+        title="loginSlideButton"
         type="button"
         className="login_slide_button login_slide_prev"
         onClick={prevSlide}
@@ -49,6 +50,7 @@ function ImageSection() {
         <ChevronLeft size={24} />
       </button>
       <button
+        title="loginSlideButton"
         type="button"
         className="login_slide_button login_slide_next"
         onClick={nextSlide}
@@ -59,6 +61,7 @@ function ImageSection() {
         {images.map((_, index) => (
           // eslint-disable-next-line jsx-a11y/control-has-associated-label
           <button
+            title="loginDots"
             type="button"
             key={`loginDots${index + 1}`}
             className={`dot ${currentIndex === index ? 'active' : ''}`}

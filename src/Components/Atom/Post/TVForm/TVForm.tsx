@@ -1,8 +1,7 @@
-import './sellerDetail.css';
+
 import { Formik, ErrorMessage } from 'formik';
 import {
   CLASSNAME,
-  FuelOptions,
   validationSchema,
   initialValues,
   FormValues,
@@ -10,19 +9,32 @@ import {
 import ICONS from '../../../../assets';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
-export default function SellerDetail() {
+export default function TVForm() {
   const { state } = useLocation();
-  // console.log(state);
+  const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
+  console.log(state, 'state');
 
-  const handleSubmit = async (values: FormValues) => {
-    // console.log('handle submit', values);
+  useEffect(() => {
+    if (showResponse) {
+      const timer = setTimeout(() => {
+        setShowResponse('');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showResponse]);
 
+  const handleSubmit = async (
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    console.log(values, 'values');
     const formData = new FormData();
     formData.append('user', '1');
-    formData.append('category', '1');
-    formData.append('subcategory', '16');
+    formData.append('category', state.categoryId);
+    formData.append('subcategory', state.subcategory);
 
     for (let key in values) {
       const typedKey = key as keyof FormValues;
@@ -36,17 +48,16 @@ export default function SellerDetail() {
       }
     }
 
-    // console.log('form data', ...formData);
-
     try {
-      const response = await postNewProducts(formData).unwrap();
-      console.log(response, 'response');
+      await postNewProducts(formData).unwrap();
+      setShowResponse('Added');
+
+      resetForm();
     } catch (error) {
-      console.log(error, 'error');
+      setShowResponse('Error');
     }
-    console.log(JSON.stringify(values, null, 2), 'values');
-    console.log('handle submit');
   };
+
   return (
     <Formik
       initialValues={initialValues}
@@ -61,6 +72,7 @@ export default function SellerDetail() {
         handleChange,
         handleBlur,
         handleSubmit,
+        isSubmitting,
       }) => {
         return (
           <>
@@ -68,115 +80,37 @@ export default function SellerDetail() {
               <h3 className={CLASSNAME.DETAIL_TEXT}>INCLUDE SOME DETAILS</h3>
 
               {/* Brand Input */}
-              {state.categoryId === 'cars' && (
-                <>
-                  <label htmlFor="brand" className={CLASSNAME.LABEL}>
-                    Brand *
-                  </label>
-                  <input
-                    type="text"
-                    name="brand"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.brand}
-                    title='brand'
-                    className={`${CLASSNAME.BRAND} ${
-                      errors.brand && touched.brand ? CLASSNAME.INPUTERROR : ''
-                    }`}
-                  />
-                  <ErrorMessage
-                    name="brand"
-                    component="div"
-                    className="postError"
-                  />
-                </>
-              )}
 
-              {/* Year Input */}
-              {state.categoryId === 'cars' && (
-                <>
-                  <label htmlFor="year" className={CLASSNAME.LABEL}>
-                    Year *
-                  </label>
-                  <input
-                    type="number"
-                    name="year"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.year}
-                    className={`${CLASSNAME.YEAR} ${
-                      errors.year && touched.year ? CLASSNAME.INPUTERROR : ''
-                    }`}
-                  />
-                  <ErrorMessage
-                    name="year"
-                    component="div"
-                    className="postError"
-                  />
-                </>
-              )}
+              <label htmlFor="brand" className={CLASSNAME.LABEL}>
+                Brand *
+              </label>
+              <input
+                type="text"
+                name="brand"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.brand}
+                title="brand"
+                className={`${CLASSNAME.BRAND} ${
+                  errors.brand && touched.brand ? CLASSNAME.INPUTERROR : ''
+                }`}
+              />
+              <ErrorMessage
+                name="brand"
+                component="div"
+                className="postError"
+              />
 
-              {/* Fuel Selection */}
-              {state.categoryId === 'cars' && (
-                <>
-                  <label htmlFor="fuel" className={CLASSNAME.LABEL}>
-                    Fuel *
-                  </label>
-                  <div className={CLASSNAME.FUEL}>
-                    {FuelOptions.map((value) => (
-                      <button
-                        type="button"
-                        key={value.id}
-                        onClick={() => setFieldValue('fuel', value.label)}
-                        style={{
-                          backgroundColor:
-                            values.fuel === value.label ? 'lightblue' : 'white',
-                        }}
-                      >
-                        {value.label}
-                      </button>
-                    ))}
-                  </div>
-                  <ErrorMessage
-                    name="fuel"
-                    component="div"
-                    className="postError"
-                  />
-                </>
-              )}
-              {/* KM Driven */}
-
-              {state.categoryId === 'cars' && (
-                <>
-                  <label htmlFor="distance" className={CLASSNAME.LABEL}>
-                    KM driven *
-                  </label>
-                  <input
-                    type="number"
-                    name="distance"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    value={values.distance}
-                    className={`${CLASSNAME.DISTANCE} ${
-                      errors.distance && touched.distance
-                        ? CLASSNAME.INPUTERROR
-                        : ''
-                    }`}
-                    title='Enter the distance in kilometers'
-                  />
-                  <ErrorMessage
-                    name="distance"
-                    component="div"
-                    className="postError"
-                  />
-                </>
-              )}
+              
+           
+          
               {/* Title Input */}
 
               <label htmlFor="title" className={CLASSNAME.LABEL}>
                 Ad title *
               </label>
               <input
+                title="Enter a title for your ad"
                 type="text"
                 name="title"
                 onChange={handleChange}
@@ -198,6 +132,7 @@ export default function SellerDetail() {
                 Description *
               </label>
               <textarea
+                title="Enter a brief description of your ad"
                 name="description"
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -228,6 +163,7 @@ export default function SellerDetail() {
                   <img src={ICONS.rupees} alt="img" width="10px" />
                 </span>
                 <input
+                  title="Enter the price of your ad"
                   type="number"
                   name="price"
                   onChange={handleChange}
@@ -257,7 +193,7 @@ export default function SellerDetail() {
                   {values.photos[index] ? (
                     <img
                       src={URL.createObjectURL(values.photos[index])}
-                      alt="preview"
+                      alt="img"
                       className="postForm_photo-preview"
                     />
                   ) : (
@@ -297,6 +233,7 @@ export default function SellerDetail() {
                 State *
               </label>
               <input
+                title="Enter the state where you are located"
                 type="text"
                 name="state"
                 onChange={handleChange}
@@ -317,6 +254,7 @@ export default function SellerDetail() {
                 City *
               </label>
               <input
+                title="Enter the city where you are located"
                 type="text"
                 name="city"
                 onChange={handleChange}
@@ -340,6 +278,7 @@ export default function SellerDetail() {
                 Name *
               </label>
               <input
+                title="seller name"
                 type="text"
                 name="sellerName"
                 onChange={handleChange}
@@ -369,6 +308,7 @@ export default function SellerDetail() {
                   Mobile Number *
                 </label>
                 <input
+                  title="Enter your mobile number"
                   type="text"
                   name="mobileNumber"
                   onChange={handleChange}
@@ -394,8 +334,13 @@ export default function SellerDetail() {
               type="submit"
               onClick={() => handleSubmit()}
               className={CLASSNAME.POST}
+              disabled={isSubmitting}
             >
-              POST NOW
+              {showResponse === 'Added'
+                ? 'POST SUCCESSFULLY'
+                : showResponse === 'Error '
+                ? 'ERROR IN POSTING'
+                : 'POST'}
             </button>
           </>
         );

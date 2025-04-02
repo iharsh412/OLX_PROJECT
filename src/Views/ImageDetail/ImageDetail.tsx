@@ -9,14 +9,14 @@ export default function ImageDetail() {
   const id = productId !== undefined ? Number(productId) : undefined;
 
   const { data } = useGetProductsDetailQuery({ id });
-   console.log(data,"data")
+   console.log(data,"data image detail")
   const product = Array.isArray(data) ? data[0] : data;
 
   return (
     <div className="imageDetailWrapper">
       <div className="imageDetailImagesDetailsDescription">
         <div className="imageDetailImageSection">
-          <ImageTransition images={product?.display_photo} />
+          <ImageTransition images={product?.images} />
         </div>
         <div className="imageDetailDetailsDescription">
           <div className="imageDetailDetails">

@@ -53,28 +53,16 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
           loading="lazy"
         />
         <button
+          title="Add to cart"
           type="button"
           onClick={onClickCart}
           className="carImage_cart_Parent"
           disabled={isLoading}
         >
           <Heart
-          fill={ showAdded === 'Added'
-            ?  'red':'none'
-             }
-
-          color={ showAdded === 'Added'
-            ?  'red':'black'
-            }
-
+            fill={showAdded === 'Added' ? 'red' : 'none'}
+            color={showAdded === 'Added' ? 'red' : 'black'}
           />
-          {/* <img
-            src={ICONS.heartIcon}
-            alt="cart"
-            className={`carImage_cart ${
-              showAdded === 'Added' ? 'carImage_cart_active' : ''
-            }`}
-          /> */}
         </button>
       </div>
       <div className="carImages_content">

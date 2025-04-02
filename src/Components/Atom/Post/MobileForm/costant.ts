@@ -28,13 +28,7 @@ export const CLASSNAME = {
   MOBILE_NUMBER_WRAPPER: 'postForm_mobileNumberWrapper',
   POST: 'postForm_post',
 };
-export const FuelOptions = [
-  { id: '1', label: 'CNG' },
-  { id: '2', label: 'Diesel' },
-  { id: '3', label: 'Electric' },
-  { id: '4', label: 'LPG' },
-  { id: '5', label: 'Petrol' },
-];
+
 
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
@@ -42,9 +36,6 @@ export const validationSchema = Yup.object().shape({
     .max(15, 'Must be less than 15 characters'),
   description: Yup.string().required('Required'),
   brand: Yup.string().required('Required'),
-  year: Yup.number().required('Required'),
-  fuel: Yup.string().required('Please select a fuel type'),
-  distance: Yup.number().required('Required'),
   price: Yup.number().required('Required'),
   photos: Yup.array()
     .min(1, 'Please upload at least one photo')
@@ -64,31 +55,29 @@ export const validationSchema = Yup.object().shape({
     .min(3, 'Seller name should be at least 3 characters long'),
 });
 
-export const initialValues = {
-  title: '',
-  description: '',
-  brand: '',
-  year: '',
-  fuel: '',
-  distance: '',
-  price: '',
-  photos: [],
-  state: '',
-  city: '',
-  sellerName: '',
-  mobileNumber: '',
-};
+export const initialValues: FormValues = {
+    title: '',
+    description: '',
+    brand: '',
+    price: '',
+    photos: [],
+    state: '',
+    city: '',
+    sellerName: '',
+    mobileNumber: '',
+  };
+  
 export interface FormValues {
-  title: string;
-  description: string;
-  brand: string;
-  year: string;
-  fuel: string;
-  distance: string;
-  price: string;
+  title?: string;
+  description?: string;
+  brand?: string;
+  year?: string;
+  fuel?: string;
+  distance?: string;
+  price?: string;
   photos: File[]; 
-  state: string;
-  city: string;
-  sellerName: string;
-  mobileNumber: string;
+  state?: string;
+  city?: string;
+  sellerName?: string;
+  mobileNumber?: string;
 }

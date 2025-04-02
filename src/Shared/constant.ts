@@ -8,6 +8,7 @@ export interface Product {
   city?: React.ReactNode;
   district?: React.ReactNode;
   state?: React.ReactNode;
+  images?: string;
   status?: React.ReactNode;
   subcategory?: React.ReactNode;
   user?: React.ReactNode;

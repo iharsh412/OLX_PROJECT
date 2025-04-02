@@ -1,0 +1,30 @@
+/* TEXTFIELD WRAPPER */
+.textField{
+    display: flex;
+    flex-direction: column;
+}
+
+/* LABEL SECTION */
+.textField_label{
+    font-size: 14px;
+  margin-top: 15px;
+}
+
+/* INPUT FIELD */
+.textField_input{
+    margin: 5px 5px 5px 0px;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+}
+
+/* ERROR  */
+.textField_error{
+    margin-top: 0px;
+    font-size: 0.9rem;
+    padding: 0 5px;
+    color: red;
+}
+.textField_inputError{
+    border: 4px solid red;
+}

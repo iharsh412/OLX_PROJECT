@@ -1,0 +1,36 @@
+/* SAMPLE WRAPPER */
+.sample-Wrapper{
+    background-color: yellow;
+    width: 65vw;
+    padding: 10px ;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    padding: 10px;
+    font-family:  'Roboto', A2rial, Helvetica, sans-serif;;
+    margin-top: 20px;
+}
+
+
+/* TEXT_SECTION */
+.sample-textSection{
+    width: 100%;
+    padding: 10px 0;
+}
+.sample-textSection h3{
+    font-size: 24px;
+} 
+
+/* MAIN SECTION   */
+.sample-mainSectionWrappe{
+
+}
+/* FILTER SECTION */
+.sample-mainSectionFilter{
+    
+}
+/* IMAGE SECTION */
+.sample-mainSectionImage{
+
+}
