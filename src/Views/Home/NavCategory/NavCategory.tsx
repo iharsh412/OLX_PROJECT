@@ -9,10 +9,13 @@ export default function NavCategory() {
     navigate('cars');
   }
   function handleMotorcycleClick() {
-    navigate('motorcycles');
+    navigate('bikes');
   }
   function handleMobilePhoneClick() {
-    navigate('mobilephone');
+    navigate('mobile');
+  }
+  function handleElecyronicsClick() {
+    navigate('electronics');
   }
   return (
     <div className="home_navCategory">
@@ -40,7 +43,7 @@ export default function NavCategory() {
             className="home_navCategory_Motorcycle"
             onClick={handleMotorcycleClick}
           >
-            Motorcycle
+            Bikes
           </button>
           <button
             type="button"
@@ -49,18 +52,14 @@ export default function NavCategory() {
           >
             Mobile Phone
           </button>
-          {/* <button type="button" className="home_navCategory_ForSale">
-            For Sale: Houses & Apartments
-          </button> */}
-          <button type="button" className="home_navCategory_Scooters">
-            Scooters
+
+          <button
+            type="button"
+            className="home_navCategory_Commercial"
+            onClick={handleElecyronicsClick}
+          >
+            Electronics
           </button>
-          <button type="button" className="home_navCategory_Commercial">
-             Electronics
-          </button>
-          {/* <button type="button" className="home_navCategory_ForRent">
-            For Rent: Houses & Apartments
-          </button> */}
         </div>
       </div>
     </div>

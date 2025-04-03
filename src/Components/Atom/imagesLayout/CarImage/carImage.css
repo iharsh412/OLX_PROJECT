@@ -1,129 +1,152 @@
-/* Car Card Wrapper */
+/* Car Card Container */
 .carImages_wrapper {
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgba(14, 4, 5, 0.2);
-  border-radius: 4px;
-  width: 100%; /* Adjust width dynamically */
-  max-width: 300px; /* Limits max width */
+  border: 1px solid rgba(14, 4, 5, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
   margin: 10px;
-  box-sizing: border-box; /* Fixed incorrect content-box */
-  padding: 8px;
-  /* background-color: blue; */
-  box-shadow:rgb(95, 95, 95) 0px 0px 10px 0px;
+  box-sizing: border-box;
+  padding: 12px;
+  box-shadow: 10px 13px 12px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition */
-  
-}
-.carImages_wrapper:hover {
-  transform: scale(1.05); /* Slightly enlarges the box */
-  box-shadow: rgb(248, 242, 242) 0px 0px 15px 2px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  height: 400px;
 }
 
-/* Image Section */
+.carImages_wrapper:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(248, 242, 242, 0.2);
+}
+
+/* Image Container */
 .carImages {
   position: relative;
   width: 100%;
-  display: flex;
   height: 194px;
+  display: flex;
   justify-content: center;
-  background-color: rgb(26, 228, 228);
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 12px;
 }
+
 .carImages_image {
   width: 100%;
-  height: auto; /* Maintains aspect ratio */
-  border-radius: 4px;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
 }
 
-/* cart option */
-.carImage_cart_Parent {
-
-  border: none;
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 34px;
-  height: 34px;
-  background-color: rgb(253, 253, 253);
-  border-radius: 50%;
-  padding: 5px;
-  box-sizing: border-box;
+.carImages_wrapper:hover .carImages_image {
+  transform: scale(1.03);
 }
+
+/* Cart Button */
+.carImage_cart_Parent,
 .carImage_cart {
   position: absolute;
-  top: 2%;
-  right: 2%;
+  top: 8px;
+  right: 8px;
   width: 34px;
   height: 34px;
-  background-color: rgb(253, 253, 253);
+  background-color: rgba(253, 253, 253, 0.9);
   border-radius: 50%;
   padding: 5px;
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
 }
 
-
+.carImage_cart_Parent:hover,
+.carImage_cart:hover {
+  background-color: white;
+  transform: scale(1.1);
+}
 
 /* Content Section */
 .carImages_content {
   width: 90%;
   display: flex;
   flex-direction: column;
-  margin: 4px;
- 
+  margin: 8px 4px;
 }
 
-/* Car Price */
+/* Price */
 .carImage_cost {
   width: 100%;
   font-size: 20px;
   font-weight: 700;
+  color: #2c3e50;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
 }
+
 .carImage_cost img {
   width: 16px;
   height: 16px;
+  margin-right: 4px;
 }
 
-/* Car Distance */
+/* Distance */
 .carImage_distance {
-  font-size: 18px;
+  font-size: 16px;
+  color: #555;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 100%;
-  padding: 5px 0;
+  padding: 4px 0;
+  margin-bottom: 4px;
 }
 
-/* Car Name */
+/* Name */
 .carImage_name {
   font-size: 18px;
-  padding: 2px 0;
   font-weight: 600;
+  color: #333;
   text-overflow: ellipsis;
   white-space: nowrap;
-  padding: 5px 0;
   overflow: hidden;
+  padding: 4px 0;
+  margin-bottom: 4px;
 }
 
 /* Location & Date */
 .carImage_placeAndDate {
   width: 100%;
   display: flex;
-  padding: 5px 0;
   justify-content: space-between;
   font-size: 12px;
+  color: #777;
+  padding: 6px 0;
+  border-top: 1px solid #eee;
+  margin-top: 8px;
 }
 
-/* 🔹 RESPONSIVE DESIGN */
-
-/* Medium Screens (Tablets) */
+/* Responsive Design */
 @media (max-width: 768px) {
   .carImages_wrapper {
-    max-width: 90%; /* Allows more flexibility */
+    max-width: 100%;
+    margin: 8px 0;
+  }
+
+  .carImages {
+    height: 180px;
   }
 
   .carImage_cost {
@@ -132,23 +155,13 @@
 
   .carImage_distance,
   .carImage_name {
-    font-size: 12px;
-  }
-
-  .carImage_placeAndDate {
-    font-size: 12px;
+    font-size: 16px;
   }
 }
 
-/* Small Screens (Mobile) */
 @media (max-width: 480px) {
-  .carImages_wrapper {
-    max-width: 100%; /* Full width on small screens */
-    margin: 5px;
-  }
-
-  .carImages_content {
-    width: 100%;
+  .carImages {
+    height: 160px;
   }
 
   .carImage_cost {
@@ -157,10 +170,10 @@
 
   .carImage_distance,
   .carImage_name {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .carImage_placeAndDate {
-    font-size: 10px;
+    font-size: 11px;
   }
 }

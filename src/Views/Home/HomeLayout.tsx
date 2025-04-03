@@ -5,6 +5,7 @@ import Footer from './Footer';
 import './homeLayout.css';
 // import  ImageDetail from "../ImageDetail"
 export function HomeLayout() {
+ 
   return (
     <div className="AppWrapper">
       <Navbar />

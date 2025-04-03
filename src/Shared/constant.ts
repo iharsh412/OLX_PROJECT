@@ -14,6 +14,7 @@ export interface Product {
   user?: React.ReactNode;
   description?: React.ReactNode;
   created_at?: React.ReactNode;
+ 
 }
 export interface ImageProps {
   data: {

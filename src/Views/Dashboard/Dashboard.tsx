@@ -6,13 +6,14 @@ import { Product } from '../../Shared/constant.ts';
 
 export default function Dashboard() {
   const [page, setPage] = useState(1);
+  
 
   const limit = 12;
   const { data, error, isLoading, refetch } = useGetProductsQuery(
     { page, limit },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
-  console.log(data,"data")
+ 
   const [totalImages, setTotalImages] = useState<Product[]>([]);
 
   useEffect(() => {

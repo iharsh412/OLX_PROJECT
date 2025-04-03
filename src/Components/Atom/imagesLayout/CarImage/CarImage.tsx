@@ -11,6 +11,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const [showError, setShowError] = useState(false);
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
+  // console.log(data,"datawkruh")
 
   useEffect(() => {
     setShowAdded(data.is_favourite ? 'Added' : '');
