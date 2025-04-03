@@ -7,7 +7,6 @@ import TabletDetail from '../Atom/Post/TabletForm';
 import TVDetail from '../Atom/Post/TVForm';
 import CameraDetail from '../Atom/Post/CameraForm';
 import ComputerDetail from '../Atom/Post/ComputerForm';
-
 import './post.css';
 import { CLASSNAME } from './constant';
 

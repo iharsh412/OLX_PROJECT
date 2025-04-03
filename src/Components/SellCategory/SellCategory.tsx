@@ -1,29 +1,20 @@
 import { useNavigate } from 'react-router-dom';
 import './SellCategory.css';
+import {OPTIONS,CLASSNAME, SellCategoryProps,SUBCATEGORIES} from "./constant"
 
-interface SellCategoryProps {
-  categoryId: string;
-}
-
-const SUBCATEGORIES: Record<string, string[]> = {
-  cars: ['Cars'],
-  mobile: ['Mobile', 'Tablet'],
-  electronics: ['Computer', 'TVs', 'Camera'],
-  bikes: ['Bikes', 'Scooters'],
-};
 
 export default function SellCategory({ categoryId }: SellCategoryProps) {
   const subcategories = SUBCATEGORIES[categoryId] || [];
   const navigate = useNavigate();
 
   return (
-    <div className="sell-category">
+    <div className={CLASSNAME.WRAPPER}>
       {subcategories.map((subcategory) => (
         <button
-         title='Select this category'
-          type="button"
+         title={OPTIONS.TITLE}
+          type={OPTIONS.TYPE as "button" } 
           key={subcategory}
-          className="sell-category__option"
+          className={CLASSNAME.OPTIONS}
           onClick={() => {
             navigate('attributes', { state: { categoryId, subcategory } });
           }}

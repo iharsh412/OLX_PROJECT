@@ -1,4 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
+import TextField from '../TextField';
 import {
   CLASSNAME,
   validationSchema,
@@ -11,7 +12,6 @@ import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 export default function MobileForm() {
-
   const { state } = useLocation();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
@@ -74,54 +74,24 @@ export default function MobileForm() {
         handleSubmit,
         isSubmitting,
       }) => {
+
+        const share = { handleChange, handleBlur, handleSubmit,  }
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
               <h3 className={CLASSNAME.DETAIL_TEXT}>INCLUDE SOME DETAILS</h3>
 
-              {/* Brand Input */}
+              < TextField type="text" htmlFor="brand" value={values.brand} err={errors.brand} tch={touched.brand} label="Brand" {...share} />
 
-              <label htmlFor="brand" className={CLASSNAME.LABEL}>
-                Brand *
-              </label>
-              <input
-                type="text"
-                name="brand"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.brand}
-                title="brand"
-                className={`${CLASSNAME.BRAND} ${
-                  errors.brand && touched.brand ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
-              <ErrorMessage
-                name="brand"
-                component="div"
-                className="postError"
-              />
+
 
               {/* Title Input */}
 
-              <label htmlFor="title" className={CLASSNAME.LABEL}>
-                Ad title *
-              </label>
-              <input
-                title="Enter a title for your ad"
-                type="text"
-                name="title"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-                className={`${CLASSNAME.TITLE} ${
-                  errors.title && touched.title ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
-              <ErrorMessage
-                name="title"
-                component="div"
-                className="postError"
-              />
+
+              < TextField type="text" htmlFor="title" value={values.title} label="Ad title" err={errors.title} tch={touched.title} {...share} />
+
+
+
 
               {/* Description Input */}
 
@@ -134,11 +104,10 @@ export default function MobileForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.description}
-                className={`${CLASSNAME.DESCRIPTION} ${
-                  errors.description && touched.description
+                className={`${CLASSNAME.DESCRIPTION} ${errors.description && touched.description
                     ? CLASSNAME.INPUTERROR
                     : ''
-                }`}
+                  }`}
               />
               <ErrorMessage
                 name="description"
@@ -166,9 +135,8 @@ export default function MobileForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.price}
-                  className={`${CLASSNAME.PRICE} ${
-                    errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
-                  }`}
+                  className={`${CLASSNAME.PRICE} ${errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
+                    }`}
                 />
               </div>
               <ErrorMessage
@@ -187,7 +155,7 @@ export default function MobileForm() {
                 length: Math.max(5, values?.photos?.length + 1),
               }).map((_, index) => (
                 <div key={index} className="postForm_photo-box">
-                  {values?.photos[index] ? (
+                  {values.photos[index] ? (
                     <img
                       src={URL.createObjectURL(values.photos[index])}
                       alt="preview"
@@ -236,9 +204,8 @@ export default function MobileForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.state}
-                className={`${CLASSNAME.STATE} ${
-                  errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
-                }`}
+                className={`${CLASSNAME.STATE} ${errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
+                  }`}
               />
 
               <ErrorMessage
@@ -257,9 +224,8 @@ export default function MobileForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.city}
-                className={`${CLASSNAME.CITY} ${
-                  errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
-                }`}
+                className={`${CLASSNAME.CITY} ${errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
+                  }`}
               />
 
               <ErrorMessage name="city" component="div" className="postError" />
@@ -271,28 +237,13 @@ export default function MobileForm() {
 
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>REVIEW YOUR DETAILS</h3>
-              <label htmlFor="sellerName" className={CLASSNAME.LABEL}>
-                Name *
-              </label>
-              <input
-                title="seller name"
-                type="text"
-                name="sellerName"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.sellerName}
-                className={`${CLASSNAME.SELLER_NAME} ${
-                  errors.sellerName && touched.sellerName
-                    ? CLASSNAME.INPUTERROR
-                    : ''
-                }`}
-              />
+              
+              
+              < TextField type="text" htmlFor="sellerName" value={values.sellerName} label="Name" err={errors.sellerName} tch={touched.sellerName} {...share} />
 
-              <ErrorMessage
-                name="sellerName"
-                component="div"
-                className="postError"
-              />
+
+              
+             
               <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>
                 Let's verify your account
               </h3>
@@ -311,11 +262,10 @@ export default function MobileForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.mobileNumber}
-                  className={`${CLASSNAME.MOBILE_NUMBER} ${
-                    errors.mobileNumber && touched.mobileNumber
+                  className={`${CLASSNAME.MOBILE_NUMBER} ${errors.mobileNumber && touched.mobileNumber
                       ? CLASSNAME.INPUTERROR
                       : ''
-                  }`}
+                    }`}
                 />
               </div>
               <ErrorMessage
@@ -336,8 +286,8 @@ export default function MobileForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

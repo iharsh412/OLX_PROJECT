@@ -6,3 +6,9 @@ export const CLASSNAME = {
   MAIN_SECTION_IMAGE: "sample-mainSectionImage",
   MAIN_SECTION_FILTER: "sample-mainSectionFilter",
 };
+
+export const TEXT = {
+  TEXT_SECTION: {
+    H3: "Buy & Sell Used Bikes in India"
+  }
+}

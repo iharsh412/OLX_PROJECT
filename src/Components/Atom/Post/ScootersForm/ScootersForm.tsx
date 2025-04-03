@@ -1,4 +1,5 @@
 import { Formik, ErrorMessage } from 'formik';
+import TextField from '../TextField';
 import {
   CLASSNAME,
   validationSchema,
@@ -10,7 +11,7 @@ import { usePostNewProductsMutation } from '../../../../Services/Api/module/imag
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-export default function ScootersForm() {
+export default function ScooterForm() {
   const { state } = useLocation();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
@@ -73,96 +74,31 @@ export default function ScootersForm() {
         handleSubmit,
         isSubmitting,
       }) => {
+
+        const share = { handleChange, handleBlur, handleSubmit, }
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
               <h3 className={CLASSNAME.DETAIL_TEXT}>INCLUDE SOME DETAILS</h3>
 
-              {/* Brand Input */}
+              < TextField type="text" htmlFor="brand" value={values.brand} err={errors.brand} tch={touched.brand} label="Brand" {...share} />
 
-              <label htmlFor="brand" className={CLASSNAME.LABEL}>
-                Brand *
-              </label>
-              <input
-                type="text"
-                name="brand"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.brand}
-                title="brand"
-                className={`${CLASSNAME.BRAND} ${
-                  errors.brand && touched.brand ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
-              <ErrorMessage
-                name="brand"
-                component="div"
-                className="postError"
-              />
+               {/* Year Input */}
+               
+              < TextField type="number" htmlFor="year" value={values.year} err={errors.year} tch={touched.year} label="Year" {...share} />
+              
+              {/* Distance Driven */}
+              
+              < TextField type="number" htmlFor="distance" value={values.distance} err={errors.distance} tch={touched.distance} label="KM driven" {...share} />
 
-              {/* Year Input */}
-
-              <label htmlFor="year" className={CLASSNAME.LABEL}>
-                Year *
-              </label>
-              <input
-                title="Enter the year of the car"
-                type="number"
-                name="year"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.year}
-                className={`${CLASSNAME.YEAR} ${
-                  errors.year && touched.year ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
-              <ErrorMessage name="year" component="div" className="postError" />
-
-              {/* KM Driven */}
-
-              <label htmlFor="distance" className={CLASSNAME.LABEL}>
-                KM driven *
-              </label>
-              <input
-                type="number"
-                name="distance"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.distance}
-                className={`${CLASSNAME.DISTANCE} ${
-                  errors.distance && touched.distance
-                    ? CLASSNAME.INPUTERROR
-                    : ''
-                }`}
-                title="Enter the distance in kilometers"
-              />
-              <ErrorMessage
-                name="distance"
-                component="div"
-                className="postError"
-              />
 
               {/* Title Input */}
 
-              <label htmlFor="title" className={CLASSNAME.LABEL}>
-                Ad title *
-              </label>
-              <input
-                title="Enter a title for your ad"
-                type="text"
-                name="title"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.title}
-                className={`${CLASSNAME.TITLE} ${
-                  errors.title && touched.title ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
-              <ErrorMessage
-                name="title"
-                component="div"
-                className="postError"
-              />
+
+              < TextField type="text" htmlFor="title" value={values.title} label="Ad title" err={errors.title} tch={touched.title} {...share} />
+
+
+
 
               {/* Description Input */}
 
@@ -175,11 +111,10 @@ export default function ScootersForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.description}
-                className={`${CLASSNAME.DESCRIPTION} ${
-                  errors.description && touched.description
-                    ? CLASSNAME.INPUTERROR
-                    : ''
-                }`}
+                className={`${CLASSNAME.DESCRIPTION} ${errors.description && touched.description
+                  ? CLASSNAME.INPUTERROR
+                  : ''
+                  }`}
               />
               <ErrorMessage
                 name="description"
@@ -207,9 +142,8 @@ export default function ScootersForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.price}
-                  className={`${CLASSNAME.PRICE} ${
-                    errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
-                  }`}
+                  className={`${CLASSNAME.PRICE} ${errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
+                    }`}
                 />
               </div>
               <ErrorMessage
@@ -277,9 +211,8 @@ export default function ScootersForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.state}
-                className={`${CLASSNAME.STATE} ${
-                  errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
-                }`}
+                className={`${CLASSNAME.STATE} ${errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
+                  }`}
               />
 
               <ErrorMessage
@@ -298,9 +231,8 @@ export default function ScootersForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.city}
-                className={`${CLASSNAME.CITY} ${
-                  errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
-                }`}
+                className={`${CLASSNAME.CITY} ${errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
+                  }`}
               />
 
               <ErrorMessage name="city" component="div" className="postError" />
@@ -312,28 +244,13 @@ export default function ScootersForm() {
 
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>REVIEW YOUR DETAILS</h3>
-              <label htmlFor="sellerName" className={CLASSNAME.LABEL}>
-                Name *
-              </label>
-              <input
-                title="seller name"
-                type="text"
-                name="sellerName"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.sellerName}
-                className={`${CLASSNAME.SELLER_NAME} ${
-                  errors.sellerName && touched.sellerName
-                    ? CLASSNAME.INPUTERROR
-                    : ''
-                }`}
-              />
 
-              <ErrorMessage
-                name="sellerName"
-                component="div"
-                className="postError"
-              />
+
+              < TextField type="text" htmlFor="sellerName" value={values.sellerName} label="Name" err={errors.sellerName} tch={touched.sellerName} {...share} />
+
+
+
+
               <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>
                 Let's verify your account
               </h3>
@@ -352,11 +269,10 @@ export default function ScootersForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.mobileNumber}
-                  className={`${CLASSNAME.MOBILE_NUMBER} ${
-                    errors.mobileNumber && touched.mobileNumber
-                      ? CLASSNAME.INPUTERROR
-                      : ''
-                  }`}
+                  className={`${CLASSNAME.MOBILE_NUMBER} ${errors.mobileNumber && touched.mobileNumber
+                    ? CLASSNAME.INPUTERROR
+                    : ''
+                    }`}
                 />
               </div>
               <ErrorMessage
@@ -377,8 +293,8 @@ export default function ScootersForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

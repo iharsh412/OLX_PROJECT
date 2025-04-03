@@ -10,17 +10,6 @@
   padding-bottom: 15px;
 }
 
-/* Brand, Year, Fuel, Distance, Title Sections */
-.postForm_Brand, 
-.postForm_Year, 
-.postForm_Distance, 
-.postForm_Title {
-  margin: 5px 5px 5px 0px;
-  height: 48px;
-  font-size: 18px;
-  padding: 10px;
-}
-
 /* Fuel button */
 .postForm_FuelOption button {
   padding: 10px;
@@ -199,15 +188,11 @@
     padding: 12px;
   }
 
-  .postForm_Brand, 
-  .postForm_Year, 
+
   .postForm_FuelOption button, 
-  .postForm_Distance, 
-  .postForm_Title, 
   .postForm_Description, 
   .postForm_State, 
   .postForm_City, 
-  .postForm_SellerName, 
   .postForm_MobileNumber {
     font-size: 16px;
     padding: 8px;
@@ -253,15 +238,11 @@
     padding: 8px;
   }
 
-  .postForm_Brand, 
-  .postForm_Year, 
+
   .postForm_FuelOption button, 
-  .postForm_Distance, 
-  .postForm_Title, 
   .postForm_Description, 
   .postForm_State, 
   .postForm_City, 
-  .postForm_SellerName, 
   .postForm_MobileNumber {
     font-size: 14px;
     padding: 6px;

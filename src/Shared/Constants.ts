@@ -3,7 +3,7 @@ export { STRING };
 
 const ROUTES = {
   HOMEPAGE: '/',
-  LOGIN: '/login',
+  LOGIN: 'login',
   REGISTER: '/register',
   ABOUT: '/about-us',
 };
@@ -16,7 +16,7 @@ const WILDCARD_ROUTES = {
 const ROUTES_CONFIG = {
   HOMEPAGE: {
     path: ROUTES.HOMEPAGE,
-    title: 'Master Plan',
+    title: 'Homepage',
   },
   LOGIN: {
     path: ROUTES.LOGIN,
