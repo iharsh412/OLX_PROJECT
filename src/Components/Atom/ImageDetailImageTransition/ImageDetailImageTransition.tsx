@@ -4,6 +4,7 @@ import './imageDetailImageTransition.css';
 import { ImageSectionProps } from './constant';
 
 function ImageSection({ images }: ImageSectionProps) {
+  console.log(images,"images")
   const imageArray: string[] = images
     ? Array.isArray(images)
       ? images
@@ -11,6 +12,7 @@ function ImageSection({ images }: ImageSectionProps) {
     : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
+  console.log(images,"images")
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>

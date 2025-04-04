@@ -9,9 +9,9 @@ export default function ImageDetail() {
   const id = productId !== undefined ? Number(productId) : undefined;
 
   const { data } = useGetProductsDetailQuery({ id });
-   console.log(data,"data image detail")
+  console.log(data, 'data image detail');
   const product = Array.isArray(data) ? data[0] : data;
-
+  
   return (
     <div className="imageDetailWrapper">
       <div className="imageDetailImagesDetailsDescription">
@@ -69,7 +69,7 @@ export default function ImageDetail() {
         <div className="imageDetailPost">
           <span className="imageDetailPostText"> Posted in</span>
           <span className="imageDetailPostValue">
-            {product?.state} {product?.district}
+            {product?.state} { product?.city || product?.district }
           </span>
         </div>
       </div>

@@ -1,70 +1,152 @@
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
-import { useGetProductsByCategoryQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME, TEXT } from './constant';
+import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
+import { CLASSNAME } from './constant';
 import './sample.css';
 import { useParams } from 'react-router-dom';
 import ImagesLayout from '../Atom/imagesLayout/CarImage';
 import { Product } from '../../Shared/constant';
 import { useEffect, useState } from 'react';
+import ICONS from '../../assets';
 
 interface SampleData {
+  category?: string;
   subcategory: string;
-  brand: string;
+  brand: string[];
   price: [number, number];
+}
+interface ResponseData {
+  products?: Product[];
+  subcategories?: { subcategory_name: string; product_count: number }[];
+  Brand?: string[];
 }
 
 export default function Sample() {
+  const limit = 1;
+  const[page]   = useState<number>(1);
   const { category } = useParams();
-
   const [sampleData, setSampleData] = useState<SampleData>({
+    category: category,
     subcategory: '',
-    brand: '',
+    brand: [],
     price: [0, 1000000],
   });
 
-  const { data, refetch, isLoading, error } = useGetProductsByCategoryQuery(
-    { category },
-    { refetchOnMountOrArgChange: true }
-  );
-  // console.log(data, 'data');
-  const [totalImages, setTotalImages] = useState<Product[] | undefined>(
-    data?.products
-  );
+  const [price, setPrice] = useState<[number, number]>([0, 1000000]);
+  const [response, setResponse] = useState<ResponseData | undefined>();
+
+  const [productData, { isLoading, error }] = usePostCategoryProductsMutation();
 
   useEffect(() => {
-    setTotalImages(data?.products);
-  }, [data]);
+    const fetchData = async () => {
+      try {
+        const response = await productData({ sampleData ,page: page, limit }).unwrap();
+
+        setResponse(response);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [sampleData]);
+  console.log(response, 'response');
+
+  useEffect(() => {
+    setSampleData({
+      category: category,
+      subcategory: '',
+      brand: [],
+      price: [0, 1000000],
+    });
+  }, [category]);
 
   console.log(sampleData, 'data');
+  const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const brand = e.currentTarget.title;
+
+    if (brand) {
+      setSampleData((prev) => {
+        return {
+          ...sampleData,
+          brand: prev.brand.includes(brand)
+            ? prev.brand
+            : [...sampleData.brand, brand],
+        };
+      });
+    }
+  };
+
+  const handlePrice = (value: [number, number]) => {
+    setPrice(value);
+  };
   const handlePriceRangeChange = (value: [number, number]) => {
-    // console.log(value, 'value');
     setSampleData({
       ...sampleData,
       price: value,
     });
   };
 
-  if (isLoading) return <p>Loading products...</p>;
-  if (error) return <p>Error loading products.</p>;
+  const handlePrevPage = () => {
+              
+
+  };
 
   return (
     <div className={CLASSNAME.WRAPPER}>
       {/* TEXT SECTION */}
       <div className={CLASSNAME.TEXT_SECTION}>
-        <h3>{TEXT.TEXT_SECTION.H3}</h3>
+        <h3>Buy & Sell Used {category?.toUpperCase()} in India</h3>
+
+        {/* SELECTED OPTIONS */}
+
+        <div className="sample-selectedOptions">
+          {sampleData.subcategory && (
+            <div className="sample-selectedWrapper">
+              <span className="sample-selectedText">
+                {sampleData.subcategory}
+              </span>
+              <button
+                className="sample-selectedCross"
+                onClick={() => {
+                  setSampleData({ ...sampleData, subcategory: '' });
+                }}
+              >
+                <img src={ICONS.cross} alt="img" />
+              </button>
+            </div>
+          )}
+
+          {sampleData.brand.map((brand: string) => (
+            <div className="sample-selectedWrapper" key={brand}>
+              <span className="sample-selectedText">{brand}</span>
+              <button
+                className="sample-selectedCross"
+                onClick={() => {
+                  setSampleData({
+                    ...sampleData,
+                    brand: sampleData.brand.filter((b) => b !== brand),
+                  });
+                }}
+              >
+                <img src={ICONS.cross} alt="img" />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
+
       {/* MAIN SECTION */}
       <div className={CLASSNAME.MAIN_SECTION_WRAPPER}>
         {/* FILTER SECTION */}
         <div className={CLASSNAME.MAIN_SECTION_FILTER}>
-          <h3 className={CLASSNAME.FILTER_TITLE}>CARS</h3>
+          <h3 className={CLASSNAME.FILTER_TITLE}>{category?.toUpperCase()}</h3>
           {/* SUBCATEGORIES */}
           <div className={CLASSNAME.SUBCATEGORY}>
-            <h4>Subcategory</h4>
+            <h4>Category</h4>
 
             <div className="sample-subcategoryOption">
-              {data.subcategories.map(
+              {response?.subcategories?.map(
                 (
                   category: { subcategory_name: string; product_count: number },
                   index: number
@@ -90,20 +172,23 @@ export default function Sample() {
           <div className={CLASSNAME.BRAND}>
             <h4>Brand</h4>
             <div className="sample-brandOption">
-              {data.Brand.map(
-                (brand: string | null | undefined, index: number) =>
-                  brand ? (
+              {response?.Brand && response?.Brand?.length > 0 ? (
+                response?.Brand?.map(
+                  (brand: string | undefined, index: number) => (
                     <button
                       title={brand}
                       key={index}
                       className="sample-brandOption__item"
-                      onClick={() => {
-                        setSampleData({ ...sampleData, brand });
-                      }}
+                      onClick={handleBrandClick}
                     >
                       {brand}
                     </button>
-                  ) : null
+                  )
+                )
+              ) : (
+                <h3 className="sample-brandOption__noBrand">
+                  No brand available
+                </h3>
               )}
             </div>
           </div>
@@ -115,10 +200,8 @@ export default function Sample() {
               min={0}
               max={1000000}
               step={10}
-              value={sampleData.price}
-              onInput={(value: [number, number]) =>
-                handlePriceRangeChange(value)
-              }
+              value={price}
+              onInput={(value: [number, number]) => handlePrice(value)}
             />
             <div className="sample-priceOption">
               <input
@@ -127,17 +210,10 @@ export default function Sample() {
                 max={1000000}
                 type="number"
                 className="sample_priceMin"
-                value={
-                  sampleData?.price?.[0] < sampleData?.price?.[1]
-                    ? sampleData?.price?.[0]
-                    : sampleData?.price?.[1]
-                }
+                value={price?.[0] < price?.[1] ? price?.[0] : price?.[1]}
                 onChange={(e) => {
                   const value = Number(e.target.value);
-                  setSampleData({
-                    ...sampleData,
-                    price: [value, sampleData?.price?.[1]],
-                  });
+                  setPrice([value, price?.[1]]);
                 }}
               />
               <input
@@ -146,29 +222,34 @@ export default function Sample() {
                 max={1000000}
                 type="number"
                 className="sample_priceMax"
-                value={
-                  sampleData?.price?.[1] > sampleData?.price?.[0]
-                    ? sampleData?.price?.[1]
-                    : sampleData?.price?.[0]
-                }
+                value={price?.[1] > price?.[0] ? price?.[1] : price?.[0]}
                 onChange={(e) => {
                   const value = Number(e.target.value);
-                  setSampleData({
-                    ...sampleData,
-                    price: [sampleData?.price?.[0], value],
-                  });
+                  setPrice([price?.[0], value]);
                 }}
               />
             </div>
+            <button
+              className="sample-priceOption__apply"
+              onClick={() => {
+                handlePriceRangeChange(price);
+              }}
+            >
+              Apply
+            </button>
           </div>
         </div>
 
         {/* IMAGE SECTION */}
-        <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
-          {totalImages?.map((product: Product) => (
-            <ImagesLayout key={product.id} data={product} refetch={refetch} />
+       {isLoading ? (<p>loading...</p>) : error ? (<p>Error loading products</p>) :( <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+          {response?.products?.map((product: Product) => (
+            <ImagesLayout key={product.id} data={product} />
           ))}
-        </div>
+          <div className="sample-PageChange">
+            <span className="sample-PREV" onClick={handlePrevPage}>Prev</span>
+            <span className="sample-NEXT">Next</span>
+          </div>
+        </div>)}
       </div>
     </div>
   );

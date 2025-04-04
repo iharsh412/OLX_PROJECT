@@ -76,18 +76,32 @@ export default function CarForm() {
         handleSubmit,
         isSubmitting,
       }) => {
-
-        const share = { handleChange, handleBlur, handleSubmit,  }
+        const share = { handleChange, handleBlur, handleSubmit };
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
               <h3 className={CLASSNAME.DETAIL_TEXT}>INCLUDE SOME DETAILS</h3>
 
-              < TextField type="text" htmlFor="brand" value={values.brand} err={errors.brand} tch={touched.brand} label="Brand" {...share} />
-
+              <TextField
+                type="text"
+                htmlFor="brand"
+                value={values.brand}
+                err={errors.brand}
+                tch={touched.brand}
+                label="Brand"
+                {...share}
+              />
 
               {/* Year Input */}
-              < TextField type="number" htmlFor="year" value={values.year} err={errors.year} tch={touched.year} label="Year" {...share} />
+              <TextField
+                type="number"
+                htmlFor="year"
+                value={values.year}
+                err={errors.year}
+                tch={touched.year}
+                label="Year"
+                {...share}
+              />
 
               {/* Fuel Selection */}
               {state.categoryId === 'cars' && (
@@ -98,6 +112,7 @@ export default function CarForm() {
                   <div className={CLASSNAME.FUEL}>
                     {FuelOptions.map((value) => (
                       <button
+                        title="Select fuel type"
                         type="button"
                         key={value.id}
                         onClick={() => setFieldValue('fuel', value.label)}
@@ -119,18 +134,27 @@ export default function CarForm() {
               )}
               {/* KM Driven */}
 
-
-              < TextField type="number" htmlFor="distance" value={values.distance} err={errors.distance} tch={touched.distance} label="KM driven" {...share} />
-
-
+              <TextField
+                type="number"
+                htmlFor="distance"
+                value={values.distance}
+                err={errors.distance}
+                tch={touched.distance}
+                label="KM driven"
+                {...share}
+              />
 
               {/* Title Input */}
 
-
-              < TextField type="text" htmlFor="title" value={values.title} label="Ad title" err={errors.title} tch={touched.title} {...share} />
-
-
-
+              <TextField
+                type="text"
+                htmlFor="title"
+                value={values.title}
+                label="Ad title"
+                err={errors.title}
+                tch={touched.title}
+                {...share}
+              />
 
               {/* Description Input */}
 
@@ -143,10 +167,11 @@ export default function CarForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.description}
-                className={`${CLASSNAME.DESCRIPTION} ${errors.description && touched.description
+                className={`${CLASSNAME.DESCRIPTION} ${
+                  errors.description && touched.description
                     ? CLASSNAME.INPUTERROR
                     : ''
-                  }`}
+                }`}
               />
               <ErrorMessage
                 name="description"
@@ -174,8 +199,9 @@ export default function CarForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.price}
-                  className={`${CLASSNAME.PRICE} ${errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
-                    }`}
+                  className={`${CLASSNAME.PRICE} ${
+                    errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
+                  }`}
                 />
               </div>
               <ErrorMessage
@@ -243,8 +269,9 @@ export default function CarForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.state}
-                className={`${CLASSNAME.STATE} ${errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
-                  }`}
+                className={`${CLASSNAME.STATE} ${
+                  errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
+                }`}
               />
 
               <ErrorMessage
@@ -263,8 +290,9 @@ export default function CarForm() {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 value={values.city}
-                className={`${CLASSNAME.CITY} ${errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
-                  }`}
+                className={`${CLASSNAME.CITY} ${
+                  errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
+                }`}
               />
 
               <ErrorMessage name="city" component="div" className="postError" />
@@ -276,13 +304,17 @@ export default function CarForm() {
 
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>REVIEW YOUR DETAILS</h3>
-              
-              
-              < TextField type="text" htmlFor="sellerName" value={values.sellerName} label="Name" err={errors.sellerName} tch={touched.sellerName} {...share} />
 
+              <TextField
+                type="text"
+                htmlFor="sellerName"
+                value={values.sellerName}
+                label="Name"
+                err={errors.sellerName}
+                tch={touched.sellerName}
+                {...share}
+              />
 
-              
-             
               <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>
                 Let's verify your account
               </h3>
@@ -301,10 +333,11 @@ export default function CarForm() {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.mobileNumber}
-                  className={`${CLASSNAME.MOBILE_NUMBER} ${errors.mobileNumber && touched.mobileNumber
+                  className={`${CLASSNAME.MOBILE_NUMBER} ${
+                    errors.mobileNumber && touched.mobileNumber
                       ? CLASSNAME.INPUTERROR
                       : ''
-                    }`}
+                  }`}
                 />
               </div>
               <ErrorMessage
@@ -325,8 +358,8 @@ export default function CarForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+                ? 'ERROR IN POSTING'
+                : 'POST'}
             </button>
           </>
         );

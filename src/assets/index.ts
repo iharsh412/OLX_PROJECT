@@ -19,6 +19,7 @@ import rupees from './icon/rupees.svg';
 import camera from './vector/camera.svg';
 import notification from './vector/notification.svg';
 import chat from './vector/chat.svg';
+import cross from './vector/cross.svg';
 
 import {
   carTrade,
@@ -57,5 +58,6 @@ const ICONS = {
   arrow,
   chat,
   notification,
+  cross
 };
 export default ICONS;

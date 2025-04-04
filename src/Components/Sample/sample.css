@@ -4,7 +4,7 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   margin-top: 20px;
   background-color: #f8f9fa;
@@ -16,12 +16,15 @@
   padding: 15px 0;
   border-bottom: 1px solid #e0e0e0;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .sample-textSection h3 {
   font-size: 24px;
   color: #333;
   margin: 0;
+  padding: 0 10px;
 }
 
 /* Main Content Area */
@@ -54,6 +57,9 @@
   flex-direction: column;
   width: 100%;
   padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
 }
 
 .sample-subcategory h4 {
@@ -69,6 +75,7 @@
   height: 200px;
   overflow-y: auto;
   margin-bottom: 50px;
+  width: 100%;
 }
 .sample-subcategoryOption::-webkit-scrollbar {
   width: 5px;
@@ -102,6 +109,9 @@
   flex-direction: column;
   width: 100%;
   padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 20px;
 }
 .sample-brand h4 {
   font-size: 15px;
@@ -114,6 +124,7 @@
   padding: 5px 0;
   margin-bottom: 50px;
   height: 200px;
+  width: 100%;
   overflow-y: auto;
 }
 .sample-brandOption::-webkit-scrollbar {
@@ -137,9 +148,17 @@
 }
 
 .sample-brandOption__item:hover {
-    background-color: #f0f0f0;
-    border-color: #ccc;
-  }
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+.sample-brandOption__noBrand {
+  padding: 10px;
+  margin: 0px 0px 0px 10px;
+  background-color: #fff;
+  text-align: center;
+
+  border-radius: 4px;
+}
 /* Budget section */
 .sample-price {
   display: flex;
@@ -147,6 +166,8 @@
   width: 100%;
   padding: 10px 0;
   height: 200px;
+  justify-content: center;
+  align-items: center;
 }
 .sample-price h4 {
   font-size: 15px;
@@ -172,6 +193,10 @@
   width: 100px;
   text-align: center;
 }
+.sample_priceMin:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
 .sample_priceMax {
   padding: 10px;
   margin: 3px 5px 0 0;
@@ -185,16 +210,102 @@
   width: 100px;
   text-align: center;
 }
+.sample_priceMax:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+/* Apply Button */
+.sample-priceOption__apply {
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 14px;
+  width: 100px;
+  text-align: center;
+}
+.sample-priceOption__apply:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+
+.sample-priceOption__apply:active {
+  background-color: #b3aeed;
+  border-color: #ccc;
+}
+/* Selected Options */
+.sample-selectedOptions {
+  display: flex;
+}
+.sample-selectedWrapper {
+  display: flex;
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 16px;
+  width: fit-content;
+  text-align: center;
+}
+.sample-selectedCross {
+  background-color: #fff;
+  border: none;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.sample-selectedCross img {
+  width: 14px;
+  height: 14px;
+}
+
 /* Image Grid Section */
 .sample-mainSectionImage {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 10px;
-  padding: 20px 20px 20px 0px;
+  padding: 20px 20px 60px 0px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+/* change page button */
+.sample-PageChange {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+}
+.sample-PageChange span {
+  display: flex;
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 16px;
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+}
+.sample-PageChange span:hover {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+}
+.sample-PageChange span:active {
+  background-color: #b3aeed;
+  border-color: #ccc;
 }
 
 /* Responsive Adjustments */
@@ -215,7 +326,7 @@
 
   .sample-mainSectionImage {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 20px 20px 20px 10px;
+    padding: 20px 20px 60px 10px;
   }
 }
 

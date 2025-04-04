@@ -1,12 +1,11 @@
 import api from '../../api';
 import { Product } from '../../../../Shared/constant';
 
-
 interface PaginationParams {
   page?: number;
   limit?: number;
   id?: number;
-  category?: string; 
+  category?: string;
 }
 
 export const productApi = api.injectEndpoints({
@@ -30,13 +29,6 @@ export const productApi = api.injectEndpoints({
         params,
       }),
     }),
-    getProductsByCategory: builder.query({
-      query: ({category}) => ({
-        url: `categories/getbycategory/?category=${category}&page=0&limit=10&subcategory=cars`
-      
-      }),
-    }),
-
     postProducts: builder.mutation({
       query: (data) => ({
         url: `categories/userfavourites/`,
@@ -44,12 +36,19 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    postCategoryProducts: builder.mutation({
+      query: ({ sampleData ,page,limit}) => ({
+        url: `categories/filters/?page=${page}&limit=${limit}`,
+        body: sampleData,
+        method: 'POST',
+      }),
+    }),
     postNewProducts: builder.mutation({
       query: (data) => ({
-          url: `categories/putad/`,
-          body: data,
-          method: 'POST',
-        })      
+        url: `categories/putad/`,
+        body: data,
+        method: 'POST',
+      }),
     }),
   }),
   overrideExisting: false,
@@ -59,7 +58,8 @@ export const {
   useGetProductsQuery,
   useGetWishlistProductsQuery,
   useGetProductsDetailQuery,
-  useGetProductsByCategoryQuery,
+
   usePostProductsMutation,
+  usePostCategoryProductsMutation,
   usePostNewProductsMutation,
 } = productApi;
