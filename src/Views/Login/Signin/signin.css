@@ -1,0 +1,75 @@
+.signin_Wrapper {
+    background-color: rgb(250, 241, 254);
+    border-radius: 3px;
+    min-height: 600px;
+    width: 400px;
+    margin: 16px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+  .signin_title {
+    text-align: center;
+  }
+  
+ 
+  /* email */
+  .signin_emailInput {
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    
+    color: #333;
+  }
+  .signin_emailInput input{
+      margin-left: 93px;
+      width: 190px;
+  }
+  /* password */
+  .signin_passwordInput {
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+  }
+  .signin_passwordInput input{
+      margin-left: 65px;
+      width: 190px;
+  }
+  
+ 
+   /* submit */
+   .signin_submitButton{
+      padding: 10px;
+      margin-left: 20px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #333;
+      border: none;
+      border-radius: 3px;
+      background-color: aqua;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100px;
+   }
+   .signin_submitButton:hover
+   {
+      background-color: #007bff;
+   }
+  .signin_error {
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+    margin-left: 150px;
+  }
+
+  .signin_passwordInput input,
+  .signin_emailInput input{
+      
+      height: 30px;
+  }
+  

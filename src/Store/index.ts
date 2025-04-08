@@ -21,7 +21,7 @@ import areaItem from './AreaItem';
 const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['common', 'language', 'areaItem'],
+  whitelist: ['common', 'language',],
 };
 const reducers = combineReducers({
   common,

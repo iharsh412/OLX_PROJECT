@@ -2,6 +2,7 @@ import api from '../../api';
 import { Product } from '../../../../Shared/constant';
 
 interface PaginationParams {
+  search?:string|null;
   page?: number;
   limit?: number;
   id?: number;
@@ -10,12 +11,21 @@ interface PaginationParams {
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], PaginationParams>({
-      query: ({ page, limit }) => ({
-        url: `categories/listall/?page=${page}&limit=${limit}`,
+    getTypeProducts: builder.query<Product[], PaginationParams>({
+      query: ({ page, limit,search }) => ({
+        url: `categories/list/?page=${page}&limit=${limit}&search=${search}`,
         method: 'GET',
+        
       }),
     }),
+    getListALLProducts: builder.query<Product[], PaginationParams>({
+      query: ({ page, limit}) => ({
+        url: `categories/listall/?page=${page}&limit=${limit}`,
+        method: 'GET',
+        
+      }),
+    }),
+
     getProductsDetail: builder.query<Product[], PaginationParams>({
       query: (params) => ({
         url: `categories/item`,
@@ -50,15 +60,31 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    postSignupData: builder.mutation({
+      query: (data) => ({
+        url: `account/signup/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    postSigninData: builder.mutation({
+      query: (data) => ({
+        url: `account/login/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
   }),
   overrideExisting: false,
 });
 
 export const {
-  useGetProductsQuery,
+  useGetTypeProductsQuery,
+  useGetListALLProductsQuery,
   useGetWishlistProductsQuery,
   useGetProductsDetailQuery,
-
+  usePostSignupDataMutation,
+  usePostSigninDataMutation,
   usePostProductsMutation,
   usePostCategoryProductsMutation,
   usePostNewProductsMutation,

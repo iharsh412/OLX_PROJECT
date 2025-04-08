@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
-import { updateAuthTokenRedux } from '../../../Store/Common';
+import { updateAuthState } from '../../../Store/Common';
 import './loginUpDown.css';
 import { ProfileDropdownProps, dropdownItems, CLASSNAME, TEXT } from './constant';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
-  const userName = useSelector((state: RootState) => state?.common?.userName);
+  const userName = useSelector((state: RootState) => state?.common?.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -70,7 +70,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
               handleItemClick();
               logout();
               dispatch(
-                updateAuthTokenRedux({ token: null, uid: null, userName: null })
+                updateAuthState({ refresh: null, access: null, id: null, username: null })
               );
               navigate('/');
             }}

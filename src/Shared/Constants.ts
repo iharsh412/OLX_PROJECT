@@ -10,7 +10,9 @@ const ROUTES = {
   PRODUCT: 'product/:productName/:productId',
   SELL: 'sell',
   ATTRIBUTES: 'attributes',
-  CATEGORY:'/:category'
+  CATEGORY:'/:category',
+  SIGNIN:'signin',
+  SIGNUP:'signup'
 
 
 };
@@ -36,6 +38,14 @@ const ROUTES_CONFIG = {
   LOGIN_PHONE_SMS: {
     path: ROUTES.LOGIN_PHONE_SMS,
     title: 'Login Phone Sms',
+  },
+  SIGNIN: {
+    path: ROUTES.SIGNIN,
+    title: 'Signin',
+  },
+  SIGNUP: {
+    path: ROUTES.SIGNUP,
+    title: 'Signup',
   },
   CART: {
     path: ROUTES.CART,

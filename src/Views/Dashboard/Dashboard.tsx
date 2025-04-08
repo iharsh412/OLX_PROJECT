@@ -1,21 +1,35 @@
-import { useGetProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
+import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
 import ImagesLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
 import { COMMON_TEXT } from '../../Shared/constant.ts';
 import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Shared/constant.ts';
+import { RootState } from '../../Store/index.ts';
+import { useSelector } from 'react-redux';
+// import { setItem } from '../../Store/AreaItem/index.ts';
 
 export default function Dashboard() {
+  // const dispatch = useDispatch();
+  const search = useSelector((state: RootState) => state?.areaItem?.item);
+  const token = useSelector((state: RootState) => state?.common);
+  console.log(token,"token")
+
   const [page, setPage] = useState(1);
 
   const limit = 12;
-  const { data, error, isLoading, refetch } = useGetProductsQuery(
-    { page, limit },
+  const { data, error, isLoading, refetch } = useGetTypeProductsQuery(
+    { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
+  // console.log(data, 'data');
 
   const [totalImages, setTotalImages] = useState<Product[]>([]);
+
+  useEffect(() => {
+    setTotalImages([]);
+    refetch();
+  }, [search]);
 
   useEffect(() => {
     if (data) {
@@ -39,21 +53,28 @@ export default function Dashboard() {
     }
   }, [data]);
 
+  
 
-
-
-  return (<>
-    {isLoading ? (<h1>{COMMON_TEXT.LOADING}</h1 >) :
-      (error ? (<h1>{COMMON_TEXT.ERROR}</h1>) :
+  return (
+    <>
+      {isLoading ? (
+        <h1>{COMMON_TEXT.LOADING}</h1>
+      ) : error ? (
+        <h1>{COMMON_TEXT.ERROR}</h1>
+      ) : (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
-            {totalImages.map((product: Product) => (
-              <ImagesLayout
-                key={product.id}
-                data={product}
-                refetchDashboard={refetch}
-              />
-            ))}
+            {totalImages.length ? (
+              totalImages?.map((product: Product) => (
+                <ImagesLayout
+                  key={product.id}
+                  data={product}
+                  refetchDashboard={refetch}
+                />
+              ))
+            ) : (
+              <h2>{COMMON_TEXT.NO_PRODUCTS}</h2>
+            )}
           </div>
 
           {data?.length === limit && (
@@ -64,9 +85,8 @@ export default function Dashboard() {
               {TEXT.LOAD}
             </div>
           )}
-        </div>)
-    }
-  </>
-
+        </div>
+      )}
+    </>
   );
 }

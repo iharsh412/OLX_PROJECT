@@ -1,15 +1,42 @@
 import './itemSelector.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import ICONS from '../../../assets';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 
 export default function ItemsSelector() {
   const items = useSelector((state: RootState) => state?.areaItem?.item);
-  //    console.log(items,"type of object ")
+
   const dispatch = useDispatch();
   const [object, setObject] = useState(items || '');
+  const [debouncedValue, setDebouncedValue] = useState(object);
+
+
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedValue(object);
+    }, 1000); 
+
+    return () => {
+      clearTimeout(timer); 
+    };
+  }, [object]);
+
+ 
+  useEffect(() => {
+    if (debouncedValue === '' || debouncedValue === null) {
+      dispatch(setItem(null));
+    } else {
+      dispatch(setItem(debouncedValue));
+    }
+  }, [debouncedValue, dispatch]);
+
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setObject(e.target.value);
+  }
 
   return (
     <div className="home_nav_input_objects">
@@ -19,7 +46,7 @@ export default function ItemsSelector() {
         placeholder="Find Cars, Mobile Phones and more"
         value={object}
         onChange={(e) => {
-          setObject(e?.target?.value);
+          handleChange(e);
         }}
       />
       <button

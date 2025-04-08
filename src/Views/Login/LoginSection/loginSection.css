@@ -63,7 +63,7 @@
   text-align: center;
 }
 .continue_with_google_parent:hover {
-  background-color: #e0ffff;
+  background-color: #ffeaea;
   transition: all 1s;
 }
 .continue_with_google_parent:active {
@@ -92,12 +92,27 @@
   margin-top: 10px;
 }
 
+
 /* Login with email section */
-.login_login_with_email {
+.login_signup {
   margin-top: 10px;
-  border-bottom: 2px solid black;
-  text-decoration: none;
-  color: black;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgb(10, 43, 228);
+  cursor: pointer;
+}
+.login_signup:hover {
+  color:  rgb(10, 43, 228,0.5);
+}
+.login_signin{
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 10px;
+}
+
+.login_signin_link:hover{
+  color:  rgb(10, 43, 228,0.5);
+
 }
 
 /* Footer section */

@@ -22,9 +22,10 @@ interface ResponseData {
 }
 
 export default function Sample() {
-  const limit = 1;
-  const [page] = useState<number>(1);
+  const limit = 2;
+  const [page, setPage] = useState<number>(1);
   const { category } = useParams();
+  const [showButton, setshowButton] = useState({ prev: true, next: true });
   const [sampleData, setSampleData] = useState<SampleData>({
     category: category,
     subcategory: '',
@@ -40,16 +41,29 @@ export default function Sample() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await productData({ sampleData, page: page, limit }).unwrap();
+        const response = await productData({
+          sampleData,
+          page: page,
+          limit,
+        }).unwrap();
 
         setResponse(response);
+        if (
+          response?.products?.length === 0 ||
+          response?.products?.length < limit
+        ) {
+          setshowButton((value) => ({ ...value, next: false }));
+        } else setshowButton((value) => ({ ...value, next: true }));
+        if (page === 1) {
+          setshowButton((value) => ({ ...value, prev: false }));
+        } else setshowButton((value) => ({ ...value, prev: true }));
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, [sampleData]);
+  }, [sampleData, page]);
   console.log(response, 'response');
 
   useEffect(() => {
@@ -61,7 +75,7 @@ export default function Sample() {
     });
   }, [category]);
 
-  console.log(sampleData, 'data');
+  // console.log(sampleData, 'data');
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
 
@@ -88,8 +102,10 @@ export default function Sample() {
   };
 
   const handlePrevPage = () => {
-
-
+    setPage((prev) => (prev - limit <= 0 ? 1 : prev - limit));
+  };
+  const handleNextPage = () => {
+    setPage((prev) => prev + limit);
   };
 
   return (
@@ -146,10 +162,14 @@ export default function Sample() {
             <h4>Category</h4>
 
             <div className="sample-subcategoryOption">
-              {response?.subcategories && response?.subcategories?.length > 0 ? (
+              {response?.subcategories &&
+              response?.subcategories?.length > 0 ? (
                 response?.subcategories?.map(
                   (
-                    category: { subcategory_name: string; product_count: number },
+                    category: {
+                      subcategory_name: string;
+                      product_count: number;
+                    },
                     index: number
                   ) => (
                     <button
@@ -166,9 +186,12 @@ export default function Sample() {
                       {category.subcategory_name} ({category?.product_count})
                     </button>
                   )
-                )) : <h3 className="sample-brandOption__noBrand">
-                No category available
-              </h3>}
+                )
+              ) : (
+                <h3 className="sample-brandOption__noBrand">
+                  No category available
+                </h3>
+              )}
             </div>
           </div>
           {/* BRANDS */}
@@ -244,15 +267,31 @@ export default function Sample() {
         </div>
 
         {/* IMAGE SECTION */}
-        {isLoading ? (<h1 className='sample-errorAndLoading'>Loading...</h1>) : error ? (<h1 className='sample-errorAndLoading'>Error in loading products</h1>) : (<div className={CLASSNAME.MAIN_SECTION_IMAGE}>
-          {response?.products?.map((product: Product) => (
-            <ImagesLayout key={product.id} data={product} />
-          ))}
-          <div className="sample-PageChange">
-            <span className="sample-PREV" onClick={handlePrevPage}>Prev</span>
-            <span className="sample-NEXT">Next</span>
+        {isLoading ? (
+          <h1 className="sample-errorAndLoading">Loading...</h1>
+        ) : error ? (
+          <h1 className="sample-errorAndLoading">Error in loading products</h1>
+        ) : (
+          <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+            {response?.products?.length ? ( response?.products?.map((product: Product) => (
+              <ImagesLayout key={product.id} data={product} />
+            ))) : (
+              <h3 className="sample-noProduct">No product available</h3>
+            )}
+            <div className="sample-PageChange">
+              
+                <span className={`sample-PREV ${showButton.prev ? '' : 'sample-disabled'}`} onClick={handlePrevPage}>
+                  Prev
+                </span>
+          
+             
+                <span className={`sample-NEXT ${showButton.next ? '' : 'sample-disabled'}`} onClick={handleNextPage}>
+                  Next
+                </span>
+              
+            </div>
           </div>
-        </div>)}
+        )}
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ export const CONTENTS = [
     {id:3,type:"video",src:ICONS.motivation2,label:"RONALDO"},
     {id:4,type:"video",src:ICONS.motivation3,label:"SPEAK LESS"},
     {id:5,type:"video",src:ICONS.motivation4,label:"TIME WILL PASS"},
-    {id:5,type:"video",src:ICONS.motivation5,label:"WORK HARD"},
+    {id:6,type:"video",src:ICONS.motivation5,label:"WORK HARD"},
 ]    
 export const CLASSNAME ={
     WRAPPER :"adsSection_Wrapper",

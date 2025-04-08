@@ -12,7 +12,7 @@ import { CLASSNAME } from './constant';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const token = useSelector((state: RootState) => state?.common?.token);
+  const token = useSelector((state: RootState) => state?.common?.access);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
 
   function onClickSell() {

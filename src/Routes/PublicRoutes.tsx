@@ -3,10 +3,12 @@ import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import Dashboard from '../Views/Dashboard';
 import { CustomRouter } from './RootRoutes';
 import { HomeLayout } from '../Views/Home/HomeLayout';
-import Login from '../Views/Login/LoginLayout';
+import Login from '../Views/Login/LoginSection';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
 import TypeSection from '../Views/TypeSection';
+import Signup from '../Views/Login/Signup';
+import Signin from '../Views/Login/Signin';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
@@ -18,12 +20,12 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
       { index: true, element: <Dashboard /> },
       { path: ROUTES_CONFIG.LOGIN.path, element: <Login /> },
       { path: ROUTES_CONFIG.LOGIN_PHONE.path, element: <LoginWithPhone /> },
+      { path: ROUTES_CONFIG.SIGNUP.path, element: <Signup /> },
+      { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },
       { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
-      { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection/> },
-      
+      { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
     ],
   },
-
 
   {
     path: '*',

@@ -15,7 +15,6 @@ export default function BikeForm() {
   const { state } = useLocation();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
-  console.log(state, 'state');
 
   //  Handle submit
 
