@@ -4,6 +4,8 @@ import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi'
 import ImageLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './CartSection.css';
 import { Product } from '../../Shared/constant';
+import { CLASSNAME } from './constant';
+import { COMMON_TEXT } from '../../Shared/constant';
 
 export default function CartSection() {
   // const uid = useSelector((state: RootState) => state?.common?.uId);
@@ -13,23 +15,23 @@ export default function CartSection() {
     { refetchOnMountOrArgChange: true }
   );
 
-  console.log(data, 'wishlist');
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) return <div>Error loading products</div>;
 
   // console.log(uid, 'uid');
   // console.log(JSON.stringify(data, null, 2), 'data');
 
   return (
-    <div className="cart_Wrapper">
-      <span className="cart_text"> WISHLIST</span>
-      <div className="cart_imageSection">
-        {data?.map((products: Product) => (
-          <ImageLayout key={products?.id} data={products} refetch={refetch} />
-        ))}
-      </div>
-    </div>
+    <>
+      {isLoading ? (<h1>{COMMON_TEXT.LOADING}</h1>) : (error ? (<h1>{COMMON_TEXT.ERROR}</h1>) :
+        (<div className={CLASSNAME.WRAPPER}>
+          <span className={CLASSNAME.TEXT}> WISHLIST</span>
+          <div className={CLASSNAME.IMAGE_SECTION}>
+            {data?.map((products: Product) => (
+              <ImageLayout key={products?.id} data={products} refetch={refetch} />
+            ))}
+          </div>
+        </div>
+        )
+      )}
+    </>
   );
 }

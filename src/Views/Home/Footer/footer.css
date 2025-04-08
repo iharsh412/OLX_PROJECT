@@ -14,11 +14,17 @@
     width: 80%;
     max-width: 1200px; /* Ensures the footer doesn’t stretch too wide */
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
 }
 
 /* Footer sections container */
 .footerSectionChildImages {
     display: flex;
+    width: 100%;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap; /* Allow wrapping for responsiveness */
@@ -33,13 +39,13 @@
 .footerSectionCarTrade,
 .footerSectionMobilityOutlook {
     width: 144px;
-    height: 60px;
     background-color: rgba(0, 47, 52, 1);
     border: none;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 8px;
+    cursor: pointer;
 }
 
 /* CarTrade Tech Section (Wider with a border) */
@@ -56,9 +62,9 @@
 }
 
 /* Ensure images fit properly */
-.footerSectionChildImages img {
-    max-width: 100%;
-    max-height: 100%;
+.footerSectionImages{
+    width: 144px;
+    height: 60px;
     object-fit: contain;
 }
 
@@ -67,15 +73,22 @@
     display: flex;
     justify-content: space-between;
     color: white;
+    margin-top: 20px;
     font-size: 12px;
-    flex-wrap: wrap; /* Allow wrapping */
-    padding: 10px 240px;
+    flex-wrap: wrap;
     text-align: left;
-    width: 100%; /* Ensures full width on all screens */
+    width: 90%; /* Ensures full width on all screens */
 }
 
 /* Help Section */
 .footerSectionHelp {
+    background-color: rgba(0, 47, 52, 1);
+    color: white;
+    border: none;
+    text-align: center;
+    padding: 12px;
+}
+.footerSectionAllRightsReserved{
     background-color: rgba(0, 47, 52, 1);
     color: white;
     border: none;
@@ -99,19 +112,8 @@
         padding: 10px;
     }
 
-    .footerSectionOlx,
-    .footerSectionCarCarwale,
-    .footerSectionBikewale,
-    .footerSectionCarTrade,
-    .footerSectionMobilityOutlook {
-        width: 120px; /* Slightly smaller widths for tablet view */
-        height: 50px;
-    }
 
-    .footerSectionCarTradeTech {
-        width: 200px;
-        padding-right: 20px;
-    }
+
 }
 
 /* Small Screens (Mobile) */

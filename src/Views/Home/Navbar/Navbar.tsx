@@ -17,7 +17,7 @@ export default function Navbar() {
 
   function onClickSell() {
     if (token) {
-      console.log('okk');
+
       navigate('/sell');
     } else {
       navigate('./login');

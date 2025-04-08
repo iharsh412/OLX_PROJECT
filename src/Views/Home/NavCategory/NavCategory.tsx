@@ -20,16 +20,15 @@ export default function NavCategory() {
   return (
     <div className="home_navCategory">
       <div className="homeCategorychild">
-        <span className="home_navCategory_allCategory_Parent">
+        <div className="home_navCategory_allCategory_Parent">
           <span className="home_navCategory_child_allCategory">
             ALL CATEGORIES
           </span>
-          <img
+          <span className='home_navCategory_child_allCategory_upDown'><img
             src={ICONS.upDown}
-            alt="upDown"
-            className="home_navCategory_child_allCategory_upDown"
-          />
-        </span>
+            alt="img"
+          /></span>
+        </div>
         <div className="home_navCategory_childs">
           <button
             type="button"

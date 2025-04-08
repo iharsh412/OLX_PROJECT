@@ -1,61 +1,78 @@
-import { useEffect, useState } from 'react';
-import './languageSelector.css';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ICONS from '../../../assets';
-
 import { RootState } from '../../../Store';
 import { setLanguage } from '../../../Store/Language';
+import './languageSelector.css';
+import ICONS from '../../../assets';
+import { CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT } from '../../../Shared/constant';
 
 export default function LanguageSelector() {
   const language = useSelector((state: RootState) => state?.language?.language);
   const [languageDropdown, setLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
-
   const dispatch = useDispatch();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    dispatch(setLanguage(selectedLanguage));
-  }, [selectedLanguage, dispatch]);
-
-  function toggleLanguageDropdown() {
-    setLanguageDropdown(!languageDropdown);
-  }
+  //  HANDLE CLICK
 
   const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language);
     setLanguageDropdown(false);
   };
+  function toggleLanguageDropdown() {
+    setLanguageDropdown(!languageDropdown);
+  }
+  // HOOKS
+  useEffect(() => {
+    dispatch(setLanguage(selectedLanguage));
+  }, [selectedLanguage, dispatch]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setLanguageDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <div className="home_nav_language_Dropdown_Parent">
-      <span className="home_nav_language">{selectedLanguage}</span>
+    <div className={CLASSNAME.WRAPPER} ref={dropdownRef}>
+      <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
       <span
-        className="home_nav_language_dropdown"
+        className={CLASSNAME.DROPDOWN}
         onClick={toggleLanguageDropdown}
       >
         <img
           src={ICONS.upDown}
-          alt="upDown"
-          className={`home_nav_language_dropdown_img ${
-            languageDropdown
-              ? 'home_nav_language_dropdown_rotate'
-              : 'home_nav_language_dropdown_notrotate'
-          }`}
+          alt={COMMON_TEXT.IMG}
+          className={`${CLASSNAME.UPDOWN_IMG} ${languageDropdown
+              ? CLASSNAME.ROTATE
+              : CLASSNAME.NOTROTATE
+            }`}
         />
       </span>
       {languageDropdown && (
-        <div className="languageDropdown-list">
+        <div className={CLASSNAME.LIST}>
           <div
-            className="languageDropdown-item"
-            onClick={() => handleLanguageChange('ENGLISH')}
+            className={CLASSNAME.ITEMS}
+            onClick={() => handleLanguageChange(TEXT.ENGLISH)}
           >
-            ENGLISH
+            {TEXT.ENGLISH}
           </div>
           <div
-            className="languageDropdown-item"
-            onClick={() => handleLanguageChange('HINDI')}
+            className={CLASSNAME.ITEMS}
+            onClick={() => handleLanguageChange(TEXT.HINDI)}
           >
-            HINDI
+            {TEXT.HINDI}
           </div>
         </div>
       )}

@@ -35,3 +35,12 @@ export interface ImageProps {
   refetch?: () => void;
   refetchDashboard?: () => void;
 }
+
+export const COMMON_TEXT ={
+  IMG:"img",
+  BUTTON:"button",
+  NUMBER:"number",
+  ERROR:"Error in loading products",
+  LOADING:"Loading products...",
+  
+}

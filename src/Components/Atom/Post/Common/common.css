@@ -1,0 +1,317 @@
+/* General Reset for Form Elements */
+input, textarea, select, button {
+  font-family: inherit;
+  box-sizing: border-box;
+  outline: none;
+}
+
+/* Text Field */
+.textField {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.textField_input {
+  margin: 5px 5px 5px 0;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border 0.3s ease;
+}
+
+.textField_input:focus {
+  border-color: #4a90e2;
+}
+
+.textField_error {
+  margin-top: 2px;
+  font-size: 0.9rem;
+  padding: 0 5px;
+  color: red;
+}
+
+/* Labels */
+.post-labelWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.post-labelWrapper span,
+.post-label {
+  font-size: 14px;
+  margin-top: 15px;
+  color: #333;
+}
+
+/* Description */
+.postForm_Description {
+  margin: 5px 5px 5px 0;
+  height: 100px;
+  padding: 10px;
+  font-size: 18px;
+  resize: vertical;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* Error Highlight */
+.postErrorInput {
+  border: 2px solid red;
+}
+
+/* Photo Section */
+.postForm_UploadText {
+  padding: 16px;
+  font-weight: bold;
+}
+
+.postForm_photo-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 16px;
+}
+
+.postForm_photo-box {
+  width: 80px;
+  height: 80px;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.postForm_photo-box:focus {
+  border: 2px solid black;
+}
+
+.postForm_photo-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.postForm_photo-upload {
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color: #555;
+}
+
+.postForm_file-input {
+  display: none;
+}
+
+/* Price Section */
+.postForm_PriceWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+}
+
+.postForm_PriceInputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+}
+
+.postForm_PriceInputWrapper span {
+  position: absolute;
+  top: 14px;
+  left: 10px;
+  padding: 5px 10px;
+  border-right: 1px solid #ccc;
+  font-size: 16px;
+  color: #666;
+}
+
+.postForm_Price {
+  margin: 5px 5px 5px 0;
+  height: 48px;
+  font-size: 18px;
+  padding-left: 50px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Location */
+.postForm_State,
+.postForm_City {
+  margin: 5px 5px 5px 0;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.postForm_City ,
+.postForm_State{
+  width: 100%;
+}
+/* State Dropdown */
+.postForm_StateWrapper {
+  position: relative;
+}
+
+.postForm_StateWrapper span {
+  position: absolute;
+  top: 30%;
+  right: 1%;
+  cursor: pointer;
+}
+
+.postForm_StateList {
+  position: absolute;
+  bottom: 70%;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 15;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+
+
+.postForm_StateItems {
+  padding: 10px 12px;
+  width: 100%;
+  text-align: left;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.postForm_StateItems:hover {
+  background-color: #e0e0e0;
+}
+
+.postForm_StateItems:active {
+  background-color: #a4c8ff;
+}
+/* City  */
+.postForm_CityList{
+  position: absolute;
+  bottom: 30%;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  z-index: 15;
+  max-height: 150px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+
+}
+
+/* Seller */
+.postForm_SellerName {
+  margin: 5px 5px 5px 0;
+  height: 48px;
+  font-size: 18px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.postForm_SellerVerifyText,
+.postForm_SellerCodeText {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+/* Mobile Number */
+.postForm_mobileNumberWrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.postForm_mobileNumberWrapper span {
+  position: absolute;
+  top: 65%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  color: #7f8183;
+  border-right: 1px solid #7f8183;
+  font-size: 16px;
+}
+
+.postForm_MobileNumber {
+  margin: 5px 5px 5px 0;
+  height: 48px;
+  font-size: 18px;
+  padding-left: 60px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .postForm_Description,
+  .postForm_State,
+  .postForm_City,
+  .postForm_MobileNumber,
+  .postForm_Price {
+    font-size: 16px;
+    padding: 8px;
+    height: 40px;
+  }
+
+  .postForm_PriceInputWrapper span,
+  .postForm_mobileNumberWrapper span {
+    font-size: 14px;
+    padding: 5px 8px;
+  }
+
+  .postForm_MobileNumber {
+    padding-left: 50px;
+  }
+
+  .postForm_photo-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .postForm_Description,
+  .postForm_State,
+  .postForm_City,
+  .postForm_MobileNumber,
+  .postForm_Price {
+    font-size: 14px;
+    padding: 6px;
+    height: 36px;
+  }
+
+  .postForm_PriceInputWrapper span,
+  .postForm_mobileNumberWrapper span {
+    font-size: 12px;
+    padding: 4px 6px;
+  }
+
+  .postForm_MobileNumber {
+    padding-left: 45px;
+  }
+
+  .postForm_photo-container {
+    gap: 6px;
+  }
+}

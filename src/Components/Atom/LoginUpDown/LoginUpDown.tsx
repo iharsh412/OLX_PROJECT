@@ -1,32 +1,50 @@
-import './loginUpDown.css';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ProfileDropdownProps, dropdownItems, CLASSNAME } from './contant';
-
 import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
 import { updateAuthTokenRedux } from '../../../Store/Common';
+import './loginUpDown.css';
+import { ProfileDropdownProps, dropdownItems, CLASSNAME, TEXT } from './constant';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const userName = useSelector((state: RootState) => state?.common?.userName);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+   
+  // HANDLE CLICK
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setOpenProfile?.(()=>false);
+    }
+  };
+  const handleItemClick = () => {
+    setOpenProfile?.((prev) => !prev);
+  };
 
-  function onClickItem() {
-    if (setOpenProfile) setOpenProfile((prev) => !prev);
-  }
+  // HOOKS
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
+ 
+
   return (
-    <div className={CLASSNAME.PROFILE_DROPDOWN}>
+    <div className={CLASSNAME.PROFILE_DROPDOWN} ref={dropdownRef}>
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_INITIAL}>{userName?.[0] }</div>
+            <div className={CLASSNAME.PROFILE_INITIAL}>{userName?.[0]}</div>
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{userName}</h3>
               <button className={CLASSNAME.PROFILE_EDIT_PROFILE}>
-                View and edit profile
+               {TEXT.VIEW_EDIT}
               </button>
             </div>
           </div>
@@ -38,9 +56,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             return (
               <button
                 key={index}
-                onClick={() => {
-                  onClickItem();
-                }}
+                onClick={handleItemClick}
                 className={CLASSNAME.PROFILE_MENU_ITEM}
               >
                 <Icon />
@@ -51,7 +67,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           <button
             key="logout"
             onClick={() => {
-              onClickItem();
+              handleItemClick();
               logout();
               dispatch(
                 updateAuthTokenRedux({ token: null, uid: null, userName: null })
@@ -61,7 +77,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             className={CLASSNAME.PROFILE_MENU_ITEM}
           >
             <LogOut />
-            <span>Logout</span>
+            <span>{TEXT.LOGOUT}</span>
           </button>
         </div>
       </div>

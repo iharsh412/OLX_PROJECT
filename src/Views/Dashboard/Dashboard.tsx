@@ -2,6 +2,8 @@ import { useGetProductsQuery } from '../../Services/Api/module/imageApi/index.ts
 import ImagesLayout from '../../Components/Atom/imagesLayout/CarImage';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
+import { COMMON_TEXT } from '../../Shared/constant.ts';
+import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Shared/constant.ts';
 
 export default function Dashboard() {
@@ -37,29 +39,34 @@ export default function Dashboard() {
     }
   }, [data]);
 
-  if (isLoading) return <p>Loading products...</p>;
-  if (error) return <p>Error loading products.</p>;
 
-  return (
-    <div className="homeImageSectionWraper">
-      <div className="homeImageSection">
-        {totalImages.map((product: Product) => (
-          <ImagesLayout
-            key={product.id}
-            data={product}
-            refetchDashboard={refetch}
-          />
-        ))}
-      </div>
 
-      {data?.length === limit && (
-        <div
-          className="homeLoadMore"
-          onClick={() => setPage((prev) => prev + 1)}
-        >
-          Load More
-        </div>
-      )}
-    </div>
+
+  return (<>
+    {isLoading ? (<h1>{COMMON_TEXT.LOADING}</h1 >) :
+      (error ? (<h1>{COMMON_TEXT.ERROR}</h1>) :
+        <div className={CLASSNAME.WRAPPER}>
+          <div className={CLASSNAME.IMAGE_SECTION}>
+            {totalImages.map((product: Product) => (
+              <ImagesLayout
+                key={product.id}
+                data={product}
+                refetchDashboard={refetch}
+              />
+            ))}
+          </div>
+
+          {data?.length === limit && (
+            <div
+              className={CLASSNAME.LOAD}
+              onClick={() => setPage((prev) => prev + 1)}
+            >
+              {TEXT.LOAD}
+            </div>
+          )}
+        </div>)
+    }
+  </>
+
   );
 }

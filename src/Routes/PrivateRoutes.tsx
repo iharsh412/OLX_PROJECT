@@ -11,36 +11,33 @@ import SellSection from '../Views/Sell/SellSection';
 import Cart from '../Views/CartSection';
 import Post from '../Components/Post';
 import ProductDetail from '../Views/ImageDetail';
-import CarSection from '../Views/CarSection';
+import TypeSection from '../Views/TypeSection';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
-  {
-    path: ROUTES_CONFIG.ABOUT.path,
-    element: '<ABOUT />',
-    title: ROUTES_CONFIG.ABOUT.title,
-  },
+
   {
     path: ROUTES_CONFIG.HOMEPAGE.path,
     element: <HomeLayout />,
     title: ROUTES_CONFIG.HOMEPAGE.title,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: 'login', element: <Login /> },
-      { path: 'loginPhone', element: <LoginWithPhone /> },
-      { path: 'loginphonesms', element: <LoginPhoneSms /> },
-      { path: 'cart', element: <Cart /> },
-      { path: 'product/:productName/:productId', element: <ProductDetail /> },
-      { path: '/:category', element: <CarSection /> },
+      { path: ROUTES_CONFIG.LOGIN.path, element: <Login /> },
+      { path: ROUTES_CONFIG.LOGIN_PHONE.path, element: <LoginWithPhone /> },
+      { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
+      { path: ROUTES_CONFIG.CART.path, element: <Cart /> },
+      { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
+      { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection/> },
+
     ],
   },
   {
-    path: 'sell',
+    path: ROUTES_CONFIG.SELL.path,
     element: <SellLayout />,
-    title: 'SellSection',
+    title: ROUTES_CONFIG.SELL.title,
     children: [
       { index: true, element: <SellSection /> },
-      { path: 'attributes', element: <Post /> },
+      { path: ROUTES_CONFIG.ATTRIBUTES.path, element: <Post /> },
     ],
   },
   {

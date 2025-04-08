@@ -1,8 +1,4 @@
 
-
-
-
-
 /* Category Container */
 .sell-section__category-container {
   border: 1px solid #ccd5d6;
@@ -56,7 +52,7 @@
   background-color: #f8f9fa;
 }
 
-.sell-section__category-button.active {
+.sell-section__category-button.sell-section_active {
   background-color: #f8f9fa;
 }
 

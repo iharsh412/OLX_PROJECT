@@ -1,12 +1,12 @@
-import { Formik, ErrorMessage } from 'formik';
-import TextField from '../TextField';
+import { Formik } from 'formik';
+import { City, Description, Photos, Price, Seller, State, TextField } from "../Common/Common"
 import {
   CLASSNAME,
   validationSchema,
   initialValues,
   FormValues,
+  TEXT,
 } from './constant';
-import ICONS from '../../../../assets';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -17,14 +17,7 @@ export default function TVForm() {
   const [postNewProducts] = usePostNewProductsMutation();
   console.log(state, 'state');
 
-  useEffect(() => {
-    if (showResponse) {
-      const timer = setTimeout(() => {
-        setShowResponse('');
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [showResponse]);
+  // handle submit
 
   const handleSubmit = async (
     values: FormValues,
@@ -58,6 +51,16 @@ export default function TVForm() {
     }
   };
 
+  // hooks
+  useEffect(() => {
+    if (showResponse) {
+      const timer = setTimeout(() => {
+        setShowResponse('');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [showResponse]);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -74,11 +77,11 @@ export default function TVForm() {
         handleSubmit,
         isSubmitting,
       }) => {
-        const share = { handleChange, handleBlur, handleSubmit };
+        const share = { handleChange, handleBlur, setFieldValue };
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
-              <h3 className={CLASSNAME.DETAIL_TEXT}>INCLUDE SOME DETAILS</h3>
+              <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
 
               <TextField
                 type="text"
@@ -104,144 +107,63 @@ export default function TVForm() {
 
               {/* Description Input */}
 
-              <label htmlFor="description" className={CLASSNAME.LABEL}>
-                Description *
-              </label>
-              <textarea
-                title="Enter a brief description of your ad"
-                name="description"
-                onChange={handleChange}
-                onBlur={handleBlur}
+              <Description
+                type="text"
+                htmlFor="description"
                 value={values.description}
-                className={`${CLASSNAME.DESCRIPTION} ${
-                  errors.description && touched.description
-                    ? CLASSNAME.INPUTERROR
-                    : ''
-                }`}
-              />
-              <ErrorMessage
-                name="description"
-                component="div"
-                className="postError"
-              />
+                err={errors.description}
+                tch={touched.description}
+                label="Description"
+                {...share} />
             </div>
 
             <hr />
 
             {/* Price Input */}
-            <div className={CLASSNAME.PRICE_WRAPPER}>
-              <h3 className={CLASSNAME.PRICE_TEXT}>SET A PRICE</h3>
-              <label htmlFor="price" className={CLASSNAME.LABEL}>
-                Price *
-              </label>
-              <div className={CLASSNAME.PRICE_INPUT_WRAPPER}>
-                <span>
-                  <img src={ICONS.rupees} alt="img" width="10px" />
-                </span>
-                <input
-                  title="Enter the price of your ad"
-                  type="number"
-                  name="price"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.price}
-                  className={`${CLASSNAME.PRICE} ${
-                    errors.price && touched.price ? CLASSNAME.INPUTERROR : ''
-                  }`}
-                />
-              </div>
-              <ErrorMessage
-                name="price"
-                component="div"
-                className="postError"
-              />
-            </div>
+            <Price
+              type="number"
+              htmlFor="price"
+              value={values.price}
+              err={errors.price}
+              tch={touched.price}
+              label="Price"
+              {...share} />
+
 
             <hr />
 
             {/* Photos input */}
-            <h3 className="postForm_UploadText">UPLOAD UP TO 5 PHOTOS</h3>
-            <div className="postForm_photo-container">
-              {Array.from({
-                length: Math.max(5, values?.photos?.length + 1),
-              }).map((_, index) => (
-                <div key={index} className="postForm_photo-box">
-                  {values.photos[index] ? (
-                    <img
-                      src={URL.createObjectURL(values.photos[index])}
-                      alt="preview"
-                      className="postForm_photo-preview"
-                    />
-                  ) : (
-                    <label className="postForm_photo-upload">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        className="postForm_file-input"
-                        onChange={(e) => {
-                          const { files } = e.target;
-                          if (files) {
-                            setFieldValue('photos', [
-                              ...values.photos,
-                              files[0],
-                            ]);
-                          }
-                        }}
-                      />
-                      <span className="postForm_Camera">
-                        <img src={ICONS.camera} alt="img" />
-                      </span>
-                      <span className="postForm_text">Add Photo</span>
-                    </label>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <ErrorMessage name="photos" component="div" className="postError" />
-
+            <Photos
+              type="file"
+              label="photos"
+              value={values?.photos as []}
+              {...share}
+            />
             <hr />
             {/* Location */}
-
             <div className={CLASSNAME.LOCATION_WRAPPER}>
-              <h3 className={CLASSNAME.LOCATION_TEXT}>CONFIRM YOUR LOCATION</h3>
-              <label htmlFor="state" className={CLASSNAME.LABEL}>
-                State *
-              </label>
-              <input
-                title="Enter the state where you are located"
+              <h3 className={CLASSNAME.LOCATION_TEXT}>{TEXT.CONFIRM_LOCATION}</h3>
+              <State
                 type="text"
-                name="state"
-                onChange={handleChange}
-                onBlur={handleBlur}
+                htmlFor="state"
                 value={values.state}
-                className={`${CLASSNAME.STATE} ${
-                  errors.state && touched.state ? CLASSNAME.INPUTERROR : ''
-                }`}
+                err={errors.state}
+                tch={touched.state}
+                label="State"
+                {...share}
               />
-
-              <ErrorMessage
-                name="state"
-                component="div"
-                className="postError"
-              />
-
-              <label htmlFor="city" className={CLASSNAME.LABEL}>
-                City *
-              </label>
-              <input
-                title="Enter the city where you are located"
+              
+              {values.state && (<City
+                state={values.state}
                 type="text"
-                name="city"
-                onChange={handleChange}
-                onBlur={handleBlur}
+                htmlFor="city"
                 value={values.city}
-                className={`${CLASSNAME.CITY} ${
-                  errors.city && touched.city ? CLASSNAME.INPUTERROR : ''
-                }`}
-              />
+                err={errors.city}
+                tch={touched.city}
+                label="City"
+                {...share} />
+              )}
 
-              <ErrorMessage name="city" component="div" className="postError" />
             </div>
 
             <hr />
@@ -249,7 +171,7 @@ export default function TVForm() {
             {/* Review Your Detail */}
 
             <div className={CLASSNAME.SELLER_WRAPPER}>
-              <h3 className={CLASSNAME.SELLER_TEXT}>REVIEW YOUR DETAILS</h3>
+              <h3 className={CLASSNAME.SELLER_TEXT}>{TEXT.REVIEW_DETAIL}</h3>
 
               <TextField
                 type="text"
@@ -260,37 +182,17 @@ export default function TVForm() {
                 tch={touched.sellerName}
                 {...share}
               />
+              <Seller
+                type="number"
+                htmlFor="mobileNumber"
+                value={values.mobileNumber}
+                label="Mobile Number"
+                err={errors.mobileNumber}
+                tch={touched.mobileNumber}
+                {...share} />
 
-              <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>
-                Let's verify your account
-              </h3>
-              <span className={CLASSNAME.SELLER_CODE_TEXT}>
-                We will send you a confirmation code by sms on the next step.
-              </span>
-              <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
-                <span>+91</span>
-                <label htmlFor="mobileNumber" className={CLASSNAME.LABEL}>
-                  Mobile Number *
-                </label>
-                <input
-                  title="Enter your mobile number"
-                  type="text"
-                  name="mobileNumber"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.mobileNumber}
-                  className={`${CLASSNAME.MOBILE_NUMBER} ${
-                    errors.mobileNumber && touched.mobileNumber
-                      ? CLASSNAME.INPUTERROR
-                      : ''
-                  }`}
-                />
-              </div>
-              <ErrorMessage
-                name="mobileNumber"
-                component="div"
-                className="postError"
-              />
+
+
             </div>
             <hr />
 
@@ -304,8 +206,8 @@ export default function TVForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

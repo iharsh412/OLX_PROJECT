@@ -18,13 +18,7 @@
   cursor: pointer;
 }
 
-/* Description */
-.postForm_Description {
-  margin: 5px 5px 5px 0px;
-  height: 100px;
-  padding: 10px;
-  font-size: 18px;
-}
+
 
 /* Label */
 .post-label {
@@ -33,103 +27,27 @@
 }
 
 /* Error messages */
-.postError {
+
+.textFieldError {
   margin-top: 0px;
   font-size: 0.9rem;
   padding: 0 5px;
   color: red;
+
 }
 
-.postErrorInput {
-  border: 4px solid red;
-}
 
-/* Price Section */
-.postForm_PriceWrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 16px;
-}
 
-.postForm_Price {
-  margin: 5px 5px 5px 0px;
-  height: 48px;
-  font-size: 18px;
-  padding-left: 50px;
-  width: 100%;
-}
-
-.postForm_PriceInputWrapper {
-  position: relative;
-  width: 100%;
-  display: flex;
-}
-
-.postForm_PriceInputWrapper span {
-  position: absolute;
-  top: 15px;
-  left: 10px;
-  padding: 5px 10px;
-  border-right: 1px solid black;
-}
-
-/* Photos Section */
-.postForm_UploadText {
-  padding: 16px;
-}
-
-.postForm_photo-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 16px;
-}
-
-.postForm_photo-box {
-  width: 80px;
-  height: 80px;
-  border: 1px solid gray;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.postForm_photo-box:focus {
-  border: 2px solid black;
-}
-
-.postForm_photo-preview {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.postForm_photo-upload {
-  cursor: pointer;
-  font-size: 14px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-
-.postForm_file-input {
-  display: none;
-}
 
 /* Location Section */
 .postForm_LocationWrapper {
   display: flex;
   flex-direction: column;
   padding: 16px;
+  position: relative;
 }
 
-.postForm_State, .postForm_City {
-  margin: 5px 5px 5px 0px;
-  height: 48px;
-  font-size: 18px;
-  padding: 10px;
-}
+
 
 /* Seller Details */
 .postForm_SellerWrapper {
@@ -138,40 +56,9 @@
   padding: 16px;
 }
 
-.postForm_SellerName {
-  margin: 5px 5px 5px 0px;
-  height: 48px;
-  font-size: 18px;
-  padding: 10px;
-}
 
-.postForm_SellerVerifyText, 
-.postForm_SellerCodeText {
-  padding: 5px 0;
-}
 
-/* Mobile Number Section */
-.postForm_mobileNumberWrapper {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
 
-.postForm_mobileNumberWrapper span {
-  position: absolute;
-  top: 50%;
-  padding: 5px;
-  color: rgb(127, 129, 131);
-  border-right: 1px solid rgb(127, 129, 131);
-}
-
-.postForm_MobileNumber {
-  margin: 5px 5px 5px 0px;
-  height: 48px;
-  font-size: 18px;
-  padding: 10px;
-  padding-left: 50px;
-}
 
 /* Post Button Section */
 .postForm_post {
@@ -189,47 +76,20 @@
   }
 
 
-  .postForm_FuelOption button, 
-  .postForm_Description, 
-  .postForm_State, 
-  .postForm_City, 
-  .postForm_MobileNumber {
+  .postForm_FuelOption button {
     font-size: 16px;
     padding: 8px;
     height: 40px;
   }
-  .postForm_MobileNumber{
-    padding-left: 35px;
-  }
 
-  .postForm_Price {
-    font-size: 16px;
-    padding-left: 40px;
-  }
 
-  .postForm_PriceInputWrapper span {
-    font-size: 14px;
-    padding: 5px 8px;
-  }
-
-  .postForm_photo-container {
-    justify-content: center;
-  }
 
   .postForm_post {
     padding: 10px 40px;
     margin-left: 10%;
   }
 
-  /* Mobile number section */
-  .postForm_mobileNumberWrapper span {
-    font-size: 14px;
-  }
 
-  /* Price input */
-  .postForm_PriceInputWrapper {
-    flex-direction: column;
-  }
 }
 
 /* For screens smaller than 480px (phones) */
@@ -239,40 +99,17 @@
   }
 
 
-  .postForm_FuelOption button, 
-  .postForm_Description, 
-  .postForm_State, 
-  .postForm_City, 
-  .postForm_MobileNumber {
+  .postForm_FuelOption button {
     font-size: 14px;
     padding: 6px;
     height: 36px;
   }
-  .postForm_MobileNumber{
-    padding-left: 35px;
-  }
-  .postForm_Price {
-    font-size: 14px;
-    padding-left: 30px;
-  }
 
-  .postForm_PriceInputWrapper span {
-    font-size: 12px;
-    padding: 4px 6px;
-  }
-
-  .postForm_photo-container {
-    justify-content: center;
-    gap: 5px;
-  }
 
   .postForm_post {
     padding: 10px 20px;
     margin-left: 5%;
   }
 
-  /* Mobile number section */
-  .postForm_mobileNumberWrapper span {
-    font-size: 12px;
-  }
+
 }

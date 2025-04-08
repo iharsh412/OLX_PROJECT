@@ -23,7 +23,7 @@ interface ResponseData {
 
 export default function Sample() {
   const limit = 1;
-  const[page]   = useState<number>(1);
+  const [page] = useState<number>(1);
   const { category } = useParams();
   const [sampleData, setSampleData] = useState<SampleData>({
     category: category,
@@ -40,7 +40,7 @@ export default function Sample() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await productData({ sampleData ,page: page, limit }).unwrap();
+        const response = await productData({ sampleData, page: page, limit }).unwrap();
 
         setResponse(response);
       } catch (error) {
@@ -88,7 +88,7 @@ export default function Sample() {
   };
 
   const handlePrevPage = () => {
-              
+
 
   };
 
@@ -146,26 +146,29 @@ export default function Sample() {
             <h4>Category</h4>
 
             <div className="sample-subcategoryOption">
-              {response?.subcategories?.map(
-                (
-                  category: { subcategory_name: string; product_count: number },
-                  index: number
-                ) => (
-                  <button
-                    title={category.subcategory_name}
-                    key={index}
-                    className="sample-subcategoryOption__item"
-                    onClick={() => {
-                      setSampleData({
-                        ...sampleData,
-                        subcategory: category.subcategory_name,
-                      });
-                    }}
-                  >
-                    {category.subcategory_name} ({category?.product_count})
-                  </button>
-                )
-              )}
+              {response?.subcategories && response?.subcategories?.length > 0 ? (
+                response?.subcategories?.map(
+                  (
+                    category: { subcategory_name: string; product_count: number },
+                    index: number
+                  ) => (
+                    <button
+                      title={category.subcategory_name}
+                      key={index}
+                      className="sample-subcategoryOption__item"
+                      onClick={() => {
+                        setSampleData({
+                          ...sampleData,
+                          subcategory: category.subcategory_name,
+                        });
+                      }}
+                    >
+                      {category.subcategory_name} ({category?.product_count})
+                    </button>
+                  )
+                )) : <h3 className="sample-brandOption__noBrand">
+                No category available
+              </h3>}
             </div>
           </div>
           {/* BRANDS */}
@@ -241,7 +244,7 @@ export default function Sample() {
         </div>
 
         {/* IMAGE SECTION */}
-       {isLoading ? (<p>loading...</p>) : error ? (<p>Error loading products</p>) :( <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+        {isLoading ? (<h1 className='sample-errorAndLoading'>Loading...</h1>) : error ? (<h1 className='sample-errorAndLoading'>Error in loading products</h1>) : (<div className={CLASSNAME.MAIN_SECTION_IMAGE}>
           {response?.products?.map((product: Product) => (
             <ImagesLayout key={product.id} data={product} />
           ))}

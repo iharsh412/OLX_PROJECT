@@ -263,6 +263,12 @@
   width: 14px;
   height: 14px;
 }
+/* Erorr and Loading Section */
+.sample-errorAndLoading{
+
+  width: 100%;
+  text-align: center;
+}
 
 /* Image Grid Section */
 .sample-mainSectionImage {

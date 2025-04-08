@@ -2,25 +2,28 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import ICONS from '../../assets';
 import Footer from '../Home/Footer';
 import './sellLayout.css';
+import { CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT } from '../../Shared/constant';
 
 export default function SellLayout() {
   const navigate = useNavigate();
 
   return (
-    <div className="sell-section">
-      <header className="sell-section__header">
+    <div className={CLASSNAME.SL.WRAPPER}>
+      <header className={CLASSNAME.SL.HEADER}>
         <button
-          className="sell-section__back-button"
+          className={CLASSNAME.SL.BACK_BUTTON}
           onClick={() => navigate(-1)}
         >
-          <img src={ICONS.arrow} alt="arrow" />
+          <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
         </button>
       </header>
-      <h1 className="sell-section__title">Post your Ad</h1>
-      <div className="sell-section-Outlet">
+      <h1 className={CLASSNAME.SL.TITLE}>{TEXT.SL.ADD}</h1>
+      <div className={CLASSNAME.SL.OUTLET}>
         <Outlet />
+        
       </div>
-      <div className="sell-section-footer">
+      <div className={CLASSNAME.SL.FOOTER}>
         <Footer />
       </div>
     </div>

@@ -1,30 +1,25 @@
 import './SellSection.css';
 import { useState } from 'react';
 import ICONS from '../../assets';
-import SubCategory from '../../Components/SellCategory/SellCategory';
+import SubCategory from '../../Components/Atom/SellCategory/SellCategory';
+import { CATEGORIES, CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT } from '../../Shared/constant';
 
-const CATEGORIES = [
-  { id: 'mobile', name: 'Mobile', icon: ICONS.propertis },
-  { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
-  { id: 'bikes', name: 'Bikes', icon: ICONS.furniture },
-  { id: 'cars', name: 'Cars', icon: ICONS.car },
-];
 
 export default function SellSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
 
   return (
-    <div className="sell-section__category-container">
-      <h2 className="sell-section__subtitle">Choose A Category</h2>
+    <div className={CLASSNAME.SS.WRAPPER}>
+      <h2 className={CLASSNAME.SS.SUBTITLE}>{TEXT.SS.CATEGORY}</h2>
 
-      <div className="sell-section__categories">
+      <div className={CLASSNAME.SS.CATEGORIES}>
         {CATEGORIES.map((category) => (
-          <div key={category.id} className="sell-section__category-wrapper">
+          <div key={category.id} className={CLASSNAME.SS.CATEGORY}>
             <button
               type="button"
-              className={`sell-section__category-button ${
-                selectedCategory === category.id ? 'active' : ''
-              }`}
+              className={`${CLASSNAME.SS.CATEGORY_BUTTON} ${selectedCategory === category.id ? CLASSNAME.SS.ACTIVE : ''
+                }`}
               onClick={() =>
                 setSelectedCategory(
                   category.id === selectedCategory ? '' : category.id
@@ -33,21 +28,21 @@ export default function SellSection() {
             >
               <img
                 src={category.icon}
-                alt=""
-                className="sell-section__category-icon"
+                alt={COMMON_TEXT.IMG}
+                className={CLASSNAME.SS.CATEGORY_ICON}
               />
-              <span className="sell-section__category-name">
+              <span className={CLASSNAME.SS.CATEGORY_NAME}>
                 {category.name}
               </span>
               <img
                 src={ICONS.upDownl}
-                alt=""
-                className="sell-section__arrow-icon"
+                alt={COMMON_TEXT.IMG}
+                className={CLASSNAME.SS.ARROW}
               />
             </button>
 
             {selectedCategory === category.id && (
-              <div className="sell-section__subcategories">
+              <div className={CLASSNAME.SS.SUBCATEGORIES}>
                 <SubCategory categoryId={category.id} />
               </div>
             )}

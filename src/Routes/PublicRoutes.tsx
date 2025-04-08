@@ -6,7 +6,7 @@ import { HomeLayout } from '../Views/Home/HomeLayout';
 import Login from '../Views/Login/LoginLayout';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
-import CarSection from '../Views/CarSection';
+import TypeSection from '../Views/TypeSection';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
@@ -16,18 +16,15 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     title: ROUTES_CONFIG.HOMEPAGE.title,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: 'login', element: <Login /> },
-      { path: 'loginPhone', element: <LoginWithPhone /> },
-      { path: 'loginphonesms', element: <LoginPhoneSms /> },
-      { path: '/:category', element: <CarSection /> },
+      { path: ROUTES_CONFIG.LOGIN.path, element: <Login /> },
+      { path: ROUTES_CONFIG.LOGIN_PHONE.path, element: <LoginWithPhone /> },
+      { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
+      { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection/> },
+      
     ],
   },
- 
-  {
-    path: `${ROUTES_CONFIG.LOGIN.path}`,
-    title: ROUTES_CONFIG.LOGIN.title,
-    element: '<Login />',
-  },
+
+
   {
     path: '*',
     element: <Navigate to={WILDCARD_ROUTES.PUBLIC} />,

@@ -1,56 +1,80 @@
-import './placeSelector.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
-import ICONS from '../../../assets';
+import { useEffect, useRef, useState } from 'react';
 import { RootState } from '../../../Store';
 import { setArea } from '../../../Store/AreaItem';
+import './placeSelector.css';
+import ICONS from '../../../assets';
+import { CLASSNAME, PLACE, TEXT } from './constant';
+import { COMMON_TEXT } from '../../../Shared/constant';
 
-export default function Place() {
+export default function PlaceSelector() {
   const area = useSelector((state: RootState) => state?.areaItem?.area);
   const [areaDropdown, setAreaDropdown] = useState(false);
   const dispatch = useDispatch();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // HANDLE CLICK
   function toggleAreaDropdown() {
     setAreaDropdown(!areaDropdown);
   }
 
+  // HOOKS
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setAreaDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="home_nav_input_area">
+    <div className={CLASSNAME.WRAPPER} ref={dropdownRef}>
       <img
         src={ICONS.searchIcon}
-        alt="search"
-        className="home_nav_input_area_search"
+        alt={COMMON_TEXT.IMG}
+        className={CLASSNAME.SEARCH}
       />
       <input
         type="text"
-        className="home_nav_input_area_field"
-        placeholder="Search city, area or locality"
+        className={CLASSNAME.INPUT}
+        placeholder={TEXT.SEARCH_CITY_AREA}
         value={area}
         onChange={(e) => dispatch(setArea(e.target.value))}
       />
       <span
-        className="home_nav_input__area_dropdown"
+        className={CLASSNAME.DROPDOWN}
         onClick={toggleAreaDropdown}
       >
         <img
           src={ICONS.upDown}
-          alt="upDown"
-          className={`home_nav_input_area_upDown ${
-            areaDropdown
-              ? 'home_nav_area_updown_rotate'
-              : 'home_nav_area_updown_notrotate'
-          }`}
+          alt={COMMON_TEXT.IMG}
+          className={`${CLASSNAME.UPDOWN} ${areaDropdown
+              ? CLASSNAME.ROTATE
+              : CLASSNAME.NOTROTATE
+            }`}
         />
       </span>
 
       {areaDropdown && (
-        <div className="home_nav_area_dropdown_list">
-          {['Mumbai', 'Delhi', 'Bangalore', 'Hyderabad', 'Chennai'].map(
+        <div className={CLASSNAME.LIST}>
+          {PLACE?.map(
             (city) => (
               <button
                 key={city}
-                onClick={() => dispatch(setArea(city))}
-                className="home_nav_area_dropdown_items"
+                onClick={() => {
+                  dispatch(setArea(city));
+                  setAreaDropdown(false);
+                }}
+                className={CLASSNAME.ITEMS}
               >
                 {city}
               </button>

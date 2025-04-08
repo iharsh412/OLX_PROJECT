@@ -4,8 +4,15 @@ export { STRING };
 const ROUTES = {
   HOMEPAGE: '/',
   LOGIN: 'login',
-  REGISTER: '/register',
-  ABOUT: '/about-us',
+  LOGIN_PHONE: 'loginPhone',
+  LOGIN_PHONE_SMS: 'loginphonesms',
+  CART: 'cart',
+  PRODUCT: 'product/:productName/:productId',
+  SELL: 'sell',
+  ATTRIBUTES: 'attributes',
+  CATEGORY:'/:category'
+
+
 };
 
 const WILDCARD_ROUTES = {
@@ -22,14 +29,38 @@ const ROUTES_CONFIG = {
     path: ROUTES.LOGIN,
     title: 'Login',
   },
-  REGISTER: {
-    path: ROUTES.REGISTER,
-    title: 'Register',
+  LOGIN_PHONE: {
+    path: ROUTES.LOGIN_PHONE,
+    title: 'Login Phone',
   },
-  ABOUT: {
-    path: ROUTES.ABOUT,
-    title: 'About us',
+  LOGIN_PHONE_SMS: {
+    path: ROUTES.LOGIN_PHONE_SMS,
+    title: 'Login Phone Sms',
   },
+  CART: {
+    path: ROUTES.CART,
+    title: 'Cart',
+  },
+  PRODUCT: {
+    path: ROUTES.PRODUCT,
+    title: 'Product',
+  },
+  SELL: {
+    path: ROUTES.SELL,
+    title: 'Sell',
+
+  },
+  ATTRIBUTES: {
+    path: ROUTES.ATTRIBUTES,
+    title: 'Attributes',
+  },
+  CATEGORY: {
+    path: ROUTES.CATEGORY,
+    title: 'Category',
+    },
+
+
+
 };
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };
