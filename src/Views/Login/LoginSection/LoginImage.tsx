@@ -3,7 +3,7 @@ import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './loginImage.css';
 import ICONS from '../../../assets';
 
-const images = [ICONS.google, ICONS.phone, ICONS.google, ICONS.phone];
+const images = [ICONS.watch, ICONS.watch, ICONS.google, ICONS.phone];
 const quotes = [
   'hello jrg grgr eg eb iejrg ojeroej eroer nroer oeroer enroenrto eorno',
   'harsh',

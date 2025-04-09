@@ -1,6 +1,6 @@
 .signup_Wrapper {
-  background-color: rgb(250, 241, 254);
-  border-radius: 3px;
+  background-color: #faf1fe;
+  border-radius: 6px;
   min-height: 600px;
   width: 400px;
   margin: 16px;
@@ -8,92 +8,101 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-}
-.signup_title {
-  text-align: center;
-}
-/* username */
-.signup_usernameInput {
-  padding: 5px;
-  margin-left: 20px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #333;
-  margin-top: 30px;
- 
-}
-.signup_usernameInput input
-{
-   margin-left: 60px;
-   width: 190px;
-}
-/* email */
-.signup_emailInput {
-  padding: 5px;
-  margin-left: 20px;
-  font-size: 15px;
-  font-weight: 500;
-  
-  color: #333;
-}
-.signup_emailInput input{
-    margin-left: 93px;
-    width: 190px;
-}
-/* password */
-.signup_passwordInput {
-  padding: 5px;
-  margin-left: 20px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #333;
-}
-.signup_passwordInput input{
-    margin-left: 65px;
-    width: 190px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* confirm password */
- .signup_confirmPasswordInput {
+/* Title */
+.signup_title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #5a2a7e;
+  margin-bottom: 20px;
+}
+
+/* Input labels */
+.signup_usernameInput,
+.signup_emailInput,
+.signup_passwordInput,
+.signup_confirmPasswordInput {
   padding: 5px;
   margin-left: 20px;
   font-size: 15px;
   font-weight: 500;
-  color: #333;
+  color: #4a4a4a;
+  margin-top: 20px;
 }
-.signup_confirmPasswordInput input{
-    margin-left: 10px;
-    width: 190px;
+
+/* Input fields */
+.signup_usernameInput input,
+.signup_emailInput input,
+.signup_passwordInput input,
+.signup_confirmPasswordInput input {
+  height: 30px;
+  width: 190px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
- /* submit */
- .signup_submitButton{
-    padding: 10px;
-    margin-left: 20px;
-    font-size: 15px;
-    font-weight: 700;
-    color: #333;
-    border: none;
-    border-radius: 3px;
-    background-color: aqua;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100px;
- }
- .signup_submitButton:hover
- {
-    background-color: #007bff;
- }
+
+.signup_usernameInput input:hover,
+.signup_emailInput input:hover,
+.signup_passwordInput input:hover,
+.signup_confirmPasswordInput input:hover {
+  border-color: #a269d6;
+}
+
+.signup_usernameInput input:focus,
+.signup_emailInput input:focus,
+.signup_passwordInput input:focus,
+.signup_confirmPasswordInput input:focus {
+  border-color: #a269d6;
+  box-shadow: 0 0 5px rgba(162, 105, 214, 0.5);
+}
+
+/* Offsets to match existing alignment */
+.signup_usernameInput input {
+  margin-left: 60px;
+}
+.signup_emailInput input {
+  margin-left: 93px;
+}
+.signup_passwordInput input {
+  margin-left: 65px;
+}
+.signup_confirmPasswordInput input {
+  margin-left: 10px;
+}
+
+/* Submit Button */
+.signup_submitButton {
+  padding: 10px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  background-color: #00c8c8;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100px;
+  box-shadow: 0 4px 8px rgba(0, 200, 200, 0.3);
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.signup_submitButton:hover {
+  background-color: #007bff;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Error Message */
 .signup_error {
   padding: 5px;
   font-size: 12px;
   font-weight: 500;
   color: red;
   margin-left: 150px;
-}
-.signup_usernameInput input,
-.signup_passwordInput input,
-.signup_emailInput input,
-.signup_confirmPasswordInput input{
-    
-    height: 30px;
 }

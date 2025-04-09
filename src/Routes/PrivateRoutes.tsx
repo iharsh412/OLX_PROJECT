@@ -14,6 +14,7 @@ import ProductDetail from '../Views/ImageDetail';
 import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Login/Signup';
 import Signin from '../Views/Login/Signin';
+import ForgetPass from "../Views/Login/ForgetPass"
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -28,6 +29,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
       { path: ROUTES_CONFIG.SIGNUP.path, element: <Signup /> },
       { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },
+      { path: ROUTES_CONFIG.FORGETPASS.path, element: <ForgetPass /> },
       { path: ROUTES_CONFIG.CART.path, element: <Cart /> },
       { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },

@@ -8,7 +8,9 @@ import LanguageSelector from '../../../Components/Atom/LanguageSelector';
 import Place from '../../../Components/Atom/PlaceSelector';
 import Item from '../../../Components/Atom/ItemsSelector';
 import ProfileUpDown from '../../../Components/Atom/LoginUpDown';
-import { CLASSNAME } from './constant';
+import { CLASSNAME ,TEXT} from './constant';
+import {COMMON_TEXT} from "../../../Shared/constant"
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -18,17 +20,17 @@ export default function Navbar() {
   function onClickSell() {
     if (token) {
 
-      navigate('/sell');
+      navigate(ROUTES_CONFIG.SELL.path);
     } else {
-      navigate('./login');
+      navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
 
   function onClickCart() {
     if (token) {
-      navigate('/cart');
+      navigate(ROUTES_CONFIG.CART.path);
     } else {
-      navigate('./login');
+      navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
 
@@ -40,7 +42,7 @@ export default function Navbar() {
     <div className={CLASSNAME.NAV_PARENT}>
       <div className={CLASSNAME.NAV}>
         <span className={CLASSNAME.LOGO}>
-          <img src={ICONS.Olx} alt="img" />
+          <img src={ICONS.Olx} alt={COMMON_TEXT.IMG} />
         </span>
 
         <div className={CLASSNAME.PLACE_WRAPPER}>
@@ -61,27 +63,27 @@ export default function Navbar() {
           >
             <img
               src={ICONS.heartIcon}
-              alt="img"
+              alt={COMMON_TEXT.IMG}
               className={CLASSNAME.CART_ICON}
             />
           </button>
           {token ? (
             <>
               <button className={CLASSNAME.CHAT}>
-                <img src={ICONS.chat} alt="img" />
+                <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
               </button>
               <button className={CLASSNAME.NOTIFICATION}>
-                <img src={ICONS.notification} alt="img" />{' '}
+                <img src={ICONS.notification} alt={COMMON_TEXT.IMG} />{' '}
               </button>
               <div className={CLASSNAME.PROFILE}>
                 <span className={CLASSNAME.PROFILE_PHOTO}>
-                  <img src={ICONS.watch} alt="img" />
+                  <img src={ICONS.watch} alt={COMMON_TEXT.IMG} />
                 </span>
                 <button
                   className={CLASSNAME.PROFILE_UPDOWN}
                   onClick={onClickProfileUpDown}
                 >
-                  <img src={ICONS.upDown} alt="img" />
+                  <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
                 </button>
                 {openProfile && (
                   <ProfileUpDown setOpenProfile={setOpenProfile} />
@@ -89,7 +91,7 @@ export default function Navbar() {
               </div>
             </>
           ) : (
-            <Link to="/login" className={CLASSNAME.LOGIN}>
+            <Link to={ROUTES_CONFIG.LOGIN.path} className={CLASSNAME.LOGIN}>
               Login
             </Link>
           )}
@@ -100,16 +102,16 @@ export default function Navbar() {
           >
             <img
               src={ICONS.sellImage}
-              alt="img"
+              alt={COMMON_TEXT.IMG}
               className={CLASSNAME.SELL_ICON}
             />
             <span className={CLASSNAME.SELL_INNER}>
               <img
                 src={ICONS.addIcon}
-                alt="img"
+                alt={COMMON_TEXT.IMG}
                 className={CLASSNAME.SELL_ADD}
               />
-              <span className={CLASSNAME.SELL_TEXT}>SELL</span>
+              <span className={CLASSNAME.SELL_TEXT}>{TEXT.SELL}</span>
             </span>
           </button>
         </div>

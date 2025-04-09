@@ -1,146 +1,155 @@
-/* Image section styling */
+/* === Image Section Styling === */
 .imageSection {
-    width: 100%;
-    min-height: 220px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-wrap: wrap;
+  width: 100%;
+  min-height: 220px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* === Individual Slide Styling === */
+.slide {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  height: 80%;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.slide img {
+  margin-top: 2%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.slide span {
+  text-align: center;
+  width: 70%;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #333;
+}
+
+/* === Navigation Buttons === */
+.login_slide_button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #002F345C;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login_slide_prev {
+  left: 10px;
+}
+
+.login_slide_next {
+  right: 10px;
+}
+
+/* === Dot Navigation === */
+.login_dots_container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #002F345C;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #23E5DB;
+}
+
+/* === Responsive Breakpoints === */
+@media (max-width: 768px) {
+  .imageSection {
+    min-height: 180px;
   }
-  
-  /* Slide styling */
-  .slide {
-    position: absolute;
-    flex-direction: column;
-    width: 100%;
-    height: 80%;
-    opacity: 0;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    transition: opacity 0.5s ease-in-out; /* Smooth transition for slide changes */
-  }
-  
-  .slide.active {
-    opacity: 1;
-  }
-  
+
   .slide img {
-    margin-top: 2%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 80px;
+    height: 80px;
   }
-  
+
   .slide span {
-    text-align: center;
-    width: 70%;
+    width: 80%;
+    font-size: 14px;
   }
-  
-  /* Slide navigation buttons */
+
   .login_slide_button {
-    position: absolute;
-    top: 50%;
-    color: #002F345C;
-    background: none;
-    border: none;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    z-index: 10;
-    transform: translateY(-50%); /* Center buttons vertically */
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
   }
-  
-  .login_slide_prev {
-    left: 0px;
-  }
-  
-  .login_slide_next {
-    right: 0px;
-  }
-  
-  /* Dots container */
+
   .login_dots_container {
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%); /* Center dots horizontally */
-    display: flex;
-    gap: 10px;
-    z-index: 10;
+    bottom: 10px;
   }
-  
+
   .dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #002F345C;
-    cursor: pointer;
-    transition: background-color 0.3s; /* Smooth transition for dot color */
+    width: 6px;
+    height: 6px;
   }
-  
-  .dot.active {
-    background: #23E5DB;
+}
+
+@media (max-width: 480px) {
+  .imageSection {
+    min-height: 150px;
   }
-  
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .imageSection {
-      min-height: 180px; /* Reduce height for smaller screens */
-    }
-  
-    .slide img {
-      width: 80px; /* Reduce image size */
-      height: 80px;
-    }
-  
-    .slide span {
-      width: 80%; /* Increase text width for better readability */
-      font-size: 14px; /* Reduce font size */
-    }
-  
-    .login_slide_button {
-      width: 30px; /* Reduce button size */
-      height: 30px;
-    }
-  
-    .login_dots_container {
-      bottom: 10px; /* Move dots closer to the bottom */
-    }
-  
-    .dot {
-      width: 6px; /* Reduce dot size */
-      height: 6px;
-    }
+
+  .slide img {
+    width: 60px;
+    height: 60px;
   }
-  
-  @media (max-width: 480px) {
-    .imageSection {
-      min-height: 150px; /* Further reduce height for very small screens */
-    }
-  
-    .slide img {
-      width: 60px; /* Further reduce image size */
-      height: 60px;
-    }
-  
-    .slide span {
-      width: 90%; /* Increase text width */
-      font-size: 12px; /* Further reduce font size */
-    }
-  
-    .login_slide_button {
-      width: 25px; /* Further reduce button size */
-      height: 25px;
-    }
-  
-    .login_dots_container {
-      bottom: 5px; /* Move dots even closer to the bottom */
-      gap: 8px; /* Reduce gap between dots */
-    }
-  
-    .dot {
-      width: 5px; /* Further reduce dot size */
-      height: 5px;
-    }
+
+  .slide span {
+    width: 90%;
+    font-size: 12px;
   }
+
+  .login_slide_button {
+    width: 25px;
+    height: 25px;
+    font-size: 16px;
+  }
+
+  .login_dots_container {
+    bottom: 5px;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 5px;
+    height: 5px;
+  }
+}

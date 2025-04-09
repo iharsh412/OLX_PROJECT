@@ -1,34 +1,17 @@
 import { Formik } from 'formik';
-import './signin.css';
-import { FORM_VALUES, INITIAL_VALUES, VALIDATION, CLASSNAME } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
-import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
-import { updateAuthState } from '../../../Store/Common';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG} from "../../../Shared/Constants"
+// import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
+import './forgetPass.css';
+import { VALIDATION, INITIAL_VALUES, FORM_VALUES, CLASSNAME } from './constant';
+// import { ToastContainer, toast } from 'react-toastify';
+// import { useNavigate } from 'react-router-dom';
 
-export default function Signup() {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  const [post] = usePostSigninDataMutation();
-  async function handleSubmit(
-    values: FORM_VALUES,
-    { resetForm }: { resetForm: () => void }
-  ) {
+export default function ForgetPass() {
+//   const navigate = useNavigate();
+  
+//   const [post] = usePostSignupDataMutation();
+  async function handleSubmit(values: FORM_VALUES,) {
     console.log(values);
-
-    try {
-      const response = await post(values).unwrap();
-
-      toast('Login Successfull');
-      resetForm();
-      dispatch(updateAuthState(response));
-      navigate('/');
-    } catch (error) {
-      toast.error((error as any)?.data?.detail);
-    }
+    
   }
 
   return (
@@ -49,8 +32,9 @@ export default function Signup() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>Sign In</h2>
+              <h2 className={CLASSNAME.TITLE}>Forget Password</h2>
               <form onSubmit={handleSubmit}>
+                
                 <div className={CLASSNAME.EMAIL_INPUT}>
                   <label htmlFor="email">Email</label>
                   <input
@@ -79,17 +63,32 @@ export default function Signup() {
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
                   )}
                 </div>
-
+                <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
+                  <label htmlFor="password"> Confirm Password</label>
+                  <input
+                    title="Confirm Password"
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  {errors.confirmPassword && touched.confirmPassword && (
+                    <div className={CLASSNAME.ERROR}>
+                      {errors.confirmPassword}
+                    </div>
+                  )}
+                </div>
                 <button
                   className={CLASSNAME.SUBMIT_BUTTON}
                   type="submit"
                   disabled={isSubmitting}
                 >
-                  Login
+                  Set
                 </button>
-                <ToastContainer />
+                {/* <ToastContainer /> */}
               </form>
-              <Link to={ROUTES_CONFIG.FORGETPASS.path} >forget password</Link>
             </div>
           );
         }}

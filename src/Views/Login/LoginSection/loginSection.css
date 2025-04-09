@@ -1,13 +1,13 @@
-
 /* Login page parent container */
 .loginPageParent {
   background-color: rgb(250, 241, 254);
-  border-radius: 3px;
+  border-radius: 8px;
   min-height: 600px;
   width: 400px;
   margin: 16px;
   padding: 16px 20px;
   box-sizing: border-box;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Login page child container */
@@ -19,7 +19,6 @@
   align-items: center;
   position: relative;
   flex-wrap: wrap;
-  
 }
 
 /* Continue with phone section */
@@ -30,23 +29,28 @@
   padding: 0 16px;
   min-height: 44px;
   box-sizing: border-box;
-  border: 2px solid black;
-  border-radius: 5px;
+  border: 2px solid #333;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
 }
 .countinue_with_phone_parent:hover {
-  border: 4px solid black;
+  border: 2px solid #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
 }
 
+/* Phone icon */
 .continue_with_phone_icon {
   margin-right: 8px;
   min-width: 22px;
   height: 22px;
 }
 
+/* Phone text */
 .continue_with_phone_text {
-  min-height: 18px;
   font-size: 16px;
   font-weight: 600;
+  color: #333;
 }
 
 /* Continue with Google section */
@@ -59,28 +63,30 @@
   min-height: 38px;
   box-sizing: border-box;
   border: 1px solid #202124;
-  border-radius: 5px;
-  text-align: center;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+  background-color: white;
 }
 .continue_with_google_parent:hover {
-  background-color: #ffeaea;
-  transition: all 1s;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 .continue_with_google_parent:active {
-  background-color: #6feaea;
-  box-shadow: inset;
+  background-color: #e0f7fa;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Google icon */
 .continue_with_google_icon {
   margin-right: 8px;
   min-width: 20px;
   height: 22px;
 }
 
+/* Google text */
 .continue_with_google_text {
-  min-height: 18px;
-  font-family: 'Google Sans', arial, sans-serif;
   width: 90%;
+  font-family: 'Google Sans', Arial, sans-serif;
   color: #3c4043;
   font-size: 14px;
   font-weight: 400;
@@ -90,29 +96,30 @@
 /* Or section */
 .login_Or_section {
   margin-top: 10px;
+  color: #666;
 }
 
-
-/* Login with email section */
+/* Signup / Signin link */
 .login_signup {
   margin-top: 10px;
   font-size: 14px;
   font-weight: 400;
   color: rgb(10, 43, 228);
   cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 .login_signup:hover {
-  color:  rgb(10, 43, 228,0.5);
+  color: rgba(10, 43, 228, 0.6);
 }
-.login_signin{
+
+.login_signin {
   font-size: 14px;
   font-weight: 400;
   margin-top: 10px;
 }
 
-.login_signin_link:hover{
-  color:  rgb(10, 43, 228,0.5);
-
+.login_signin_link:hover {
+  color: rgba(10, 43, 228, 0.6);
 }
 
 /* Footer section */

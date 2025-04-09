@@ -1,0 +1,108 @@
+.forget_Wrapper {
+    background-color: #faf1fe;
+    border-radius: 6px;
+    min-height: 600px;
+    width: 400px;
+    margin: 16px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .forget_title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    color: #5a2a7e;
+    margin-bottom: 20px;
+  }
+  
+  /* Input labels */
+  
+  .forget_emailInput,
+  .forget_passwordInput,
+  .forget_confirmPasswordInput {
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #4a4a4a;
+    margin-top: 20px;
+  }
+  
+  /* Input fields */
+  
+  .forget_emailInput input,
+  .forget_passwordInput input,
+  .forget_confirmPasswordInput input {
+    height: 30px;
+    width: 190px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  
+  .forget_emailInput input:hover,
+  .forget_passwordInput input:hover,
+  .forget_confirmPasswordInput input:hover {
+    border-color: #a269d6;
+  }
+
+  .forget_emailInput input:focus,
+  .forget_passwordInput input:focus,
+  .forget_confirmPasswordInput input:focus {
+    border-color: #a269d6;
+    box-shadow: 0 0 5px rgba(162, 105, 214, 0.5);
+  }
+  
+  /* Offsets to match existing alignment */
+  .forget_usernameInput input {
+    margin-left: 60px;
+  }
+  .forget_emailInput input {
+    margin-left: 93px;
+  }
+  .forget_passwordInput input {
+    margin-left: 65px;
+  }
+  .forget_confirmPasswordInput input {
+    margin-left: 10px;
+  }
+  
+  /* Submit Button */
+  .forget_submitButton {
+    padding: 10px;
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    background-color: #00c8c8;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100px;
+    box-shadow: 0 4px 8px rgba(0, 200, 200, 0.3);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  
+  .forget_submitButton:hover {
+      background-color: #007bff;
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+  }  
+  
+  /* Error Message */
+  .forget_error {
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 500;
+    color: red;
+    margin-left: 150px;
+  }
+  

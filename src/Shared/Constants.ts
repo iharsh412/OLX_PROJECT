@@ -12,7 +12,8 @@ const ROUTES = {
   ATTRIBUTES: 'attributes',
   CATEGORY:'/:category',
   SIGNIN:'signin',
-  SIGNUP:'signup'
+  SIGNUP:'signup',
+  FORGETPASS:'/forgetpassword'
 
 
 };
@@ -68,6 +69,10 @@ const ROUTES_CONFIG = {
     path: ROUTES.CATEGORY,
     title: 'Category',
     },
+    FORGETPASS:{
+      path: ROUTES.FORGETPASS,
+      title: 'Forget Pass',
+    }
 
 
 

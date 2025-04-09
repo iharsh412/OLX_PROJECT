@@ -19,3 +19,7 @@ export const CLASSNAME = {
   SELL_ADD: 'home_nav_sell_add',
   SELL_TEXT: 'home_nav_sell_text',
 };
+
+export const TEXT ={
+  SELL:"SELL"
+}
