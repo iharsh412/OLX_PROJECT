@@ -32,7 +32,7 @@ export const validationSchema = Yup.object().shape({
   state: Yup.string().required('Required'),
   mobileNumber: Yup.string()
     .required('Mobile number is required')
-    .matches(/^[0-9]{10}$/, 'Mobile number must be exactly 10 digits'),
+    .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
   sellerName: Yup.string()
     .required('Seller name is required')
     .matches(

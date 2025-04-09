@@ -12,8 +12,8 @@ import { useSelector } from 'react-redux';
 export default function Dashboard() {
   // const dispatch = useDispatch();
   const search = useSelector((state: RootState) => state?.areaItem?.item);
-  const token = useSelector((state: RootState) => state?.common);
-  console.log(token,"token")
+  // const token = useSelector((state: RootState) => state?.common);
+  // console.log(token, 'token');
 
   const [page, setPage] = useState(1);
 
@@ -22,9 +22,10 @@ export default function Dashboard() {
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
-  // console.log(data, 'data');
+  console.log(error, data, 'data');
 
   const [totalImages, setTotalImages] = useState<Product[]>([]);
+  console.log(totalImages, 'totalImages')
 
   useEffect(() => {
     setTotalImages([]);
@@ -52,8 +53,6 @@ export default function Dashboard() {
       });
     }
   }, [data]);
-
-  
 
   return (
     <>

@@ -47,19 +47,19 @@ export default function LanguageSelector() {
   return (
     <div className={CLASSNAME.WRAPPER} ref={dropdownRef}>
       <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
-      <span
+      <div
         className={CLASSNAME.DROPDOWN}
+        role="button"
         onClick={toggleLanguageDropdown}
       >
         <img
           src={ICONS.upDown}
           alt={COMMON_TEXT.IMG}
-          className={`${CLASSNAME.UPDOWN_IMG} ${languageDropdown
-              ? CLASSNAME.ROTATE
-              : CLASSNAME.NOTROTATE
-            }`}
+          className={`${CLASSNAME.UPDOWN_IMG} ${
+            languageDropdown ? CLASSNAME.ROTATE : CLASSNAME.NOTROTATE
+          }`}
         />
-      </span>
+      </div>
       {languageDropdown && (
         <div className={CLASSNAME.LIST}>
           <div

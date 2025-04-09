@@ -5,13 +5,19 @@ import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { ImageProps } from '../../../../Shared/constant';
+import { RootState } from '../../../../Store';
+import { useSelector } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const [post, { isLoading }] = usePostProductsMutation();
   const [showError, setShowError] = useState(false);
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
-  // console.log(data,"datawkruh")
+
+
+  const { access: token } = useSelector((state: RootState) => state?.common);
 
   useEffect(() => {
     setShowAdded(data.is_favourite ? 'Added' : '');
@@ -19,7 +25,10 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
 
   const onClickCart = async (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (isLoading) return;
+    if (!token){
+      toast.error('Please login to add to cart');
+      return;
+    }
 
     try {
       const response = await post({ id: 1, product_id: data.id }).unwrap();
@@ -43,9 +52,10 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
     }
   }, [showError]);
 
-  return (
+  return (<>
+    <ToastContainer />
     <div className="carImages_wrapper" onClick={onClickImages}>
-      {showError && <div className="error-message">Error posting product</div>}
+      
       <div className="carImages">
         <img
           src={`${import.meta.env.VITE_BASE_URL}/${data.display_photo}`}
@@ -80,6 +90,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
         </span>
       </div>
     </div>
+    </>
   );
 };
 

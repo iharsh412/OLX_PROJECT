@@ -35,3 +35,12 @@ export const CLASSNAME ={
     ERROR:"signup_error",
 
 }
+export const TEXT = {
+  TITLE: 'Sign Up',
+  USERNAME: 'Username',
+  EMAIL: 'Email',
+  PASSWORD: 'Password',
+  CONFIRM_PASSWORD: 'Confirm Password',
+  SUBMIT: 'Sign Up',
+
+};

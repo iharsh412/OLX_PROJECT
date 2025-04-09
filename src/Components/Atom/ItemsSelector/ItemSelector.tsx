@@ -9,7 +9,7 @@ export default function ItemsSelector() {
   const items = useSelector((state: RootState) => state?.areaItem?.item);
 
   const dispatch = useDispatch();
-  const [object, setObject] = useState(items || '');
+  const [object, setObject] = useState(items ?? '');
   const [debouncedValue, setDebouncedValue] = useState(object);
 
 

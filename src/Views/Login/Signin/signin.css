@@ -1,7 +1,7 @@
 .signin_Wrapper {
   background-color: #faf1fe;
   border-radius: 6px;
-  min-height: 600px;
+  min-height: 400px;
   width: 400px;
   margin: 16px;
   padding: 16px 20px;
@@ -77,11 +77,24 @@
   width: 100px;
   box-shadow: 0 4px 8px rgba(0, 200, 200, 0.3);
   transition: background-color 0.3s, box-shadow 0.3s;
+ 
 }
 
 .signin_submitButton:hover {
   background-color: #007bff;
   box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+/* forget password  */
+.signin_forgetpass{
+  background-color:#faf1fe ;
+  border: none;
+  text-align: left;
+  padding: 10px;
+  color: blue;
+  margin-left: 10px;
+}
+.signin_forgetpass:hover{
+  color: #007bff;
 }
 
 /* Error Message */

@@ -8,8 +8,11 @@ import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
 import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Login/Signup';
+import ProductDetail from '../Views/ImageDetail';
 import Signin from '../Views/Login/Signin';
-import ForgetPass from "../Views/Login/ForgetPass"
+import ForgetPass from '../Views/Login/ForgetPass';
+import Verification from '../Views/Login/Verification';
+import NewPass from '../Views/Login/NewPass';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
@@ -25,6 +28,10 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },
       { path: ROUTES_CONFIG.FORGETPASS.path, element: <ForgetPass /> },
       { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
+      { path: ROUTES_CONFIG.VERIFICATION.path, element: <Verification /> },
+      { path: ROUTES_CONFIG.NEWPASSWORD.path, element: <NewPass /> },
+      { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
+
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
     ],
   },

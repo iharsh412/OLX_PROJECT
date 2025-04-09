@@ -6,18 +6,26 @@ import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
 import './loginUpDown.css';
-import { ProfileDropdownProps, dropdownItems, CLASSNAME, TEXT } from './constant';
+import {
+  ProfileDropdownProps,
+  dropdownItems,
+  CLASSNAME,
+  TEXT,
+} from './constant';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const userName = useSelector((state: RootState) => state?.common?.username);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dropdownRef = useRef<HTMLDivElement>(null);
-   
+
   // HANDLE CLICK
   const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setOpenProfile?.(()=>false);
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setOpenProfile?.(() => false);
     }
   };
   const handleItemClick = () => {
@@ -33,8 +41,6 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
     };
   }, []);
 
- 
-
   return (
     <div className={CLASSNAME.PROFILE_DROPDOWN} ref={dropdownRef}>
       <div className={CLASSNAME.DROPDOWN_MENU}>
@@ -44,7 +50,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{userName}</h3>
               <button className={CLASSNAME.PROFILE_EDIT_PROFILE}>
-               {TEXT.VIEW_EDIT}
+                {TEXT.VIEW_EDIT}
               </button>
             </div>
           </div>
@@ -70,7 +76,12 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
               handleItemClick();
               logout();
               dispatch(
-                updateAuthState({ refresh: null, access: null, id: null, username: null })
+                updateAuthState({
+                  refresh: null,
+                  access: null,
+                  id: null,
+                  username: null,
+                })
               );
               navigate('/');
             }}

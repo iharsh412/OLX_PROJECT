@@ -1,7 +1,7 @@
 .signup_Wrapper {
   background-color: #faf1fe;
   border-radius: 6px;
-  min-height: 600px;
+  min-height: 400px;
   width: 400px;
   margin: 16px;
   padding: 16px 20px;
@@ -91,6 +91,7 @@
   width: 100px;
   box-shadow: 0 4px 8px rgba(0, 200, 200, 0.3);
   transition: background-color 0.3s, box-shadow 0.3s;
+  ;
 }
 
 .signup_submitButton:hover {

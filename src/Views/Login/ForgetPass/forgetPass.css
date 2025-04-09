@@ -1,7 +1,7 @@
 .forget_Wrapper {
     background-color: #faf1fe;
     border-radius: 6px;
-    min-height: 600px;
+    min-height: 400px;
     width: 400px;
     margin: 16px;
     padding: 16px 20px;
@@ -22,9 +22,7 @@
   
   /* Input labels */
   
-  .forget_emailInput,
-  .forget_passwordInput,
-  .forget_confirmPasswordInput {
+  .forget_emailInput {
     padding: 5px;
     margin-left: 20px;
     font-size: 15px;
@@ -35,9 +33,7 @@
   
   /* Input fields */
   
-  .forget_emailInput input,
-  .forget_passwordInput input,
-  .forget_confirmPasswordInput input {
+  .forget_emailInput input {
     height: 30px;
     width: 190px;
     padding: 4px 8px;
@@ -48,32 +44,27 @@
   }
   
   
-  .forget_emailInput input:hover,
-  .forget_passwordInput input:hover,
-  .forget_confirmPasswordInput input:hover {
+  .forget_emailInput input:hover {
     border-color: #a269d6;
   }
 
-  .forget_emailInput input:focus,
-  .forget_passwordInput input:focus,
-  .forget_confirmPasswordInput input:focus {
+  .forget_emailInput input:focus{
     border-color: #a269d6;
     box-shadow: 0 0 5px rgba(162, 105, 214, 0.5);
   }
   
-  /* Offsets to match existing alignment */
-  .forget_usernameInput input {
-    margin-left: 60px;
-  }
+  
   .forget_emailInput input {
     margin-left: 93px;
   }
-  .forget_passwordInput input {
-    margin-left: 65px;
-  }
-  .forget_confirmPasswordInput input {
-    margin-left: 10px;
-  }
+   /* text */
+   .forget_text{
+    color: red;
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(255, 0, 0, 0.1);
+   }
   
   /* Submit Button */
   .forget_submitButton {

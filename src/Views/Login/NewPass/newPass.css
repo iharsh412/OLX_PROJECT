@@ -1,0 +1,138 @@
+.newpass_Wrapper {
+  background-color: #faf1fe;
+  border-radius: 6px;
+  min-height: 400px;
+  width: 400px;
+  margin: 16px;
+  padding: 16px 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.newpass_title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: #5a2a7e;
+  margin-bottom: 20px;
+}
+
+/* Input labels */
+.newpass_passwordInput,
+.newpass_confirmPasswordInput,
+.newpass_emailInput {
+  padding: 5px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin-top: 20px;
+}
+
+/* Input fields */
+.newpass_confirmPasswordInput input,
+.newpass_passwordInput input,
+.newpass_emailInput input {
+  height: 30px;
+  width: 190px;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.newpass_confirmPasswordInput:hover,
+.newpass_passwordInput:hover,
+.newpass_emailInput input:hover {
+  border-color: #a269d6;
+}
+
+.newpass_confirmPasswordInput input:focus,
+.newpass_passwordInput input:focus,
+.newpass_emailInput input:focus {
+  border-color: #a269d6;
+  box-shadow: 0 0 5px rgba(162, 105, 214, 0.5);
+}
+
+.newpass_emailInput input {
+  margin-left: 95px;
+}
+.newpass_confirmPasswordInput input {
+  margin-left: 10px;
+}
+.newpass_passwordInput input {
+  margin-left: 30px;
+}
+
+/* text */
+
+/* Submit Button */
+.newpass_submitButton {
+  padding: 10px;
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  background-color: #00c8c8;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100px;
+  box-shadow: 0 4px 8px rgba(0, 200, 200, 0.3);
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+}
+
+.newpass_submitButton:hover {
+  background-color: #007bff;
+  box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+}
+
+/* Error Message */
+.newpass_error {
+  padding: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+  margin-left: 150px;
+}
+
+/* SUCESS MSG */
+.newPass_success {
+  display: flex;
+  flex-direction: column;
+  /* background-color: yellow; */
+  text-align: center;
+  padding: 10px;
+}
+.newPass_sucessText {
+  font-size: 18px;
+  font-weight: 600;
+  color: red;
+  margin-bottom: 10px;
+}
+.newPass_sucessLogin {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a4a4a;
+}
+.newPass_sucessLogin button {
+  background-color: #faf1fe;
+  border: none;
+  border-radius: 6px;
+  padding: 7px;
+  color: blue;
+  font-size: 14px;
+  text-decoration: underline;
+}
+.newPass_sucessLogin button:hover {
+  color: rgb(115, 115, 226);
+}

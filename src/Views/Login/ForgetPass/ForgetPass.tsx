@@ -1,17 +1,34 @@
 import { Formik } from 'formik';
 // import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
 import './forgetPass.css';
-import { VALIDATION, INITIAL_VALUES, FORM_VALUES, CLASSNAME } from './constant';
-// import { ToastContainer, toast } from 'react-toastify';
+import { usePostForgetPasswordDataMutation } from '../../../Services/Api/module/imageApi';
+import {
+  VALIDATION,
+  INITIAL_VALUES,
+  FORM_VALUES,
+  CLASSNAME,
+  TEXT,
+} from './constant';
+import { ToastContainer, toast } from 'react-toastify';
 // import { useNavigate } from 'react-router-dom';
+import { COMMON_TEXT } from '../../../Shared/constant';
+import { useState } from 'react';
 
 export default function ForgetPass() {
-//   const navigate = useNavigate();
-  
-//   const [post] = usePostSignupDataMutation();
-  async function handleSubmit(values: FORM_VALUES,) {
-    console.log(values);
-    
+  // const navigate = useNavigate();
+  const [disabled, setDisabled] = useState<boolean>(false);
+  const [post, { isLoading }] = usePostForgetPasswordDataMutation();
+  async function handleSubmit(values: FORM_VALUES) {
+    try {
+      const response = await post(values);
+      console.log(response);
+      setDisabled(true);
+      //   toast.success('Password reset link sent to your email address');
+      // navigate('/newpassword');
+    } catch (error) {
+      console.log(error);
+      toast.error('Something went wrong, please try again');
+    }
   }
 
   return (
@@ -32,63 +49,35 @@ export default function ForgetPass() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>Forget Password</h2>
-              <form onSubmit={handleSubmit}>
-                
-                <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.email && touched.email && (
-                    <div className={CLASSNAME.ERROR}>{errors.email}</div>
-                  )}
-                </div>
-                <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.password && touched.password && (
-                    <div className={CLASSNAME.ERROR}>{errors.password}</div>
-                  )}
-                </div>
-                <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
-                  <label htmlFor="password"> Confirm Password</label>
-                  <input
-                    title="Confirm Password"
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    value={values.confirmPassword}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                  {errors.confirmPassword && touched.confirmPassword && (
-                    <div className={CLASSNAME.ERROR}>
-                      {errors.confirmPassword}
-                    </div>
-                  )}
-                </div>
-                <button
-                  className={CLASSNAME.SUBMIT_BUTTON}
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Set
-                </button>
-                {/* <ToastContainer /> */}
-              </form>
+              <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+              <div className={CLASSNAME.EMAIL_INPUT}>
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.email && touched.email && (
+                  <div className={CLASSNAME.ERROR}>{errors.email}</div>
+                )}
+              </div>
+              <span className={CLASSNAME.TEXT}>{TEXT.VALID}</span>
+              <button
+              title='Submit'
+                className={CLASSNAME.SUBMIT_BUTTON}
+                type="submit"
+                disabled={isSubmitting || isLoading || disabled}
+                onClick={() => handleSubmit()}
+              >
+                {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
+              </button>
+              {disabled && (
+                <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>
+              )}{' '}
+              <ToastContainer />
             </div>
           );
         }}

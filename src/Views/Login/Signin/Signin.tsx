@@ -5,10 +5,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG} from "../../../Shared/Constants"
+import { useNavigate } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
-export default function Signup() {
+export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -25,7 +25,7 @@ export default function Signup() {
       toast('Login Successfull');
       resetForm();
       dispatch(updateAuthState(response));
-      navigate('/');
+      navigate('/', { replace: true });
     } catch (error) {
       toast.error((error as any)?.data?.detail);
     }
@@ -89,7 +89,16 @@ export default function Signup() {
                 </button>
                 <ToastContainer />
               </form>
-              <Link to={ROUTES_CONFIG.FORGETPASS.path} >forget password</Link>
+              <button
+                className={CLASSNAME.FORGET}
+                type="button"
+                title="forget password"
+                onClick={() =>
+                  navigate(ROUTES_CONFIG.FORGETPASS.path, { replace: true })
+                }
+              >
+                forget password?
+              </button>
             </div>
           );
         }}

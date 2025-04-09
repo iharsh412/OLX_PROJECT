@@ -7,15 +7,15 @@ const ROUTES = {
   LOGIN_PHONE: 'loginPhone',
   LOGIN_PHONE_SMS: 'loginphonesms',
   CART: 'cart',
-  PRODUCT: 'product/:productName/:productId',
+  PRODUCT: '/product/:productName/:productId',
   SELL: 'sell',
   ATTRIBUTES: 'attributes',
-  CATEGORY:'/:category',
-  SIGNIN:'signin',
-  SIGNUP:'signup',
-  FORGETPASS:'/forgetpassword'
-
-
+  CATEGORY: '/:category',
+  SIGNIN: '/signin',
+  SIGNUP: 'signup',
+  FORGETPASS: '/forgetpassword',
+  VERIFICATION: '/verification',
+  NEWPASSWORD: '/newpassword/:id/:token',
 };
 
 const WILDCARD_ROUTES = {
@@ -59,7 +59,6 @@ const ROUTES_CONFIG = {
   SELL: {
     path: ROUTES.SELL,
     title: 'Sell',
-
   },
   ATTRIBUTES: {
     path: ROUTES.ATTRIBUTES,
@@ -68,14 +67,19 @@ const ROUTES_CONFIG = {
   CATEGORY: {
     path: ROUTES.CATEGORY,
     title: 'Category',
+  },
+  FORGETPASS: {
+    path: ROUTES.FORGETPASS,
+    title: 'Forget Pass',
+  },
+  VERIFICATION: {
+    path: ROUTES.VERIFICATION,
+    title: 'Verification',
+  },
+  NEWPASSWORD: {
+    path: ROUTES.NEWPASSWORD,
+    title: 'New Password',
     },
-    FORGETPASS:{
-      path: ROUTES.FORGETPASS,
-      title: 'Forget Pass',
-    }
-
-
-
 };
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };

@@ -134,13 +134,13 @@
   font-size: 13px;
   color: #003f34a3;
   text-align: center;
+
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .loginPageParent {
-    width: 90%;
-    min-height: auto;
+
     padding: 16px;
   }
 
@@ -164,7 +164,7 @@
   .login_footer_parent {
     position: relative;
     bottom: auto;
-    margin-top: 20px;
+    margin-top: 200px;
   }
 }
 

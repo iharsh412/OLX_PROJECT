@@ -27,6 +27,7 @@ export interface FORM_VALUES {
       PASSWORD_INPUT:"signin_passwordInput",
        SUBMIT_BUTTON:"signin_submitButton",
       ERROR:"signin_error",
+       FORGET: "signin_forgetpass"
   
   }
   

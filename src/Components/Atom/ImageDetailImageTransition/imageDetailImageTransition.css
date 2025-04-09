@@ -24,7 +24,7 @@
 /* Image styling for both active and inactive slides */
 .imageDetailSlide img {
   object-fit: contain; /* Default for inactive slides */
-  width: 80%;
+
   height: 80%;
   overflow: hidden;
   transition: object-fit 0.3s ease;

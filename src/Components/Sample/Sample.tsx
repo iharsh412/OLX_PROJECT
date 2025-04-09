@@ -74,8 +74,7 @@ export default function Sample() {
       price: [0, 1000000],
     });
   }, [category]);
-
-  // console.log(sampleData, 'data');
+  
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
 
@@ -176,6 +175,7 @@ export default function Sample() {
                       title={category.subcategory_name}
                       key={index}
                       className="sample-subcategoryOption__item"
+                      disabled = {category.subcategory_name === sampleData.subcategory}
                       onClick={() => {
                         setSampleData({
                           ...sampleData,
@@ -200,8 +200,9 @@ export default function Sample() {
             <div className="sample-brandOption">
               {response?.Brand && response?.Brand?.length > 0 ? (
                 response?.Brand?.map(
-                  (brand: string | undefined, index: number) => (
+                  (brand: string | undefined , index: number) => (
                     <button
+                    type='button'
                       title={brand}
                       key={index}
                       className="sample-brandOption__item"

@@ -42,6 +42,7 @@ export const COMMON_TEXT ={
   NUMBER:"number",
   ERROR:"Error in loading products",
   LOADING:"Loading products...",
-  NO_PRODUCTS:"Oops... No product"
+  NO_PRODUCTS:"Oops... No product",
+  SENDING:"Sending..."
   
 }

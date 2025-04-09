@@ -10,53 +10,59 @@ import {
   FormValues,
   validationSchema,
   initialValues,
-  TEXT
+  TEXT,
 } from './constant';
-import { Description, TextField, Photos, Price, Seller, State, City } from "../Common/Common"
-
+import {
+  Description,
+  TextField,
+  Photos,
+  Price,
+  Seller,
+  State,
+  City,
+} from '../Common/Common';
 
 export default function CarForm() {
   const { state } = useLocation();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
 
-    // HandleSubmit
-    const notifyAdded = () => toast("Posted Successfuly!");
-    const notifyNotAdded = () => toast(" Error!");
-    const handleSubmit = async (
-      values: FormValues,
-      { resetForm }: { resetForm: () => void }
-    ) => {
-  
-      const formData = new FormData();
-      formData.append('user', '1');
-      formData.append('category', state.categoryId);
-      formData.append('subcategory', state.subcategory);
-  
-      for (let key in values) {
-        const typedKey = key as keyof FormValues;
-  
-        if (Array.isArray(values[typedKey])) {
-          (values[typedKey] as File[]).forEach((file) => {
-            formData.append(`${typedKey}`, file);
-          });
-        } else {
-          formData.append(typedKey, values[typedKey] as string);
-        }
+  // HandleSubmit
+  const notifyAdded = () => toast('Posted Successfuly!');
+  const notifyNotAdded = () => toast(' Error!');
+  const handleSubmit = async (
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    const formData = new FormData();
+    formData.append('user', '1');
+    formData.append('category', state.categoryId);
+    formData.append('subcategory', state.subcategory);
+
+    for (let key in values) {
+      const typedKey = key as keyof FormValues;
+
+      if (Array.isArray(values[typedKey])) {
+        (values[typedKey] as File[]).forEach((file) => {
+          formData.append(`${typedKey}`, file);
+        });
+      } else {
+        formData.append(typedKey, values[typedKey] as string);
       }
-  
-      try {
-        await postNewProducts(formData).unwrap();
-        notifyAdded();
-        setShowResponse('Added');
-  
-        resetForm();
-      } catch (error) {
-        notifyNotAdded();
-        setShowResponse('Error');
-      }
-    };
-  
+    }
+
+    try {
+      await postNewProducts(formData).unwrap();
+      notifyAdded();
+      setShowResponse('Added');
+
+      resetForm();
+    } catch (error) {
+      notifyNotAdded();
+      setShowResponse('Error');
+    }
+  };
+
   // HOOKS
   useEffect(() => {
     if (showResponse) {
@@ -67,11 +73,9 @@ export default function CarForm() {
     }
   }, [showResponse]);
 
-
   return (
     <Formik
       initialValues={initialValues}
-      
       validationSchema={validationSchema}
       onSubmit={handleSubmit}
     >
@@ -86,11 +90,11 @@ export default function CarForm() {
         isSubmitting,
       }) => {
         const share = { handleChange, handleBlur, setFieldValue };
-        
+
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
-            <ToastContainer />
+              <ToastContainer />
               <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
 
               <TextField
@@ -141,7 +145,6 @@ export default function CarForm() {
                 className={CLASSNAME.ERROR}
               />
 
-
               {/* KM Driven */}
 
               <TextField
@@ -174,9 +177,8 @@ export default function CarForm() {
                 err={errors.description}
                 tch={touched.description}
                 label="Description"
-                {...share} />
-
-
+                {...share}
+              />
             </div>
             <hr />
 
@@ -188,7 +190,8 @@ export default function CarForm() {
               err={errors.price}
               tch={touched.price}
               label="Price"
-              {...share} />
+              {...share}
+            />
             <hr />
 
             {/* Photos input */}
@@ -202,7 +205,9 @@ export default function CarForm() {
             {/* Location */}
 
             <div className={CLASSNAME.LOCATION_WRAPPER}>
-              <h3 className={CLASSNAME.LOCATION_TEXT}>{TEXT.CONFIRM_LOCATION}</h3>
+              <h3 className={CLASSNAME.LOCATION_TEXT}>
+                {TEXT.CONFIRM_LOCATION}
+              </h3>
               <State
                 type="text"
                 htmlFor="state"
@@ -213,17 +218,18 @@ export default function CarForm() {
                 {...share}
               />
 
-             {values.state && (<City
-                state={values.state}
-                type="text"
-                htmlFor="city"
-                value={values.city}
-                err={errors.city}
-                tch={touched.city}
-                label="City"
-                {...share} />
-                )}
-
+              {values.state && (
+                <City
+                  state={values.state}
+                  type="text"
+                  htmlFor="city"
+                  value={values.city}
+                  err={errors.city}
+                  tch={touched.city}
+                  label="City"
+                  {...share}
+                />
+              )}
             </div>
 
             <hr />
@@ -249,10 +255,8 @@ export default function CarForm() {
                 label="Mobile Number"
                 err={errors.mobileNumber}
                 tch={touched.mobileNumber}
-                {...share} />
-
-
-
+                {...share}
+              />
             </div>
             <hr />
 
@@ -266,8 +270,8 @@ export default function CarForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+                ? 'ERROR IN POSTING'
+                : 'POST'}
             </button>
           </>
         );

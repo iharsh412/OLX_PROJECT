@@ -8,18 +8,21 @@ import LanguageSelector from '../../../Components/Atom/LanguageSelector';
 import Place from '../../../Components/Atom/PlaceSelector';
 import Item from '../../../Components/Atom/ItemsSelector';
 import ProfileUpDown from '../../../Components/Atom/LoginUpDown';
-import { CLASSNAME ,TEXT} from './constant';
-import {COMMON_TEXT} from "../../../Shared/constant"
+import { CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT } from '../../../Shared/constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import { usePostCheckTokenDataMutation } from '../../../Services/Api/module/imageApi';
 
 export default function Navbar() {
   const navigate = useNavigate();
   const token = useSelector((state: RootState) => state?.common?.access);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
+  const [post] = usePostCheckTokenDataMutation();
 
-  function onClickSell() {
+  async function onClickSell() {
     if (token) {
-
+      const response = await post({ token });
+      console.log(response, 'response');
       navigate(ROUTES_CONFIG.SELL.path);
     } else {
       navigate(ROUTES_CONFIG.LOGIN.path);
@@ -41,7 +44,7 @@ export default function Navbar() {
   return (
     <div className={CLASSNAME.NAV_PARENT}>
       <div className={CLASSNAME.NAV}>
-        <span className={CLASSNAME.LOGO}>
+        <span className={CLASSNAME.LOGO} onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}>
           <img src={ICONS.Olx} alt={COMMON_TEXT.IMG} />
         </span>
 

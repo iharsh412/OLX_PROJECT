@@ -26,7 +26,7 @@ export const productApi = api.injectEndpoints({
       }),
     }),
 
-    getProductsDetail: builder.query<Product[], PaginationParams>({
+    getProductsDetail: builder.query({
       query: (params) => ({
         url: `categories/item`,
         method: 'GET',
@@ -35,7 +35,8 @@ export const productApi = api.injectEndpoints({
     }),
     getWishlistProducts: builder.query<Product[], PaginationParams>({
       query: (params) => ({
-        url: `categories/Favourites/`,
+        url: `categories/Favourites`,
+        method: 'GET',
         params,
       }),
     }),
@@ -67,9 +68,30 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    postForgetPasswordData: builder.mutation({
+      query: (data) => ({
+        url: `account/forgotpass/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    postChangePasswordData: builder.mutation({
+      query: (data) => ({
+        url: `account/changepass/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
     postSigninData: builder.mutation({
       query: (data) => ({
         url: `account/login/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    postCheckTokenData: builder.mutation({
+      query: (data) => ({
+        url: `account/sell/`,
         body: data,
         method: 'POST',
       }),
@@ -88,4 +110,7 @@ export const {
   usePostProductsMutation,
   usePostCategoryProductsMutation,
   usePostNewProductsMutation,
+  usePostChangePasswordDataMutation,
+  usePostForgetPasswordDataMutation,
+  usePostCheckTokenDataMutation
 } = productApi;

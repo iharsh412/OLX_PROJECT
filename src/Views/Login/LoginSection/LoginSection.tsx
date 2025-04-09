@@ -21,8 +21,8 @@ export default function LoginPage() {
         const token = await result?.user?.getIdToken();
         dispatch(
           updateAuthState({
-            refresh:token,
-            access:token,
+            refresh: token,
+            access: token,
             id: result?.user?.uid,
             username: result?.user?.displayName,
           })
@@ -30,7 +30,12 @@ export default function LoginPage() {
         navigate('/');
       } else {
         dispatch(
-          updateAuthState({ access: null, id: null, username: null,refresh:null })
+          updateAuthState({
+            access: null,
+            id: null,
+            username: null,
+            refresh: null,
+          })
         );
       }
     } catch (e) {
@@ -76,9 +81,10 @@ export default function LoginPage() {
         </Link>
         <div className="login_signin">
           <span>Already have an account?</span>
-          <Link to="/signin" className='login_signin_link'>Login</Link>
+          <Link to="/signin" className="login_signin_link">
+            Login
+          </Link>
         </div>
-
 
         <footer className="login_footer_parent">
           <p className="login_footer_first_section">
