@@ -1,9 +1,9 @@
 import { useNavigate, Outlet } from 'react-router-dom';
 import ICONS from '../../assets';
-import Footer from '../Home/Footer';
+import Footer from '../../Components/Footer';
 import './sellLayout.css';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Shared/constant';
+import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function SellLayout() {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ export default function SellLayout() {
     <div className={CLASSNAME.SL.WRAPPER}>
       <header className={CLASSNAME.SL.HEADER}>
         <button
+          title="Back"
           className={CLASSNAME.SL.BACK_BUTTON}
           onClick={() => navigate(-1)}
         >
@@ -21,7 +22,6 @@ export default function SellLayout() {
       <h1 className={CLASSNAME.SL.TITLE}>{TEXT.SL.ADD}</h1>
       <div className={CLASSNAME.SL.OUTLET}>
         <Outlet />
-        
       </div>
       <div className={CLASSNAME.SL.FOOTER}>
         <Footer />

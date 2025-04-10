@@ -1,5 +1,5 @@
 .newpass_Wrapper {
-  background-color: #faf1fe;
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
   border-radius: 6px;
   min-height: 400px;
   width: 400px;

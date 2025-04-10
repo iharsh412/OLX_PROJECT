@@ -1,8 +1,8 @@
 import api from '../../api';
-import { Product } from '../../../../Shared/constant';
+import { Product } from '../../../../Interface/constant';
 
 interface PaginationParams {
-  search?:string|null;
+  search?: string | null;
   page?: number;
   limit?: number;
   id?: number;
@@ -12,17 +12,15 @@ interface PaginationParams {
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getTypeProducts: builder.query<Product[], PaginationParams>({
-      query: ({ page, limit,search }) => ({
+      query: ({ page, limit, search }) => ({
         url: `categories/list/?page=${page}&limit=${limit}&search=${search}`,
         method: 'GET',
-        
       }),
     }),
     getListALLProducts: builder.query<Product[], PaginationParams>({
-      query: ({ page, limit}) => ({
+      query: ({ page, limit }) => ({
         url: `categories/listall/?page=${page}&limit=${limit}`,
         method: 'GET',
-        
       }),
     }),
 
@@ -48,7 +46,7 @@ export const productApi = api.injectEndpoints({
       }),
     }),
     postCategoryProducts: builder.mutation({
-      query: ({ sampleData ,page,limit}) => ({
+      query: ({ sampleData, page, limit }) => ({
         url: `categories/filters/?page=${page}&limit=${limit}`,
         body: sampleData,
         method: 'POST',
@@ -89,13 +87,27 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-    postCheckTokenData: builder.mutation({
+    postLogoutData: builder.mutation({
       query: (data) => ({
-        url: `account/sell/`,
+        url: `account/logout/`,
         body: data,
         method: 'POST',
       }),
     }),
+    // postChechRefreshTokenData: builder.mutation({
+    //   query: (data) => ({
+    //     url: `account/refresh/`,
+    //     body: data,
+    //     method: 'POST',
+    //   }),
+    // }),
+    // getCheckTokenData: builder.query({
+    //   query: (data) => ({
+    //     url: `account/sell`,
+    //     method: 'GET',
+    //     data,
+    //   }),
+    // }),
   }),
   overrideExisting: false,
 });
@@ -112,5 +124,7 @@ export const {
   usePostNewProductsMutation,
   usePostChangePasswordDataMutation,
   usePostForgetPasswordDataMutation,
-  usePostCheckTokenDataMutation
+  usePostLogoutDataMutation,
+  // useGetCheckTokenDataQuery,
+  // usePostChechRefreshTokenDataMutation,
 } = productApi;

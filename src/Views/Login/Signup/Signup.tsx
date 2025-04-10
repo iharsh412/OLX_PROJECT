@@ -8,10 +8,10 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT } from '../../../Shared/constant';
+import { COMMON_TEXT } from '../../../Interface/constant';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -119,15 +119,15 @@ export default function Signup() {
                   {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT}
                 </button>
                 <footer className="login_footer_parent">
-          <p className="login_footer_first_section">
-            All your personal details are safe with us
-          </p>
-          <p className="login_footer_second_section">
-            If you continue, you are accepting OLX Terms and Conditions and
-            Privacy Policy
-          </p>
-        </footer>
-                <ToastContainer />
+                  <p className="login_footer_first_section">
+                    All your personal details are safe with us
+                  </p>
+                  <p className="login_footer_second_section">
+                    If you continue, you are accepting OLX Terms and Conditions
+                    and Privacy Policy
+                  </p>
+                </footer>
+                
               </form>
             </div>
           );

@@ -14,3 +14,4 @@ const loader = createSlice({
 export const { setLoading } = loader.actions;
 
 export default loader.reducer;
+// console.log("Loader slice created", loader)

@@ -10,7 +10,7 @@ const ROUTES = {
   PRODUCT: '/product/:productName/:productId',
   SELL: 'sell',
   ATTRIBUTES: 'attributes',
-  CATEGORY: '/:category',
+  CATEGORY: '/type/:category',
   SIGNIN: '/signin',
   SIGNUP: 'signup',
   FORGETPASS: '/forgetpassword',

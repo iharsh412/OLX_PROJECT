@@ -9,10 +9,10 @@ import {
   TEXT,
 } from './constant';
 import { useNavigate, useParams } from 'react-router-dom';
-import { COMMON_TEXT } from '../../../Shared/constant';
+import { COMMON_TEXT } from '../../../Interface/constant';
 import { useState } from 'react';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast,  } from 'react-toastify';
 
 export default function NewPass() {
   const { id, token } = useParams();
@@ -124,7 +124,7 @@ export default function NewPass() {
           </p>
         </footer>
 
-                <ToastContainer />
+               
               </form>
             </div>
           );

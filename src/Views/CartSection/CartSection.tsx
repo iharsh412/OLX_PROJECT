@@ -1,11 +1,11 @@
 // import { useSelector } from 'react-redux';
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 // import { RootState } from '../../Store';
-import ImageLayout from '../../Components/Atom/imagesLayout/CarImage';
+import ImageLayout from '../../Components/CustomComponents/imagesLayout/CarImage';
 import './CartSection.css';
-import { Product } from '../../Shared/constant';
+import { Product } from '../../Interface/constant';
 import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../Shared/constant';
+import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function CartSection() {
   const { data, error, isLoading, refetch } = useGetWishlistProductsQuery(

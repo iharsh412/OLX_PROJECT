@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import './signin.css';
 import { FORM_VALUES, INITIAL_VALUES, VALIDATION, CLASSNAME } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
 import { useDispatch } from 'react-redux';
@@ -87,7 +87,7 @@ export default function Signin() {
                 >
                   Login
                 </button>
-                <ToastContainer />
+               
               </form>
               <button
                 className={CLASSNAME.FORGET}

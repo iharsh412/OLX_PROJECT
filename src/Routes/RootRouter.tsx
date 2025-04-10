@@ -10,6 +10,7 @@ function RootRouter() {
   const authenticated = useRoutes(authenticatedRoutes);
   const token = useSelector((state: RootState) => state?.common?.access);
   const isAuthenticated = !!token;
+
   return (
     <>
       <DocumentTitle isAuthenticated={isAuthenticated} />

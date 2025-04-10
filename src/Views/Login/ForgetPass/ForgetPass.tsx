@@ -9,9 +9,9 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 // import { useNavigate } from 'react-router-dom';
-import { COMMON_TEXT } from '../../../Shared/constant';
+import { COMMON_TEXT } from '../../../Interface/constant';
 import { useState } from 'react';
 
 export default function ForgetPass() {
@@ -86,7 +86,7 @@ export default function ForgetPass() {
             Privacy Policy
           </p>
         </footer>
-              <ToastContainer />
+              
             </div>
           );
         }}

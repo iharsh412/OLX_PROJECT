@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import './imageDetail.css';
 import ICONS from '../../assets';
-import ImageTransition from '../../Components/Atom/ImageDetailImageTransition';
+import ImageTransition from '../../Components/CustomComponents/ImageDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Shared/constant';
+import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function ImageDetail() {
 

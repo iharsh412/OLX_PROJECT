@@ -1,6 +1,6 @@
 /*  SIGNUP WRAPPER */
 .signup_Wrapper {
-  background-color: #faf1fe;
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
   border-radius: 12px;
   min-height: 460px;
   width: 500px;

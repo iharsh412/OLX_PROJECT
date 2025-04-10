@@ -4,8 +4,8 @@ import { usePostCategoryProductsMutation } from '../../Services/Api/module/image
 import { CLASSNAME } from './constant';
 import './sample.css';
 import { useParams } from 'react-router-dom';
-import ImagesLayout from '../Atom/imagesLayout/CarImage';
-import { Product } from '../../Shared/constant';
+import ImagesLayout from '../CustomComponents/imagesLayout/CarImage';
+import { Product } from '../../Interface/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
 
@@ -22,7 +22,7 @@ interface ResponseData {
 }
 
 export default function Sample() {
-  const limit = 2;
+  const limit = 4;
   const [page, setPage] = useState<number>(1);
   const { category } = useParams();
   const [showButton, setshowButton] = useState({ prev: true, next: true });
@@ -30,10 +30,10 @@ export default function Sample() {
     category: category,
     subcategory: '',
     brand: [],
-    price: [0, 1000000],
+    price: [0, 1500000],
   });
 
-  const [price, setPrice] = useState<[number, number]>([0, 1000000]);
+  const [price, setPrice] = useState<[number, number]>([0, 1500000]);
   const [response, setResponse] = useState<ResponseData | undefined>();
 
   const [productData, { isLoading, error }] = usePostCategoryProductsMutation();
@@ -64,17 +64,16 @@ export default function Sample() {
 
     fetchData();
   }, [sampleData, page]);
-  console.log(response, 'response');
 
   useEffect(() => {
     setSampleData({
       category: category,
       subcategory: '',
       brand: [],
-      price: [0, 1000000],
+      price: [0, 1500000],
     });
   }, [category]);
-  
+
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
 
@@ -175,7 +174,9 @@ export default function Sample() {
                       title={category.subcategory_name}
                       key={index}
                       className="sample-subcategoryOption__item"
-                      disabled = {category.subcategory_name === sampleData.subcategory}
+                      disabled={
+                        category.subcategory_name === sampleData.subcategory
+                      }
                       onClick={() => {
                         setSampleData({
                           ...sampleData,
@@ -200,12 +201,13 @@ export default function Sample() {
             <div className="sample-brandOption">
               {response?.Brand && response?.Brand?.length > 0 ? (
                 response?.Brand?.map(
-                  (brand: string | undefined , index: number) => (
+                  (brand: string | undefined, index: number) => (
                     <button
-                    type='button'
+                      type="button"
                       title={brand}
                       key={index}
                       className="sample-brandOption__item"
+                      disabled={sampleData.brand.includes?.(brand as string)}
                       onClick={handleBrandClick}
                     >
                       {brand}
@@ -225,7 +227,7 @@ export default function Sample() {
             <h4>Price</h4>
             <RangeSlider
               min={0}
-              max={1000000}
+              max={1500000}
               step={10}
               value={price}
               onInput={(value: [number, number]) => handlePrice(value)}
@@ -234,7 +236,7 @@ export default function Sample() {
               <input
                 title="Price Min"
                 min={0}
-                max={1000000}
+                max={1500000}
                 type="number"
                 className="sample_priceMin"
                 value={price?.[0] < price?.[1] ? price?.[0] : price?.[1]}
@@ -246,7 +248,7 @@ export default function Sample() {
               <input
                 title="Price Max"
                 min={0}
-                max={1000000}
+                max={1500000}
                 type="number"
                 className="sample_priceMax"
                 value={price?.[1] > price?.[0] ? price?.[1] : price?.[0]}
@@ -274,22 +276,31 @@ export default function Sample() {
           <h1 className="sample-errorAndLoading">Error in loading products</h1>
         ) : (
           <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
-            {response?.products?.length ? ( response?.products?.map((product: Product) => (
-              <ImagesLayout key={product.id} data={product} />
-            ))) : (
+            {response?.products?.length ? (
+              response?.products?.map((product: Product) => (
+                <ImagesLayout key={product.id} data={product} />
+              ))
+            ) : (
               <h3 className="sample-noProduct">No product available</h3>
             )}
             <div className="sample-PageChange">
-              
-                <span className={`sample-PREV ${showButton.prev ? '' : 'sample-disabled'}`} onClick={handlePrevPage}>
-                  Prev
-                </span>
-          
-             
-                <span className={`sample-NEXT ${showButton.next ? '' : 'sample-disabled'}`} onClick={handleNextPage}>
-                  Next
-                </span>
-              
+              <span
+                className={`sample-PREV ${
+                  showButton.prev ? '' : 'sample-disabled'
+                }`}
+                onClick={handlePrevPage}
+              >
+                Prev
+              </span>
+
+              <span
+                className={`sample-NEXT ${
+                  showButton.next ? '' : 'sample-disabled'
+                }`}
+                onClick={handleNextPage}
+              >
+                Next
+              </span>
             </div>
           </div>
         )}

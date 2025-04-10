@@ -65,7 +65,7 @@
     border-radius: 8px;
     font-size: 14px;
     transition: all 0.25s ease;
-    background-color: #fff;
+    background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
   }
   
   .forget_emailInput input:hover {

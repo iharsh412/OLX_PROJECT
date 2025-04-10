@@ -1,10 +1,10 @@
 import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
-import ImagesLayout from '../../Components/Atom/imagesLayout/CarImage';
+import ImagesLayout from '../../Components/CustomComponents/imagesLayout/CarImage/index.ts';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
-import { COMMON_TEXT } from '../../Shared/constant.ts';
+import { COMMON_TEXT } from '../../Interface/constant.ts';
 import { CLASSNAME, TEXT } from './constant.ts';
-import { Product } from '../../Shared/constant.ts';
+import { Product } from '../../Interface/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
 // import { setItem } from '../../Store/AreaItem/index.ts';
@@ -22,10 +22,10 @@ export default function Dashboard() {
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
-  console.log(error, data, 'data');
+  // console.log(error, data, 'data');
 
   const [totalImages, setTotalImages] = useState<Product[]>([]);
-  console.log(totalImages, 'totalImages')
+  // console.log(totalImages, 'totalImages')
 
   useEffect(() => {
     setTotalImages([]);

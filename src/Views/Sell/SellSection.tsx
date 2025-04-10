@@ -1,9 +1,9 @@
 import './SellSection.css';
 import { useState } from 'react';
 import ICONS from '../../assets';
-import SubCategory from '../../Components/Atom/SellCategory/SellCategory';
+import SubCategory from '../../Components/CustomComponents/SellCategory/SellCategory';
 import { CATEGORIES, CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Shared/constant';
+import { COMMON_TEXT } from '../../Interface/constant';
 
 
 export default function SellSection() {
