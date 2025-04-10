@@ -1,198 +1,243 @@
-/* Login page parent container */
+/*LOGIN PAGE */
 .loginPageParent {
-  background-color: rgb(250, 241, 254);
-  border-radius: 8px;
-  min-height: 600px;
-  width: 400px;
-  margin: 16px;
-  padding: 16px 20px;
+  background: linear-gradient(135deg, #faf1fe 0%, #f0e5ff 100%);
+  border-radius: 16px;
+  width: 500px;
+  margin: 24px auto;
+  padding: 32px;
   box-sizing: border-box;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 
+    0 12px 32px rgba(92, 41, 126, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, sans-serif;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Login page child container */
+/* .loginPageParent:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 16px 40px rgba(92, 41, 126, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+} */
+ 
+
+/*  LOGIN CONTAINER */
 .loginPageChild {
-  min-height: 568px;
-  max-width: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
   position: relative;
-  flex-wrap: wrap;
+  z-index: 2;
 }
 
-/* Continue with phone section */
-.countinue_with_phone_parent {
+/*SOCIAL BUTTONS - NEXT LEVEL */
+.countinue_with_phone_parent,
+.continue_with_google_parent {
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  width: 100%;
-  padding: 0 16px;
-  min-height: 44px;
-  box-sizing: border-box;
-  border: 2px solid #333;
-  border-radius: 6px;
-  transition: all 0.3s ease-in-out;
-  background-color: white;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  position: relative;
+  overflow: hidden;
+  border: none;
 }
+
+.countinue_with_phone_parent {
+  background: linear-gradient(145deg, #ffffff, #f5f5f7);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 0 0 1.5px #5a2a7e;
+}
+
 .countinue_with_phone_parent:hover {
-  border: 2px solid #007bff;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 8px 24px rgba(92, 41, 126, 0.2),
+    0 0 0 2px #a269d6;
 }
 
-/* Phone icon */
-.continue_with_phone_icon {
-  margin-right: 8px;
-  min-width: 22px;
-  height: 22px;
+.continue_with_google_parent {
+  background: white;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.05),
+    0 0 0 1px #e0e0e5;
 }
 
-/* Phone text */
+.continue_with_google_parent:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 0 0 1px #d1d1d6;
+}
+
+/* 💫 BUTTON HOVER EFFECTS */
+.countinue_with_phone_parent::after,
+.continue_with_google_parent::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.4) 50%, 
+    rgba(255,255,255,0) 100%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.countinue_with_phone_parent:hover::after,
+.continue_with_google_parent:hover::after {
+  transform: translateX(100%);
+}
+
+/*  ICONS */
+.continue_with_phone_icon,
+.continue_with_google_icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 12px;
+  transition: transform 0.3s ease;
+}
+
+.countinue_with_phone_parent:hover .continue_with_phone_icon,
+.continue_with_google_parent:hover .continue_with_google_icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
 .continue_with_phone_text {
   font-size: 16px;
   font-weight: 600;
-  color: #333;
+  color: #2d3748;
+  letter-spacing: 0.2px;
 }
 
-/* Continue with Google section */
-.continue_with_google_parent {
-  margin-top: 13px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 0 16px;
-  min-height: 38px;
-  box-sizing: border-box;
-  border: 1px solid #202124;
-  border-radius: 6px;
-  transition: all 0.3s ease-in-out;
-  background-color: white;
-}
-.continue_with_google_parent:hover {
-  background-color: #f9f9f9;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
-}
-.continue_with_google_parent:active {
-  background-color: #e0f7fa;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Google icon */
-.continue_with_google_icon {
-  margin-right: 8px;
-  min-width: 20px;
-  height: 22px;
-}
-
-/* Google text */
 .continue_with_google_text {
-  width: 90%;
-  font-family: 'Google Sans', Arial, sans-serif;
+  font-family: 'Google Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
   color: #3c4043;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: 0.65px;
+  letter-spacing: 0.3px;
 }
 
-/* Or section */
+/*  DIVIDER */
 .login_Or_section {
-  margin-top: 10px;
-  color: #666;
-}
-
-/* Signup / Signin link */
-.login_signup {
-  margin-top: 10px;
-  font-size: 14px;
-  font-weight: 400;
-  color: rgb(10, 43, 228);
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-.login_signup:hover {
-  color: rgba(10, 43, 228, 0.6);
-}
-
-.login_signin {
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 10px;
-}
-
-.login_signin_link:hover {
-  color: rgba(10, 43, 228, 0.6);
-}
-
-/* Footer section */
-.login_footer_parent {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  position: absolute;
-  bottom: 1px;
   width: 100%;
-  max-width: 90%;
-  font-size: 13px;
-  color: #003f34a3;
-  text-align: center;
-
+  margin: 8px 0;
+  color: #a1a1aa;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-/* Responsive adjustments */
+.login_Or_section::before,
+.login_Or_section::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(162, 105, 214, 0.3) 50%, 
+    transparent 100%);
+}
+
+.login_Or_section::before {
+  margin-right: 16px;
+}
+
+.login_Or_section::after {
+  margin-left: 16px;
+}
+/*  SIGNUP LINK - FLOATING */
+.login_signup {
+  color: blue;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+  padding: 0 4px;
+  transition: all 0.3s ease;
+}
+.login_signin_link{
+  color: blue;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login_signin_link:hover{
+  color: #3a1a5e;
+  text-decoration: underline;
+}
+
+.login_signup:hover {
+  color: #3a1a5e;
+  text-decoration: underline;
+}
+
+
+
+/*  FOOTER - GLASS MORPHISM */
+.login_footer_parent {
+  width: 100%;
+  padding: 16px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: #5a2a7e;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/*  RESPONSIVE MAGIC */
 @media (max-width: 768px) {
   .loginPageParent {
-
-    padding: 16px;
+    width: 90%;
+    padding: 28px;
+    margin: 16px auto;
   }
-
-  .loginPageChild {
-    min-height: auto;
-    max-width: 100%;
-  }
-
+  
   .countinue_with_phone_parent,
   .continue_with_google_parent {
-    width: 100%;
-    padding: 0 10px;
-    min-height: 40px;
-  }
-
-  .continue_with_phone_text,
-  .continue_with_google_text {
-    font-size: 14px;
-  }
-
-  .login_footer_parent {
-    position: relative;
-    bottom: auto;
-    margin-top: 200px;
+    padding: 12px 20px;
   }
 }
 
 @media (max-width: 480px) {
   .loginPageParent {
     width: 100%;
+    border-radius: 0;
     margin: 0;
-    padding: 10px;
+    padding: 24px 16px;
+    box-shadow: none;
+    border: none;
   }
-
+  
   .loginPageChild {
-    min-height: auto;
-    max-width: 100%;
+    gap: 20px;
   }
-
-  .countinue_with_phone_parent,
-  .continue_with_google_parent {
-    width: 100%;
-    padding: 0 8px;
-    min-height: 36px;
-  }
-
+  
   .continue_with_phone_text,
   .continue_with_google_text {
-    font-size: 12px;
+    font-size: 14px;
   }
-
+  
   .login_footer_parent {
+    padding: 12px;
     font-size: 12px;
   }
 }
+

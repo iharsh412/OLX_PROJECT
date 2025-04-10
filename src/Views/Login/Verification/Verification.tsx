@@ -13,6 +13,15 @@ export default function Verification() {
         <button className={CLASSNAME.LOGIN} onClick={()=>navigate(ROUTES_CONFIG.SIGNIN.path,{replace:true})}>{TEXT.LOGIN}</button>
         <span className={CLASSNAME.TEXT}>{TEXT.LOGIN_TEXT}</span>
       </div>
+      <footer className="login_footer_parent">
+          <p className="login_footer_first_section">
+            All your personal details are safe with us
+          </p>
+          <p className="login_footer_second_section">
+            If you continue, you are accepting OLX Terms and Conditions and
+            Privacy Policy
+          </p>
+        </footer>
     </div>
   );
 }

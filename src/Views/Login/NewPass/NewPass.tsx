@@ -114,6 +114,15 @@ export default function NewPass() {
                     </span>
                   </div>
                 )}
+                 <footer className="login_footer_parent">
+          <p className="login_footer_first_section">
+            All your personal details are safe with us
+          </p>
+          <p className="login_footer_second_section">
+            If you continue, you are accepting OLX Terms and Conditions and
+            Privacy Policy
+          </p>
+        </footer>
 
                 <ToastContainer />
               </form>
