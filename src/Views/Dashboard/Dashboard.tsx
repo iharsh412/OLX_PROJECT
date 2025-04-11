@@ -1,5 +1,5 @@
 import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
-import ImagesLayout from '../../Components/CustomComponents/imagesLayout/CarImage/index.ts';
+import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index.ts';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
 import { COMMON_TEXT } from '../../Interface/constant.ts';
@@ -10,11 +10,8 @@ import { useSelector } from 'react-redux';
 // import { setItem } from '../../Store/AreaItem/index.ts';
 
 export default function Dashboard() {
-  // const dispatch = useDispatch();
+  
   const search = useSelector((state: RootState) => state?.areaItem?.item);
-  // const token = useSelector((state: RootState) => state?.common);
-  // console.log(token, 'token');
-
   const [page, setPage] = useState(1);
 
   const limit = 12;
@@ -22,10 +19,8 @@ export default function Dashboard() {
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
-  // console.log(error, data, 'data');
 
   const [totalImages, setTotalImages] = useState<Product[]>([]);
-  // console.log(totalImages, 'totalImages')
 
   useEffect(() => {
     setTotalImages([]);

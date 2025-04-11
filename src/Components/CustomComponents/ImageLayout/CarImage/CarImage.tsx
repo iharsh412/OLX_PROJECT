@@ -11,7 +11,6 @@ import { toast } from 'react-toastify';
 
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const [post, { isLoading }] = usePostProductsMutation();
-  const [showError, setShowError] = useState(false);
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
 
@@ -36,20 +35,12 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       toast.success(response.msg);
     } catch (error) {
       console.error('Error adding to cart:', error);
-      setShowError(true);
     }
   };
 
   const onClickImages = () => {
     navigate(`/product/${data.name}/${data.id}`);
   };
-
-  useEffect(() => {
-    if (showError) {
-      const timer = setTimeout(() => setShowError(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [showError]);
 
   return (
     <div className="carImages_wrapper" onClick={onClickImages}>

@@ -16,6 +16,7 @@ const ROUTES = {
   FORGETPASS: '/forgetpassword',
   VERIFICATION: '/verification',
   NEWPASSWORD: '/newpassword/:id/:token',
+  MYADS: '/users/ads'
 };
 
 const WILDCARD_ROUTES = {
@@ -80,6 +81,10 @@ const ROUTES_CONFIG = {
     path: ROUTES.NEWPASSWORD,
     title: 'New Password',
     },
+    MYADS: {
+      path: ROUTES.MYADS,
+    title: 'My Ads',
+      },
 };
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };

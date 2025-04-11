@@ -1,7 +1,7 @@
 // import { useSelector } from 'react-redux';
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 // import { RootState } from '../../Store';
-import ImageLayout from '../../Components/CustomComponents/imagesLayout/CarImage';
+import ImageLayout from '../../Components/CustomComponents/ImageLayout/CarImage';
 import './CartSection.css';
 import { Product } from '../../Interface/constant';
 import { CLASSNAME } from './constant';

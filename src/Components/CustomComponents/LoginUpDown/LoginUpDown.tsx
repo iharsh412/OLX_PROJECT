@@ -38,9 +38,9 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   };
   const handleLogout = () => {
     try {
-       post({ refresh: refresh }).unwrap();
-       logout();
-       dispatch(
+      post({ refresh: refresh }).unwrap();
+      logout();
+      dispatch(
         updateAuthState({
           refresh: null,
           access: null,
@@ -84,7 +84,10 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             return (
               <button
                 key={index}
-                onClick={handleItemClick}
+                onClick={() => {
+                  handleItemClick();
+                  item.clickHandler && item?.clickHandler(navigate);
+                }}
                 className={CLASSNAME.PROFILE_MENU_ITEM}
               >
                 <Icon />

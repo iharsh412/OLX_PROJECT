@@ -56,6 +56,7 @@ input, textarea, select, button {
   resize: vertical;
   border-radius: 6px;
   border: 1px solid #ccc;
+  width:100%;
 }
 
 /* Error Highlight */
@@ -109,6 +110,12 @@ input, textarea, select, button {
 
 .postForm_file-input {
   display: none;
+}
+.postForm_PreviewWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* Price Section */
@@ -171,7 +178,7 @@ input, textarea, select, button {
 }
 
 .postForm_StateList {
-  position: absolute;
+  /* position: absolute; */
   bottom: 70%;
   right: 0;
   width: 100%;
@@ -206,7 +213,7 @@ input, textarea, select, button {
 }
 /* City  */
 .postForm_CityList{
-  position: absolute;
+  /* position: absolute; */
   bottom: 30%;
   right: 0;
   width: 100%;
@@ -280,6 +287,9 @@ input, textarea, select, button {
     font-size: 14px;
     padding: 5px 8px;
   }
+  .postForm_PriceInputWrapper input{
+    padding: 4px 46px;
+  }
 
   .postForm_MobileNumber {
     padding-left: 50px;
@@ -305,6 +315,10 @@ input, textarea, select, button {
   .postForm_mobileNumberWrapper span {
     font-size: 12px;
     padding: 4px 6px;
+
+  }
+  .postForm_PriceInputWrapper input{
+    padding: 4px 16px;
   }
 
   .postForm_MobileNumber {

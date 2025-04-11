@@ -4,7 +4,7 @@ import { usePostCategoryProductsMutation } from '../../Services/Api/module/image
 import { CLASSNAME } from './constant';
 import './sample.css';
 import { useParams } from 'react-router-dom';
-import ImagesLayout from '../CustomComponents/imagesLayout/CarImage';
+import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
 import { Product } from '../../Interface/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
@@ -73,6 +73,8 @@ export default function Sample() {
       price: [0, 1500000],
     });
   }, [category]);
+
+  console.log(response,"uygruey")
 
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;

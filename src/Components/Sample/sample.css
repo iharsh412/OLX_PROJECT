@@ -4,10 +4,10 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   margin-top: 20px;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
+  box-shadow: 0px 16px 16px rgba(0, 0, 0, 0.28);
 }
 
 /* Text Section */
@@ -264,8 +264,7 @@
   height: 14px;
 }
 /* Erorr and Loading Section */
-.sample-errorAndLoading{
-
+.sample-errorAndLoading {
   width: 100%;
   text-align: center;
 }
@@ -313,12 +312,11 @@
   background-color: #b3aeed;
   border-color: #ccc;
 }
-.sample-disabled{
+.sample-disabled {
   visibility: hidden;
 }
 /* no product  */
-.sample-noProduct{
- 
+.sample-noProduct {
   height: 100%;
   width: 100%;
   font-size: 24px;

@@ -19,6 +19,7 @@ export const CLASSNAME = {
     FILE_INPUT: "postForm_file-input",
     CAMERA: "postForm_Camera",
     ADD_PHOT0: "postForm_phototext",
+    PREVIEW_WRAPPER: "postForm_PreviewWrapper",
     // Price Field
     PRICE_WRAPPER: 'postForm_PriceWrapper',
     PRICE_TEXT: 'postForm_PriceText',

@@ -1,4 +1,5 @@
 import { User, Package, CreditCard, HelpCircle, Settings } from 'lucide-react';
+import {  ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export interface ProfileDropdownProps {
   setOpenProfile?: (arg0: (prev: boolean) => boolean) => void;
@@ -7,12 +8,16 @@ export interface ProfileDropdownProps {
 interface DropdownItem {
   icon: React.ElementType;
   label: string;
+  clickHandler?: (arg: any) => void;
 }
 
 export const dropdownItems: DropdownItem[] = [
   {
     icon: User,
     label: 'My ADS',
+    clickHandler: (navigate) => {
+      navigate(ROUTES_CONFIG.MYADS.path)
+    }
   },
   {
     icon: Package,

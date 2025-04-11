@@ -73,6 +73,7 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    // change password
     postChangePasswordData: builder.mutation({
       query: (data) => ({
         url: `account/changepass/`,
@@ -80,6 +81,7 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    //  login
     postSigninData: builder.mutation({
       query: (data) => ({
         url: `account/login/`,
@@ -87,11 +89,28 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+      // logout
     postLogoutData: builder.mutation({
       query: (data) => ({
         url: `account/logout/`,
         body: data,
         method: 'POST',
+      }),
+    }),
+    // user ads 
+    getAdsData: builder.query({
+      query: () => ({
+        url: `categories/userads/`,
+        method: 'GET',
+       
+      }),
+    }),
+    // deletd ads
+    getDeleteAds: builder.query({
+      query: (params) => ({
+        url: `categories/removead/`,
+        method: 'GET',
+        params
       }),
     }),
     // postChechRefreshTokenData: builder.mutation({
@@ -125,6 +144,8 @@ export const {
   usePostChangePasswordDataMutation,
   usePostForgetPasswordDataMutation,
   usePostLogoutDataMutation,
+  useGetAdsDataQuery,
+  useLazyGetDeleteAdsQuery
   // useGetCheckTokenDataQuery,
   // usePostChechRefreshTokenDataMutation,
 } = productApi;

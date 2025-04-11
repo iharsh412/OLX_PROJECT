@@ -28,9 +28,7 @@ const baseQueryWithInterceptor = async (
   api: BaseQueryApi,
   extraOptions: object
 ) => {
-  console.log(args, 'args');
-  console.log(api, 'Api');
-  console.log(extraOptions, 'extraOptions');
+  
   let result = await baseQuery(args, api, extraOptions);
   if (
     (result as ResponseOptions).error &&
@@ -91,5 +89,5 @@ const api = createApi({
   tagTypes: ['wishlist'],
   endpoints: () => ({}),
 });
-console.log(api, 'uhfi');
+
 export default api;
