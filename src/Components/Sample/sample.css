@@ -232,7 +232,6 @@
   background-color: #f0f0f0;
   border-color: #ccc;
 }
-
 .sample-priceOption__apply:active {
   background-color: #b3aeed;
   border-color: #ccc;
@@ -268,7 +267,13 @@
   width: 100%;
   text-align: center;
 }
-
+/* image section */
+.sample-mainImageSectionWrapper{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 /* Image Grid Section */
 .sample-mainSectionImage {
   flex: 1;
@@ -288,10 +293,10 @@
   width: 100%;
   justify-content: space-between;
   padding: 20px;
-  position: absolute;
-  bottom: 0;
+ 
 }
-.sample-PageChange span {
+.sample-PREV,
+.sample-NEXT {
   display: flex;
   padding: 10px;
   margin: 3px 5px 0 0;
@@ -304,8 +309,9 @@
   text-align: center;
   cursor: pointer;
 }
-.sample-PageChange span:hover {
-  background-color: #f0f0f0;
+.sample-PREV:hover,
+.sample-NEXT:hover {
+  background-color: #eaeaea;
   border-color: #ccc;
 }
 .sample-PageChange span:active {
@@ -314,6 +320,29 @@
 }
 .sample-disabled {
   visibility: hidden;
+}
+.sample-pagewrapper {
+  display: flex;
+  align-items: center;
+  
+}
+.sample-pageNumber{
+  display: flex;
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 16px;
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+}
+/* active page nuumber */
+.sample-activepage{
+  border: 1px solid blue;
+
 }
 /* no product  */
 .sample-noProduct {

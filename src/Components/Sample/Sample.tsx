@@ -10,13 +10,12 @@ import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
 import { SampleData, ResponseData } from './constant';
 
-
 export default function Sample() {
-  const limit = 4;
-  // const [totalpage, setTotalpage] = useState<number>(1);
-  const [page] = useState<number>(1);
+  const limit = 3;
+  const [totalpage, setTotalpage] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
   const { category } = useParams();
-  const [ , setShowButton] = useState({ prev: false, next: false });
+  const [showButton, setShowButton] = useState({ prev: false, next: false });
   const [sampleData, setSampleData] = useState<SampleData>({
     category: category,
     subcategory: '',
@@ -25,7 +24,8 @@ export default function Sample() {
   });
   const [price, setPrice] = useState<[number, number]>([0, 1500000]);
   const [response, setResponse] = useState<ResponseData | undefined>();
-  const [productData, { isLoading, isError }] = usePostCategoryProductsMutation();
+  const [productData, { isLoading, isError }] =
+    usePostCategoryProductsMutation();
   // Hooks
   useEffect(() => {
     const fetchData = async () => {
@@ -36,17 +36,7 @@ export default function Sample() {
           limit,
         }).unwrap();
 
-
         setResponse(response);
-        if (
-          response?.products?.length === 0 ||
-          response?.products?.length < limit
-        ) {
-          setShowButton((value) => ({ ...value, next: false }));
-        } else setShowButton((value) => ({ ...value, next: true }));
-        if (page === 1) {
-          setShowButton((value) => ({ ...value, prev: false }));
-        } else setShowButton((value) => ({ ...value, prev: true }));
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -54,6 +44,9 @@ export default function Sample() {
 
     fetchData();
   }, [sampleData, page]);
+  useEffect(() => {
+    setPage(1)
+  }, [sampleData]);
 
   useEffect(() => {
     setSampleData({
@@ -62,31 +55,30 @@ export default function Sample() {
       brand: [],
       price: [0, 1500000],
     });
-    // setPage(1);
+    setPage(1);
   }, [category]);
-  // useEffect(() => {
-  //   const Pages = response?.count / limit + (response?.count % limit ? 1 : 0);
-  //   setTotalpage(setPage)
+  useEffect(() => {
+    let Pages = 1;
+    if (response && response.count) {
+      Pages = Math.ceil(response?.count / limit);
+      setTotalpage(Pages);
+    } else {
+      setTotalpage(1);
+    }
 
-  //   if (Pages <= 1) {
-  //     setShowButton({ prev: false, next: false })
-  //   }
-  //   else if (Pages > 1 && page === 1) {
-  //     setShowButton({ prev: false, next: true })
-  //   }
-  //   else if (Pages > 1 && page === Pages) {
-  //     setShowButton({ prev: true, next: false })
-  //   }
-  //   else {
-  //     setShowButton({ prev: true, next: true })
-  //   }
+    if (Pages <= 1) {
+      setShowButton({ prev: false, next: false });
+    } else if (Pages > 1 && page === 1) {
+      setShowButton({ prev: false, next: true });
+    } else if (Pages > 1 && page === Pages) {
+      setShowButton({ prev: true, next: false });
+    } else {
+      setShowButton({ prev: true, next: true });
+    }
+  }, [response, page, category]);
 
-
-
-
-  // }, [response, page])
-
-  console.log(response, "uygruey")
+  // console.log(response, 'uygruey');
+  // console.log(sampleData, totalpage, page, 'uheiwi');
 
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
@@ -113,12 +105,12 @@ export default function Sample() {
     });
   };
 
-  // const handlePrevPage = () => {
-  //   setPage((prev) => (prev - limit <= 0 ? 1 : prev - limit));
-  // };
-  // const handleNextPage = () => {
-  //   setPage((prev) => prev + limit);
-  // };
+  const handlePrevPage = () => {
+    setPage(page - 1);
+  };
+  const handleNextPage = () => {
+    setPage(page + 1);
+  };
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -175,7 +167,7 @@ export default function Sample() {
 
             <div className="sample-subcategoryOption">
               {response?.subcategories &&
-                response?.subcategories?.length > 0 ? (
+              response?.subcategories?.length > 0 ? (
                 response?.subcategories?.map(
                   (
                     category: {
@@ -282,50 +274,66 @@ export default function Sample() {
             </button>
           </div>
         </div>
-
-        {/* IMAGE SECTION */}
-        {isLoading && (
-          <h1 className="sample-errorAndLoading">Loading...</h1>
-        )}
-        {isError && (
-          <h1 className="sample-errorAndLoading">Error in loading products</h1>
-        )}
-        {response && (
-          <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
-            {response?.products?.length && (
-              response?.products?.map((product: Product) => (
-                <ImagesLayout key={product.id} data={product} />
-              ))
-            )
-            }
-            {response?.products?.length === 0 && (
-              <h3 className="sample-noProduct">No product available</h3>
-            )}
-            {/* {totalPage >= 2 && <div className="sample-PageChange">
+        {/* Image Section */}
+        <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
+         
+          {isLoading && <h1 className="sample-errorAndLoading">Loading...</h1>}
+          {isError && (
+            <h1 className="sample-errorAndLoading">
+              Error in loading products
+            </h1>
+          )}
+          {!isLoading && !isError && response && (
+            <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+              {(response?.products?.length as number) > 0 &&
+                response?.products?.map((product: Product) => (
+                  <ImagesLayout key={product.id} data={product} />
+                ))}
+              {response?.products?.length === 0 && (
+                <h3 className="sample-noProduct">No product available</h3>
+              )}
+            </div>
+          )}
+          {totalpage >= 2 && (
+            <div className="sample-PageChange">
               <button
-                className={`sample-PREV ${showButton.prev ? '' : 'sample-disabled'
-                  }`}
+                className={`sample-PREV ${
+                  showButton.prev ? '' : 'sample-disabled'
+                }`}
                 onClick={handlePrevPage}
               >
                 Prev
               </button>
               <div className="sample-pagewrapper">
-                {Array(totalpage)?.map((_, index) => (
-                  <button onClick={() => setPage(page * limit + 1)} className={`sample-pageNumber ${index + 1 === page ? "sample-activepage" : ""}`}>{index + 1}</button>
-                ))}
+                {Array(totalpage)
+                  ?.fill('')
+                  ?.map((_, index) => {
+                    return (
+                      <button
+                        key={index}
+                        onClick={() => setPage(index + 1)}
+                        disabled={index + 1 === page}
+                        className={`sample-pageNumber ${
+                          index + 1 === page ? 'sample-activepage' : ''
+                        }`}
+                      >
+                        {index + 1}
+                      </button>
+                    );
+                  })}
               </div>
 
               <button
-                className={`sample-NEXT ${showButton.next ? '' : 'sample-disabled'
-                  }`}
+                className={`sample-NEXT ${
+                  showButton.next ? '' : 'sample-disabled'
+                }`}
                 onClick={handleNextPage}
               >
                 Next
               </button>
             </div>
-            } */}
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

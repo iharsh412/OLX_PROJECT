@@ -11,22 +11,23 @@ import { useSelector } from 'react-redux';
 export default function Dashboard() {
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 8;
   const { data, isError, isLoading, refetch } = useGetTypeProductsQuery(
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
-    // {refetchOnMountOrArgChange: true }
   );
   const [totalImages, setTotalImages] = useState<Product[]>([]);
+  console.log(page, 'page');
+
   // Hooks
   useEffect(() => {
     setTotalImages([]);
-    refetch(); // reftech htao
+    setPage(1);
   }, [search]);
 
   useEffect(() => {
+    console.log(data, 'data');
     if (data) {
-        // setTotalImages((prev)=>([...prev,...data]))
       setTotalImages((prevImages) => {
         const newDataMap = new Map(data.map((item) => [item.id, item]));
 
@@ -48,28 +49,24 @@ export default function Dashboard() {
   }, [data]);
   return (
     <>
-      {isLoading && (
-        <h1>{COMMON_TEXT.LOADING}</h1>
-      )}
-      {isError && (
-        <h1>{COMMON_TEXT.ERROR}</h1>
-      )}
+      {isLoading && <h1>{COMMON_TEXT.LOADING}</h1>}
+      {isError && <h1>{COMMON_TEXT.ERROR}</h1>}
       {/* total images  */}
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
             {/* totalImages.length greater then 0 */}
-            {data && totalImages.length && (
+            {data &&
+              totalImages.length > 0 &&
               totalImages?.map((product: Product) => (
                 <ImagesLayout
                   key={product.id}
                   data={product}
                   refetchDashboard={refetch}
                 />
-              ))
-            )}
+              ))}
             {/* totalImages.length is eqauls to 0 */}
-            { data && totalImages.length === 0 && (
+            {data && totalImages.length === 0 && (
               <h2>{COMMON_TEXT.NO_PRODUCTS}</h2>
             )}
           </div>

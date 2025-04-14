@@ -12,7 +12,7 @@ export default function LanguageSelector() {
   const [languageDropdown, setLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
   const dispatch = useDispatch();
-  const dropdownRef = useRef<HTMLButtonElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   //  HANDLE CLICK
   //  to handle what we selected
@@ -47,14 +47,15 @@ export default function LanguageSelector() {
   }, []);
 
   return (
-    <button className={CLASSNAME.WRAPPER} onClick={toggleLanguageDropdown} ref={dropdownRef}>
+    <div
+      className={CLASSNAME.WRAPPER}
+      onClick={toggleLanguageDropdown}
+      ref={dropdownRef}
+    >
       {/* selected language */}
       <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
       {/* updown icon */}
-      <button
-        className={CLASSNAME.DROPDOWN}
-        
-      >
+      <button className={CLASSNAME.DROPDOWN}>
         <img
           src={ICONS.upDown}
           alt={COMMON_TEXT.IMG}
@@ -81,6 +82,6 @@ export default function LanguageSelector() {
           </button>
         </div>
       )}
-    </button>
+    </div>
   );
 }

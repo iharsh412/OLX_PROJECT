@@ -77,7 +77,7 @@ export interface TextFieldProps {
     state?:string
 }
 export interface PhotosProps {
-    value: [];
+    value: File[] ;
     type?: string;
     label: string;
     setFieldValue?: (field: string, value: any, shouldValidate?: boolean) => Promise<void | FormikErrors<any>>;

@@ -7,7 +7,6 @@ import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function ImageDetail() {
-
   const { productId } = useParams();
   const id = productId !== undefined ? Number(productId) : undefined;
 
@@ -31,7 +30,9 @@ export default function ImageDetail() {
           </div>
           <hr />
           <div className={CLASSNAME.DESCRIPTION}>
-            <span className={CLASSNAME.DESCRIPTION_TITLE}>{TEXT.DESCRIPTION}</span>
+            <span className={CLASSNAME.DESCRIPTION_TITLE}>
+              {TEXT.DESCRIPTION}
+            </span>
             <span className={CLASSNAME.DESCRITION_VALUE}>
               {product?.description}
             </span>
@@ -55,8 +56,9 @@ export default function ImageDetail() {
           <div className={CLASSNAME.CHAT_TEXT_PHOTO}>
             <span className={CLASSNAME.CHAT_PHOTO}>
               <img
-                src={`${import.meta.env.VITE_BASE_URL
-                  }/${product?.display_photo}`}
+                src={`${
+                  import.meta.env.VITE_BASE_URL
+                }/${product?.display_photo}`}
                 alt={COMMON_TEXT.IMG}
               />
             </span>
@@ -65,7 +67,9 @@ export default function ImageDetail() {
               <img src={ICONS.upDownl} alt={COMMON_TEXT.IMG} />
             </span>
           </div>
-          <button className={CLASSNAME.CHAT_BUTTON}>{TEXT.CHAT_WITH_SELLER}</button>
+          <button className={CLASSNAME.CHAT_BUTTON}>
+            {TEXT.CHAT_WITH_SELLER}
+          </button>
         </div>
         {/* post section */}
         <div className={CLASSNAME.POST}>

@@ -7,15 +7,15 @@ import Modal from '../../Modal';
 import { toast } from 'react-toastify';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import { useNavigate } from 'react-router-dom';
-import EditAds from "../../EditAds"
+import EditAds from '../../EditAds';
 
 const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
-  console.log(data);
-  const navigate =useNavigate()
+  // console.log(data);
+  const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
   const [text, setText] = useState('');
-  const [editOpen, setEditOpen] =useState<boolean>(true)
+  const [editOpen, setEditOpen] = useState<boolean>(true);
   const [post] = useLazyGetDeleteAdsQuery();
 
   useEffect(() => {
@@ -26,7 +26,6 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
           toast.success('Ad deleted successfully');
           refetch?.();
         } catch (error) {
-          console.log(error);
           toast.error('Error while deleting ad');
         }
       }
@@ -38,6 +37,8 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
   };
   const handleClickEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setAnswer('no');
+    setEditOpen(true);
     setOpen(true);
     setText(TEXT.EDIT_TEXT);
   };
@@ -46,6 +47,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
     setOpen(true);
     setText(TEXT.DELETE_TEXT);
   };
+  console.log(editOpen, 'editOpen');
   return (
     <>
       <div className={CLASSNAME.WRAPPER} onClick={onClickImages}>
@@ -72,7 +74,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
             <button
               title="Edit"
               className={CLASSNAME.EDIT}
-              onClick={(e)=>handleClickEdit(e)}
+              onClick={(e) => handleClickEdit(e)}
             >
               {TEXT.EDIT}
             </button>
@@ -87,7 +89,9 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
         </div>
       </div>
       {open && <Modal setAnswer={setAnswer} setOpen={setOpen} text={text} />}
-      {text === TEXT.EDIT_TEXT && answer === 'yes' && editOpen && <EditAds setEditOpen={setEditOpen} data={data} />}
+      {text === TEXT.EDIT_TEXT && answer === 'yes' && editOpen === true && (
+        <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch}/>
+      )}
     </>
   );
 };

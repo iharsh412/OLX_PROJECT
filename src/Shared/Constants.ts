@@ -16,7 +16,9 @@ const ROUTES = {
   FORGETPASS: '/forgetpassword',
   VERIFICATION: '/verification',
   NEWPASSWORD: '/newpassword/:id/:token',
-  MYADS: '/users/ads'
+  MYADS: '/users/ads',
+  PROFILE: '/profile/info',
+  EDIT_PROFILE: '/editprofile/info',
 };
 
 const WILDCARD_ROUTES = {
@@ -80,11 +82,19 @@ const ROUTES_CONFIG = {
   NEWPASSWORD: {
     path: ROUTES.NEWPASSWORD,
     title: 'New Password',
-    },
-    MYADS: {
-      path: ROUTES.MYADS,
+  },
+  MYADS: {
+    path: ROUTES.MYADS,
     title: 'My Ads',
-      },
+  },
+  PROFILE: {
+    path: ROUTES.PROFILE,
+    title: 'Edit Profile',
+  },
+  EDIT_PROFILE: {
+    path: ROUTES.EDIT_PROFILE,
+    title: 'Profile Edit',
+  },
 };
 
 export { ROUTES, WILDCARD_ROUTES, ROUTES_CONFIG };

@@ -93,6 +93,14 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    //post edit
+    postEditData: builder.mutation({
+      query: (data) => ({
+        url: `categories/editads/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
     // user ads 
     getAdsData: builder.query({
       query: () => ({
@@ -141,7 +149,8 @@ export const {
   usePostForgetPasswordDataMutation,
   usePostLogoutDataMutation,
   useGetAdsDataQuery,
-  useLazyGetDeleteAdsQuery
+  useLazyGetDeleteAdsQuery,
+  usePostEditDataMutation,
   // useGetCheckTokenDataQuery,
   // usePostChechRefreshTokenDataMutation,
 } = productApi;

@@ -5,6 +5,7 @@ import {
   FormValues,
   TEXT,
   validationSchema,
+  initialValues,
 } from './constant';
 import {
   City,
@@ -15,158 +16,224 @@ import {
   TextField,
 } from '../Post/Common/Common';
 import './EditAds.css';
+import { useEffect, useRef, useState } from 'react';
+import {
+  usePostEditDataMutation,
+  useGetProductsDetailQuery,
+} from '../../../Services/Api/module/imageApi';
+import { toast } from 'react-toastify';
 
-const EditAds: React.FC<EditAdsProps> = ({ setEditOpen, data }) => {
-    const initialValues: FormValues = {
-        title: '',
-        description: data?.description ?? '',
-        brand: '',
-        year: '',
-        price: typeof data.price === 'string' ? data.price : String(data.price ?? ''),
-        photos: [],
-        state: typeof data.state === 'string' ? data.state : String(data.state ?? ''),
-        city: typeof data.city === 'string' ? data.city : String(data.city ?? ''),
-      };
-
+const EditAds: React.FC<EditAdsProps> = ({
+  setEditOpen,
+  data: product,
+  refetch,
+}) => {
+  const [post] = usePostEditDataMutation();
+  const { data } = useGetProductsDetailQuery({ id: product.id });
   console.log(data, 'data');
-  console.log(setEditOpen, 'setEditOpen');
-  function handleSubmit(values: FormValues) {
-    console.log(values);
+  const [formInitialValues,setFormInitialValues] = useState(initialValues);
+
+useEffect(() => {
+  if (data) {
+    setFormInitialValues((prev) => ({
+      ...prev,
+      ...Object.keys(initialValues).reduce((acc, key) => {
+        acc[key as keyof FormValues] = data[key] ?? prev[key as keyof FormValues];
+        return acc;
+      }, {} as FormValues),
+    }));
   }
+}, [data]);
+  console.log(formInitialValues,"ini")
+  const dropdownRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (
+    values: FormValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    console.log("values",values)
+    const formData = new FormData();
+
+    if (product?.id !== undefined) formData.append('id', String(product.id));
+    if (product?.category)
+      formData.append('category', String(product.category));
+    if (product?.subcategory)
+      formData.append('subcategory', String(product.subcategory));
+
+    for (const key in values) {
+      const typedKey = key as keyof FormValues;
+
+      if (Array.isArray(values[typedKey])) {
+        (values[typedKey] as File[]).forEach((file) => {
+          formData.append(typedKey, file);
+        });
+      } else if (values[typedKey] !== undefined && values[typedKey] !== null) {
+        formData.append(typedKey, String(values[typedKey]));
+      }
+    }
+
+    try {
+      await post(formData).unwrap();
+      setEditOpen(false);
+      toast.success('ADs edited successfully');
+      resetForm();
+      refetch?.();
+    } catch (error) {
+      toast.error('Error in editing');
+    }
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setEditOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   return (
-    <>
-      <div className={CLASSNAME.WRAPPER}>
-        <Formik
-          initialValues={initialValues}
-          validateSchema={validationSchema}
-          onSubmit={handleSubmit}
-        >
-          {({
-            values,
-            touched,
-            errors,
-            setFieldValue,
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            isSubmitting,
-          }) => {
-            const share = { handleChange, handleBlur, setFieldValue };
+    <div className={CLASSNAME.WRAPPER}>
+      <Formik
+        initialValues={formInitialValues}
+        enableReinitialize
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({
+          values,
+          touched,
+          errors,
+          setFieldValue,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          isSubmitting,
+        }) => {
+          const share = { handleChange, handleBlur, setFieldValue };
+          console.log(values,"values",formInitialValues)
 
-            return (
-              <>
-                <div className={CLASSNAME.MAIN}>
-                  <h3 className={CLASSNAME.DETAIL_TEXT}>
-                    {TEXT.INCLUDE_DETAIL}
-                  </h3>
+          return (
+            <form
+              className={CLASSNAME.MAIN}
+              ref={dropdownRef}
+              onSubmit={handleSubmit}
+            >
+              <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
 
-                  <TextField
+              <TextField
+                type="text"
+                htmlFor="brand"
+                value={values.brand}
+                err={errors.brand}
+                tch={touched.brand}
+                label="Brand"
+                {...share}
+              />
+
+              <TextField
+                type="number"
+                htmlFor="year"
+                value={values.year}
+                err={errors.year}
+                tch={touched.year}
+                label="Year"
+                {...share}
+              />
+
+              <TextField
+                type="text"
+                htmlFor="title"
+                value={values.title}
+                label="Ad title"
+                err={errors.title}
+                tch={touched.title}
+                {...share}
+              />
+
+              <Description
+                type="text"
+                htmlFor="description"
+                value={values.description}
+                err={errors.description}
+                tch={touched.description}
+                label="Description"
+                {...share}
+              />
+
+              <hr />
+
+              <Price
+                type="number"
+                htmlFor="price"
+                value={values.price}
+                err={errors.price}
+                tch={touched.price}
+                label="Price"
+                {...share}
+              />
+
+              <hr />
+
+              <Photos
+                type="file"
+                label="images"
+                value={values.images as File[]}
+                {...share}
+              />
+
+              <hr />
+
+              <div className={CLASSNAME.LOCATION_WRAPPER}>
+                <h3 className={CLASSNAME.LOCATION_TEXT}>
+                  {TEXT.CONFIRM_LOCATION}
+                </h3>
+
+                <State
+                  type="text"
+                  htmlFor="state"
+                  value={values.state}
+                  err={errors.state}
+                  tch={touched.state}
+                  label="State"
+                  {...share}
+                />
+
+                {values.state && (
+                  <City
+                    state={values.state}
                     type="text"
-                    htmlFor="brand"
-                    value={values.brand}
-                    err={errors.brand}
-                    tch={touched.brand}
-                    label="Brand"
+                    htmlFor="city"
+                    value={values.city}
+                    err={errors.city}
+                    tch={touched.city}
+                    label="City"
                     {...share}
                   />
-                  {/* Year Input */}
-                  <TextField
-                    type="number"
-                    htmlFor="year"
-                    value={values.year}
-                    err={errors.year}
-                    tch={touched.year}
-                    label="Year"
-                    {...share}
-                  />
-                  <TextField
-                    type="text"
-                    htmlFor="title"
-                    value={values.title}
-                    label="Ad title"
-                    err={errors.title}
-                    tch={touched.title}
-                    {...share}
-                  />
+                )}
+              </div>
 
-                  {/* Description Input */}
-                  <Description
-                    type="text"
-                    htmlFor="description"
-                    value={values.description}
-                    err={errors.description}
-                    tch={touched.description}
-                    label="Description"
-                    {...share}
-                  />
-                  <hr />
+              <hr />
 
-                  {/* Price Input */}
-                  <Price
-                    type="number"
-                    htmlFor="price"
-                    value={values.price}
-                    err={errors.price}
-                    tch={touched.price}
-                    label="Price"
-                    {...share}
-                  />
-                  <hr />
-                  {/* Photos input */}
-                  <Photos
-                    type="file"
-                    label="photos"
-                    value={values?.photos as []}
-                    {...share}
-                  />
-                  <hr />
-                  <div className={CLASSNAME.LOCATION_WRAPPER}>
-                    <h3 className={CLASSNAME.LOCATION_TEXT}>
-                      {TEXT.CONFIRM_LOCATION}
-                    </h3>
-                    <State
-                      type="text"
-                      htmlFor="state"
-                      value={values.state}
-                      err={errors.state}
-                      tch={touched.state}
-                      label="State"
-                      {...share}
-                    />
-
-                    {values.state && (
-                      <City
-                        state={values.state}
-                        type="text"
-                        htmlFor="city"
-                        value={values.city}
-                        err={errors.city}
-                        tch={touched.city}
-                        label="City"
-                        {...share}
-                      />
-                    )}
-                  </div>
-
-                  <hr />
-
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    onClick={() => handleSubmit()}
-                    className={CLASSNAME.POST}
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? TEXT.EDITING : TEXT.EDIT}
-                  </button>
-                </div>
-              </>
-            );
-          }}
-        </Formik>
-      </div>
-    </>
+              <button
+                type="submit"
+                className={CLASSNAME.POST}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? TEXT.EDITING : TEXT.EDIT}
+              </button>
+            </form>
+          );
+        }}
+      </Formik>
+    </div>
   );
 };
 

@@ -193,6 +193,7 @@ const Photos: React.FC<PhotosProps> = ({
   label,
   setFieldValue,
 }) => {
+  console.log(value)
   return (
     <>
       <h3 className={CLASSNAME.UPLOAD_TEXT}>{TEXT.UPLOAD_PHOTOS}</h3>
@@ -204,7 +205,7 @@ const Photos: React.FC<PhotosProps> = ({
             {value?.[index] ? (
               <div className={CLASSNAME.PREVIEW_WRAPPER}>
                 <img
-                  src={URL.createObjectURL(value?.[index])}
+                  src={typeof value?.[index] === 'string' ? `${import.meta.env.VITE_BASE_URL}/${value?.[index]}`:URL.createObjectURL(value?.[index])}
                   alt={COMMON_TEXT.IMG}
                   className={CLASSNAME.PREVIEW}
                 />

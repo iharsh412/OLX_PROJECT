@@ -7,6 +7,7 @@ export const CLASSNAME = {
   MAIN_SECTION_WRAPPER: 'sample-mainSectionWrapper',
   MAIN_SECTION_IMAGE: 'sample-mainSectionImage',
   MAIN_SECTION_FILTER: 'sample-mainSectionFilter',
+  MAIN_IMAGE_SECTION_WRAPPER:"sample-mainImageSectionWrapper",
   FILTER_TITLE: 'sample-filterTitle',
   SUBCATEGORY: 'sample-subcategory',
   BRAND: 'sample-brand',
@@ -28,4 +29,5 @@ export interface ResponseData {
   products?: Product[];
   subcategories?: { subcategory_name: string; product_count: number }[];
   Brand?: string[];
+  count?:number |undefined ;
 }

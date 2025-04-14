@@ -1,16 +1,13 @@
 import './myAds.css';
-import { useSelector } from 'react-redux';
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
-import { RootState } from '../../Store';
 import { CLASSNAME } from './constant';
 import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
 import { COMMON_TEXT, Product } from '../../Interface/constant';
 
 export default function MyAds() {
-  const id = useSelector((state: RootState) => state.common.id);
-  console.log(id, 'id');
+
   const { data, refetch, isError, isLoading} = useGetAdsDataQuery({},{refetchOnMountOrArgChange: true});
-  console.log(data, 'data');
+ 
   return (
     <div className={CLASSNAME.WRAPPER}>
       <h1 className={CLASSNAME.TITLE}>My Ads</h1>

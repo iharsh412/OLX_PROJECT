@@ -18,6 +18,7 @@ import ForgetPass from '../Views/Login/ForgetPass';
 import Verification from '../Views/Login/Verification';
 import NewPass from '../Views/Login/NewPass';
 import MyAds from '../Views/MyAds';
+import Profile from "../Views/ProfileSection"
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -39,6 +40,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
       { path: ROUTES_CONFIG.MYADS.path, element: <MyAds /> },
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
+      { path: ROUTES_CONFIG.PROFILE.path, element: <Profile /> },
     ],
   },
   {

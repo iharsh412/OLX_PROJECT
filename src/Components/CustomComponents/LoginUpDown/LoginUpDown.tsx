@@ -1,11 +1,10 @@
-
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
-import {toast} from 'react-toastify';
+import { toast } from 'react-toastify';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
 import './loginUpDown.css';
 import {
@@ -23,8 +22,8 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [post] = usePostLogoutDataMutation();
-    // Handle CLICK
-    // on click any item
+  // Handle CLICK
+  // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
   };
@@ -39,39 +38,41 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           access: null,
           id: null,
           username: null,
-        })    
+        })
       );
-      toast.success(TEXT.SUCCESS)
+      toast.success(TEXT.SUCCESS);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
       toast.error(TEXT.ERROR_LOGOUT);
-     
     }
   };
 
-
-
   return (
-    <div className={CLASSNAME.PROFILE_DROPDOWN}   >
+    <div className={CLASSNAME.PROFILE_DROPDOWN}>
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
             <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{username}</h3>
-              <button className={CLASSNAME.PROFILE_EDIT_PROFILE}>
+              <span
+                className={CLASSNAME.PROFILE_EDIT_PROFILE}
+                role="button"
+                tabIndex={0}
+                
+              >
                 {TEXT.VIEW_EDIT}
-              </button>
+              </span>
             </div>
           </div>
         </div>
 
         <div className={CLASSNAME.PROFILE_MENU_ITEMS}>
-          {dropdownItems.map((item, index) => {
+          {dropdownItems.map((item) => {
             const Icon = item.icon;
             return (
               <button
-                key={index}
+                key={item.label}
                 onClick={() => {
                   handleItemClick();
                   item.clickHandler && item?.clickHandler(navigate);

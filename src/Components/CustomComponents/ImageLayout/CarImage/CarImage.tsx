@@ -29,8 +29,8 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       refetch?.();
       refetchDashboard?.();
       toast.success(response.msg);
-    } catch(error) {
-      toast.error(TEXT.ERROR_IN_ADDING)
+    } catch (error) {
+      toast.error(TEXT.ERROR_IN_ADDING);
     }
   };
   // on click layout section

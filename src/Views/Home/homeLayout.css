@@ -6,7 +6,7 @@
     min-height: 100vh; 
   }
   /* outlet */
-  .AppOulet {
+  .AppOutlet {
     flex-grow: 1; 
     margin-bottom: 400px;
   

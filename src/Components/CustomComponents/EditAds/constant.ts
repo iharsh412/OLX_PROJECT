@@ -24,7 +24,7 @@ export const validationSchema = Yup.object().shape({
     .required('Required')
     .min(100, 'Must be greater than 100')
     .max(10000000, 'Must be less than 10 lakhs'),
-  photos: Yup.array()
+  images: Yup.array()
     .min(1, 'Please upload at least one photo')
     .max(5, 'min 5 photos')
     .required('Required'),
@@ -38,7 +38,7 @@ export const initialValues = {
   brand: '',
   year: '',
   price: '',
-  photos: [],
+  images: [] as File[],
   state: '',
   city: '',
 };
@@ -48,7 +48,7 @@ export interface FormValues {
   brand?: string;
   year?: string;
   price?: string;
-  photos?: File[];
+  images?: File[];
   state?: string;
   city?: string;
 }
@@ -62,6 +62,7 @@ export const TEXT = {
 export interface EditAdsProps {
   
     setEditOpen: (open: boolean) => void;
+    refetch?:()=>void;
     data:{
     created_at?: React.ReactNode;
     id: number;
