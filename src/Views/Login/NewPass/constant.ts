@@ -37,5 +37,7 @@ export const TEXT = {
   FORGET_PASWORD: 'Forget Password',
   SUBMIT_BUTTON: 'Set',
   PASSWORD_CHANGED: 'Password Changed',
-  LOGIN:"Login"
+  LOGIN:"Login",
+  FAILURE:'Error in changing password',
+  SUCCESS:"Password Changed Successfully"
 };

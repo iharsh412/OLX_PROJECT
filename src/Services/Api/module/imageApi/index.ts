@@ -1,16 +1,11 @@
 import api from '../../api';
-import { Product } from '../../../../Interface/constant';
+import { Product,PaginationParams} from '../../../../Interface/constant';
 
-interface PaginationParams {
-  search?: string | null;
-  page?: number;
-  limit?: number;
-  id?: number;
-  category?: string;
-}
+
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    // for geting type product and dashboard product
     getTypeProducts: builder.query<Product[], PaginationParams>({
       query: ({ page, limit, search }) => ({
         url: `categories/list/?page=${page}&limit=${limit}&search=${search}`,
@@ -31,6 +26,7 @@ export const productApi = api.injectEndpoints({
         params,
       }),
     }),
+    //  wishlist section product
     getWishlistProducts: builder.query<Product[], PaginationParams>({
       query: (params) => ({
         url: `categories/Favourites`,
@@ -105,7 +101,7 @@ export const productApi = api.injectEndpoints({
        
       }),
     }),
-    // deletd ads
+    // delete ads
     getDeleteAds: builder.query({
       query: (params) => ({
         url: `categories/removead/`,

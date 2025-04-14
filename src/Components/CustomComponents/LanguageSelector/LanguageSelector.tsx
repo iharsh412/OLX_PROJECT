@@ -12,22 +12,24 @@ export default function LanguageSelector() {
   const [languageDropdown, setLanguageDropdown] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(language);
   const dispatch = useDispatch();
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLButtonElement>(null);
 
   //  HANDLE CLICK
-
+  //  to handle what we selected
   const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language);
     setLanguageDropdown(false);
   };
+  // toggle the dropdown if selscted
   function toggleLanguageDropdown() {
     setLanguageDropdown(!languageDropdown);
   }
   // HOOKS
+  // dispatch the value to the store
   useEffect(() => {
     dispatch(setLanguage(selectedLanguage));
   }, [selectedLanguage, dispatch]);
-
+  //  close if click outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -45,12 +47,13 @@ export default function LanguageSelector() {
   }, []);
 
   return (
-    <div className={CLASSNAME.WRAPPER} ref={dropdownRef}>
+    <button className={CLASSNAME.WRAPPER} onClick={toggleLanguageDropdown} ref={dropdownRef}>
+      {/* selected language */}
       <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
-      <div
+      {/* updown icon */}
+      <button
         className={CLASSNAME.DROPDOWN}
-        role="button"
-        onClick={toggleLanguageDropdown}
+        
       >
         <img
           src={ICONS.upDown}
@@ -59,23 +62,25 @@ export default function LanguageSelector() {
             languageDropdown ? CLASSNAME.ROTATE : CLASSNAME.NOTROTATE
           }`}
         />
-      </div>
+      </button>
+      {/* language dropdown */}
       {languageDropdown && (
         <div className={CLASSNAME.LIST}>
-          <div
+          <button
             className={CLASSNAME.ITEMS}
             onClick={() => handleLanguageChange(TEXT.ENGLISH)}
           >
             {TEXT.ENGLISH}
-          </div>
-          <div
+          </button>
+          <hr />
+          <button
             className={CLASSNAME.ITEMS}
             onClick={() => handleLanguageChange(TEXT.HINDI)}
           >
             {TEXT.HINDI}
-          </div>
+          </button>
         </div>
       )}
-    </div>
+    </button>
   );
 }

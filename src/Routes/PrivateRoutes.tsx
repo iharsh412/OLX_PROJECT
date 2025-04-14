@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import { CustomRouter } from './RootRoutes';
-import { HomeLayout } from '../Views/Home/HomeLayout';
+import  HomeLayout  from '../Views/Home';
 import Login from '../Views/Login/LoginSection';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';

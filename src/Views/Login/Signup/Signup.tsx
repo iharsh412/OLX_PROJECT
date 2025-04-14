@@ -8,15 +8,16 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import {  toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
 
 export default function Signup() {
   const navigate = useNavigate();
-
   const [post, { isLoading }] = usePostSignupDataMutation();
+  // handle click
   async function handleSubmit(
     values: FORM_VALUES,
     { resetForm }: { resetForm: () => void }
@@ -52,12 +53,11 @@ export default function Signup() {
               <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.USERNAME_INPUT}>
-                  <label htmlFor="useername">{TEXT.USERNAME} </label>
+                  <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME} </label>
                   <input
-                    title="Username"
-                    type="text"
-                    id="username"
-                    name="username"
+                    title={TEXT.USERNAME}
+                    type={TYPE.TEXT}
+                    name={TEXT.USERNAME}
                     value={values.username}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -67,11 +67,10 @@ export default function Signup() {
                   )}
                 </div>
                 <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor="email">{TEXT.EMAIL} </label>
+                  <label htmlFor={COMMON_TEXT.EMAIL_S}>{TEXT.EMAIL} </label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
+                    type={TYPE.EMAIL}
+                    name={COMMON_TEXT.EMAIL_S}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,11 +80,10 @@ export default function Signup() {
                   )}
                 </div>
                 <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor="password">{TEXT.PASSWORD} </label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{TEXT.PASSWORD} </label>
                   <input
-                    type="password"
-                    id="password"
-                    name="password"
+                    type={TYPE.PASSWORD}
+                    name={COMMON_TEXT.PASSWORD_S}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -95,12 +93,11 @@ export default function Signup() {
                   )}
                 </div>
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
-                  <label htmlFor="password">{TEXT.CONFIRM_PASSWORD} </label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{TEXT.CONFIRM_PASSWORD} </label>
                   <input
-                    title="Confirm Password"
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
+                    title={COMMON_TEXT.PASSWORD_S}
+                    type={TYPE.PASSWORD}
+                    name={COMMON_TEXT.PASSWORD}
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -113,21 +110,20 @@ export default function Signup() {
                 </div>
                 <button
                   className={CLASSNAME.SUBMIT_BUTTON}
-                  type="submit"
+                  type={TYPE.SUBMIT}
                   disabled={isSubmitting || isLoading}
                 >
                   {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT}
                 </button>
-                <footer className="login_footer_parent">
-                  <p className="login_footer_first_section">
-                    All your personal details are safe with us
+                <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
+                  <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+                    {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
                   </p>
-                  <p className="login_footer_second_section">
-                    If you continue, you are accepting OLX Terms and Conditions
-                    and Privacy Policy
+                  <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                    {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
                   </p>
                 </footer>
-                
+                <ToastContainer />
               </form>
             </div>
           );

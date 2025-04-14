@@ -9,28 +9,24 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import {  toast } from 'react-toastify';
-// import { useNavigate } from 'react-router-dom';
-import { COMMON_TEXT } from '../../../Interface/constant';
+import { ToastContainer, toast } from 'react-toastify';
+import { COMMON_TEXT, TYPE } from "../../../Interface/constant";
 import { useState } from 'react';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
 
 export default function ForgetPass() {
-  // const navigate = useNavigate();
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
+  //  HOOKS
   async function handleSubmit(values: FORM_VALUES) {
     try {
-      const response = await post(values);
-      console.log(response);
+      await post(values).unwrap();
       setDisabled(true);
-      //   toast.success('Password reset link sent to your email address');
-      // navigate('/newpassword');
+      toast.success(TEXT.SUCCESS)
     } catch (error) {
-      console.log(error);
-      toast.error('Something went wrong, please try again');
+      toast.error(TEXT.FAILURE);
     }
   }
-
   return (
     <>
       <Formik
@@ -51,11 +47,11 @@ export default function ForgetPass() {
             <div className={CLASSNAME.WRAPPER}>
               <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
               <div className={CLASSNAME.EMAIL_INPUT}>
-                <label htmlFor="email">Email</label>
+                <label htmlFor={COMMON_TEXT.EMAIL_S}>Email</label>
                 <input
-                  type="email"
-                  id="email"
-                  name="email"
+                  type={TYPE.EMAIL}
+                  id={COMMON_TEXT.EMAIL_S}
+                  name={COMMON_TEXT.EMAIL_S}
                   value={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -66,9 +62,9 @@ export default function ForgetPass() {
               </div>
               <span className={CLASSNAME.TEXT}>{TEXT.VALID}</span>
               <button
-              title='Submit'
+                title={COMMON_TEXT.SUBMIT}
                 className={CLASSNAME.SUBMIT_BUTTON}
-                type="submit"
+                type={TYPE.SUBMIT}
                 disabled={isSubmitting || isLoading || disabled}
                 onClick={() => handleSubmit()}
               >
@@ -76,17 +72,16 @@ export default function ForgetPass() {
               </button>
               {disabled && (
                 <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>
-              )}{' '}
-               <footer className="login_footer_parent">
-          <p className="login_footer_first_section">
-            All your personal details are safe with us
-          </p>
-          <p className="login_footer_second_section">
-            If you continue, you are accepting OLX Terms and Conditions and
-            Privacy Policy
-          </p>
-        </footer>
-              
+              )}
+              <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
+                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+                  {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                </p>
+                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                  {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                </p>
+              </footer>
+              <ToastContainer />
             </div>
           );
         }}

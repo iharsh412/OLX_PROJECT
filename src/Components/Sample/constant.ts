@@ -1,3 +1,5 @@
+import { Product } from "../../Interface/constant";
+
 export const CLASSNAME = {
   WRAPPER: 'sample-Wrapper',
   ADD_SECTION: 'sample-addSection',
@@ -16,3 +18,14 @@ export const TEXT = {
     H3: 'Buy & Sell Used Bikes in India',
   },
 };
+export interface SampleData {
+  category?: string;
+  subcategory: string;
+  brand: string[];
+  price: [number, number];
+}
+export interface ResponseData {
+  products?: Product[];
+  subcategories?: { subcategory_name: string; product_count: number }[];
+  Brand?: string[];
+}

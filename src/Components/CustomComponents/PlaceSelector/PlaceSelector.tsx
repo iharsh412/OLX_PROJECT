@@ -14,12 +14,13 @@ export default function PlaceSelector() {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // HANDLE CLICK
+  // togle dropdown if click inside 
   function toggleAreaDropdown() {
     setAreaDropdown(!areaDropdown);
   }
 
   // HOOKS
-
+  //  close clicking outside the dropdown
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (
@@ -30,19 +31,21 @@ export default function PlaceSelector() {
       }
     }
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
 
   return (
-    <div className={CLASSNAME.WRAPPER} ref={dropdownRef}>
+    <div className={CLASSNAME.WRAPPER} onClick={toggleAreaDropdown} ref={dropdownRef}>
+        {/* search img */}
       <img
         src={ICONS.searchIcon}
         alt={COMMON_TEXT.IMG}
         className={CLASSNAME.SEARCH}
       />
+      {/* input field */}
       <input
         type="text"
         className={CLASSNAME.INPUT}
@@ -50,9 +53,9 @@ export default function PlaceSelector() {
         value={area}
         onChange={(e) => dispatch(setArea(e.target.value))}
       />
+      {/* dropdown icon */}
       <span
         className={CLASSNAME.DROPDOWN}
-        onClick={toggleAreaDropdown}
       >
         <img
           src={ICONS.upDown}
@@ -62,7 +65,9 @@ export default function PlaceSelector() {
               : CLASSNAME.NOTROTATE
             }`}
         />
-      </span>
+      </span> 
+      
+      {/* area dropdown */}
 
       {areaDropdown && (
         <div className={CLASSNAME.LIST}>

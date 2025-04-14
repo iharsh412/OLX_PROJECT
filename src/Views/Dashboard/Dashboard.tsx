@@ -7,28 +7,26 @@ import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Interface/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
-// import { setItem } from '../../Store/AreaItem/index.ts';
 
 export default function Dashboard() {
-  
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
-
   const limit = 12;
-  const { data, error, isLoading, refetch } = useGetTypeProductsQuery(
+  const { data, isError, isLoading, refetch } = useGetTypeProductsQuery(
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
+    // {refetchOnMountOrArgChange: true }
   );
-
   const [totalImages, setTotalImages] = useState<Product[]>([]);
-
+  // Hooks
   useEffect(() => {
     setTotalImages([]);
-    refetch();
+    refetch(); // reftech htao
   }, [search]);
 
   useEffect(() => {
     if (data) {
+        // setTotalImages((prev)=>([...prev,...data]))
       setTotalImages((prevImages) => {
         const newDataMap = new Map(data.map((item) => [item.id, item]));
 
@@ -48,17 +46,20 @@ export default function Dashboard() {
       });
     }
   }, [data]);
-
   return (
     <>
-      {isLoading ? (
+      {isLoading && (
         <h1>{COMMON_TEXT.LOADING}</h1>
-      ) : error ? (
+      )}
+      {isError && (
         <h1>{COMMON_TEXT.ERROR}</h1>
-      ) : (
+      )}
+      {/* total images  */}
+      {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
-            {totalImages.length ? (
+            {/* totalImages.length greater then 0 */}
+            {data && totalImages.length && (
               totalImages?.map((product: Product) => (
                 <ImagesLayout
                   key={product.id}
@@ -66,18 +67,20 @@ export default function Dashboard() {
                   refetchDashboard={refetch}
                 />
               ))
-            ) : (
+            )}
+            {/* totalImages.length is eqauls to 0 */}
+            { data && totalImages.length === 0 && (
               <h2>{COMMON_TEXT.NO_PRODUCTS}</h2>
             )}
           </div>
-
+          {/* load section */}
           {data?.length === limit && (
-            <div
+            <button
               className={CLASSNAME.LOAD}
               onClick={() => setPage((prev) => prev + 1)}
             >
               {TEXT.LOAD}
-            </div>
+            </button>
           )}
         </div>
       )}

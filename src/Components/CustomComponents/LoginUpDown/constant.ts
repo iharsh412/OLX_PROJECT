@@ -1,8 +1,9 @@
-import { User, Package, CreditCard, HelpCircle, Settings } from 'lucide-react';
+import { User, HelpCircle, Settings } from 'lucide-react';
 import {  ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export interface ProfileDropdownProps {
   setOpenProfile?: (arg0: (prev: boolean) => boolean) => void;
+ 
 }
 
 interface DropdownItem {
@@ -19,14 +20,8 @@ export const dropdownItems: DropdownItem[] = [
       navigate(ROUTES_CONFIG.MYADS.path)
     }
   },
-  {
-    icon: Package,
-    label: 'Buy Business Packages',
-  },
-  {
-    icon: CreditCard,
-    label: 'Bought Packages & Billing',
-  },
+
+
   {
     icon: HelpCircle,
     label: 'Help',
@@ -50,5 +45,7 @@ export const CLASSNAME = {
 };
 export const TEXT = {
      VIEW_EDIT:" View and edit profile",
-     LOGOUT:"Logout"
+     LOGOUT:"Logout",
+     ERROR_LOGOUT:"Error occurs in logout",
+     SUCCESS:"Logout successfully"
 }

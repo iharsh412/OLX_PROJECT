@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
+import {toast} from 'react-toastify';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
-
 import './loginUpDown.css';
 import {
   ProfileDropdownProps,
@@ -14,6 +14,7 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const { username, refresh } = useSelector(
@@ -22,20 +23,12 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [post] = usePostLogoutDataMutation();
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // HANDLE CLICK
-  const handleClickOutside = (event: MouseEvent) => {
-    if (
-      dropdownRef.current &&
-      !dropdownRef.current.contains(event.target as Node)
-    ) {
-      setOpenProfile?.(() => false);
-    }
-  };
+    // Handle CLICK
+    // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
   };
+  // onclick logout
   const handleLogout = () => {
     try {
       post({ refresh: refresh }).unwrap();
@@ -46,25 +39,20 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           access: null,
           id: null,
           username: null,
-        })
+        })    
       );
-      navigate('/');
+      toast.success(TEXT.SUCCESS)
+      navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
-      console.log(error);
+      toast.error(TEXT.ERROR_LOGOUT);
+     
     }
   };
 
-  // HOOKS
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
 
   return (
-    <div className={CLASSNAME.PROFILE_DROPDOWN} ref={dropdownRef}>
+    <div className={CLASSNAME.PROFILE_DROPDOWN}   >
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
@@ -96,7 +84,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             );
           })}
           <button
-            key="logout"
+            title={TEXT.LOGOUT}
             onClick={() => {
               handleItemClick();
               handleLogout();

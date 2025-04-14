@@ -18,9 +18,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(<Route path="*" element={<RootRouter />} />),
   { basename: baseName }
 );
-
+  
 function App() {
-  // const [count, setCount] = useState<number>(0);
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>

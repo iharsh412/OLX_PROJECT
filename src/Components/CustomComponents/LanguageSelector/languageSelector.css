@@ -11,6 +11,8 @@
     font-weight: 700;
     position: relative;
     cursor: pointer;
+    background-color: rgba(0, 47, 52, 0.0);
+    border: none;
 }
 
 /* Selected language text */
@@ -23,6 +25,9 @@
     display: flex;
     padding: 5px;
     box-sizing: border-box;
+    background-color: rgba(0, 47, 52, 0.0);
+    border: none;
+
 }
 
 /* Dropdown icon */
@@ -30,6 +35,7 @@
     transition: transform 0.3s ease; 
     width: 24px;
     height: 24px;
+    cursor: pointer;
 }
 
 
@@ -61,6 +67,9 @@
     padding: 8px 16px;
     font-size: 14px;
     cursor: pointer;
+    background-color: white;
+    width: 100%;
+    border:none
 }
 
 .languageDropdown-item:hover {

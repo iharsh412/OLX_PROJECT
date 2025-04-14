@@ -1,26 +1,27 @@
-// import { useSelector } from 'react-redux';
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
-// import { RootState } from '../../Store';
 import ImageLayout from '../../Components/CustomComponents/ImageLayout/CarImage';
 import './CartSection.css';
 import { Product } from '../../Interface/constant';
-import { CLASSNAME } from './constant';
+import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function CartSection() {
-  const { data, error, isLoading, refetch } = useGetWishlistProductsQuery(
-    {},{ refetchOnMountOrArgChange: true }
+  const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
+    {}, { refetchOnMountOrArgChange: true }
   );
 
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>
-        <span className={CLASSNAME.TEXT}> WISHLIST</span>
-        {isLoading ? (
+        <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
+        {isLoading && (
           <h1>{COMMON_TEXT.LOADING}</h1>
-        ) : error ? (
+        )}
+        {isError && (
           <h1>{COMMON_TEXT.ERROR}</h1>
-        ) : (
+        )}
+        {/*  data then render */}
+        {data && data.length && (
           <div className={CLASSNAME.IMAGE_SECTION}>
             {data?.map((products: Product) => (
               <ImageLayout
@@ -30,6 +31,10 @@ export default function CartSection() {
               />
             ))}
           </div>
+        )}
+        {/* if data length === 0 */}
+        {data && data.length === 0 && (
+          <h1>{COMMON_TEXT.NO_PRODUCTS}</h1>
         )}
       </div>
     </>

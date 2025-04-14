@@ -1,31 +1,30 @@
 import { Formik } from 'formik';
 import './signin.css';
-import { FORM_VALUES, INITIAL_VALUES, VALIDATION, CLASSNAME } from './constant';
+import { FORM_VALUES, INITIAL_VALUES, VALIDATION, CLASSNAME, TEXT } from './constant';
 import { toast } from 'react-toastify';
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import {CLASSNAME as LOGIN_SECTION_CLASSNAME,TEXT as LOGIN_SECTION_TEXT} from "../LoginSection/constant"
 
 export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
   const [post] = usePostSigninDataMutation();
+  // handle click
   async function handleSubmit(
     values: FORM_VALUES,
     { resetForm }: { resetForm: () => void }
   ) {
-    console.log(values);
-
     try {
       const response = await post(values).unwrap();
-
-      toast('Login Successfull');
+      toast(TEXT.LOGIN_SUCCESSFUL);
       resetForm();
       dispatch(updateAuthState(response));
-      navigate('/', { replace: true });
+      navigate(ROUTES_CONFIG.HOMEPAGE.path, { replace: true });
     } catch (error) {
       toast.error((error as any)?.data?.detail);
     }
@@ -49,14 +48,15 @@ export default function Signin() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>Sign In</h2>
+              <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
+              {/* form section */}
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor={COMMON_TEXT.EMAIL_S}>{COMMON_TEXT.EMAIL}</label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
+                    type={TYPE.EMAIL}
+                    id={COMMON_TEXT.EMAIL_S}
+                    name={COMMON_TEXT.EMAIL_S}
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -66,11 +66,11 @@ export default function Signin() {
                   )}
                 </div>
                 <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{COMMON_TEXT.PASSWORD}</label>
                   <input
-                    type="password"
-                    id="password"
-                    name="password"
+                    type={TYPE.PASSWORD}
+                    id={COMMON_TEXT.PASSWORD_S}
+                    name={COMMON_TEXT.PASSWORD_S}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -82,32 +82,33 @@ export default function Signin() {
 
                 <button
                   className={CLASSNAME.SUBMIT_BUTTON}
-                  type="submit"
+                  type={TYPE.SUBMIT}
                   disabled={isSubmitting}
                 >
-                  Login
+                  {TEXT.LOGIN}
                 </button>
-               
+
               </form>
               <button
                 className={CLASSNAME.FORGET}
-                type="button"
-                title="forget password"
+                type={TYPE.BUTTON}
+                title={COMMON_TEXT.PASSWORD_S}
                 onClick={() =>
                   navigate(ROUTES_CONFIG.FORGETPASS.path, { replace: true })
                 }
               >
-                forget password?
+                {TEXT.FORGET_PASSWORD}
               </button>
-              <footer className="login_footer_parent">
-          <p className="login_footer_first_section">
-            All your personal details are safe with us
-          </p>
-          <p className="login_footer_second_section">
-            If you continue, you are accepting OLX Terms and Conditions and
-            Privacy Policy
-          </p>
-        </footer>
+              {/* footer section */}
+              <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
+                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+                  {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                </p>
+                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                  {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                </p>
+              </footer>
+
             </div>
           );
         }}

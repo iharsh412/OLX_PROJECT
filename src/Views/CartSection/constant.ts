@@ -4,4 +4,7 @@ export const CLASSNAME ={
    IMAGE_SECTION:"cart_imageSection",
 
 }
+export const TEXT ={
+   WISHLIST:"WISHLIST",
+}
 

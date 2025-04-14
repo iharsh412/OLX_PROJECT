@@ -8,36 +8,25 @@ import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
 import { Product } from '../../Interface/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
+import { SampleData, ResponseData } from './constant';
 
-interface SampleData {
-  category?: string;
-  subcategory: string;
-  brand: string[];
-  price: [number, number];
-}
-interface ResponseData {
-  products?: Product[];
-  subcategories?: { subcategory_name: string; product_count: number }[];
-  Brand?: string[];
-}
 
 export default function Sample() {
   const limit = 4;
-  const [page, setPage] = useState<number>(1);
+  // const [totalpage, setTotalpage] = useState<number>(1);
+  const [page] = useState<number>(1);
   const { category } = useParams();
-  const [showButton, setshowButton] = useState({ prev: true, next: true });
+  const [ , setShowButton] = useState({ prev: false, next: false });
   const [sampleData, setSampleData] = useState<SampleData>({
     category: category,
     subcategory: '',
     brand: [],
     price: [0, 1500000],
   });
-
   const [price, setPrice] = useState<[number, number]>([0, 1500000]);
   const [response, setResponse] = useState<ResponseData | undefined>();
-
-  const [productData, { isLoading, error }] = usePostCategoryProductsMutation();
-
+  const [productData, { isLoading, isError }] = usePostCategoryProductsMutation();
+  // Hooks
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -47,16 +36,17 @@ export default function Sample() {
           limit,
         }).unwrap();
 
+
         setResponse(response);
         if (
           response?.products?.length === 0 ||
           response?.products?.length < limit
         ) {
-          setshowButton((value) => ({ ...value, next: false }));
-        } else setshowButton((value) => ({ ...value, next: true }));
+          setShowButton((value) => ({ ...value, next: false }));
+        } else setShowButton((value) => ({ ...value, next: true }));
         if (page === 1) {
-          setshowButton((value) => ({ ...value, prev: false }));
-        } else setshowButton((value) => ({ ...value, prev: true }));
+          setShowButton((value) => ({ ...value, prev: false }));
+        } else setShowButton((value) => ({ ...value, prev: true }));
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -72,9 +62,31 @@ export default function Sample() {
       brand: [],
       price: [0, 1500000],
     });
+    // setPage(1);
   }, [category]);
+  // useEffect(() => {
+  //   const Pages = response?.count / limit + (response?.count % limit ? 1 : 0);
+  //   setTotalpage(setPage)
 
-  console.log(response,"uygruey")
+  //   if (Pages <= 1) {
+  //     setShowButton({ prev: false, next: false })
+  //   }
+  //   else if (Pages > 1 && page === 1) {
+  //     setShowButton({ prev: false, next: true })
+  //   }
+  //   else if (Pages > 1 && page === Pages) {
+  //     setShowButton({ prev: true, next: false })
+  //   }
+  //   else {
+  //     setShowButton({ prev: true, next: true })
+  //   }
+
+
+
+
+  // }, [response, page])
+
+  console.log(response, "uygruey")
 
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
@@ -101,12 +113,12 @@ export default function Sample() {
     });
   };
 
-  const handlePrevPage = () => {
-    setPage((prev) => (prev - limit <= 0 ? 1 : prev - limit));
-  };
-  const handleNextPage = () => {
-    setPage((prev) => prev + limit);
-  };
+  // const handlePrevPage = () => {
+  //   setPage((prev) => (prev - limit <= 0 ? 1 : prev - limit));
+  // };
+  // const handleNextPage = () => {
+  //   setPage((prev) => prev + limit);
+  // };
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -163,7 +175,7 @@ export default function Sample() {
 
             <div className="sample-subcategoryOption">
               {response?.subcategories &&
-              response?.subcategories?.length > 0 ? (
+                response?.subcategories?.length > 0 ? (
                 response?.subcategories?.map(
                   (
                     category: {
@@ -272,38 +284,46 @@ export default function Sample() {
         </div>
 
         {/* IMAGE SECTION */}
-        {isLoading ? (
+        {isLoading && (
           <h1 className="sample-errorAndLoading">Loading...</h1>
-        ) : error ? (
+        )}
+        {isError && (
           <h1 className="sample-errorAndLoading">Error in loading products</h1>
-        ) : (
+        )}
+        {response && (
           <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
-            {response?.products?.length ? (
+            {response?.products?.length && (
               response?.products?.map((product: Product) => (
                 <ImagesLayout key={product.id} data={product} />
               ))
-            ) : (
+            )
+            }
+            {response?.products?.length === 0 && (
               <h3 className="sample-noProduct">No product available</h3>
             )}
-            <div className="sample-PageChange">
-              <span
-                className={`sample-PREV ${
-                  showButton.prev ? '' : 'sample-disabled'
-                }`}
+            {/* {totalPage >= 2 && <div className="sample-PageChange">
+              <button
+                className={`sample-PREV ${showButton.prev ? '' : 'sample-disabled'
+                  }`}
                 onClick={handlePrevPage}
               >
                 Prev
-              </span>
+              </button>
+              <div className="sample-pagewrapper">
+                {Array(totalpage)?.map((_, index) => (
+                  <button onClick={() => setPage(page * limit + 1)} className={`sample-pageNumber ${index + 1 === page ? "sample-activepage" : ""}`}>{index + 1}</button>
+                ))}
+              </div>
 
-              <span
-                className={`sample-NEXT ${
-                  showButton.next ? '' : 'sample-disabled'
-                }`}
+              <button
+                className={`sample-NEXT ${showButton.next ? '' : 'sample-disabled'
+                  }`}
                 onClick={handleNextPage}
               >
                 Next
-              </span>
+              </button>
             </div>
+            } */}
           </div>
         )}
       </div>

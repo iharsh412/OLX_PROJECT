@@ -5,6 +5,8 @@
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
 
+/* WRAPPER  */
+
 .home_nav_wrapper {
 
   background-color: rgba(0, 47, 52, 0.03);
@@ -12,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 .home_nav {
@@ -21,7 +23,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  
+
 }
 
 /* nav logo */
@@ -29,6 +31,10 @@
   padding: 0px 4px;
   box-sizing: border-box;
   flex-shrink: 0;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 47, 52, 0.0);
 }
 
 /* input area fieldset */
@@ -52,7 +58,7 @@
   justify-content: space-evenly;
   flex-shrink: 0;
   margin-left: 10px;
-  
+
 
 }
 
@@ -64,7 +70,7 @@
   border: none;
   border-radius: 50%;
   background-color: rgba(0, 47, 52, 0.00);
-  
+
 }
 
 /* chat section */
@@ -76,14 +82,15 @@
   border-radius: 50%;
   background-color: rgba(0, 47, 52, 0.00);
 }
-.home_nav_chat img{
+
+.home_nav_chat img {
   background-color: none;
 
 }
 
 
 /* notification section */
-.home_nav_notification{
+.home_nav_notification {
   padding: 2px;
   margin: 2px;
   cursor: pointer;
@@ -92,12 +99,14 @@
   background-color: rgba(0, 47, 52, 0.0);
 
 }
+
 /* login  */
-.home_nav_login{
+.home_nav_login {
   padding: 10px;
 }
+
 /* profile section */
-.home_nav_profile{
+.home_nav_profile {
   padding: 2px;
   margin: 2px;
   display: flex;
@@ -105,29 +114,51 @@
   width: 80px;
   align-items: center;
   justify-content: space-evenly;
-  position: relative;;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  border-radius: 50%;
+  background-color: rgba(0, 47, 52, 0.0);
+  ;
 }
-.home_nav_profilephoto{
-  
+
+.home_nav_profilephoto {
+
   padding: 1px;
   margin: 1px;
- 
+
 }
-.home_nav_profilephoto img{
+.home_nav-large-initial{
+  width: 2rem;
+  height: 2rem;
+  background-color: #cdbfee;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(0, 0, 0);
+  font-size: 1.25rem;
+  font-weight: 600;
+  border: 1px solid black;
+}
+
+.home_nav_profilephoto img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
   border: 1px solid black;
-  
+
 }
-.home_nav_profile_upDown{
+
+.home_nav_profile_upDown {
   margin: 2px;
   border: none;
   cursor: pointer;
   border-radius: 50%;
   background-color: rgba(0, 47, 52, 0.0);
 }
-.home_nav_profile_upDown img{
+
+.home_nav_profile_upDown img {
   width: 20px;
   height: 20px;
 
@@ -135,16 +166,17 @@
 
 /* sell button css */
 .home_nav_sell {
-  
+
   height: 48px;
   position: relative;
   cursor: pointer;
- 
+
   border: none;
   background-color: rgba(248, 249, 250, 1);
 }
-.home_nav_sell img{
-    object-fit: cover;
+
+.home_nav_sell img {
+  object-fit: cover;
 }
 
 .home_nav_sell_inner {
@@ -180,7 +212,7 @@
     width: 100%;
   }
 
-  .home_nav_item_wrapper{
+  .home_nav_item_wrapper {
     width: 100%;
   }
 

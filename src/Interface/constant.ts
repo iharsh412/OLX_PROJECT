@@ -16,6 +16,13 @@ export interface Product {
   created_at?: React.ReactNode;
  
 }
+export interface PaginationParams {
+  search?: string | null;
+  page?: number;
+  limit?: number;
+  id?: number;
+  category?: string;
+}
 export interface ImageProps {
   data: {
     created_at?: React.ReactNode;
@@ -43,6 +50,23 @@ export const COMMON_TEXT ={
   ERROR:"Error in loading products",
   LOADING:"Loading products...",
   NO_PRODUCTS:"Oops... No product",
-  SENDING:"Sending..."
+  SENDING:"Sending...",
+  EMAIL:"Email",
+  EMAIL_S:"email",
+  PASSWORD:"Password",
+  PASSWORD_S:"password",
+  TEXT:"text",
+  SUBMIT:"submit"
   
+
+
+  
+}
+export const TYPE ={
+  EMAIL:"email" as "email",
+  PASSWORD:"password" as "password",
+  TEXT:"text" as "text",
+  SUBMIT:"submit" as "submit",
+  BUTTON:"button" as "button",
+
 }

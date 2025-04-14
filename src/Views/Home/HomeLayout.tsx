@@ -4,19 +4,22 @@ import Navbar from '../../Components/Navbar';
 import NavCategory from '../../Components/NavCategory';
 import Ads from '../../Components/AdsSection';
 import Footer from '../../Components/Footer';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
 import { useEffect } from 'react';
 import { setLoading } from '../../Store/Loader';
+import { CLASSNAME, TEXT } from "./constant"
 
-export function HomeLayout() {
+export default function HomeLayout() {
+
   const dispatch = useDispatch();
   const loader = useSelector((state: RootState) => state.loader.isLoading);
-   console.log(loader,"loader")
+  // HOOKS 
+    // for session expired
   useEffect(() => {
     if (loader) {
-      toast.error('!! Session Expired, Please Login Again', {
+      toast.error(TEXT.SESSION_EXPIRED, {
         position: 'top-center',
         autoClose: 5000,
         closeOnClick: true,
@@ -24,17 +27,21 @@ export function HomeLayout() {
       dispatch(setLoading(false));
     }
   }, [loader]);
+
   return (
     <>
-      <div className="AppWrapper">
-        
+      <div className={CLASSNAME.WRAPPER}>
+        {/* Navbar */}
         <Navbar />
+        {/* Nav Category */}
         <NavCategory />
-
-        <div className="AppOulet">
+        {/* Outlet */}
+        <div className={CLASSNAME.OUTLET}>
           <Outlet />
         </div>
+        {/* add section */}
         <Ads />
+        {/* Footer */}
         <Footer />
       </div>
     </>

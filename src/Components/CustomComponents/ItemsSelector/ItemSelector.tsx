@@ -4,16 +4,21 @@ import { ChangeEvent, useEffect, useState } from 'react';
 import ICONS from '../../../assets';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
+import { CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 
 export default function ItemsSelector() {
   const items = useSelector((state: RootState) => state?.areaItem?.item);
-
   const dispatch = useDispatch();
   const [object, setObject] = useState(items ?? '');
   const [debouncedValue, setDebouncedValue] = useState(object);
-
-
-  
+  // click
+  // onchange dispatch the input 
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setObject(e.target.value);
+  }
+  // Hooks
+  // for debouncing 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(object);
@@ -24,7 +29,6 @@ export default function ItemsSelector() {
     };
   }, [object]);
 
- 
   useEffect(() => {
     if (debouncedValue === '' || debouncedValue === null) {
       dispatch(setItem(null));
@@ -33,32 +37,29 @@ export default function ItemsSelector() {
     }
   }, [debouncedValue, dispatch]);
 
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setObject(e.target.value);
-  }
-
   return (
-    <div className="home_nav_input_objects">
+    <div className={CLASSNAME.WRAPPER}>
+      {/* input field */}
       <input
-        type="text"
-        className="home_nav_input_objects_field"
-        placeholder="Find Cars, Mobile Phones and more"
+        type={TYPE.TEXT}
+        className={CLASSNAME.INPUT}
+        placeholder={TEXT.PLACEHOLDER}
         value={object}
         onChange={(e) => {
           handleChange(e);
         }}
       />
+      {/* search button */}
       <button
-        className="home_nav_input_object_search"
+        className={CLASSNAME.SEARCH}
         onClick={() => {
           dispatch(setItem(object));
         }}
       >
         <img
-          className="home_nav_input_objects_icon"
+          className={CLASSNAME.SEARCH_ICON}
           src={ICONS.searchIconWhite}
-          alt="search"
+          alt={COMMON_TEXT.IMG}
         />
       </button>
     </div>

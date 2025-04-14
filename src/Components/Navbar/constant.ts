@@ -11,6 +11,7 @@ export const CLASSNAME = {
   NOTIFICATION: 'home_nav_notification',
   PROFILE: 'home_nav_profile',
   PROFILE_PHOTO: 'home_nav_profilephoto',
+  PROFILE_INITIAL:'home_nav-large-initial',
   PROFILE_UPDOWN: 'home_nav_profile_upDown',
   LOGIN: 'home_nav_login',
   SELL: 'home_nav_sell',
@@ -18,6 +19,7 @@ export const CLASSNAME = {
   SELL_INNER: 'home_nav_sell_inner',
   SELL_ADD: 'home_nav_sell_add',
   SELL_TEXT: 'home_nav_sell_text',
+  
 };
 
 export const TEXT ={

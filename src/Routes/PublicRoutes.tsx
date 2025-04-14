@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import Dashboard from '../Views/Dashboard';
 import { CustomRouter } from './RootRoutes';
-import { HomeLayout } from '../Views/Home/HomeLayout';
+import  HomeLayout  from '../Views/Home';
 import Login from '../Views/Login/LoginSection';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
@@ -22,7 +22,7 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     title: ROUTES_CONFIG.HOMEPAGE.title,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: ROUTES_CONFIG.LOGIN.path, element: <Login /> },
+      { path: ROUTES_CONFIG.LOGIN.path, element: <Login  /> },
       { path: ROUTES_CONFIG.LOGIN_PHONE.path, element: <LoginWithPhone /> },
       { path: ROUTES_CONFIG.SIGNUP.path, element: <Signup /> },
       { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },
@@ -31,7 +31,6 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.VERIFICATION.path, element: <Verification /> },
       { path: ROUTES_CONFIG.NEWPASSWORD.path, element: <NewPass /> },
       { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
-
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
     ],
   },
