@@ -5,7 +5,7 @@
     left: 170px;
   }
   
-  .profile-button {
+  /* .profile-button {
     display: flex;
     align-items: center;
     background-color: #ede9fe;
@@ -14,12 +14,12 @@
     padding: 0.5rem;
     cursor: pointer;
     transition: background-color 0.2s;
-  }
+  } */
   
-  .profile-button:hover {
+  /* .profile-button:hover {
     background-color: #ddd6fe;
-  }
-  
+  } */
+  /* PROFILE.IITIAL */
   .profile-initial {
     width: 2rem;
     height: 2rem;

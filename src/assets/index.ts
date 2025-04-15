@@ -21,6 +21,7 @@ import notification from './vector/notification.svg';
 import chat from './vector/chat.svg';
 import cross from './vector/cross.svg';
 import bike from './vector/bike.svg';
+import edit from "./vector/edit.svg"
 import motivation1 from "./video/motivation.mp4"
 import motivation2 from "./video/motivation1.mp4"
 import motivation3 from "./video/motivation2.mp4"
@@ -69,7 +70,7 @@ const ICONS = {
   motivation3,
   motivation4,
   motivation1,
-  motivation5
-
+  motivation5,
+  edit,
 };
 export default ICONS;

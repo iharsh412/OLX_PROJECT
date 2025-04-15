@@ -31,27 +31,28 @@ const EditAds: React.FC<EditAdsProps> = ({
   const [post] = usePostEditDataMutation();
   const { data } = useGetProductsDetailQuery({ id: product.id });
   console.log(data, 'data');
-  const [formInitialValues,setFormInitialValues] = useState(initialValues);
+  const [formInitialValues, setFormInitialValues] = useState(initialValues);
 
-useEffect(() => {
-  if (data) {
-    setFormInitialValues((prev) => ({
-      ...prev,
-      ...Object.keys(initialValues).reduce((acc, key) => {
-        acc[key as keyof FormValues] = data[key] ?? prev[key as keyof FormValues];
-        return acc;
-      }, {} as FormValues),
-    }));
-  }
-}, [data]);
-  console.log(formInitialValues,"ini")
+  useEffect(() => {
+    if (data) {
+      setFormInitialValues((prev) => ({
+        ...prev,
+        ...Object.keys(initialValues).reduce((acc, key) => {
+          acc[key as keyof FormValues] =
+            data[key] ?? prev[key as keyof FormValues];
+          return acc;
+        }, {} as FormValues),
+      }));
+    }
+  }, [data]);
+
   const dropdownRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log("values",values)
+    console.log('values', values);
     const formData = new FormData();
 
     if (product?.id !== undefined) formData.append('id', String(product.id));
@@ -118,7 +119,7 @@ useEffect(() => {
           isSubmitting,
         }) => {
           const share = { handleChange, handleBlur, setFieldValue };
-          console.log(values,"values",formInitialValues)
+          console.log(values, 'values', formInitialValues);
 
           return (
             <form

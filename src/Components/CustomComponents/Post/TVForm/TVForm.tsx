@@ -16,12 +16,14 @@ import {
   TEXT,
 } from './constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {  toast } from 'react-toastify';
+import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
 export default function TVForm() {
   const { state } = useLocation();
+   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
   const notifyAdded = () => toast('Posted Successfuly!');
@@ -55,8 +57,9 @@ export default function TVForm() {
       await postNewProducts(formData).unwrap();
       notifyAdded();
       setShowResponse('Added');
-
       resetForm();
+      navigate(ROUTES_CONFIG.HOMEPAGE.path)
+     
     } catch (error) {
       notifyNotAdded();
       setShowResponse('Error');

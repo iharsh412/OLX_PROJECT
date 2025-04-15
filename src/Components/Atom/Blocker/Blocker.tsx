@@ -1,45 +1,42 @@
-import { useEffect } from 'react';
-import { unstable_useBlocker as useBlocker } from 'react-router-dom';
+import { useEffect, useContext } from 'react';
+import { UNSAFE_NavigationContext } from 'react-router-dom';
 
 interface PromptProps {
   when: boolean;
   message: string;
 }
 
-/**
- * Prompt component for blocking navigation or reload if a condition is met.
- * @param when // when is a boolean value that determines whether the prompt should be displayed or not.
- * @param message // message is the message that will be displayed in the prompt.
- * @returns null (side-effect based component)
- */
 function Prompt({ when, message }: PromptProps) {
-  // Use unstable useBlocker from react-router-dom to block navigation
-  useBlocker(() => {
-    if (when) {
-      return !window.confirm(message); // Show confirmation dialog for navigation
-    }
-    return false;
-  });
+  const navigator = useContext(UNSAFE_NavigationContext).navigator;
 
-  // Block page reload or close
+  // Block navigation within SPA
+  useEffect(() => {
+    if (!when) return;
+
+    const unblock = (navigator as any).block((tx: any) => {
+      if (window.confirm(message)) {
+        unblock(); // allow navigation after confirmation
+        tx.retry(); // retry the transition
+      }
+    });
+
+    return unblock;
+  }, [when, message, navigator]);
+
+  // Block reloads / tab closing
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       if (when) {
-        const confirmationMessage = message;
-        // eslint-disable-next-line no-param-reassign
-        event.returnValue = confirmationMessage; // Set the custom message
-        return confirmationMessage;
+        event.preventDefault();
+        event.returnValue = message;
+        return message;
       }
-      return undefined; // Add a return statement at the end of the arrow function
     };
 
     if (when) {
       window.addEventListener('beforeunload', handleBeforeUnload);
-    } else {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
     }
 
-    // Cleanup on component unmount
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };

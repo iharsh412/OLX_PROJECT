@@ -6,7 +6,7 @@ const ROUTES = {
   LOGIN: 'login',
   LOGIN_PHONE: 'loginPhone',
   LOGIN_PHONE_SMS: 'loginphonesms',
-  CART: 'cart',
+  CART: 'wishlist',
   PRODUCT: '/product/:productName/:productId',
   SELL: 'sell',
   ATTRIBUTES: 'attributes',

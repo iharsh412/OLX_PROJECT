@@ -56,7 +56,8 @@ export const COMMON_TEXT ={
   PASSWORD:"Password",
   PASSWORD_S:"password",
   TEXT:"text",
-  SUBMIT:"submit"
+  SUBMIT:"submit",
+  CONFIRM_PASSWORD_S:"confirmPassword",
   
 
 

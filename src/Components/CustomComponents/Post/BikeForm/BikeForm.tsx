@@ -7,12 +7,22 @@ import {
   TEXT,
 } from './constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation } from 'react-router-dom';
+import { useLocation ,useNavigate} from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { TextField, Description, Price, Photos, State, City, Seller } from "../Common/Common"
-import {  toast } from 'react-toastify';
+import {
+  TextField,
+  Description,
+  Price,
+  Photos,
+  State,
+  City,
+  Seller,
+} from '../Common/Common';
+import { toast } from 'react-toastify';
+import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 export default function BikeForm() {
   const { state } = useLocation();
+   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
   const notifyAdded = () => toast('Posted Successfuly!');
@@ -45,8 +55,8 @@ export default function BikeForm() {
       await postNewProducts(formData).unwrap();
       notifyAdded();
       setShowResponse('Added');
-
       resetForm();
+      navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
       setShowResponse('Error');
       notifyNotAdded();
@@ -79,21 +89,51 @@ export default function BikeForm() {
         handleSubmit,
         isSubmitting,
       }) => {
-
-        const share = { handleChange, handleBlur, setFieldValue }
+        const share = { handleChange, handleBlur, setFieldValue };
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
-         
               <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
 
-              < TextField type="text" htmlFor="brand" value={values.brand} err={errors.brand} tch={touched.brand} label="Brand" {...share} />
+              <TextField
+                type="text"
+                htmlFor="brand"
+                value={values.brand}
+                err={errors.brand}
+                tch={touched.brand}
+                label="Brand"
+                {...share}
+              />
               {/* Year Input */}
-              < TextField type="number" htmlFor="year" value={values.year} err={errors.year} tch={touched.year} label="Year" {...share} />
+              <TextField
+                type="number"
+                htmlFor="year"
+                value={values.year}
+                err={errors.year}
+                tch={touched.year}
+                label="Year"
+                {...share}
+              />
               {/* KM Driven */}
-              < TextField type="number" htmlFor="distance" value={values.distance} err={errors.distance} tch={touched.distance} label="KM driven" {...share} />
+              <TextField
+                type="number"
+                htmlFor="distance"
+                value={values.distance}
+                err={errors.distance}
+                tch={touched.distance}
+                label="KM driven"
+                {...share}
+              />
               {/* Title Input */}
-              < TextField type="text" htmlFor="title" value={values.title} label="Ad title" err={errors.title} tch={touched.title} {...share} />
+              <TextField
+                type="text"
+                htmlFor="title"
+                value={values.title}
+                label="Ad title"
+                err={errors.title}
+                tch={touched.title}
+                {...share}
+              />
               {/* Description Input */}
               <Description
                 type="text"
@@ -102,8 +142,8 @@ export default function BikeForm() {
                 err={errors.description}
                 tch={touched.description}
                 label="Description"
-                {...share} />
-
+                {...share}
+              />
             </div>
 
             <hr />
@@ -116,9 +156,8 @@ export default function BikeForm() {
               err={errors.price}
               tch={touched.price}
               label="Price"
-              {...share} />
-
-
+              {...share}
+            />
 
             <hr />
 
@@ -133,7 +172,9 @@ export default function BikeForm() {
             {/* Location */}
 
             <div className={CLASSNAME.LOCATION_WRAPPER}>
-              <h3 className={CLASSNAME.LOCATION_TEXT}>{TEXT.CONFIRM_LOCATION}</h3>
+              <h3 className={CLASSNAME.LOCATION_TEXT}>
+                {TEXT.CONFIRM_LOCATION}
+              </h3>
               <State
                 type="text"
                 htmlFor="state"
@@ -144,15 +185,17 @@ export default function BikeForm() {
                 {...share}
               />
 
-              {values.state && (<City
-                state={values.state}
-                type="text"
-                htmlFor="city"
-                value={values.city}
-                err={errors.city}
-                tch={touched.city}
-                label="City"
-                {...share} />
+              {values.state && (
+                <City
+                  state={values.state}
+                  type="text"
+                  htmlFor="city"
+                  value={values.city}
+                  err={errors.city}
+                  tch={touched.city}
+                  label="City"
+                  {...share}
+                />
               )}
             </div>
 
@@ -178,10 +221,8 @@ export default function BikeForm() {
                 label="Mobile Number"
                 err={errors.mobileNumber}
                 tch={touched.mobileNumber}
-                {...share} />
-
-
-
+                {...share}
+              />
             </div>
             <hr />
 
@@ -195,8 +236,8 @@ export default function BikeForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+                ? 'ERROR IN POSTING'
+                : 'POST'}
             </button>
           </>
         );

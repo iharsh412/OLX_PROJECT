@@ -1,4 +1,5 @@
 import { ErrorMessage } from 'formik';
+
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './common.css';
 import {
@@ -11,6 +12,52 @@ import {
 } from './constant';
 import ICONS from '../../../../assets';
 import { COMMON_TEXT } from '../../../../Interface/constant';
+
+const Year: React.FC<TextFieldProps> = ({
+  htmlFor,
+  type,
+  err,
+  label,
+  value,
+  tch,
+  handleBlur,
+  setFieldValue,
+}) => {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const value: string = e.target.value.slice(
+      0,
+      COUNT[label as keyof typeof COUNT]
+    );
+    setFieldValue?.(htmlFor, value);
+  }
+
+  return (
+    <div className={CLASSNAME.CONTAINER}>
+      <div className={CLASSNAME.LABEL_WRAPPER}>
+        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+          {label} *
+        </label>
+      </div>
+      <input
+        type={type}
+        name={htmlFor}
+        onChange={(e) => handleChange(e)}
+        onBlur={handleBlur}
+        value={value as string}
+        title={htmlFor}
+        className={`${CLASSNAME.INPUT} ${
+          err && tch ? CLASSNAME.INPUTERROR : ''
+        }`}
+      />
+      
+      <ErrorMessage
+        name={htmlFor}
+        component="div"
+        className={CLASSNAME.ERROR}
+      />
+    </div>
+  );
+};
 
 const TextField: React.FC<TextFieldProps> = ({
   htmlFor,
@@ -44,6 +91,46 @@ const TextField: React.FC<TextFieldProps> = ({
         type={type}
         name={htmlFor}
         onChange={(e) => handleChange(e)}
+        onBlur={handleBlur}
+        value={value as string}
+        title={htmlFor}
+        className={`${CLASSNAME.INPUT} ${
+          err && tch ? CLASSNAME.INPUTERROR : ''
+        }`}
+      />
+
+      <ErrorMessage
+        name={htmlFor}
+        component="div"
+        className={CLASSNAME.ERROR}
+      />
+    </div>
+  );
+};
+const Email: React.FC<TextFieldProps> = ({
+  htmlFor,
+  type,
+  err,
+  label,
+  value,
+  tch,
+  handleChange,
+  handleBlur,
+}) => {
+
+
+  return (
+    <div className={CLASSNAME.CONTAINER}>
+      <div className={CLASSNAME.LABEL_WRAPPER}>
+        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+          {label} *
+        </label>
+        
+      </div>
+      <input
+        type={type}
+        name={htmlFor}
+        onChange={handleChange}
         onBlur={handleBlur}
         value={value as string}
         title={htmlFor}
@@ -146,6 +233,48 @@ const Description: React.FC<TextFieldProps> = ({
     </>
   );
 };
+const AboutMe: React.FC<TextFieldProps> = ({
+  htmlFor,
+  err,
+  label,
+  value,
+  tch,
+  handleBlur,
+  setFieldValue,
+}) => {
+  return (
+    <>
+      <div className={CLASSNAME.LABEL_WRAPPER}>
+        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+          {label}
+        </label>
+        <span>
+          {value?.toString().length}/{COUNT.Description}
+        </span>
+      </div>
+      <textarea
+        title={htmlFor}
+        name={htmlFor}
+        onChange={(e) => {
+          setFieldValue?.(
+            htmlFor,
+            e.target.value.slice(0, COUNT['Description'])
+          );
+        }}
+        onBlur={handleBlur}
+        value={value as string}
+        className={`${CLASSNAME.DESCRIPTION} ${
+          err && tch ? CLASSNAME.INPUTERROR : ''
+        }`}
+      />
+      <ErrorMessage
+        name={htmlFor}
+        component="div"
+        className={CLASSNAME.ERROR}
+      />
+    </>
+  );
+};
 
 const Seller: React.FC<TextFieldProps> = ({
   htmlFor,
@@ -186,6 +315,43 @@ const Seller: React.FC<TextFieldProps> = ({
     </>
   );
 };
+const PhoneNumber: React.FC<TextFieldProps> = ({
+  htmlFor,
+  err,
+  label,
+  value,
+  tch,
+  type,
+  handleBlur,
+  handleChange,
+}) => {
+  return (
+    <>
+      <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
+        <span>{TEXT.CODE}</span>
+        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+          {label} 
+        </label>
+        <input
+          title={htmlFor}
+          type={type}
+          name={htmlFor}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          value={value as string}
+          className={`${CLASSNAME.MOBILE_NUMBER} ${
+            err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
+        />
+      </div>
+      <ErrorMessage
+        name={htmlFor}
+        component="div"
+        className={CLASSNAME.ERROR}
+      />
+    </>
+  );
+};
 
 const Photos: React.FC<PhotosProps> = ({
   type,
@@ -193,7 +359,6 @@ const Photos: React.FC<PhotosProps> = ({
   label,
   setFieldValue,
 }) => {
-  console.log(value)
   return (
     <>
       <h3 className={CLASSNAME.UPLOAD_TEXT}>{TEXT.UPLOAD_PHOTOS}</h3>
@@ -205,7 +370,11 @@ const Photos: React.FC<PhotosProps> = ({
             {value?.[index] ? (
               <div className={CLASSNAME.PREVIEW_WRAPPER}>
                 <img
-                  src={typeof value?.[index] === 'string' ? `${import.meta.env.VITE_BASE_URL}/${value?.[index]}`:URL.createObjectURL(value?.[index])}
+                  src={
+                    typeof value?.[index] === 'string'
+                      ? `${import.meta.env.VITE_BASE_URL}/${value?.[index]}`
+                      : URL.createObjectURL(value?.[index])
+                  }
                   alt={COMMON_TEXT.IMG}
                   className={CLASSNAME.PREVIEW}
                 />
@@ -268,7 +437,8 @@ const State: React.FC<TextFieldProps> = ({
   // handleChange
 }) => {
   const [state, setState] = useState<boolean>(false);
-  function handleState() {
+  function handleState(e: React.MouseEvent) {
+    e.stopPropagation();
     setState(!state);
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -284,15 +454,19 @@ const State: React.FC<TextFieldProps> = ({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
+
   return (
     <>
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
         {label} *
       </label>
-      <div className={CLASSNAME.STATE_INPUT_WRAPPER}>
+      <div
+        className={CLASSNAME.STATE_INPUT_WRAPPER}
+        onClick={(e) => handleState(e)}
+      >
         <input
           title={htmlFor}
           type={type}
@@ -304,7 +478,7 @@ const State: React.FC<TextFieldProps> = ({
             err && tch ? CLASSNAME.INPUTERROR : ''
           }`}
         />
-        <span onClick={handleState}>
+        <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
         </span>
       </div>
@@ -314,9 +488,9 @@ const State: React.FC<TextFieldProps> = ({
             <button
               className={CLASSNAME.STATE_ITEMS}
               key={state}
-              onClick={() => {
+              onClick={(e) => {
                 setFieldValue?.(htmlFor, state);
-                handleState();
+                handleState(e);
               }}
             >
               {state}
@@ -347,7 +521,8 @@ const City: React.FC<TextFieldProps> = ({
   // handleChange
 }) => {
   const [city, setCity] = useState<boolean>(false);
-  function handleCity() {
+  function handleCity(e: React.MouseEvent) {
+    e.stopPropagation();
     setCity(!city);
   }
   const wrapperRef = useRef<HTMLDivElement>(null);
@@ -363,15 +538,18 @@ const City: React.FC<TextFieldProps> = ({
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
   return (
     <>
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
         {label}*
       </label>
-      <div className={CLASSNAME.STATE_INPUT_WRAPPER}>
+      <div
+        className={CLASSNAME.STATE_INPUT_WRAPPER}
+        onClick={(e) => handleCity(e)}
+      >
         <input
           title={htmlFor}
           type={type}
@@ -383,7 +561,7 @@ const City: React.FC<TextFieldProps> = ({
             err && tch ? CLASSNAME.INPUTERROR : ''
           }`}
         />
-        <span onClick={handleCity}>
+        <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
         </span>
       </div>
@@ -393,9 +571,9 @@ const City: React.FC<TextFieldProps> = ({
             <button
               className={CLASSNAME.STATE_ITEMS}
               key={city}
-              onClick={() => {
+              onClick={(e) => {
                 setFieldValue?.(htmlFor, city);
-                handleCity();
+                handleCity(e);
               }}
             >
               {city}
@@ -412,4 +590,4 @@ const City: React.FC<TextFieldProps> = ({
     </>
   );
 };
-export { Description, TextField, Photos, Price, Seller, State, City };
+export { Description, TextField,PhoneNumber, Photos, Price, Seller,Email, State, City, Year,AboutMe };

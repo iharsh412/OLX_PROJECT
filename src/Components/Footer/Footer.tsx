@@ -1,13 +1,12 @@
 import './footer.css';
 import ICONS from '../../assets';
-import {LINK}  from "./constant"
+import { LINK } from './constant';
 
 export default function Footer() {
-  const handleClick = (link:string) => {
+  const handleClick = (link: string) => {
     window.location.href = link;
-  }
+  };
 
-  
   return (
     <div className="footerSectionParent">
       <div className="footerSection">
@@ -15,35 +14,50 @@ export default function Footer() {
           <button className="footerSectionCarTradeTech">
             <img src={ICONS.carTradeTech} alt="trade" />
           </button>
-          <button className="footerSectionOlx" onClick={()=>handleClick(LINK.OLX)}>
+          <button
+            className="footerSectionOlx"
+            onClick={() => handleClick(LINK.OLX)}
+          >
             <img
               className="footerSectionImages"
               src={ICONS.OlxWhite}
               alt="trade"
             />
           </button>
-          <button className="footerSectionCarCarwale" onClick={()=>handleClick(LINK.CARWALE)}>
+          <button
+            className="footerSectionCarCarwale"
+            onClick={() => handleClick(LINK.CARWALE)}
+          >
             <img
               className="footerSectionImages"
               src={ICONS.carWale}
               alt="trade"
             />
           </button>
-          <button className="footerSectionBikewale" onClick={()=>handleClick(LINK.BIKEWALE)}>
+          <button
+            className="footerSectionBikewale"
+            onClick={() => handleClick(LINK.BIKEWALE)}
+          >
             <img
               className="footerSectionImages"
               src={ICONS.bikeWale}
               alt="trade"
             />
           </button>
-          <button className="footerSectionCarTrade" onClick={()=>handleClick(LINK.CARTRADE)}>
+          <button
+            className="footerSectionCarTrade"
+            onClick={() => handleClick(LINK.CARTRADE)}
+          >
             <img
               className="footerSectionImages"
               src={ICONS.carTrade}
               alt="trade"
             />
           </button>
-          <button className="footerSectionMobilityOutlook" onClick={()=>handleClick(LINK.MOBILITY_OUTLOOK)}>
+          <button
+            className="footerSectionMobilityOutlook"
+            onClick={() => handleClick(LINK.MOBILITY_OUTLOOK)}
+          >
             <img
               className="footerSectionImages"
               src={ICONS.mobilityOutlook}

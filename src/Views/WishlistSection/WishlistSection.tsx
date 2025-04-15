@@ -1,6 +1,6 @@
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 import ImageLayout from '../../Components/CustomComponents/ImageLayout/CarImage';
-import './CartSection.css';
+import './wishlistSection.css';
 import { Product } from '../../Interface/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';

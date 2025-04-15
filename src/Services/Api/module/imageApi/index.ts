@@ -1,7 +1,5 @@
 import api from '../../api';
-import { Product,PaginationParams} from '../../../../Interface/constant';
-
-
+import { Product, PaginationParams } from '../../../../Interface/constant';
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -85,7 +83,7 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-      // logout
+    // logout
     postLogoutData: builder.mutation({
       query: (data) => ({
         url: `account/logout/`,
@@ -101,12 +99,11 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-    // user ads 
+    // user ads
     getAdsData: builder.query({
       query: () => ({
         url: `categories/userads/`,
         method: 'GET',
-       
       }),
     }),
     // delete ads
@@ -114,7 +111,30 @@ export const productApi = api.injectEndpoints({
       query: (params) => ({
         url: `categories/removead/`,
         method: 'GET',
-        params
+        params,
+      }),
+    }),
+    //useINFO
+    getUserInfo: builder.query({
+      query: () => ({
+        url: `account/userinfo/`,
+        method: 'GET',
+      }),
+    }),
+    // edit user info
+    postEditProfileData: builder.mutation({
+      query: (data) => ({
+        url: `account/updateuserdetails/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // email valid
+    postEmailValid: builder.mutation({
+      query: (data) => ({
+        url: `account/isvalidemail/`,
+        body: data,
+        method: 'POST',
       }),
     }),
     // postChechRefreshTokenData: builder.mutation({
@@ -151,6 +171,9 @@ export const {
   useGetAdsDataQuery,
   useLazyGetDeleteAdsQuery,
   usePostEditDataMutation,
+  useGetUserInfoQuery,
+  usePostEditProfileDataMutation,
+  usePostEmailValidMutation,
   // useGetCheckTokenDataQuery,
   // usePostChechRefreshTokenDataMutation,
 } = productApi;

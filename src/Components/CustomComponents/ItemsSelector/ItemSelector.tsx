@@ -6,19 +6,29 @@ import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { useNavigate } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ItemsSelector() {
   const items = useSelector((state: RootState) => state?.areaItem?.item);
+ 
   const dispatch = useDispatch();
-  const [object, setObject] = useState(items ?? '');
+  const [object, setObject] = useState(items);
+  const navigate =useNavigate()
   const [debouncedValue, setDebouncedValue] = useState(object);
   // click
   // onchange dispatch the input 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    if(e.target.value.trim())
+    navigate(ROUTES_CONFIG.HOMEPAGE.path)
     setObject(e.target.value);
   }
   // Hooks
   // for debouncing 
+  useEffect(()=>{
+    
+    setObject(items)
+  },[items])
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(object);
@@ -31,7 +41,7 @@ export default function ItemsSelector() {
 
   useEffect(() => {
     if (debouncedValue === '' || debouncedValue === null) {
-      dispatch(setItem(null));
+      dispatch(setItem(""));
     } else {
       dispatch(setItem(debouncedValue));
     }
@@ -52,6 +62,7 @@ export default function ItemsSelector() {
       {/* search button */}
       <button
         className={CLASSNAME.SEARCH}
+        disabled ={items===""}
         onClick={() => {
           dispatch(setItem(object));
         }}

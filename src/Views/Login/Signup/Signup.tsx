@@ -8,11 +8,14 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
+import {
+  CLASSNAME as LOGIN_SECTION_CLASSNAME,
+  TEXT as LOGIN_SECTION_TEXT,
+} from '../LoginSection/constant';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -27,6 +30,7 @@ export default function Signup() {
       await post(data).unwrap();
       resetForm();
       navigate(ROUTES_CONFIG.VERIFICATION.path, { replace: true });
+      toast.success(TEXT.SUCCESS)
     } catch (error) {
       toast.error((error as any)?.data?.email?.[0]);
     }
@@ -48,6 +52,7 @@ export default function Signup() {
           handleSubmit,
           isSubmitting,
         }) => {
+          console.log(values, 'VALUES');
           return (
             <div className={CLASSNAME.WRAPPER}>
               <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
@@ -57,7 +62,7 @@ export default function Signup() {
                   <input
                     title={TEXT.USERNAME}
                     type={TYPE.TEXT}
-                    name={TEXT.USERNAME}
+                    name={TEXT.USERNAME_S}
                     value={values.username}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -69,6 +74,7 @@ export default function Signup() {
                 <div className={CLASSNAME.EMAIL_INPUT}>
                   <label htmlFor={COMMON_TEXT.EMAIL_S}>{TEXT.EMAIL} </label>
                   <input
+                    title={COMMON_TEXT.EMAIL_S}
                     type={TYPE.EMAIL}
                     name={COMMON_TEXT.EMAIL_S}
                     value={values.email}
@@ -80,10 +86,13 @@ export default function Signup() {
                   )}
                 </div>
                 <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{TEXT.PASSWORD} </label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>
+                    {TEXT.PASSWORD}{' '}
+                  </label>
                   <input
-                    type={TYPE.PASSWORD}
                     name={COMMON_TEXT.PASSWORD_S}
+                    title={COMMON_TEXT.PASSWORD_S}
+                    type={TYPE.PASSWORD}
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -93,11 +102,13 @@ export default function Signup() {
                   )}
                 </div>
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{TEXT.CONFIRM_PASSWORD} </label>
+                  <label htmlFor={TEXT.CONFIRM_PASSWORD}>
+                    {TEXT.CONFIRM_PASSWORD}
+                  </label>
                   <input
-                    title={COMMON_TEXT.PASSWORD_S}
+                    title={COMMON_TEXT.CONFIRM_PASSWORD_S}
+                    name={COMMON_TEXT.CONFIRM_PASSWORD_S}
                     type={TYPE.PASSWORD}
-                    name={COMMON_TEXT.PASSWORD}
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -123,7 +134,6 @@ export default function Signup() {
                     {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
                   </p>
                 </footer>
-                <ToastContainer />
               </form>
             </div>
           );

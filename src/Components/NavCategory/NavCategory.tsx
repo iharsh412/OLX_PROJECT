@@ -1,6 +1,6 @@
 import './navCategory.css';
 import { useNavigate } from 'react-router-dom';
-import ICONS from '../../assets';
+
 
 export default function NavCategory() {
   const navigate = useNavigate();
@@ -24,10 +24,10 @@ export default function NavCategory() {
           <span className="home_navCategory_child_allCategory">
             ALL CATEGORIES
           </span>
-          <span className='home_navCategory_child_allCategory_upDown'><img
-            src={ICONS.upDown}
-            alt="img"
-          /></span>
+          {/* dropdown if required  */}
+          {/* <span className="home_navCategory_child_allCategory_upDown">
+            <img src={ICONS.upDown} alt="img" />
+          </span> */}
         </div>
         <div className="home_navCategory_childs">
           <button

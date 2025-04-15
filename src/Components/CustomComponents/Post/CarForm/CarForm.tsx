@@ -1,6 +1,6 @@
 import { Formik, ErrorMessage } from 'formik';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import './carForm.css';
@@ -20,10 +20,13 @@ import {
   Seller,
   State,
   City,
+  // Year,
 } from '../Common/Common';
+import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
 export default function CarForm() {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
 
@@ -55,6 +58,8 @@ export default function CarForm() {
       await postNewProducts(formData).unwrap();
       notifyAdded();
       setShowResponse('Added');
+      navigate(ROUTES_CONFIG.HOMEPAGE.path)
+
 
       resetForm();
     } catch (error) {
@@ -105,8 +110,17 @@ export default function CarForm() {
                 label="Brand"
                 {...share}
               />
-
+            
               {/* Year Input */}
+              {/* <Year
+               type="number"
+               htmlFor="year"
+               value={values.year}
+               err={errors.year}
+               tch={touched.year}
+               label="Year"
+               {...share}/> */}
+
               <TextField
                 type="number"
                 htmlFor="year"

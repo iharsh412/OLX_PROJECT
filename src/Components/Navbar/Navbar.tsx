@@ -14,7 +14,7 @@ import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 export default function Navbar() {
   const navigate = useNavigate();
-  const { access,username } = useSelector((state: RootState) => state?.common);
+  const { access, username } = useSelector((state: RootState) => state?.common);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const profileRef = useRef<HTMLButtonElement>(null);
   // click
@@ -24,10 +24,8 @@ export default function Navbar() {
       navigate(ROUTES_CONFIG.SELL.path);
     } else {
       navigate(ROUTES_CONFIG.LOGIN.path);
-      
     }
   }
-
   // handle click on cart
   function onClickCart() {
     if (access) {
@@ -36,28 +34,26 @@ export default function Navbar() {
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
-
   // handle profile dropdown toggle
-  function onClickProfileUpDown(e: React.MouseEvent<HTMLButtonElement>) {
-    e.stopPropagation(); 
+  function onClickProfileUpDown() {
     setOpenProfile(!openProfile);
   }
   //  Hooks
   // Close  dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+      if (
+        profileRef.current &&
+        !profileRef.current.contains(e.target as Node)
+      ) {
         setOpenProfile(false);
       }
-     
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
   return (
     <div className={CLASSNAME.NAV_PARENT}>
       <div className={CLASSNAME.NAV}>
@@ -83,7 +79,6 @@ export default function Navbar() {
         <div className={CLASSNAME.LANGUAGE_WRAPPER}>
           <LanguageSelector />
         </div>
-
         {/* cart login sell section */}
         <div className={CLASSNAME.CART_LOGIN_SELL}>
           {/* cart section */}
@@ -98,7 +93,6 @@ export default function Navbar() {
               className={CLASSNAME.CART_ICON}
             />
           </button>
-
           {/* If not logged in */}
           {access && (
             <>
@@ -108,20 +102,24 @@ export default function Navbar() {
               </button>
 
               {/* notification section */}
-              <button className={CLASSNAME.NOTIFICATION}>
+              {/* <button className={CLASSNAME.NOTIFICATION}>
                 <img src={ICONS.notification} alt={COMMON_TEXT.IMG} />
-              </button>
+              </button> */}
 
               {/* Profile dropdown */}
-              <button
-                className={CLASSNAME.PROFILE}
-                onClick={onClickProfileUpDown}
-                ref={profileRef}
-              >
+              <button className={CLASSNAME.PROFILE} ref={profileRef}>
                 <span className={CLASSNAME.PROFILE_PHOTO}>
-                  <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
+                  <div
+                    className={CLASSNAME.PROFILE_INITIAL}
+                    onClick={onClickProfileUpDown}
+                  >
+                    {username?.[0]}
+                  </div>
                 </span>
-                <span className={CLASSNAME.PROFILE_UPDOWN}>
+                <span
+                  className={CLASSNAME.PROFILE_UPDOWN}
+                  onClick={onClickProfileUpDown}
+                >
                   <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
                 </span>
                 {openProfile && (
@@ -130,14 +128,12 @@ export default function Navbar() {
               </button>
             </>
           )}
-
           {/* If not logged in, show login */}
           {!access && (
             <Link to={ROUTES_CONFIG.LOGIN.path} className={CLASSNAME.LOGIN}>
               Login
             </Link>
           )}
-
           {/* Sell button */}
           <button
             title={COMMON_TEXT.BUTTON}

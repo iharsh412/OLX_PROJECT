@@ -8,12 +8,14 @@ import {
   TEXT,
 } from './constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {  toast } from 'react-toastify';
+import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
 export default function TabletForm() {
   const { state } = useLocation();
+  const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
   const notifyAdded = () => toast('Posted Successfuly!');
@@ -54,6 +56,7 @@ export default function TabletForm() {
       await postNewProducts(formData).unwrap();
       notifyAdded();
       setShowResponse('Added');
+      navigate(ROUTES_CONFIG.HOMEPAGE.path)
 
       resetForm();
     } catch (error) {

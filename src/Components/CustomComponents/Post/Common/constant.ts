@@ -39,26 +39,17 @@ export const CLASSNAME = {
     CITY: 'postForm_City',
     CITY_LIST :"postForm_CityList",
 
-
-
-
-
-
-
-
 }
-
 export const LOCATION = {
     PUNJAB: ["MOHALI", "JALANDHAR", "CHANDIGARH"],
     HARYANA: ["AMBALA", "KURUKSHETRA", "KARNAL"],
     ["UTTAR PRDESH"]: ["DELHI"],
     ["HIMACHA PRADESH"]: ["SHIMLA"]
 }
-
 export enum COUNT {
-    Description = 50,
-    Brand = 10,
-    Name = 15,
+    Description = 200,
+    Brand = 20,
+    Name = 30,
     Year = 4,
     "KM driven" = 5,
     "Ad title" = 20

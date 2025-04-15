@@ -14,9 +14,13 @@ const common = createSlice({
       ...state,
       access: action.payload.access,
     }),
+    updateUsername: (state, action) => ({
+      ...state,
+      username: action.payload.username,
+    }),
   },
 });
 
-export const { updateAuthState,updateAuthToken } = common.actions;
+export const { updateAuthState,updateAuthToken , updateUsername } = common.actions;
 
 export default common.reducer;

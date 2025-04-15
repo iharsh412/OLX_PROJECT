@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import './homeLayout.css';
 import Navbar from '../../Components/Navbar';
 import NavCategory from '../../Components/NavCategory';
@@ -9,14 +9,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
 import { useEffect } from 'react';
 import { setLoading } from '../../Store/Loader';
-import { CLASSNAME, TEXT } from "./constant"
+import { CLASSNAME, TEXT } from './constant';
+import { setItem } from '../../Store/AreaItem';
 
 export default function HomeLayout() {
-
+  const location = useLocation();
   const dispatch = useDispatch();
   const loader = useSelector((state: RootState) => state.loader.isLoading);
-  // HOOKS 
-    // for session expired
+
+  // HOOKS
+  // for session expired
+  useEffect(() => {
+    dispatch(setItem(''));
+  }, [location?.pathname]);
   useEffect(() => {
     if (loader) {
       toast.error(TEXT.SESSION_EXPIRED, {

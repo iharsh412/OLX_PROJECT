@@ -12,10 +12,10 @@ export const VALIDATION = Yup.object().shape({
     .email('Invalid email format')
     .required('Email is required'),
   password: Yup.string().required('Password is required'),
-  confirmPassword: Yup.string().oneOf(
+  confirmPassword: Yup.string().required('Confirm your password ').oneOf(
     [Yup.ref('password')],
     'Passwords must match'
-  ),
+  )
 });
 
 export interface FORM_VALUES {
@@ -33,14 +33,17 @@ export const CLASSNAME ={
     CONFIRM_PASSWORD_INPUT:"signup_confirmPasswordInput",
     SUBMIT_BUTTON:"signup_submitButton",
     ERROR:"signup_error",
+    
 
 }
 export const TEXT = {
   TITLE: 'Sign Up',
   USERNAME: 'Username',
+  USERNAME_S: 'username',
   EMAIL: 'Email',
   PASSWORD: 'Password',
   CONFIRM_PASSWORD: 'Confirm Password',
   SUBMIT: 'Sign Up',
+  SUCCESS:"Signup Successfully"
 
 };

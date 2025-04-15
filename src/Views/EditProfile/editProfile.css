@@ -1,0 +1,54 @@
+/* WRAPPER */
+.edit-profile-wrapper{
+    background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
+    border-radius: 18px;
+    min-height: 460px;
+    width: 500px;
+    margin: 20px auto;
+    padding: 28px 32px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+      0 12px 32px rgba(92, 41, 126, 0.15),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+/* Header wrapper */
+.edit-profile-header-wrapper{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.edit-profile-text {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 650;
+  color: #474444;
+  margin: 16px 0 20px;
+  position: relative;
+}
+.edit-profile-cross img
+{
+  width: 25px;
+  cursor: pointer;
+}
+.edit-profile-view-profile{
+  cursor: pointer;
+
+}
+.edit-profile-view-profile:hover{
+  cursor: pointer;
+  color: #a382e5;
+
+}
+/* edit button */
+.edit-profile-edit{
+  margin-top: 10px;
+  width: 100px;
+  padding: 5px;
+  cursor: pointer;
+}

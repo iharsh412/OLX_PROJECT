@@ -1,57 +1,60 @@
 import './loginSection.css';
-import { useNavigate, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import {  Link } from 'react-router-dom';
+// import { useDispatch } from 'react-redux';
 import ImageSection from './LoginImage.tsx';
-import { signInWithGoogle } from '../../../firebase.ts';
+// import { signInWithGoogle } from '../../../firebase.ts';
 import ICONS from '../../../assets';
-import { updateAuthState } from '../../../Store/Common';
+// import { updateAuthState } from '../../../Store/Common';
+import { toast } from 'react-toastify';
 // import { RootState } from '../../../Store/index.ts';
 
 export default function LoginPage() {
   // const { token } = useSelector((state: RootState) => state?.common);
   // console.log(token, 'token');
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
   async function onClickGoogle() {
-    try {
-      const result = await signInWithGoogle();
-      if (result?.user) {
-        const token = await result?.user?.getIdToken();
-        dispatch(
-          updateAuthState({
-            refresh: token,
-            access: token,
-            id: result?.user?.uid,
-            username: result?.user?.displayName,
-          })
-        );
-        navigate('/');
-      } else {
-        dispatch(
-          updateAuthState({
-            access: null,
-            id: null,
-            username: null,
-            refresh: null,
-          })
-        );
-      }
-    } catch (e) {
-      console.log('error during signin', e);
-    }
+    toast.success("not working please signup")
+    // try {
+    //   const result = await signInWithGoogle();
+    //   if (result?.user) {
+    //     const token = await result?.user?.getIdToken();
+    //     dispatch(
+    //       updateAuthState({
+    //         refresh: token,
+    //         access: token,
+    //         id: result?.user?.uid,
+    //         username: result?.user?.displayName,
+    //       })
+    //     );
+    //     navigate('/');
+    //   } else {
+    //     dispatch(
+    //       updateAuthState({
+    //         access: null,
+    //         id: null,
+    //         username: null,
+    //         refresh: null,
+    //       })
+    //     );
+    //   }
+    // } catch (e) {
+    //   console.log('error during signin', e);
+    // }
   }
-
-  function onClickPhone() {
-    navigate('/loginPhone');
-  }
+   
+  // function onClickPhone() {
+  //   navigate('/loginPhone');
+  // }
 
   return (
     <div className="loginPageParent">
       <div className="loginPageChild">
         <ImageSection />
-        <button
+        {/* continue with phone */}
+        {/* <button
           type="button"
           className="countinue_with_phone_parent"
           onClick={onClickPhone}
@@ -60,7 +63,7 @@ export default function LoginPage() {
             <img src={ICONS.phone} alt="phone" />
           </span>
           <span className="continue_with_phone_text">Continue with phone</span>
-        </button>
+        </button> */}
 
         <button
           type="button"

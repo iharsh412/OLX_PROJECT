@@ -8,7 +8,7 @@ import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
 import Dashboard from '../Views/Dashboard';
 import SellLayout from '../Views/Sell';
 import SellSection from '../Views/Sell/SellSection';
-import Cart from '../Views/CartSection';
+import Cart from '../Views/WishlistSection';
 import Post from '../Components/Post';
 import ProductDetail from '../Views/ImageDetail';
 import TypeSection from '../Views/TypeSection';
@@ -19,6 +19,7 @@ import Verification from '../Views/Login/Verification';
 import NewPass from '../Views/Login/NewPass';
 import MyAds from '../Views/MyAds';
 import Profile from "../Views/ProfileSection"
+import EditProfile from "../Views/EditProfile"
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -41,6 +42,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.MYADS.path, element: <MyAds /> },
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
       { path: ROUTES_CONFIG.PROFILE.path, element: <Profile /> },
+      { path: ROUTES_CONFIG.EDIT_PROFILE.path, element: <EditProfile /> },
     ],
   },
   {

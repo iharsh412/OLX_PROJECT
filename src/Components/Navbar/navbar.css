@@ -4,28 +4,21 @@
   box-sizing: border-box;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
 }
-
 /* WRAPPER  */
-
 .home_nav_wrapper {
-
   background-color: rgba(0, 47, 52, 0.03);
   width: 98.8vw;
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
-
 .home_nav {
   width: 100%;
   height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-
 }
-
 /* nav logo */
 .home_nav_logo {
   padding: 0px 4px;
@@ -34,23 +27,15 @@
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.0);
+  background-color: rgba(0, 47, 52, 0);
 }
-
 /* input area fieldset */
 .home_nav_place_wrapper {
-
   width: 260px;
   height: 48px;
   box-sizing: border-box;
   margin: 0 5px;
-
 }
-
-
-
-
-
 /* cart login sell */
 .home_nav_cart_login_sell {
   display: flex;
@@ -58,10 +43,7 @@
   justify-content: space-evenly;
   flex-shrink: 0;
   margin-left: 10px;
-
-
 }
-
 /* cart section */
 .home_nav_cart {
   padding: 2px;
@@ -69,10 +51,8 @@
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.00);
-
+  background-color: rgba(0, 47, 52, 0);
 }
-
 /* chat section */
 .home_nav_chat {
   padding: 2px;
@@ -80,15 +60,11 @@
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.00);
+  background-color: rgba(0, 47, 52, 0);
 }
-
 .home_nav_chat img {
   background-color: none;
-
 }
-
-
 /* notification section */
 .home_nav_notification {
   padding: 2px;
@@ -96,15 +72,12 @@
   cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.0);
-
+  background-color: rgba(0, 47, 52, 0);
 }
-
 /* login  */
 .home_nav_login {
   padding: 10px;
 }
-
 /* profile section */
 .home_nav_profile {
   padding: 2px;
@@ -115,20 +88,15 @@
   align-items: center;
   justify-content: space-evenly;
   position: relative;
-  cursor: pointer;
   border: none;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.0);
-  ;
+  background-color: rgba(0, 47, 52, 0);
 }
-
 .home_nav_profilephoto {
-
   padding: 1px;
   margin: 1px;
-
 }
-.home_nav-large-initial{
+.home_nav-large-initial {
   width: 2rem;
   height: 2rem;
   background-color: #cdbfee;
@@ -141,32 +109,25 @@
   font-weight: 600;
   border: 1px solid black;
 }
-
 .home_nav_profilephoto img {
   height: 30px;
   width: 30px;
   border-radius: 50%;
   border: 1px solid black;
-
 }
-
 .home_nav_profile_upDown {
   margin: 2px;
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  background-color: rgba(0, 47, 52, 0.0);
+  background-color: rgba(0, 47, 52, 0);
 }
-
 .home_nav_profile_upDown img {
   width: 20px;
   height: 20px;
-
 }
-
 /* sell button css */
 .home_nav_sell {
-
   height: 48px;
   position: relative;
   cursor: pointer;
@@ -174,24 +135,20 @@
   border: none;
   background-color: rgba(248, 249, 250, 1);
 }
-
 .home_nav_sell img {
   object-fit: cover;
 }
-
 .home_nav_sell_inner {
   position: absolute;
   top: 35%;
   right: 30%;
   display: flex;
 }
-
 .home_nav_sell_text {
   font-size: 14px;
   font-weight: 700;
   padding-left: 5px;
 }
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .home_nav {
@@ -199,7 +156,6 @@
     height: auto;
     padding: 10px 0;
   }
-
   .home_nav_place_wrapper,
   .home_nav_item_wrapper,
   .home_nav_languageWrapper,
@@ -228,9 +184,7 @@
     width: auto;
   }
 }
-
 @media (max-width: 480px) {
-
   .home_nav_place_wrapper,
   .home_nav_item_wrapper {
     font-size: 14px;

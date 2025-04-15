@@ -1,6 +1,6 @@
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
 import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
@@ -52,17 +52,16 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
+            <div className={CLASSNAME.PROFILE_INITIAL} >{username?.[0]}</div>
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{username}</h3>
-              <span
+              <Link
+                onClick={handleItemClick}
+                to={ROUTES_CONFIG.PROFILE.path}
                 className={CLASSNAME.PROFILE_EDIT_PROFILE}
-                role="button"
-                tabIndex={0}
-                
               >
                 {TEXT.VIEW_EDIT}
-              </span>
+              </Link>
             </div>
           </div>
         </div>
