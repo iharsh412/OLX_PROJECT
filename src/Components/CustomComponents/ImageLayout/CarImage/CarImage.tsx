@@ -4,14 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Interface/constant';
+import { COMMON_TEXT, ImageProps ,TYPE} from '../../../../Interface/constant';
 import { RootState } from '../../../../Store';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
 
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
-  const [post, { isLoading }] = usePostProductsMutation();
+  const [post,{isLoading}] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
   const { access: token } = useSelector((state: RootState) => state?.common);
@@ -34,11 +34,10 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
     }
   };
   // on click layout section
-  const onClickImages = () => {
-    navigate(`/product/${data.name}/${data.id}`);
+  const onClickImages = async () => {
+     navigate(`/product/${data.name}/${data.id}`);
   };
   // HOOKS
-
   useEffect(() => {
     setShowAdded(data.is_favourite ? TEXT.ADDED : '');
   }, [data.is_favourite]);
@@ -62,6 +61,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
           disabled={isLoading}
         >
           <Heart
+            
             fill={showAdded === TEXT.ADDED ? 'red' : 'none'}
             color={showAdded === TEXT.ADDED ? 'red' : 'black'}
           />

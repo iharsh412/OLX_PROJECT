@@ -1,3 +1,4 @@
+
 const STRING: string = 'Test';
 export { STRING };
 
@@ -19,11 +20,12 @@ const ROUTES = {
   MYADS: '/users/ads',
   PROFILE: '/profile/info',
   EDIT_PROFILE: '/editprofile/info',
+  CHAT: '/user/chat',
 };
 
 const WILDCARD_ROUTES = {
-  PUBLIC: ROUTES.HOMEPAGE,
-  PRIVATE: ROUTES.LOGIN,
+ PRIVATE:ROUTES.HOMEPAGE,
+  PUBLIC:  ROUTES.LOGIN,
 };
 
 const ROUTES_CONFIG = {
@@ -94,6 +96,10 @@ const ROUTES_CONFIG = {
   EDIT_PROFILE: {
     path: ROUTES.EDIT_PROFILE,
     title: 'Profile Edit',
+  },
+  CHAT: {
+    path: ROUTES.CHAT,
+    title: 'Chat Section',
   },
 };
 

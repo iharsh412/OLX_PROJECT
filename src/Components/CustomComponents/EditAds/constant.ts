@@ -58,6 +58,8 @@ export const TEXT = {
   EDIT:"Edit",
   REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
   EDITING: 'Sending...',
+  SUCCESS:'ADs edited successfully',
+  ERROR:'Error in editing',
 };
 export interface EditAdsProps {
   

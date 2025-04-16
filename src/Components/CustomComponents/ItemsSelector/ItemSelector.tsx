@@ -11,37 +11,35 @@ import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ItemsSelector() {
   const items = useSelector((state: RootState) => state?.areaItem?.item);
- 
+
   const dispatch = useDispatch();
   const [object, setObject] = useState(items);
-  const navigate =useNavigate()
+  const navigate = useNavigate();
   const [debouncedValue, setDebouncedValue] = useState(object);
   // click
-  // onchange dispatch the input 
+  // onchange dispatch the input
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    if(e.target.value.trim())
-    navigate(ROUTES_CONFIG.HOMEPAGE.path)
+    if (e.target.value.trim()) navigate(ROUTES_CONFIG.HOMEPAGE.path);
     setObject(e.target.value);
   }
   // Hooks
-  // for debouncing 
-  useEffect(()=>{
-    
-    setObject(items)
-  },[items])
+  // for debouncing
+  useEffect(() => {
+    setObject(items);
+  }, [items]);
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(object);
-    }, 1000); 
+    }, 1000);
 
     return () => {
-      clearTimeout(timer); 
+      clearTimeout(timer);
     };
   }, [object]);
 
   useEffect(() => {
     if (debouncedValue === '' || debouncedValue === null) {
-      dispatch(setItem(""));
+      dispatch(setItem(''));
     } else {
       dispatch(setItem(debouncedValue));
     }
@@ -62,7 +60,7 @@ export default function ItemsSelector() {
       {/* search button */}
       <button
         className={CLASSNAME.SEARCH}
-        disabled ={items===""}
+        disabled={items === ''}
         onClick={() => {
           dispatch(setItem(object));
         }}

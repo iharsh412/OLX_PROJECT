@@ -76,14 +76,13 @@ const EditAds: React.FC<EditAdsProps> = ({
     try {
       await post(formData).unwrap();
       setEditOpen(false);
-      toast.success('ADs edited successfully');
+      toast.success(TEXT.SUCCESS);
       resetForm();
       refetch?.();
     } catch (error) {
-      toast.error('Error in editing');
+      toast.error(TEXT.ERROR);
     }
   };
-
   const handleClickOutside = (event: MouseEvent) => {
     if (
       dropdownRef.current &&
@@ -119,7 +118,6 @@ const EditAds: React.FC<EditAdsProps> = ({
           isSubmitting,
         }) => {
           const share = { handleChange, handleBlur, setFieldValue };
-          console.log(values, 'values', formInitialValues);
 
           return (
             <form
@@ -128,7 +126,6 @@ const EditAds: React.FC<EditAdsProps> = ({
               onSubmit={handleSubmit}
             >
               <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="brand"
@@ -138,7 +135,6 @@ const EditAds: React.FC<EditAdsProps> = ({
                 label="Brand"
                 {...share}
               />
-
               <TextField
                 type="number"
                 htmlFor="year"
@@ -148,7 +144,6 @@ const EditAds: React.FC<EditAdsProps> = ({
                 label="Year"
                 {...share}
               />
-
               <TextField
                 type="text"
                 htmlFor="title"
@@ -158,7 +153,6 @@ const EditAds: React.FC<EditAdsProps> = ({
                 tch={touched.title}
                 {...share}
               />
-
               <Description
                 type="text"
                 htmlFor="description"
@@ -168,9 +162,7 @@ const EditAds: React.FC<EditAdsProps> = ({
                 label="Description"
                 {...share}
               />
-
               <hr />
-
               <Price
                 type="number"
                 htmlFor="price"
@@ -180,23 +172,18 @@ const EditAds: React.FC<EditAdsProps> = ({
                 label="Price"
                 {...share}
               />
-
               <hr />
-
               <Photos
                 type="file"
                 label="images"
                 value={values.images as File[]}
                 {...share}
               />
-
               <hr />
-
               <div className={CLASSNAME.LOCATION_WRAPPER}>
                 <h3 className={CLASSNAME.LOCATION_TEXT}>
                   {TEXT.CONFIRM_LOCATION}
                 </h3>
-
                 <State
                   type="text"
                   htmlFor="state"
@@ -206,7 +193,6 @@ const EditAds: React.FC<EditAdsProps> = ({
                   label="State"
                   {...share}
                 />
-
                 {values.state && (
                   <City
                     state={values.state}
@@ -220,9 +206,7 @@ const EditAds: React.FC<EditAdsProps> = ({
                   />
                 )}
               </div>
-
               <hr />
-
               <button
                 type="submit"
                 className={CLASSNAME.POST}

@@ -5,7 +5,7 @@ import { setLanguage } from '../../../Store/Language';
 import './languageSelector.css';
 import ICONS from '../../../assets';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 
 export default function LanguageSelector() {
   const language = useSelector((state: RootState) => state?.language?.language);
@@ -55,7 +55,10 @@ export default function LanguageSelector() {
       {/* selected language */}
       <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
       {/* updown icon */}
-      <button className={CLASSNAME.DROPDOWN}>
+      <button
+        type={TYPE.BUTTON}
+        className={CLASSNAME.DROPDOWN}
+      >
         <img
           src={ICONS.upDown}
           alt={COMMON_TEXT.IMG}

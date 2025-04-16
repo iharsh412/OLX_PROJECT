@@ -58,6 +58,7 @@ export const COMMON_TEXT ={
   TEXT:"text",
   SUBMIT:"submit",
   CONFIRM_PASSWORD_S:"confirmPassword",
+  LOGIN_TO_CHAT:"Login to chat",
   
 
 

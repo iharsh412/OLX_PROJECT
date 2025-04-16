@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import { CustomRouter } from './RootRoutes';
-import  HomeLayout  from '../Views/Home';
+import HomeLayout from '../Views/Home';
 import Login from '../Views/Login/LoginSection';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
@@ -18,8 +18,9 @@ import ForgetPass from '../Views/Login/ForgetPass';
 import Verification from '../Views/Login/Verification';
 import NewPass from '../Views/Login/NewPass';
 import MyAds from '../Views/MyAds';
-import Profile from "../Views/ProfileSection"
-import EditProfile from "../Views/EditProfile"
+import Profile from '../Views/ProfileSection';
+import EditProfile from '../Views/EditProfile';
+import ChatSection from '../Views/ChatSection';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PRIVATE_ROUTES: Array<CustomRouter> = [
@@ -43,6 +44,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
       { path: ROUTES_CONFIG.PROFILE.path, element: <Profile /> },
       { path: ROUTES_CONFIG.EDIT_PROFILE.path, element: <EditProfile /> },
+      { path: ROUTES_CONFIG.CHAT.path, element: <ChatSection /> },
     ],
   },
   {

@@ -1,22 +1,19 @@
 import './loginSection.css';
-import {  Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // import { useDispatch } from 'react-redux';
 import ImageSection from './LoginImage.tsx';
-// import { signInWithGoogle } from '../../../firebase.ts';
 import ICONS from '../../../assets';
-// import { updateAuthState } from '../../../Store/Common';
 import { toast } from 'react-toastify';
-// import { RootState } from '../../../Store/index.ts';
+import { CLASSNAME, TEXT } from './constant.ts';
+import { ROUTES_CONFIG } from '../../../Shared/Constants.ts';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant.ts';
 
 export default function LoginPage() {
-  // const { token } = useSelector((state: RootState) => state?.common);
-  // console.log(token, 'token');
-
-  // const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
+ 
+   
   async function onClickGoogle() {
-    toast.success("not working please signup")
+    toast.success(TEXT.SUCCESS);
+      // through firebase authentiaction
     // try {
     //   const result = await signInWithGoogle();
     //   if (result?.user) {
@@ -44,15 +41,16 @@ export default function LoginPage() {
     //   console.log('error during signin', e);
     // }
   }
-   
+    //  onclick on phone
   // function onClickPhone() {
   //   navigate('/loginPhone');
   // }
 
   return (
-    <div className="loginPageParent">
-      <div className="loginPageChild">
+    <div className={CLASSNAME.WRAPPER}>
+      <div className={CLASSNAME.SECTION}>
         <ImageSection />
+        {/* if you want to add phone login then uncomment the code below */}
         {/* continue with phone */}
         {/* <button
           type="button"
@@ -66,37 +64,39 @@ export default function LoginPage() {
         </button> */}
 
         <button
-          type="button"
-          className="continue_with_google_parent"
+          type={TYPE.BUTTON}
+          className={CLASSNAME.GOOGLE_WRAPPER}
           onClick={onClickGoogle}
         >
-          <span className="continue_with_google_icon">
-            <img src={ICONS.google} alt="google" />
+          <span className={CLASSNAME.GOOGLE_ICON}>
+            <img src={ICONS.google} alt={COMMON_TEXT.IMG} />
           </span>
-          <span className="continue_with_google_text">
-            Continue with Google
+          <span className={CLASSNAME.GOOGLE_TEXT}>
+            {TEXT.CONTINUE_WITH_GOOGLE}
           </span>
         </button>
 
-        <span className="login_Or_section">or</span>
-        <Link to="/signup" type="button" className="login_signup">
-          signup with email
+        <span className={CLASSNAME.OR}>or</span>
+        <Link
+          to={ROUTES_CONFIG.SIGNUP.path}
+          type={TYPE.BUTTON}
+          className={CLASSNAME.SIGNUP}
+        >
+          {TEXT.SIGN_UP}
         </Link>
-        <div className="login_signin">
-          <span>Already have an account?</span>
-          <Link to="/signin" className="login_signin_link">
-            Login
+        <div className={CLASSNAME.SIGNIN}>
+          <span>{TEXT.ALREADY_HAVE_ACCOUNT}</span>
+          <Link
+            to={ROUTES_CONFIG.SIGNIN.path}
+            className={CLASSNAME.SIGNIN_TEXT}
+          >
+            {TEXT.LOGIN}
           </Link>
         </div>
 
-        <footer className="login_footer_parent">
-          <p className="login_footer_first_section">
-            All your personal details are safe with us
-          </p>
-          <p className="login_footer_second_section">
-            If you continue, you are accepting OLX Terms and Conditions and
-            Privacy Policy
-          </p>
+        <footer className={CLASSNAME.FOOTER}>
+          <p className={CLASSNAME.FOOTER_UPPER_TEXT}>{TEXT.PERSONAL_DETAIL}</p>
+          <p className={CLASSNAME.FOOTER_SECOND_TEXT}>{TEXT.PRIVACY_POLICY}</p>
         </footer>
       </div>
     </div>

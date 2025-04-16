@@ -38,6 +38,11 @@ export default function Navbar() {
   function onClickProfileUpDown() {
     setOpenProfile(!openProfile);
   }
+  //handle click on chat
+  function handleClickChat() {
+    navigate(ROUTES_CONFIG.CHAT.path);
+  }
+
   //  Hooks
   // Close  dropdown when clicking outside
   useEffect(() => {
@@ -97,7 +102,7 @@ export default function Navbar() {
           {access && (
             <>
               {/* chat section */}
-              <button className={CLASSNAME.CHAT}>
+              <button className={CLASSNAME.CHAT} onClick={handleClickChat}>
                 <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
               </button>
 

@@ -44,6 +44,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
   };
   const handleClickDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setAnswer('no');
     setOpen(true);
     setText(TEXT.DELETE_TEXT);
   };
@@ -90,7 +91,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
       </div>
       {open && <Modal setAnswer={setAnswer} setOpen={setOpen} text={text} />}
       {text === TEXT.EDIT_TEXT && answer === 'yes' && editOpen === true && (
-        <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch}/>
+        <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch} />
       )}
     </>
   );

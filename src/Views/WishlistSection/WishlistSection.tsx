@@ -5,7 +5,7 @@ import { Product } from '../../Interface/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 
-export default function CartSection() {
+export default function WishlistSection() {
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
     {},
     { refetchOnMountOrArgChange: true }
@@ -18,7 +18,7 @@ export default function CartSection() {
         {isLoading && <h1>{COMMON_TEXT.LOADING}</h1>}
         {isError && <h1>{COMMON_TEXT.ERROR}</h1>}
         {/*  data then render */}
-        {data && data.length >0 && (
+        {data && data.length > 0 && (
           <div className={CLASSNAME.IMAGE_SECTION}>
             {data?.map((products: Product) => (
               <ImageLayout

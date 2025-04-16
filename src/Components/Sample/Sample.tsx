@@ -11,7 +11,8 @@ import ICONS from '../../assets';
 import { SampleData, ResponseData } from './constant';
 
 export default function Sample() {
-  const limit = 3;
+  console.log('helllo');
+  const limit = 1;
   const [totalpage, setTotalpage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const { category } = useParams();
@@ -28,6 +29,7 @@ export default function Sample() {
     usePostCategoryProductsMutation();
   // Hooks
   useEffect(() => {
+    console.log('iuhi');
     const fetchData = async () => {
       try {
         const response = await productData({
@@ -43,42 +45,33 @@ export default function Sample() {
     };
 
     fetchData();
-  }, [sampleData, page]);
+  }, [page, JSON.stringify(sampleData)]);
   useEffect(() => {
-    setPage(1)
+    console.log('sampleData');
+    setPage(1);
   }, [sampleData]);
 
   useEffect(() => {
+    console.log('category', category);
     setSampleData({
       category: category,
       subcategory: '',
       brand: [],
       price: [0, 1500000],
     });
-    setPage(1);
-  }, [category]);
+  }, [JSON.stringify(category)]);
+
   useEffect(() => {
-    let Pages = 1;
-    if (response && response.count) {
-      Pages = Math.ceil(response?.count / limit);
-      setTotalpage(Pages);
-    } else {
-      setTotalpage(1);
-    }
+    if (!response) return;
 
-    if (Pages <= 1) {
-      setShowButton({ prev: false, next: false });
-    } else if (Pages > 1 && page === 1) {
-      setShowButton({ prev: false, next: true });
-    } else if (Pages > 1 && page === Pages) {
-      setShowButton({ prev: true, next: false });
-    } else {
-      setShowButton({ prev: true, next: true });
-    }
-  }, [response, page, category]);
+    const totalPages = Math.max(1, Math.ceil((response?.count ?? 0) / limit));
+    setTotalpage(totalPages);
 
-  // console.log(response, 'uygruey');
-  // console.log(sampleData, totalpage, page, 'uheiwi');
+    setShowButton({
+      prev: page > 1,
+      next: page < totalPages,
+    });
+  }, [JSON.stringify(response), page]);
 
   const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const brand = e.currentTarget.title;
@@ -276,7 +269,6 @@ export default function Sample() {
         </div>
         {/* Image Section */}
         <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
-         
           {isLoading && <h1 className="sample-errorAndLoading">Loading...</h1>}
           {isError && (
             <h1 className="sample-errorAndLoading">

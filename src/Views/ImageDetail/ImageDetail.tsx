@@ -1,18 +1,31 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './imageDetail.css';
-import ICONS from '../../assets';
 import ImageTransition from '../../Components/CustomComponents/ImageDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
+import LocationMap from '../../Components/CustomComponents/LocationMap';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../Store';
+import { toast } from 'react-toastify';
 
 export default function ImageDetail() {
   const { productId } = useParams();
+  const { access } = useSelector((state: RootState) => state?.common);
   const id = productId !== undefined ? Number(productId) : undefined;
-
+  const navigate = useNavigate();
   const { data } = useGetProductsDetailQuery({ id });
-
+  console.log(data, 'data');
   const product = Array.isArray(data) ? data[0] : data;
+  //  handle click
+  // handle click on chat
+  function handleClickChat() {
+    if (!access) {
+      toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
+    }
+    navigate(ROUTES_CONFIG.CHAT.path);
+  }
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -63,11 +76,12 @@ export default function ImageDetail() {
               />
             </span>
             <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
-            <span className={CLASSNAME.CHAT_UPDOWN}>
-              <img src={ICONS.upDownl} alt={COMMON_TEXT.IMG} />
-            </span>
           </div>
-          <button className={CLASSNAME.CHAT_BUTTON}>
+          <button
+            title={TEXT.CHAT}
+            className={CLASSNAME.CHAT_BUTTON}
+            onClick={handleClickChat}
+          >
             {TEXT.CHAT_WITH_SELLER}
           </button>
         </div>
@@ -77,6 +91,13 @@ export default function ImageDetail() {
           <span className={CLASSNAME.POST_VALUE}>
             {product?.state} {product?.city || product?.district}
           </span>
+        </div>
+        {/* map section */}
+        <div className={CLASSNAME.MAP}>
+          <LocationMap
+            cityName={product?.city}
+            mapHeadingText={TEXT.POSTE_IN}
+          />
         </div>
       </div>
     </div>

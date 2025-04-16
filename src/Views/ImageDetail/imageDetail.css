@@ -1,23 +1,24 @@
 /* IMAGE DETAIL PARENT CONTAINER */
 .imageDetailWrapper {
   width: 70vw;
-  max-width: 1200px; /* Prevent overly wide layouts on large screens */
-  height: 700px;
-  margin: 0 auto 100px; /* Center horizontally */
+  max-width: 1200px;
+  height: auto;
+  margin: 0 auto 100px;
   display: flex;
-  gap: 20px; /* Replace margin/padding gaps with modern gap property */
+  gap: 20px;
   padding: 10px;
   font-family: Roboto, Arial, Helvetica, sans-serif;
   box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 /* MAIN CONTENT SECTION (Image + Description) */
 .imageDetailImagesDetailsDescription {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  width: 80%;
-  gap: 16px; /* Consistent spacing */
+  width: 100%;
+  flex: 1 1 60%;
+  gap: 16px;
   box-sizing: border-box;
 }
 
@@ -25,23 +26,21 @@
 .imageDetailImageSection {
   width: 100%;
   height: 480px;
-  border: 1px solid #e0e0e0; /* Softer border */
-  border-radius: 8px; /* Smoother radius */
-  overflow: hidden; /* Ensure rounded corners clip content */
-  background: #f9f9f9; /* Fallback while image loads */
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
 }
 
 .imageDetailImageSection img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.3s ease; /* Smooth hover effect */
+  transition: transform 0.3s ease;
 }
 
 /* DETAILS & DESCRIPTION SECTION */
 .imageDetailDetailsDescription {
-  width: 100%;
-  min-height: 200px; /* Flexible height */
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -51,11 +50,11 @@
   border-radius: 8px;
   background: #fff;
 }
-/* DETAILS SECTION */
+
 .imageDetailDetails {
   margin-bottom: 10px;
 }
-/* TITLE SECTION */
+
 .imageDetailTitle {
   font-size: 20px;
   font-weight: 700;
@@ -64,25 +63,24 @@
 
 .imageDetailBrand {
   display: flex;
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 15px;
-  color: #666;
   justify-content: space-between;
   align-items: center;
+  font-size: 14px;
+  color: #666;
+  margin-top: 15px;
 }
 
 .imageDetailBrandValue {
   color: #222;
   font-weight: 500;
-  margin-right: 50%;
+  margin-right: auto;
 }
 
 /* DESCRIPTION SECTION */
 .imageDetailDescription {
-  margin-top: 8px;
   display: flex;
   flex-direction: column;
+  margin-top: 8px;
 }
 
 .imageDetailDescriptionTitle {
@@ -93,21 +91,20 @@
 
 .imageDetailDescriptionValue {
   font-size: 14px;
-
   color: #555;
-  margin: 15px 0 0;
+  margin-top: 15px;
+  line-height: 1.6;
 }
 
-/*  (Price + Chat) */
+/* PRICE + CHAT SECTION */
 .imageDetailPriceChatSection {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 300px;
-  flex-shrink: 0; 
+  flex: 1 1 35%;
 }
 
-/* PRICE SECTION */
+/* PRICE CARD */
 .imageDetailPriceSection {
   padding: 20px;
   border: 1px solid #e0e0e0;
@@ -121,7 +118,6 @@
   font-size: 34px;
   font-weight: 700;
   color: #222;
-
 }
 
 .imageDetailPriceName {
@@ -137,18 +133,18 @@
   color: #888;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px dashed #ddd; 
+  border-top: 1px dashed #ddd;
 }
 
 /* CHAT CARD */
 .imageDetailChatSection {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .imageDetailChatSellerPhotoText {
@@ -160,7 +156,7 @@
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  object-fit: contan;
+  object-fit: contain;
   border: 2px solid #f0f0f0;
 }
 
@@ -169,7 +165,6 @@
   font-weight: 600;
   margin-left: 12px;
 }
-
 
 .imageDetailChat {
   height: 48px;
@@ -186,15 +181,15 @@
 .imageDetailChat:hover {
   background: #222;
   color: #fff;
-  border-width: 2px; /* Prevent layout shift */
 }
 
-/* POST METADATA CARD */
+/* POST METADATA */
 .imageDetailPost {
   padding: 20px;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   background: #fff;
+  width: 100%;
 }
 
 .imageDetailPostText {
@@ -206,8 +201,22 @@
 .imageDetailPostValue {
   font-size: 14px;
   color: rgba(0, 47, 52, 0.6);
-  margin-top: 8px;
+  margin: 8px 20px;
   line-height: 1.4;
+}
+
+/* MAP SECTION */
+.imageDetailMap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  height: 300px;
+  box-sizing: border-box;
 }
 
 /* RESPONSIVE DESIGN */
@@ -232,11 +241,12 @@
   .imageDetailPriceChatSection {
     flex-direction: row;
     flex-wrap: wrap;
+    gap: 16px;
   }
 
   .imageDetailPriceSection,
   .imageDetailChatSection {
-    flex: 1 1 300px;
+    flex: 1 1 45%;
   }
 }
 
@@ -250,8 +260,13 @@
     height: 360px;
   }
 
+
   .imageDetailPriceChatSection {
     flex-direction: column;
+  }
+
+  .imageDetailMap {
+    height: 400px;
   }
 }
 
@@ -271,5 +286,9 @@
   .imageDetailChatSeller img {
     width: 56px;
     height: 56px;
+  }
+
+  .imageDetailMap {
+    height: 300px;
   }
 }

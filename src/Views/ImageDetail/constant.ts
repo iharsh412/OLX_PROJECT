@@ -26,7 +26,9 @@ export const CLASSNAME = {
     CHAT_BUTTON: "imageDetailChat",
     POST: "imageDetailPost",
     POST_TEXT: "imageDetailPostText",
-    POST_VALUE: "imageDetailPostValue"
+    POST_VALUE: "imageDetailPostValue",
+    MAP : "imageDetailMap",
+
 
 
 
@@ -39,6 +41,7 @@ export const TEXT = {
     PRODUCT: "Product",
     OLX_INDIA: "OLX India",
     CHAT_WITH_SELLER: "Chat with Seller",
-    POSTE_IN: "Posted in"
+    POSTE_IN: "Posted in",
+    CHAT:"chat"
 }
 
