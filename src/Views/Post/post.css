@@ -2,11 +2,12 @@
 .post-wrapper {
   width: 100%;
   max-width: 838px;
-  /* background-color: yellow; */
+  
   border: 1px solid black;
   border-radius: 4px;
   margin: 0 auto;
   padding: 0 16px;
+  background-color: white;
 }
 
 /* header selected category text */

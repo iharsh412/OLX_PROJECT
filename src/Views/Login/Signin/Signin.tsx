@@ -1,14 +1,24 @@
 import { Formik } from 'formik';
 import './signin.css';
-import { FORM_VALUES, INITIAL_VALUES, VALIDATION, CLASSNAME, TEXT } from './constant';
+import {
+  FORM_VALUES,
+  INITIAL_VALUES,
+  VALIDATION,
+  CLASSNAME,
+  TEXT,
+} from './constant';
 import { toast } from 'react-toastify';
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
-import {CLASSNAME as LOGIN_SECTION_CLASSNAME,TEXT as LOGIN_SECTION_TEXT} from "../LoginSection/constant"
+import {
+  CLASSNAME as LOGIN_SECTION_CLASSNAME,
+  TEXT as LOGIN_SECTION_TEXT,
+} from '../LoginSection/constant';
+import ICONS from '../../../assets';
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -48,11 +58,28 @@ export default function Signin() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
+              <div className={CLASSNAME.HEADER}>
+                {/* Back */}
+                <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
+                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
+                </Link>
+                {/* text */}
+                <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
+                {/* cross */}
+                <Link
+                  className={CLASSNAME.CROSS}
+                  to={ROUTES_CONFIG.HOMEPAGE.path}
+                >
+                  <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
+                </Link>
+              </div>
+             
               {/* form section */}
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor={COMMON_TEXT.EMAIL_S}>{COMMON_TEXT.EMAIL}</label>
+                  <label htmlFor={COMMON_TEXT.EMAIL_S}>
+                    {COMMON_TEXT.EMAIL}
+                  </label>
                   <input
                     type={TYPE.EMAIL}
                     id={COMMON_TEXT.EMAIL_S}
@@ -66,7 +93,9 @@ export default function Signin() {
                   )}
                 </div>
                 <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{COMMON_TEXT.PASSWORD}</label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>
+                    {COMMON_TEXT.PASSWORD}
+                  </label>
                   <input
                     type={TYPE.PASSWORD}
                     id={COMMON_TEXT.PASSWORD_S}
@@ -87,14 +116,13 @@ export default function Signin() {
                 >
                   {TEXT.LOGIN}
                 </button>
-
               </form>
               <button
                 className={CLASSNAME.FORGET}
                 type={TYPE.BUTTON}
                 title={COMMON_TEXT.PASSWORD_S}
                 onClick={() =>
-                  navigate(ROUTES_CONFIG.FORGETPASS.path, { replace: true })
+                  navigate(ROUTES_CONFIG.FORGETPASS.path)
                 }
               >
                 {TEXT.FORGET_PASSWORD}
@@ -108,7 +136,6 @@ export default function Signin() {
                   {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>
-
             </div>
           );
         }}

@@ -1,12 +1,12 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import CarDetail from '../CustomComponents/Post/CarForm/CarForm';
-import BikeDetail from '../CustomComponents/Post/BikeForm';
-import ScootersDetail from '../CustomComponents/Post/ScootersForm';
-import MobileDetail from '../CustomComponents/Post/MobileForm';
-import TabletDetail from '../CustomComponents/Post/TabletForm';
-import TVDetail from '../CustomComponents/Post/TVForm';
-import CameraDetail from '../CustomComponents/Post/CameraForm';
-import ComputerDetail from '../CustomComponents/Post/ComputerForm';
+import CarDetail from '../../Components/CustomComponents/Post/CarForm'
+import BikeDetail from '../../Components/CustomComponents/Post/BikeForm';
+import ScootersDetail from '../../Components/CustomComponents/Post/ScootersForm';
+import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
+import TabletDetail from '../../Components/CustomComponents/Post/TabletForm';
+import TVDetail from '../../Components/CustomComponents/Post/TVForm';
+import CameraDetail from '../../Components/CustomComponents/Post/CameraForm';
+import ComputerDetail from '../../Components/CustomComponents/Post/ComputerForm';
 import './post.css';
 import { CLASSNAME } from './constant';
 

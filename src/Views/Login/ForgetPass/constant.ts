@@ -13,6 +13,9 @@ export interface FORM_VALUES {
 }
 export const CLASSNAME = {
   WRAPPER: "forget_Wrapper",
+  HEADER: "forget_Header",
+  CROSS: "forget_Cross",
+  BACK: "forget_Back",
   TITLE: "forget_title",
   EMAIL_INPUT: "forget_emailInput",
   TEXT: "forget_text",

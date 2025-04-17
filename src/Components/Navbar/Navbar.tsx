@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 import ICONS from '../../assets';
 import { RootState } from '../../Store';
-import LanguageSelector from '../CustomComponents/LanguageSelector';
+// import LanguageSelector from '../CustomComponents/LanguageSelector';
 import Place from '../CustomComponents/PlaceSelector';
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
@@ -81,9 +81,9 @@ export default function Navbar() {
         <Item />
 
         {/* Language selector */}
-        <div className={CLASSNAME.LANGUAGE_WRAPPER}>
+        {/* <div className={CLASSNAME.LANGUAGE_WRAPPER}>
           <LanguageSelector />
-        </div>
+        </div> */}
         {/* cart login sell section */}
         <div className={CLASSNAME.CART_LOGIN_SELL}>
           {/* cart section */}

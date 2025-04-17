@@ -59,6 +59,7 @@ export default function ItemsSelector() {
       />
       {/* search button */}
       <button
+      
         className={CLASSNAME.SEARCH}
         disabled={items === ''}
         onClick={() => {

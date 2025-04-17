@@ -1,6 +1,6 @@
 /* Car Card Container */
 .myadsImages_wrapper {
-    background-color: #f1fdff;
+  background-color:white;
     display: flex;
     flex-direction: column;
     align-items: center;

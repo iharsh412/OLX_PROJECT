@@ -1,21 +1,19 @@
-.cart_Wrapper{
-    display: flex;
-    flex-direction: column;
-    width: 80vw;
-   
+.cart_Wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  background-color: rgb(242, 253, 255);
+  padding: 10px;
 }
-.cart_Wrapper h1{
-    text-align: center;
-   
+.cart_Wrapper h1 {
+  text-align: center;
 }
 
 /* cart image section */
 
-.cart_imageSection{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    flex-wrap: wrap; 
-    
-   
+.cart_imageSection {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
 }

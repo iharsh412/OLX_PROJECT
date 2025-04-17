@@ -21,6 +21,7 @@ export default function HomeLayout() {
   // for session expired
   useEffect(() => {
     dispatch(setItem(''));
+    toast.dismiss();
   }, [location?.pathname]);
   useEffect(() => {
     if (loader) {

@@ -7,12 +7,13 @@ import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Interface/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
+import { ClipLoader } from 'react-spinners';
 
 export default function Dashboard() {
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
-  const limit = 8;
-  const { data, isError, isLoading, refetch } = useGetTypeProductsQuery(
+  const limit = 12;
+  const { data, isError, isLoading } = useGetTypeProductsQuery(
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
@@ -27,43 +28,36 @@ export default function Dashboard() {
 
   useEffect(() => {
     console.log(data, 'data');
-    if (data) {
-      setTotalImages((prevImages) => {
-        const newDataMap = new Map(data.map((item) => [item.id, item]));
-
-        const updatedImages = prevImages.map((product) => {
-          const matchingItem = newDataMap.get(product.id);
-          if (matchingItem) {
-            return { ...product, is_favourite: matchingItem.is_favourite };
-          }
-          return product;
-        });
-
-        const newItems = data.filter(
-          (item) => !prevImages.some((product) => product.id === item.id)
-        );
-
-        return [...updatedImages, ...newItems];
+    if (data && page === 1) {
+      setTotalImages(() => {
+        return [...data];
       });
+    } else {
+      if (data)
+        setTotalImages((prev) => {
+          return [...prev, ...data];
+        });
     }
   }, [data]);
+console.log(totalImages, 'totalImages');
+console.log(data, 'data')
   return (
     <>
-      {isLoading && <h1>{COMMON_TEXT.LOADING}</h1>}
-      {isError && <h1>{COMMON_TEXT.ERROR}</h1>}
       {/* total images  */}
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
+            {isLoading && (
+              <div className="loading">
+                <ClipLoader color="black" size={50} loading={true} />
+              </div>
+            )}
+            {isError && <ClipLoader color="#ffffff" size={50} loading={true} />}
             {/* totalImages.length greater then 0 */}
             {data &&
               totalImages.length > 0 &&
               totalImages?.map((product: Product) => (
-                <ImagesLayout
-                  key={product.id}
-                  data={product}
-                  refetchDashboard={refetch}
-                />
+                <ImagesLayout key={product.id} data={product} />
               ))}
             {/* totalImages.length is eqauls to 0 */}
             {data && totalImages.length === 0 && (

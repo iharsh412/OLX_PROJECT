@@ -1,167 +1,173 @@
 /* FORGET PASSWORD WRAPPER */
-   .forget_Wrapper {
-    background-color: #faf1fe;
-    border-radius: 12px;
-    min-height: 460px;
-    width: 500px;
-    margin: 20px auto;
-    padding: 28px 32px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    position: relative;
-    overflow: visible;
-  }
-  
-  
-  
-  /* TITLE SECTION  */
-  .forget_title {
-    text-align: center;
-    font-size: 24px;
-    font-weight: 650;
-    color: #5a2a7e;
-    margin: 16px 0 28px;
-    position: relative;
-  }
-  
- 
-  
-  /*  INSTRUCTION TEXT  */
-  .forget_text {
-    color: #5a2a7e;
-    font-size: 14px;
-    font-weight: 500;
-    text-align: center;
-    margin: 0 0 24px 0;
-    padding: 12px;
-    line-height: 1.5;
-    background-color: rgba(162, 105, 214, 0.1);
-    border-radius: 8px;
-  }
-  
-  /* EMAIL INPUT FIELD  */
-  .forget_emailInput {
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .forget_emailInput label {
-    min-width: 80px;
-    font-size: 14px;
-    font-weight: 500;
-    color: #555;
-    padding-right: 12px;
-  }
-  
-  .forget_emailInput input {
-    flex: 1;
-    height: 40px;
-    padding: 0 14px;
-    border: 1.5px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 14px;
-    transition: all 0.25s ease;
-    background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
-  }
-  
-  .forget_emailInput input:hover {
-    border-color: #b88ae0;
-  }
-  
-  .forget_emailInput input:focus {
-    border-color: #a269d6;
-    box-shadow: 0 0 0 3px rgba(162, 105, 214, 0.15);
-    outline: none;
-  }
-  
-  /* SUBMIT BUTTON  */
-  .forget_submitButton {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 16px;
-    font-size: 15px;
-    font-weight: 600;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #00c8c8, #00a8e0);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 200, 200, 0.2);
-  }
-  
-  .forget_submitButton:hover {
-    background: linear-gradient(135deg, #00b4b4, #0094c8);
-    box-shadow: 0 6px 12px rgba(0, 180, 180, 0.25);
-    transform: translateY(-1px);
-  }
-  
-  .forget_submitButton:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 180, 180, 0.3);
-  }
-  
-  /* ERROR MESSAGE */
-  .forget_error {
-    font-size: 13px;
-    color: #d32f2f;
-    margin: -18px 0 16px 80px; 
-    font-weight: 500;
-    min-height: 18px;
-    display: block;
+.forget_Wrapper {
+  background-color: #faf1fe;
+  border-radius: 12px;
+  min-height: 460px;
+  width: 500px;
+  margin: 20px auto;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  position: relative;
+  overflow: visible;
+}
+
+/* TITLE SECTION  */
+.forget_title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 650;
+  color: #5a2a7e;
+  margin: 16px 0 28px;
+  position: relative;
+}
+.forget_Header {
+  display: flex;
+  justify-content: space-between;
+}
+.forget_Cross img {
+  width: 20px;
+}
+.forget_Back img {
+  width: 20px;
+}
+
+/*  INSTRUCTION TEXT  */
+.forget_text {
+  color: #5a2a7e;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 24px 0;
+  padding: 12px;
+  line-height: 1.5;
+  background-color: rgba(162, 105, 214, 0.1);
+  border-radius: 8px;
+}
+
+/* EMAIL INPUT FIELD  */
+.forget_emailInput {
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.forget_emailInput label {
+  min-width: 80px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  padding: 0 0 10px;
+}
+
+.forget_emailInput input {
+  width: 100%;
+  height: 30px;
+  padding: 0 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 1px;
+  font-size: 14px;
+  transition: all 0.25s ease;
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
+}
+
+.forget_emailInput input:hover {
+  border-color: #b88ae0;
+}
+
+.forget_emailInput input:focus {
+  border-color: #a269d6;
+  box-shadow: 0 0 0 3px rgba(162, 105, 214, 0.15);
+  outline: none;
+}
+
+/* SUBMIT BUTTON  */
+.forget_submitButton {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0 16px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00c8c8, #00a8e0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 200, 200, 0.2);
+}
+
+.forget_submitButton:hover {
+  background: linear-gradient(135deg, #00b4b4, #0094c8);
+  box-shadow: 0 6px 12px rgba(0, 180, 180, 0.25);
+  transform: translateY(-1px);
+}
+
+.forget_submitButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 180, 180, 0.3);
+}
+
+/* ERROR MESSAGE */
+.forget_error {
+  font-size: 13px;
+  color: #d32f2f;
+  font-weight: 500;
+}
+
+/* RESPONSIVE DESIGN  */
+@media (max-width: 480px) {
+  .forget_Wrapper {
+    width: 90%;
+    padding: 24px 20px;
+    min-height: auto;
   }
 
-  
-  /* RESPONSIVE DESIGN  */
-  @media (max-width: 480px) {
-    .forget_Wrapper {
-      width: 90%;
-      padding: 24px 20px;
-      min-height: auto;
-    }
-    
-    .forget_title {
-      font-size: 22px;
-      margin: 12px 0 24px;
-    }
-    
-    .forget_emailInput {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    
-    .forget_emailInput label {
-      min-width: auto;
-      margin-bottom: 8px;
-      padding-right: 0;
-    }
-    
-    .forget_emailInput input {
-      width: 100%;
-    }
-    
-    .forget_error {
-      margin: -16px 0 12px 0;
-      width: 100%;
-    }
-    
-    .forget_text {
-      font-size: 13px;
-      padding: 10px;
-      margin-bottom: 20px;
-    }
+  .forget_title {
+    font-size: 22px;
+    margin: 12px 0 24px;
   }
-  
-  @media (max-width: 360px) {
-    .forget_Wrapper {
-      padding: 20px 16px;
-    }
-    
-    .forget_title {
-      font-size: 20px;
-    }
+
+  .forget_emailInput {
+    flex-direction: column;
+    align-items: flex-start;
   }
+
+  .forget_emailInput label {
+    /* min-width: auto; */
+    margin-bottom: 8px;
+    padding-right: 0;
+  }
+
+  .forget_emailInput input {
+    width: 100%;
+  }
+
+  .forget_error {
+    margin: -16px 0 12px 0;
+    width: 100%;
+  }
+
+  .forget_text {
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .forget_Wrapper {
+    padding: 20px 16px;
+  }
+
+  .forget_title {
+    font-size: 20px;
+  }
+}

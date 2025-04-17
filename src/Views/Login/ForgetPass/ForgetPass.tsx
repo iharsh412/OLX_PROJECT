@@ -9,10 +9,16 @@ import {
   CLASSNAME,
   TEXT,
 } from './constant';
-import { ToastContainer, toast } from 'react-toastify';
-import { COMMON_TEXT, TYPE } from "../../../Interface/constant";
+import { toast } from 'react-toastify';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 import { useState } from 'react';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
+import {
+  CLASSNAME as LOGIN_SECTION_CLASSNAME,
+  TEXT as LOGIN_SECTION_TEXT,
+} from '../LoginSection/constant';
+import ICONS from '../../../assets';
+import { Link } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ForgetPass() {
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -22,7 +28,7 @@ export default function ForgetPass() {
     try {
       await post(values).unwrap();
       setDisabled(true);
-      toast.success(TEXT.SUCCESS)
+      toast.success(TEXT.SUCCESS);
     } catch (error) {
       toast.error(TEXT.FAILURE);
     }
@@ -45,7 +51,22 @@ export default function ForgetPass() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+              
+              <div className={CLASSNAME.HEADER}>
+                {/* Back */}
+                <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.SIGNIN.path}>
+                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
+                </Link>
+                {/* text */}
+                <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+                {/* cross */}
+                <Link
+                  className={CLASSNAME.CROSS}
+                  to={ROUTES_CONFIG.HOMEPAGE.path}
+                >
+                  <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
+                </Link>
+              </div>
               <div className={CLASSNAME.EMAIL_INPUT}>
                 <label htmlFor={COMMON_TEXT.EMAIL_S}>Email</label>
                 <input
@@ -70,9 +91,7 @@ export default function ForgetPass() {
               >
                 {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
               </button>
-              {disabled && (
-                <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>
-              )}
+              {disabled && <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
                   {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
@@ -81,7 +100,6 @@ export default function ForgetPass() {
                   {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>
-              <ToastContainer />
             </div>
           );
         }}

@@ -13,7 +13,7 @@ const ROUTES = {
   ATTRIBUTES: 'attributes',
   CATEGORY: '/type/:category',
   SIGNIN: '/signin',
-  SIGNUP: 'signup',
+  SIGNUP: '/signup',
   FORGETPASS: '/forgetpassword',
   VERIFICATION: '/verification',
   NEWPASSWORD: '/newpassword/:id/:token',

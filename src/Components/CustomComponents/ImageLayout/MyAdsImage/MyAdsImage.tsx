@@ -10,7 +10,6 @@ import { useNavigate } from 'react-router-dom';
 import EditAds from '../../EditAds';
 
 const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
-  // console.log(data);
   const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
@@ -54,7 +53,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
       <div className={CLASSNAME.WRAPPER} onClick={onClickImages}>
         <div className={CLASSNAME.IMAGE}>
           <img
-            src={`${import.meta.env.VITE_BASE_URL}/${data.display_photo}`}
+            src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
             alt={data.name}
             loading="lazy"
           />

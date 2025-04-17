@@ -22,6 +22,9 @@ export const VALIDATION = Yup.object().shape({
 });
 export const CLASSNAME = {
   WRAPPER: "signin_Wrapper",
+  HEADER: "signin_header",
+  CROSS: "signin_cross",
+  BACK: "signin_back",
   TITLE: "signin_title",
   EMAIL_INPUT: "signin_emailInput",
   PASSWORD_INPUT: "signin_passwordInput",

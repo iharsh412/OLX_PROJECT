@@ -40,7 +40,7 @@ function ImageSection({ images }: ImageSectionProps) {
           }`}
         >
           <img
-            src={`${import.meta.env.VITE_BASE_URL}/${image}`}
+            src={`${import.meta.env.VITE_BASE_URL}${image}`}
             alt={`Slide ${index + 1}`}
             className="ActiveImages"
           />
@@ -75,7 +75,7 @@ function ImageSection({ images }: ImageSectionProps) {
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           >
-            <img src={`${import.meta.env.VITE_BASE_URL}/${image}`} alt="img" />
+            <img src={`${import.meta.env.VITE_BASE_URL}${image}`} alt="img" />
           </button>
         ))}
       </div>

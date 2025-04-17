@@ -5,14 +5,20 @@ import './profileSection.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
 import { COMMON_TEXT } from '../../Interface/constant';
+import { ClipLoader } from 'react-spinners';
 
 export default function ProfileSection() {
   const { data, isLoading, isError } = useGetUserInfoQuery(
     {},
     { refetchOnMountOrArgChange: true }
   );
-  console.log(data, 'data');
-  if (isLoading) return <h1>{COMMON_TEXT.LOADING}</h1>;
+
+  if (isLoading)
+    return (
+      <div className="loading">
+        <ClipLoader color="black" size={50} loading={true} />
+      </div>
+    );
   if (isError) return <h1>{COMMON_TEXT.ERROR}</h1>;
   return (
     <>

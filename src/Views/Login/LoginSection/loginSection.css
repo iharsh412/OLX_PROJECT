@@ -1,6 +1,6 @@
 /*LOGIN PAGE */
 .loginPageParent {
-  background: linear-gradient(135deg, #faf1fe 0%, #f0e5ff 100%);
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
   border-radius: 16px;
   width: 500px;
   margin: 24px auto;
@@ -12,11 +12,10 @@
   position: relative;
   overflow: hidden;
   font-family: 'Inter', -apple-system, sans-serif;
-  backdrop-filter: blur(4px);
   border: 1px solid rgba(255, 255, 255, 0.4);
   transform: translateY(0);
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-
+ 
   
 }
 

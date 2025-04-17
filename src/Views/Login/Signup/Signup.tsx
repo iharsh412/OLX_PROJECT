@@ -9,13 +9,14 @@ import {
   TEXT,
 } from './constant';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 import {
   CLASSNAME as LOGIN_SECTION_CLASSNAME,
   TEXT as LOGIN_SECTION_TEXT,
 } from '../LoginSection/constant';
+import ICONS from '../../../assets';
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ export default function Signup() {
       await post(data).unwrap();
       resetForm();
       navigate(ROUTES_CONFIG.VERIFICATION.path, { replace: true });
-      toast.success(TEXT.SUCCESS)
+      toast.success(TEXT.SUCCESS);
     } catch (error) {
       toast.error((error as any)?.data?.email?.[0]);
     }
@@ -55,7 +56,25 @@ export default function Signup() {
           console.log(values, 'VALUES');
           return (
             <div className={CLASSNAME.WRAPPER}>
-              <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+              <div className={CLASSNAME.HEADER}>
+                {/* Back */}
+                <Link
+                  className={CLASSNAME.BACK}
+                  to={ROUTES_CONFIG.LOGIN.path}
+                >
+                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
+                </Link>
+                {/* text */}
+                <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+                {/* cross */}
+                <Link
+                  className={CLASSNAME.CROSS}
+                  to={ROUTES_CONFIG.HOMEPAGE.path}
+                >
+                  <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
+                </Link>
+              </div>
+
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.USERNAME_INPUT}>
                   <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME} </label>

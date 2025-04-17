@@ -372,7 +372,7 @@ const Photos: React.FC<PhotosProps> = ({
                 <img
                   src={
                     typeof value?.[index] === 'string'
-                      ? `${import.meta.env.VITE_BASE_URL}/${value?.[index]}`
+                      ? `${import.meta.env.VITE_BASE_URL}${value?.[index]}`
                       : URL.createObjectURL(value?.[index])
                   }
                   alt={COMMON_TEXT.IMG}

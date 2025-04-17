@@ -9,10 +9,11 @@ import { Product } from '../../Interface/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
 import { SampleData, ResponseData } from './constant';
+import { ClipLoader } from 'react-spinners';
 
 export default function Sample() {
   console.log('helllo');
-  const limit = 1;
+  const limit = 8;
   const [totalpage, setTotalpage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const { category } = useParams();
@@ -47,9 +48,9 @@ export default function Sample() {
     fetchData();
   }, [page, JSON.stringify(sampleData)]);
   useEffect(() => {
-    console.log('sampleData');
+    console.log('sampleData', sampleData);
     setPage(1);
-  }, [sampleData]);
+  }, [JSON.stringify(sampleData)]);
 
   useEffect(() => {
     console.log('category', category);
@@ -269,7 +270,11 @@ export default function Sample() {
         </div>
         {/* Image Section */}
         <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
-          {isLoading && <h1 className="sample-errorAndLoading">Loading...</h1>}
+          {isLoading && (
+            <div className="loading">
+              <ClipLoader color="black" size={50} loading={true} />
+            </div>
+          )}
           {isError && (
             <h1 className="sample-errorAndLoading">
               Error in loading products

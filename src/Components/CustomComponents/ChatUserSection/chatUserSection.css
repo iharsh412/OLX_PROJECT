@@ -1,0 +1,52 @@
+/* Wrapper for the user section */
+.chatUser-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #c8f5f7;
+    max-width: 300px;
+    overflow-y: auto;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+   
+}
+
+/* Each individual user entry */
+.chatUser-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    background-color: #547bb1;
+    margin: 5px;
+    color: white;
+}
+
+.chatUser-user:hover {
+    background-color: #dce0e6;
+    color: black;
+}
+
+/* Scrollbar styling for modern browsers (WebKit) */
+.chatUser-wrapper::-webkit-scrollbar {
+    width: 5px;
+}
+
+.chatUser-wrapper::-webkit-scrollbar-track {
+    background: #f0f2f5;
+    border-radius: 10px;
+}
+
+.chatUser-wrapper::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+.chatUser-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #a0a0a0;
+}

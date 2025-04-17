@@ -2,7 +2,7 @@ import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
-import { logout } from '../../../firebase';
+// import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
 import { toast } from 'react-toastify';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
@@ -31,7 +31,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const handleLogout = () => {
     try {
       post({ refresh: refresh }).unwrap();
-      logout();
+      // logout(); // commenting this line to avoid firebase logout
       dispatch(
         updateAuthState({
           refresh: null,
@@ -52,7 +52,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_INITIAL} >{username?.[0]}</div>
+            <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
             <div className={CLASSNAME.PROFILE_INFO}>
               <h3>{username}</h3>
               <Link

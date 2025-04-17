@@ -71,7 +71,7 @@ export default function ImageDetail() {
               <img
                 src={`${
                   import.meta.env.VITE_BASE_URL
-                }/${product?.display_photo}`}
+                }${product?.display_photo}`}
                 alt={COMMON_TEXT.IMG}
               />
             </span>

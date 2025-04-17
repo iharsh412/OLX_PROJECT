@@ -27,13 +27,18 @@ import { toast } from 'react-toastify';
 import { updateUsername } from '../../Store/Common';
 import { useDispatch } from 'react-redux';
 
+
+
+
 export default function EditProfile() {
+
   const { data, isLoading, isError } = useGetUserInfoQuery({});
   const [post] = usePostEditProfileDataMutation();
   const [postEmailValid] = usePostEmailValidMutation();
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   // HandleSubmit
   //    submiting form
   const handleSubmit = async (values: FormValues) => {
@@ -50,6 +55,7 @@ export default function EditProfile() {
       toast.error((error as any)?.data?.msg);
     }
   };
+
   // HOOKS
   //    to set the initial value
   useEffect(() => {
@@ -67,6 +73,7 @@ export default function EditProfile() {
   if (isLoading) return <h1>{COMMON_TEXT.LOADING}</h1>;
   if (isError) return <h1>{COMMON_TEXT.ERROR}</h1>;
   console.log(formInitialValues, 'INITIAL VALUES');
+  
   return (
     <Formik
       initialValues={formInitialValues}

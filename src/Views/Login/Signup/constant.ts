@@ -26,6 +26,9 @@ export interface FORM_VALUES {
 }
 export const CLASSNAME ={
     WRAPPER:"signup_Wrapper",
+    HEADER:"signup_Header",
+    CROSS:"signup_Cross",
+    BACK:"signup_Back",
     TITLE:"signup_title",
     USERNAME_INPUT:"signup_usernameInput",
     EMAIL_INPUT:"signup_emailInput",

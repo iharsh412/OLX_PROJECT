@@ -22,6 +22,7 @@ import {
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
 import { toast } from 'react-toastify';
+import { ClipLoader } from 'react-spinners';
 
 const EditAds: React.FC<EditAdsProps> = ({
   setEditOpen,
@@ -29,8 +30,7 @@ const EditAds: React.FC<EditAdsProps> = ({
   refetch,
 }) => {
   const [post] = usePostEditDataMutation();
-  const { data } = useGetProductsDetailQuery({ id: product.id });
-  console.log(data, 'data');
+  const { data, isLoading } = useGetProductsDetailQuery({ id: product.id });
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
 
   useEffect(() => {
@@ -52,9 +52,7 @@ const EditAds: React.FC<EditAdsProps> = ({
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log('values', values);
     const formData = new FormData();
-
     if (product?.id !== undefined) formData.append('id', String(product.id));
     if (product?.category)
       formData.append('category', String(product.category));
@@ -98,7 +96,12 @@ const EditAds: React.FC<EditAdsProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
+  if (isLoading)
+    return (
+      <div className="loading">
+        <ClipLoader color="black" size={50} loading={true} />
+      </div>
+    );
   return (
     <div className={CLASSNAME.WRAPPER}>
       <Formik

@@ -4,6 +4,7 @@ import './wishlistSection.css';
 import { Product } from '../../Interface/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
+import { ClipLoader } from 'react-spinners';
 
 export default function WishlistSection() {
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
@@ -15,7 +16,11 @@ export default function WishlistSection() {
     <>
       <div className={CLASSNAME.WRAPPER}>
         <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
-        {isLoading && <h1>{COMMON_TEXT.LOADING}</h1>}
+        {isLoading && (
+          <div className="loading">
+            <ClipLoader color="black" size={50} loading={true} />
+          </div>
+        )}
         {isError && <h1>{COMMON_TEXT.ERROR}</h1>}
         {/*  data then render */}
         {data && data.length > 0 && (
