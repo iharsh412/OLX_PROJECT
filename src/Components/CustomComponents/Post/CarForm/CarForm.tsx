@@ -23,16 +23,17 @@ import {
   // Year,
 } from '../Common/Common';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
+import { TEXT as COMMON_TEXT } from "../Common/constant"
+
 
 export default function CarForm() {
+
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
 
   // HandleSubmit
-  const notifyAdded = () => toast('Posted Successfuly!');
-  const notifyNotAdded = () => toast(' Error!');
   const handleSubmit = async (
     values: FormValues,
     { resetForm }: { resetForm: () => void }
@@ -56,14 +57,12 @@ export default function CarForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      notifyAdded();
+      toast.success(COMMON_TEXT.SUCCESS);
       setShowResponse('Added');
       navigate(ROUTES_CONFIG.HOMEPAGE.path)
-
-
       resetForm();
     } catch (error) {
-      notifyNotAdded();
+      toast.error(COMMON_TEXT.ERROR);
       setShowResponse('Error');
     }
   };
@@ -100,7 +99,6 @@ export default function CarForm() {
           <>
             <div className={CLASSNAME.WRAPPER}>
               <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="brand"
@@ -110,17 +108,7 @@ export default function CarForm() {
                 label="Brand"
                 {...share}
               />
-            
               {/* Year Input */}
-              {/* <Year
-               type="number"
-               htmlFor="year"
-               value={values.year}
-               err={errors.year}
-               tch={touched.year}
-               label="Year"
-               {...share}/> */}
-
               <TextField
                 type="number"
                 htmlFor="year"
@@ -130,9 +118,7 @@ export default function CarForm() {
                 label="Year"
                 {...share}
               />
-
               {/* Fuel Selection */}
-
               <label htmlFor="fuel" className={CLASSNAME.LABEL}>
                 Fuel *
               </label>
@@ -157,9 +143,7 @@ export default function CarForm() {
                 component="div"
                 className={CLASSNAME.ERROR}
               />
-
               {/* KM Driven */}
-
               <TextField
                 type="number"
                 htmlFor="distance"
@@ -169,9 +153,7 @@ export default function CarForm() {
                 label="KM driven"
                 {...share}
               />
-
               {/* Title Input */}
-
               <TextField
                 type="text"
                 htmlFor="title"
@@ -181,7 +163,6 @@ export default function CarForm() {
                 tch={touched.title}
                 {...share}
               />
-
               {/* Description Input */}
               <Description
                 type="text"
@@ -194,7 +175,6 @@ export default function CarForm() {
               />
             </div>
             <hr />
-
             {/* Price Input */}
             <Price
               type="number"
@@ -206,7 +186,6 @@ export default function CarForm() {
               {...share}
             />
             <hr />
-
             {/* Photos input */}
             <Photos
               type="file"
@@ -216,7 +195,6 @@ export default function CarForm() {
             />
             <hr />
             {/* Location */}
-
             <div className={CLASSNAME.LOCATION_WRAPPER}>
               <h3 className={CLASSNAME.LOCATION_TEXT}>
                 {TEXT.CONFIRM_LOCATION}
@@ -230,7 +208,6 @@ export default function CarForm() {
                 label="State"
                 {...share}
               />
-
               {values.state && (
                 <City
                   state={values.state}
@@ -244,14 +221,10 @@ export default function CarForm() {
                 />
               )}
             </div>
-
             <hr />
-
             {/* Review Your Detail */}
-
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>{TEXT.REVIEW_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="sellerName"
@@ -272,7 +245,6 @@ export default function CarForm() {
               />
             </div>
             <hr />
-
             {/* Submit Button */}
             <button
               type="submit"
@@ -283,8 +255,8 @@ export default function CarForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

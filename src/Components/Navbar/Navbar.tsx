@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from 'react';
 import ICONS from '../../assets';
 import { RootState } from '../../Store';
 // import LanguageSelector from '../CustomComponents/LanguageSelector';
-import Place from '../CustomComponents/PlaceSelector';
+// import Place from '../CustomComponents/PlaceSelector';
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
 import { CLASSNAME, TEXT } from './constant';
@@ -13,10 +13,12 @@ import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 export default function Navbar() {
+
   const navigate = useNavigate();
   const { access, username } = useSelector((state: RootState) => state?.common);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const profileRef = useRef<HTMLButtonElement>(null);
+
   // click
   // handle click on sell
   function onClickSell() {
@@ -27,9 +29,9 @@ export default function Navbar() {
     }
   }
   // handle click on cart
-  function onClickCart() {
+  function onClickWishlist() {
     if (access) {
-      navigate(ROUTES_CONFIG.CART.path);
+      navigate(ROUTES_CONFIG.WISHLIST.path);
     } else {
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
@@ -73,9 +75,9 @@ export default function Navbar() {
         </button>
 
         {/* place selector */}
-        <div className={CLASSNAME.PLACE_WRAPPER}>
+        {/* <div className={CLASSNAME.PLACE_WRAPPER}>
           <Place />
-        </div>
+        </div> */}
 
         {/* item selector */}
         <Item />
@@ -90,7 +92,8 @@ export default function Navbar() {
           <button
             type={TYPE.BUTTON}
             className={CLASSNAME.CART}
-            onClick={onClickCart}
+            onClick={onClickWishlist}
+            title={COMMON_TEXT.BUTTON}
           >
             <img
               src={ICONS.heartIcon}

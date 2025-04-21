@@ -11,7 +11,7 @@ import { store, persistor } from './Store';
 import RootRouter from './Routes/RootRouter';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-
+import ChatWrapper from './Components/CustomComponents/ChatWrapper/ChatWrapper';
 
 const baseName = import.meta.env.VITE_BASE_NAME;
 
@@ -19,14 +19,16 @@ const router = createBrowserRouter(
   createRoutesFromElements(<Route path="*" element={<RootRouter />} />),
   { basename: baseName }
 );
-  
+
 function App() {
   return (
     <Provider store={store}>
       <PersistGate persistor={persistor}>
-        <ToastContainer/>
+        <ToastContainer />
         <HelmetProvider>
-          <RouterProvider router={router} />
+          <ChatWrapper>
+            <RouterProvider router={router} />
+          </ChatWrapper>
         </HelmetProvider>
       </PersistGate>
     </Provider>

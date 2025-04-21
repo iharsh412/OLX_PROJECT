@@ -6,18 +6,18 @@ export const CLASSNAME = {
   TEXT_SECTION: 'sample-textSection',
   MAIN_SECTION_WRAPPER: 'sample-mainSectionWrapper',
   MAIN_SECTION_IMAGE: 'sample-mainSectionImage',
-  MAIN_SECTION_FILTER: 'sample-mainSectionFilter',
-  MAIN_IMAGE_SECTION_WRAPPER:"sample-mainImageSectionWrapper",
-  FILTER_TITLE: 'sample-filterTitle',
-  SUBCATEGORY: 'sample-subcategory',
-  BRAND: 'sample-brand',
-  PRICE: 'sample-price',
+  MAIN_IMAGE_SECTION_WRAPPER: "sample-mainImageSectionWrapper",
+  SELECTED_OPTION: "sample-selectedOptions",
+  SELECTED_OPTION_WRAPPER: "sample-selectedWrapper",
+  SELECTED_OPTION_TEXT: "sample-selectedText",
+  SELECTED_OPTION_CROSS: "sample-selectedCross",
+  NO_PRODUCTS: "sample-noProduct",
+
 };
 
 export const TEXT = {
-  TEXT_SECTION: {
-    H3: 'Buy & Sell Used Bikes in India',
-  },
+  NO_PRODUCT_AVAILABLE: "No product available"
+
 };
 export interface SampleData {
   category?: string;
@@ -29,5 +29,5 @@ export interface ResponseData {
   products?: Product[];
   subcategories?: { subcategory_name: string; product_count: number }[];
   Brand?: string[];
-  count?:number |undefined ;
+  count?: number | undefined;
 }

@@ -10,17 +10,20 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
 
+
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
+
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
   const { access: token } = useSelector((state: RootState) => state?.common);
+
   //  click
   // on click cart
-  const onClickCart = async (e: React.MouseEvent) => {
+  const onClickWishlist = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!token) {
-      toast.error(TEXT.ADD_TO_CART);
+      toast.error(TEXT.ADD_TO_Wishlist);
       return;
     }
     try {
@@ -37,6 +40,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const onClickImages = async () => {
     navigate(`/product/${data.name}/${data.id}`);
   };
+  
   // HOOKS
   useEffect(() => {
     setShowAdded(data.is_favourite ? TEXT.ADDED : '');
@@ -52,11 +56,11 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
           className={CLASSNAME.IMAGE}
           loading="lazy"
         />
-        {/* cart section */}
+        {/* wishlist section */}
         <button
           title={COMMON_TEXT.BUTTON}
           type={TYPE.BUTTON}
-          onClick={onClickCart}
+          onClick={onClickWishlist}
           className={CLASSNAME.CART_WRAPPER}
           disabled={isLoading}
         >

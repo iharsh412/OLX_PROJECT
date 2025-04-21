@@ -20,15 +20,15 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
+import { TEXT as COMMON_TEXT } from "../Common/constant"
 
 export default function MobileForm() {
+
   const { state } = useLocation();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
 
-  const notifyAdded = () => toast('Posted Successfuly!');
-  const notifyNotAdded = () => toast(' Error!');
   useEffect(() => {
     if (showResponse) {
       const timer = setTimeout(() => {
@@ -42,7 +42,7 @@ export default function MobileForm() {
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log(values, 'values');
+
     const formData = new FormData();
     formData.append('user', '1');
     formData.append('category', state.categoryId);
@@ -62,13 +62,13 @@ export default function MobileForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      notifyAdded();
+      toast.success(COMMON_TEXT.SUCCESS)
       setShowResponse('Added');
       navigate(ROUTES_CONFIG.HOMEPAGE.path)
 
       resetForm();
     } catch (error) {
-      notifyNotAdded();
+      toast.error(COMMON_TEXT.ERROR);
       setShowResponse('Error');
     }
   };
@@ -104,9 +104,7 @@ export default function MobileForm() {
                 label="Brand"
                 {...share}
               />
-
               {/* Title Input */}
-
               <TextField
                 type="text"
                 htmlFor="title"
@@ -116,9 +114,7 @@ export default function MobileForm() {
                 tch={touched.title}
                 {...share}
               />
-
               {/* Description Input */}
-
               <Description
                 type="text"
                 htmlFor="description"
@@ -129,9 +125,7 @@ export default function MobileForm() {
                 {...share}
               />
             </div>
-
             <hr />
-
             {/* Price Input */}
             <Price
               type="number"
@@ -142,9 +136,7 @@ export default function MobileForm() {
               label="Price"
               {...share}
             />
-
             <hr />
-
             {/* Photos input */}
             <Photos
               type="file"
@@ -154,7 +146,6 @@ export default function MobileForm() {
             />
             <hr />
             {/* Location */}
-
             <div className={CLASSNAME.LOCATION_WRAPPER}>
               <h3 className={CLASSNAME.LOCATION_TEXT}>
                 {TEXT.CONFIRM_LOCATION}
@@ -168,7 +159,6 @@ export default function MobileForm() {
                 label="State"
                 {...share}
               />
-
               {values.state && (
                 <City
                   state={values.state}
@@ -182,14 +172,10 @@ export default function MobileForm() {
                 />
               )}
             </div>
-
             <hr />
-
             {/* Review Your Detail */}
-
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>{TEXT.REVIEW_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="sellerName"
@@ -210,7 +196,6 @@ export default function MobileForm() {
               />
             </div>
             <hr />
-
             {/* Submit Button */}
             <button
               type="submit"
@@ -221,8 +206,8 @@ export default function MobileForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

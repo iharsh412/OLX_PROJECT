@@ -5,7 +5,8 @@ import './profileSection.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
 import { COMMON_TEXT } from '../../Interface/constant';
-import { ClipLoader } from 'react-spinners';
+import Loader from "../../Components/Atom/Loader"
+import Error from "../../Components/Atom/Error"
 
 export default function ProfileSection() {
   const { data, isLoading, isError } = useGetUserInfoQuery(
@@ -14,12 +15,9 @@ export default function ProfileSection() {
   );
 
   if (isLoading)
-    return (
-      <div className="loading">
-        <ClipLoader color="black" size={50} loading={true} />
-      </div>
-    );
-  if (isError) return <h1>{COMMON_TEXT.ERROR}</h1>;
+    return <Loader />
+  if (isError)
+    return <Error />;
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>

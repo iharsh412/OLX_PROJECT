@@ -21,6 +21,7 @@ import ICONS from '../../../assets';
 export default function Signup() {
   const navigate = useNavigate();
   const [post, { isLoading }] = usePostSignupDataMutation();
+
   // handle click
   async function handleSubmit(
     values: FORM_VALUES,
@@ -53,7 +54,7 @@ export default function Signup() {
           handleSubmit,
           isSubmitting,
         }) => {
-          console.log(values, 'VALUES');
+
           return (
             <div className={CLASSNAME.WRAPPER}>
               <div className={CLASSNAME.HEADER}>

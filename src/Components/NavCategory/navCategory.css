@@ -27,9 +27,16 @@
   font-weight: 700;
   padding-right: 16px;
 }
-.home_navCategory_child_allCategory_upDown {
-  margin-left: 5px;
-  margin-top: 4px;
+
+.home_navCategory_child_allCategory {
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.home_navCategory_child_allCategory:hover {
+  font-weight: 500;
 }
 
 /* Category container (ensures all categories stay in one line) */
@@ -51,7 +58,9 @@
   cursor: pointer;
   border: none;
   background-color: white;
+  text-decoration: underline;
 }
+
 .home_navCategory_Cars:hover,
 .home_navCategory_Motorcycle:hover,
 .home_navCategory_MobilePhone:hover,

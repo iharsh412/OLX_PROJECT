@@ -20,10 +20,10 @@ import * as Yup from 'yup';
 export const validationSchema = Yup.object().shape({
   phonenumber: Yup.string()
     .matches(/^[0-9]{10}$/, 'Mobile number must be exactly 10 digits'),
-    email: Yup.string()
+  email: Yup.string()
     .required('Email is required')
     .email('Invalid email format'),
-    username: Yup.string()
+  username: Yup.string()
     .required('Seller name is required')
     .matches(
       /^[A-Za-z\s]+$/,
@@ -40,7 +40,7 @@ export const initialValues = {
 };
 export interface FormValues {
   username: string;
-    phonenumber: string;
-    ["about me"]:string;
-    email: string;
+  phonenumber: string;
+  ["about me"]: string;
+  email: string;
 }

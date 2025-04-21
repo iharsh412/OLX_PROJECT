@@ -16,8 +16,6 @@
   position: relative;
   overflow: hidden;
 }
-
-
 /* TITLE SECTION */
 .signup_title {
   text-align: center;
@@ -27,19 +25,23 @@
   margin: 12px 0 28px;
   position: relative;
 }
-.signup_Header{
+
+.signup_Header {
   display: flex;
   justify-content: space-between;
 
 }
-.signup_Cross img{
+
+.signup_Cross img {
   width: 20px;
 
 }
-.signup_Back img{
+
+.signup_Back img {
   width: 20px;
 
 }
+
 /* FORM INPUTS */
 .signup_usernameInput,
 .signup_emailInput,

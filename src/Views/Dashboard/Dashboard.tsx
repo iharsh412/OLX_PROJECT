@@ -7,9 +7,11 @@ import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Interface/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
-import { ClipLoader } from 'react-spinners';
+import Loader from "../../Components/Atom/Loader"
+import Error from "../../Components/Atom/Error"
 
 export default function Dashboard() {
+
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
   const limit = 12;
@@ -18,7 +20,6 @@ export default function Dashboard() {
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
   );
   const [totalImages, setTotalImages] = useState<Product[]>([]);
-  console.log(page, 'page');
 
   // Hooks
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Dashboard() {
   }, [search]);
 
   useEffect(() => {
-    console.log(data, 'data');
+
     if (data && page === 1) {
       setTotalImages(() => {
         return [...data];
@@ -39,20 +40,16 @@ export default function Dashboard() {
         });
     }
   }, [data]);
-console.log(totalImages, 'totalImages');
-console.log(data, 'data')
+
   return (
     <>
       {/* total images  */}
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
-            {isLoading && (
-              <div className="loading">
-                <ClipLoader color="black" size={50} loading={true} />
-              </div>
-            )}
-            {isError && <ClipLoader color="#ffffff" size={50} loading={true} />}
+            {isLoading && <Loader />
+            }
+            {isError && <Error />}
             {/* totalImages.length greater then 0 */}
             {data &&
               totalImages.length > 0 &&

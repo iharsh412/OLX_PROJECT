@@ -1,74 +1,76 @@
 import './footer.css';
 import ICONS from '../../assets';
-import { LINK } from './constant';
+import { CLASSNAME, LINK, TEXT } from './constant';
+import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function Footer() {
+  
   const handleClick = (link: string) => {
     window.location.href = link;
   };
 
   return (
-    <div className="footerSectionParent">
-      <div className="footerSection">
-        <div className="footerSectionChildImages">
-          <button className="footerSectionCarTradeTech">
-            <img src={ICONS.carTradeTech} alt="trade" />
+    <div className={CLASSNAME.WRAPPER}>
+      <div className={CLASSNAME.CHILD}>
+        <div className={CLASSNAME.IMAGES_LIST}>
+          <button className={CLASSNAME.CAR_TRADE_TECH}>
+            <img src={ICONS.carTradeTech} alt={COMMON_TEXT.IMG} />
           </button>
           <button
-            className="footerSectionOlx"
+            className={CLASSNAME.OLX}
             onClick={() => handleClick(LINK.OLX)}
           >
             <img
-              className="footerSectionImages"
+              className={CLASSNAME.IMAGES}
               src={ICONS.OlxWhite}
-              alt="trade"
+              alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className="footerSectionCarCarwale"
+            className={CLASSNAME.CARWALE}
             onClick={() => handleClick(LINK.CARWALE)}
           >
             <img
-              className="footerSectionImages"
+              className={CLASSNAME.IMAGES}
               src={ICONS.carWale}
-              alt="trade"
+              alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className="footerSectionBikewale"
+            className={CLASSNAME.BIKEWALE}
             onClick={() => handleClick(LINK.BIKEWALE)}
           >
             <img
-              className="footerSectionImages"
+              className={CLASSNAME.IMAGES}
               src={ICONS.bikeWale}
-              alt="trade"
+              alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className="footerSectionCarTrade"
+            className={CLASSNAME.CAR_TRADE}
             onClick={() => handleClick(LINK.CARTRADE)}
           >
             <img
-              className="footerSectionImages"
+              className={CLASSNAME.IMAGES}
               src={ICONS.carTrade}
-              alt="trade"
+              alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className="footerSectionMobilityOutlook"
+            className={CLASSNAME.MOBILITY_OUTLOOK}
             onClick={() => handleClick(LINK.MOBILITY_OUTLOOK)}
           >
             <img
-              className="footerSectionImages"
+              className={CLASSNAME.IMAGES}
               src={ICONS.mobilityOutlook}
-              alt="trade"
+              alt={COMMON_TEXT.IMG}
             />
           </button>
         </div>
-        <div className="footerSectionText">
-          <button className="footerSectionHelp">Help-Sitemap</button>
-          <span className="footerSectionAllRightsReserved">
-            All rights reserved © 2006-2025 OLX
+        <div className={CLASSNAME.SECTION_TEXT}>
+          <button className={CLASSNAME.SECTION_HELP}>{TEXT.HELP_SITEMAP}</button>
+          <span className={CLASSNAME.ALL_RIGHT_RESERVED}>
+            {TEXT.ALL_RIGHT_RESERVED}
           </span>
         </div>
       </div>

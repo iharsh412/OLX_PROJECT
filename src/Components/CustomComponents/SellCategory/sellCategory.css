@@ -1,4 +1,3 @@
-
 .sell-category {
   display: flex;
   flex-direction: column;
@@ -19,7 +18,7 @@
 }
 
 .sell-category__option:hover {
-  background-color: #f8f9fa;
+  background-color: #9ca4ac;
 }
 
 .sell-category__option:last-child {

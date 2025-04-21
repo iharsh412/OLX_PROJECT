@@ -3,7 +3,7 @@ import ICONS from '../../assets';
 import Footer from '../../Components/Footer';
 import './sellLayout.css';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 
 export default function SellLayout() {
   const navigate = useNavigate();
@@ -12,7 +12,8 @@ export default function SellLayout() {
     <div className={CLASSNAME.SL.WRAPPER}>
       <header className={CLASSNAME.SL.HEADER}>
         <button
-          title="Back"
+          title={TEXT.SL.BACK}
+          type={TYPE.BUTTON}
           className={CLASSNAME.SL.BACK_BUTTON}
           onClick={() => navigate(-1)}
         >

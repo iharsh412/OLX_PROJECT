@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './imageDetailImageTransition.css';
-import { ImageSectionProps } from './constant';
+import { CLASSNAME, ImageSectionProps } from './constant';
+import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 
 function ImageSection({ images }: ImageSectionProps) {
-  console.log(images, 'images');
+
   const imageArray: string[] = images
     ? Array.isArray(images)
       ? images
@@ -12,70 +13,64 @@ function ImageSection({ images }: ImageSectionProps) {
     : [];
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  console.log(images, 'images');
-
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? imageArray.length - 1 : prevIndex - 1
     );
   };
-
   const nextSlide = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === imageArray.length - 1 ? 0 : prevIndex + 1
     );
   };
-
   const goToSlide = (index: number) => {
     setCurrentIndex(index);
   };
 
   return (
-    <div className="imageDetailimageSection">
+    <div className={CLASSNAME.IMAGE_SECTION}>
       {imageArray.map((image, index) => (
         <div
-          key={`LoginImage${index + 1}`}
-          className={`imageDetailSlide ${
-            index === currentIndex ? 'imageDetailActive' : ''
-          }`}
+          key={image}
+          className={`${CLASSNAME.IMAGE_SLIDE} ${index === currentIndex ? CLASSNAME.ACTIVE : ''
+            }`}
         >
           <img
             src={`${import.meta.env.VITE_BASE_URL}${image}`}
-            alt={`Slide ${index + 1}`}
-            className="ActiveImages"
+            alt={COMMON_TEXT.IMG}
+            className={CLASSNAME.ACTIVE_IMAGES}
           />
         </div>
       ))}
 
       <button
-        type="button"
-        className="imageDetailLogin_slide_button imageDetailLogin_slide_prev"
+        type={TYPE.BUTTON}
+        className={`${CLASSNAME.BUTTON} ${CLASSNAME.PREV}`}
         onClick={prevSlide}
         aria-label="Previous Slide"
       >
         <ChevronLeft size={30} />
       </button>
       <button
-        type="button"
-        className="imageDetailLogin_slide_button imageDetailLogin_slide_next"
+        type={TYPE.BUTTON}
+        className={`${CLASSNAME.BUTTON} ${CLASSNAME.NEXT}`}
         onClick={nextSlide}
         aria-label="Next Slide"
       >
         <ChevronRight size={30} />
       </button>
 
-      <div className="imageDeatilLogin_dots_container">
+      <div className={CLASSNAME.DOTS_CONTAINER}>
         {imageArray.map((image, index) => (
           <button
-            type="button"
+            type={TYPE.BUTTON}
             key={`loginDots${index + 1}`}
-            className={`imageDetailDot ${
-              currentIndex === index ? 'imageDetailActive' : ''
-            }`}
+            className={`${CLASSNAME.DOTS} ${currentIndex === index ? CLASSNAME.ACTIVE_DOTS : ''
+              }`}
             onClick={() => goToSlide(index)}
             aria-label={`Go to slide ${index + 1}`}
           >
-            <img src={`${import.meta.env.VITE_BASE_URL}${image}`} alt="img" />
+            <img src={`${import.meta.env.VITE_BASE_URL}${image}`} alt={COMMON_TEXT.IMG} />
           </button>
         ))}
       </div>

@@ -4,20 +4,18 @@ export interface SellCategoryProps {
 }
 
 export const SUBCATEGORIES: Record<string, string[]> = {
-    cars: ['Cars'],
-    mobile: ['Mobile', 'Tablet'],
+    multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
+    mobile: ['Mobile', 'Tablet', 'Watch'],
     electronics: ['Computer', 'TVs', 'Camera'],
-    bikes: ['Bikes', 'Scooters'],
+    bikes: ['Bikes', 'Scooters', 'Cycles'],
 };
 
-export  const CLASSNAME ={
-       WRAPPER:"sell-category",
-       OPTIONS:"sell-category__option"
+export const CLASSNAME = {
+    WRAPPER: "sell-category",
+    OPTIONS: "sell-category__option"
 
 }
 
-export const OPTIONS = {
-    TITLE:'Select this category',
-    TYPE:"button",
-
+export const TEXT = {
+    TITLE: 'Select this category',
 }

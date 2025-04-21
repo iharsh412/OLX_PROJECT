@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import './locationMap.css';
-import { CLASSNAME, TEXT,PropsType } from './constant';
+import { CLASSNAME, TEXT, PropsType } from './constant';
 
 
 export default function LocationMap({ cityName, mapHeadingText }: PropsType) {
+  
   const [center, setCenter] = useState<[number, number] | null>(null);
 
   useEffect(() => {
@@ -33,8 +34,6 @@ export default function LocationMap({ cityName, mapHeadingText }: PropsType) {
   if (!center) return <p>{TEXT.LOADING}</p>;
 
   const [lat, lon] = center;
-
-  // Bounding box can be roughly 0.01 degrees around the center for a city zoom level
   const bbox = `${lon - 0.01},${lat - 0.01},${lon + 0.01},${lat + 0.01}`;
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 

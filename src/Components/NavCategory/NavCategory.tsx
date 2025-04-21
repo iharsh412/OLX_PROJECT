@@ -1,12 +1,14 @@
+import { ROUTES_CONFIG } from '../../Shared/Constants';
 import './navCategory.css';
 import { useNavigate } from 'react-router-dom';
-
+import { CLASSNAME, TEXT } from './constant';
+import { TYPE } from '../../Interface/constant';
 
 export default function NavCategory() {
   const navigate = useNavigate();
 
   function handleCarClick() {
-    navigate('/type/cars');
+    navigate('/type/multiwheelvehicles');
   }
   function handleMotorcycleClick() {
     navigate('/type/bikes');
@@ -18,46 +20,42 @@ export default function NavCategory() {
     navigate('/type/electronics');
   }
   return (
-    <div className="home_navCategory">
-      <div className="homeCategorychild">
-        <div className="home_navCategory_allCategory_Parent">
-          <span className="home_navCategory_child_allCategory">
-            ALL CATEGORIES
-          </span>
-          {/* dropdown if required  */}
-          {/* <span className="home_navCategory_child_allCategory_upDown">
-            <img src={ICONS.upDown} alt="img" />
-          </span> */}
+    <div className={CLASSNAME.WRAPPER}>
+      <div className={CLASSNAME.CHILD}>
+        <div className={CLASSNAME.ALL_CATEGORY}>
+          <button className={CLASSNAME.ALL_CATEGORY_TEXT} onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}>
+            {TEXT.ALL_CATEGORIES}
+          </button>
         </div>
-        <div className="home_navCategory_childs">
+        <div className={CLASSNAME.LIST}>
           <button
-            type="button"
-            className="home_navCategory_Cars"
+            type={TYPE.BUTTON}
+            className={CLASSNAME.CARS}
             onClick={handleCarClick}
           >
-            Cars
+            {TEXT.MULTI_WHEEL_VEHICLE}
           </button>
           <button
-            type="button"
-            className="home_navCategory_Motorcycle"
+            type={TYPE.BUTTON}
+            className={CLASSNAME.MOTORCYCLE}
             onClick={handleMotorcycleClick}
           >
-            Bikes
+            {TEXT.BIKES}
           </button>
           <button
-            type="button"
-            className="home_navCategory_MobilePhone"
+            type={TYPE.BUTTON}
+            className={CLASSNAME.MOBILEPHONE}
             onClick={handleMobilePhoneClick}
           >
-            Mobile Phone
+            {TEXT.MOBILE_PHONE}
           </button>
 
           <button
-            type="button"
-            className="home_navCategory_Commercial"
+            type={TYPE.BUTTON}
+            className={CLASSNAME.COMMERCIAL}
             onClick={handleElecyronicsClick}
           >
-            Electronics
+            {TEXT.ELECTRONICS}
           </button>
         </div>
       </div>

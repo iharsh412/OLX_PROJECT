@@ -1,7 +1,7 @@
 import './myAdsImage.css';
 import { CLASSNAME, TEXT } from './constant';
 import ICONS from '../../../../assets';
-import { ImageProps } from '../../../../Interface/constant';
+import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Interface/constant';
 import { useEffect, useState } from 'react';
 import Modal from '../../Modal';
 import { toast } from 'react-toastify';
@@ -9,7 +9,9 @@ import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageA
 import { useNavigate } from 'react-router-dom';
 import EditAds from '../../EditAds';
 
+
 const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
+
   const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
@@ -22,10 +24,10 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
       if (text === TEXT.DELETE_TEXT && answer === 'yes') {
         try {
           await post({ id: data.id }).unwrap();
-          toast.success('Ad deleted successfully');
+          toast.success(TEXT.SUCCESS);
           refetch?.();
         } catch (error) {
-          toast.error('Error while deleting ad');
+          toast.error(TEXT.ERROR);
         }
       }
     }
@@ -47,7 +49,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
     setOpen(true);
     setText(TEXT.DELETE_TEXT);
   };
-  console.log(editOpen, 'editOpen');
+
   return (
     <>
       <div className={CLASSNAME.WRAPPER} onClick={onClickImages}>
@@ -60,7 +62,7 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
         </div>
         <div className={CLASSNAME.CONTENT}>
           <span className={CLASSNAME.COST}>
-            <img src={ICONS.rupees} alt="Rs" /> {data.price}
+            <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
           </span>
           <span className={CLASSNAME.STATUS}>{data.status}</span>
           <span className={CLASSNAME.NAME}>{data.name}</span>
@@ -72,14 +74,16 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
             <button
-              title="Edit"
+              title={TEXT.EDIT}
+              type={TYPE.BUTTON}
               className={CLASSNAME.EDIT}
               onClick={(e) => handleClickEdit(e)}
             >
               {TEXT.EDIT}
             </button>
             <button
-              title="Delete"
+              title={TEXT.DELETE}
+              type={TYPE.BUTTON}
               className={CLASSNAME.DELETE}
               onClick={handleClickDelete}
             >

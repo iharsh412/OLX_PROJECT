@@ -13,6 +13,7 @@ import { CLASSNAME, TEXT } from './constant';
 import { setItem } from '../../Store/AreaItem';
 
 export default function HomeLayout() {
+  
   const location = useLocation();
   const dispatch = useDispatch();
   const loader = useSelector((state: RootState) => state.loader.isLoading);

@@ -3,6 +3,7 @@ import { CLASSNAME, CONTENTS, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 
 export default function AdsSection() {
+
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>

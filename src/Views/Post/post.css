@@ -2,7 +2,6 @@
 .post-wrapper {
   width: 100%;
   max-width: 838px;
-  
   border: 1px solid black;
   border-radius: 4px;
   margin: 0 auto;
@@ -34,12 +33,11 @@
 /* seller detail */
 .postSellerDetail {
   width: 100%;
-  /* height: 400px; */
+
 }
 
 /* Responsiveness for smaller screens */
 
-/* For screens smaller than 768px */
 @media (max-width: 768px) {
   .post-wrapper {
     width: 100%;
@@ -75,4 +73,3 @@
     padding: 0 8px;
   }
 }
-

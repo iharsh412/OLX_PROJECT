@@ -7,7 +7,7 @@ const ROUTES = {
   LOGIN: 'login',
   LOGIN_PHONE: 'loginPhone',
   LOGIN_PHONE_SMS: 'loginphonesms',
-  CART: 'wishlist',
+  WISHLIST: 'wishlist',
   PRODUCT: '/product/:productName/:productId',
   SELL: 'sell',
   ATTRIBUTES: 'attributes',
@@ -53,9 +53,9 @@ const ROUTES_CONFIG = {
     path: ROUTES.SIGNUP,
     title: 'Signup',
   },
-  CART: {
-    path: ROUTES.CART,
-    title: 'Cart',
+  WISHLIST: {
+    path: ROUTES.WISHLIST,
+    title: 'wishlist',
   },
   PRODUCT: {
     path: ROUTES.PRODUCT,

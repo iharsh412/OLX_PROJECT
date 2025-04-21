@@ -33,18 +33,19 @@ export const CLASSNAME = {
     // State
     STATE_INPUT_WRAPPER: "postForm_StateWrapper",
     STATE: 'postForm_State',
-    STATE_LIST :"postForm_StateList",
-    STATE_ITEMS:"postForm_StateItems",
+    STATE_LIST: "postForm_StateList",
+    STATE_ITEMS: "postForm_StateItems",
     //City
     CITY: 'postForm_City',
-    CITY_LIST :"postForm_CityList",
+    CITY_LIST: "postForm_CityList",
 
 }
 export const LOCATION = {
     PUNJAB: ["MOHALI", "JALANDHAR", "CHANDIGARH"],
     HARYANA: ["AMBALA", "KURUKSHETRA", "KARNAL"],
     ["UTTAR PRDESH"]: ["DELHI"],
-    ["HIMACHA PRADESH"]: ["SHIMLA"]
+    ["HIMACHA PRADESH"]: ["SHIMLA"],
+    
 }
 export enum COUNT {
     Description = 200,
@@ -65,10 +66,10 @@ export interface TextFieldProps {
     err?: string | object | boolean | undefined;
     tch?: boolean;
     setFieldValue?: (field: string, value: any, shouldValidate?: boolean) => Promise<void | FormikErrors<any>>;
-    state?:string
+    state?: string
 }
 export interface PhotosProps {
-    value: File[] ;
+    value: File[];
     type?: string;
     label: string;
     setFieldValue?: (field: string, value: any, shouldValidate?: boolean) => Promise<void | FormikErrors<any>>;
@@ -79,5 +80,7 @@ export const TEXT = {
     CONFIRMATION: " We will send you a confirmation code by sms on the next step.",
     CODE: "+91",
     UPLOAD_PHOTOS: "UPLOAD UP TO 5 PHOTOS",
-    ADD_PHOTO: "Add Photo"
+    ADD_PHOTO: "Add Photo",
+    SUCCESS: 'Posted Successfuly!',
+    ERROR: "Error",
 } 

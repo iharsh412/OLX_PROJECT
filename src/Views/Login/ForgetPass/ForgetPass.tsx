@@ -21,8 +21,10 @@ import { Link } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ForgetPass() {
+
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
+
   //  HOOKS
   async function handleSubmit(values: FORM_VALUES) {
     try {
@@ -33,6 +35,7 @@ export default function ForgetPass() {
       toast.error(TEXT.FAILURE);
     }
   }
+  
   return (
     <>
       <Formik
@@ -51,7 +54,7 @@ export default function ForgetPass() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-              
+
               <div className={CLASSNAME.HEADER}>
                 {/* Back */}
                 <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.SIGNIN.path}>

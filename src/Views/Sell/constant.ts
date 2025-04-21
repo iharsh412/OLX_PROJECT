@@ -4,7 +4,7 @@ export const CATEGORIES = [
     { id: 'mobile', name: 'Mobile', icon: ICONS.phone },
     { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
     { id: 'bikes', name: 'Bikes', icon: ICONS.bike },
-    { id: 'cars', name: 'Cars', icon: ICONS.car },
+    { id: 'multiWheelVehicles', name: 'Multi Wheel Vehicles', icon: ICONS.car },
 ];
 
 export const CLASSNAME = {
@@ -29,18 +29,16 @@ export const CLASSNAME = {
         OUTLET: "sell-section-Outlet",
         FOOTER: "sell-section-footer"
     }
-
-
 }
-
 export const TEXT = {
     SS: {
         CATEGORY: "Choose A Category",
 
 
     },
-    SL:{
-        ADD:"Post your Ad"
+    SL: {
+        ADD: "Post your Ad",
+        BACK: "back",
     }
 }
 

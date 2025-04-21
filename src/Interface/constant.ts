@@ -70,5 +70,6 @@ export const TYPE ={
   TEXT:"text" as "text",
   SUBMIT:"submit" as "submit",
   BUTTON:"button" as "button",
+  NUMBER:"number" as "number",
 
 }

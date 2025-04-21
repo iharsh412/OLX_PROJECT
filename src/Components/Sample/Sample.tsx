@@ -1,18 +1,20 @@
-import RangeSlider from 'react-range-slider-input';
-import 'react-range-slider-input/dist/style.css';
 import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
-import { CLASSNAME } from './constant';
+import { CLASSNAME, TEXT } from './constant';
 import './sample.css';
 import { useParams } from 'react-router-dom';
 import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
-import { Product } from '../../Interface/constant';
+import { COMMON_TEXT, Product } from '../../Interface/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
 import { SampleData, ResponseData } from './constant';
-import { ClipLoader } from 'react-spinners';
+import Pagination from '../Atom/Pagination/Pagination';
+import Loader from '../Atom/Loader';
+import Error from '../Atom/Error';
+import Filter from '../Atom/Filter';
+
 
 export default function Sample() {
-  console.log('helllo');
+
   const limit = 8;
   const [totalpage, setTotalpage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
@@ -28,6 +30,7 @@ export default function Sample() {
   const [response, setResponse] = useState<ResponseData | undefined>();
   const [productData, { isLoading, isError }] =
     usePostCategoryProductsMutation();
+
   // Hooks
   useEffect(() => {
     console.log('iuhi');
@@ -74,37 +77,6 @@ export default function Sample() {
     });
   }, [JSON.stringify(response), page]);
 
-  const handleBrandClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const brand = e.currentTarget.title;
-
-    if (brand) {
-      setSampleData((prev) => {
-        return {
-          ...sampleData,
-          brand: prev.brand.includes(brand)
-            ? prev.brand
-            : [...sampleData.brand, brand],
-        };
-      });
-    }
-  };
-
-  const handlePrice = (value: [number, number]) => {
-    setPrice(value);
-  };
-  const handlePriceRangeChange = (value: [number, number]) => {
-    setSampleData({
-      ...sampleData,
-      price: value,
-    });
-  };
-
-  const handlePrevPage = () => {
-    setPage(page - 1);
-  };
-  const handleNextPage = () => {
-    setPage(page + 1);
-  };
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -113,29 +85,28 @@ export default function Sample() {
         <h3>Buy & Sell Used {category?.toUpperCase()} in India</h3>
 
         {/* SELECTED OPTIONS */}
-
-        <div className="sample-selectedOptions">
+        <div className={CLASSNAME.SELECTED_OPTION}>
           {sampleData.subcategory && (
-            <div className="sample-selectedWrapper">
-              <span className="sample-selectedText">
+            <div className={CLASSNAME.SELECTED_OPTION_WRAPPER}>
+              <span className={CLASSNAME.SELECTED_OPTION_TEXT}>
                 {sampleData.subcategory}
               </span>
               <button
-                className="sample-selectedCross"
+                className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({ ...sampleData, subcategory: '' });
                 }}
               >
-                <img src={ICONS.cross} alt="img" />
+                <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
               </button>
             </div>
           )}
 
           {sampleData.brand.map((brand: string) => (
-            <div className="sample-selectedWrapper" key={brand}>
-              <span className="sample-selectedText">{brand}</span>
+            <div className={CLASSNAME.SELECTED_OPTION_WRAPPER} key={brand}>
+              <span className={CLASSNAME.SELECTED_OPTION_TEXT}>{brand}</span>
               <button
-                className="sample-selectedCross"
+                className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({
                     ...sampleData,
@@ -143,7 +114,7 @@ export default function Sample() {
                   });
                 }}
               >
-                <img src={ICONS.cross} alt="img" />
+                <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
               </button>
             </div>
           ))}
@@ -153,133 +124,13 @@ export default function Sample() {
       {/* MAIN SECTION */}
       <div className={CLASSNAME.MAIN_SECTION_WRAPPER}>
         {/* FILTER SECTION */}
-        <div className={CLASSNAME.MAIN_SECTION_FILTER}>
-          <h3 className={CLASSNAME.FILTER_TITLE}>{category?.toUpperCase()}</h3>
-          {/* SUBCATEGORIES */}
-          <div className={CLASSNAME.SUBCATEGORY}>
-            <h4>Category</h4>
-
-            <div className="sample-subcategoryOption">
-              {response?.subcategories &&
-              response?.subcategories?.length > 0 ? (
-                response?.subcategories?.map(
-                  (
-                    category: {
-                      subcategory_name: string;
-                      product_count: number;
-                    },
-                    index: number
-                  ) => (
-                    <button
-                      title={category.subcategory_name}
-                      key={index}
-                      className="sample-subcategoryOption__item"
-                      disabled={
-                        category.subcategory_name === sampleData.subcategory
-                      }
-                      onClick={() => {
-                        setSampleData({
-                          ...sampleData,
-                          subcategory: category.subcategory_name,
-                        });
-                      }}
-                    >
-                      {category.subcategory_name} ({category?.product_count})
-                    </button>
-                  )
-                )
-              ) : (
-                <h3 className="sample-brandOption__noBrand">
-                  No category available
-                </h3>
-              )}
-            </div>
-          </div>
-          {/* BRANDS */}
-          <div className={CLASSNAME.BRAND}>
-            <h4>Brand</h4>
-            <div className="sample-brandOption">
-              {response?.Brand && response?.Brand?.length > 0 ? (
-                response?.Brand?.map(
-                  (brand: string | undefined, index: number) => (
-                    <button
-                      type="button"
-                      title={brand}
-                      key={index}
-                      className="sample-brandOption__item"
-                      disabled={sampleData.brand.includes?.(brand as string)}
-                      onClick={handleBrandClick}
-                    >
-                      {brand}
-                    </button>
-                  )
-                )
-              ) : (
-                <h3 className="sample-brandOption__noBrand">
-                  No brand available
-                </h3>
-              )}
-            </div>
-          </div>
-
-          {/* BUDGET */}
-          <div className={CLASSNAME.PRICE}>
-            <h4>Price</h4>
-            <RangeSlider
-              min={0}
-              max={1500000}
-              step={10}
-              value={price}
-              onInput={(value: [number, number]) => handlePrice(value)}
-            />
-            <div className="sample-priceOption">
-              <input
-                title="Price Min"
-                min={0}
-                max={1500000}
-                type="number"
-                className="sample_priceMin"
-                value={price?.[0] < price?.[1] ? price?.[0] : price?.[1]}
-                onChange={(e) => {
-                  const value = Number(e.target.value);
-                  setPrice([value, price?.[1]]);
-                }}
-              />
-              <input
-                title="Price Max"
-                min={0}
-                max={1500000}
-                type="number"
-                className="sample_priceMax"
-                value={price?.[1] > price?.[0] ? price?.[1] : price?.[0]}
-                onChange={(e) => {
-                  const value = Number(e.target.value);
-                  setPrice([price?.[0], value]);
-                }}
-              />
-            </div>
-            <button
-              className="sample-priceOption__apply"
-              onClick={() => {
-                handlePriceRangeChange(price);
-              }}
-            >
-              Apply
-            </button>
-          </div>
-        </div>
+        <Filter category={category} response={response} sampleData={sampleData} price={price} setPrice={setPrice} />
         {/* Image Section */}
         <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
-          {isLoading && (
-            <div className="loading">
-              <ClipLoader color="black" size={50} loading={true} />
-            </div>
-          )}
-          {isError && (
-            <h1 className="sample-errorAndLoading">
-              Error in loading products
-            </h1>
-          )}
+          {isLoading && <Loader />
+          }
+          {isError && <Error />
+          }
           {!isLoading && !isError && response && (
             <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
               {(response?.products?.length as number) > 0 &&
@@ -287,49 +138,13 @@ export default function Sample() {
                   <ImagesLayout key={product.id} data={product} />
                 ))}
               {response?.products?.length === 0 && (
-                <h3 className="sample-noProduct">No product available</h3>
+                <h3 className={CLASSNAME.NO_PRODUCTS}>{TEXT.NO_PRODUCT_AVAILABLE}</h3>
               )}
             </div>
           )}
-          {totalpage >= 2 && (
-            <div className="sample-PageChange">
-              <button
-                className={`sample-PREV ${
-                  showButton.prev ? '' : 'sample-disabled'
-                }`}
-                onClick={handlePrevPage}
-              >
-                Prev
-              </button>
-              <div className="sample-pagewrapper">
-                {Array(totalpage)
-                  ?.fill('')
-                  ?.map((_, index) => {
-                    return (
-                      <button
-                        key={index}
-                        onClick={() => setPage(index + 1)}
-                        disabled={index + 1 === page}
-                        className={`sample-pageNumber ${
-                          index + 1 === page ? 'sample-activepage' : ''
-                        }`}
-                      >
-                        {index + 1}
-                      </button>
-                    );
-                  })}
-              </div>
+          {/* Pagination */}
+          <Pagination page={page} totalpage={totalpage} showButton={showButton} setPage={setPage} />
 
-              <button
-                className={`sample-NEXT ${
-                  showButton.next ? '' : 'sample-disabled'
-                }`}
-                onClick={handleNextPage}
-              >
-                Next
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </div>

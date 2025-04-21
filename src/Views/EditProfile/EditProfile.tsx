@@ -25,13 +25,11 @@ import {
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { updateUsername } from '../../Store/Common';
-import { useDispatch } from 'react-redux';
-
-
-
+import { useDispatch } from 'react-redux'
+import Loader from "../../Components/Atom/Loader";
+import Error from "../../Components/Atom/Error";
 
 export default function EditProfile() {
-
   const { data, isLoading, isError } = useGetUserInfoQuery({});
   const [post] = usePostEditProfileDataMutation();
   const [postEmailValid] = usePostEmailValidMutation();
@@ -70,10 +68,9 @@ export default function EditProfile() {
       }));
     }
   }, [data]);
-  if (isLoading) return <h1>{COMMON_TEXT.LOADING}</h1>;
-  if (isError) return <h1>{COMMON_TEXT.ERROR}</h1>;
-  console.log(formInitialValues, 'INITIAL VALUES');
-  
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
+
   return (
     <Formik
       initialValues={formInitialValues}

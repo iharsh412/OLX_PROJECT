@@ -17,10 +17,11 @@ import common from './Common';
 import loader from './Loader';
 import language from './Language';
 import areaItem from './AreaItem';
+import chatUser from "./ChatUser";
 
 const rootPersistConfig = {
   key: 'root',
-  storage,
+  storage, 
   whitelist: ['common', 'language',],
 };
 const reducers = combineReducers({
@@ -28,6 +29,7 @@ const reducers = combineReducers({
   loader,
   language,
   areaItem,
+  chatUser,
   [api.reducerPath]: api.reducer,
 });
 

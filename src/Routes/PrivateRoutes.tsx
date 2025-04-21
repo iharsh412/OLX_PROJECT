@@ -5,7 +5,7 @@ import HomeLayout from '../Views/Home';
 import Dashboard from '../Views/Dashboard';
 import SellLayout from '../Views/Sell';
 import SellSection from '../Views/Sell/SellSection';
-import Cart from '../Views/WishlistSection';
+import Wishlist from '../Views/WishlistSection';
 import Post from '../Views/Post';
 import ProductDetail from '../Views/ImageDetail';
 import TypeSection from '../Views/TypeSection';
@@ -24,7 +24,7 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
     children: [
       { index: true, element: <Dashboard /> },
       { path: ROUTES_CONFIG.NEWPASSWORD.path, element: <NewPass /> },
-      { path: ROUTES_CONFIG.CART.path, element: <Cart /> },
+      { path: ROUTES_CONFIG.WISHLIST.path, element: <Wishlist /> },
       { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
       { path: ROUTES_CONFIG.MYADS.path, element: <MyAds /> },
       { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },

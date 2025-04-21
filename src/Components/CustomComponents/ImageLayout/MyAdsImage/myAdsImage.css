@@ -1,128 +1,130 @@
 /* Car Card Container */
 .myadsImages_wrapper {
-  background-color:white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 1px solid rgba(14, 4, 5, 0.1);
-    border-radius: 8px;
-    width: 100%;
-    max-width: 300px;
-    margin: 10px;
-    box-sizing: border-box;
-    padding: 12px;
-    box-shadow: 0 16px 16px rgba(0, 0, 0, 0.28);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    height: 400px;
- 
-   
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid rgba(14, 4, 5, 0.1);
+  border-radius: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin: 10px;
+  box-sizing: border-box;
+  padding: 12px;
+  box-shadow: 0 16px 16px rgba(0, 0, 0, 0.28);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+  height: 400px;
 
-  }
-  
-  .myadsImages_wrapper:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-  }
-  
-  /* Image Container */
-  .myadsImages_images {
-    position: relative;
-    width: 100%;
-    height: 194px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
-  
-  .myadsImages_images img {
-    width: 100%;
-    height: 100%;
-    object-fit: fit;
-  }
-  
-  /* Content Section */
-  .myadsImages_content {
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    margin: 8px 4px;
-  }
-  
-  /* Price */
-  .myadsImages_cost {
-    display: flex;
-    align-items: center;
-    font-size: 20px;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 6px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .myadsImages_cost img {
-    width: 16px;
-    height: 16px;
-    margin-right: 6px;
-  }
-  
-  /* Status */
-  .myadsImages_status {
-    font-size: 16px;
-    color: #555;
-    margin-bottom: 4px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  /* Car Name */
-  .myadsImages_name {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin-bottom: 4px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  /* Location & Date */
-  .myadsImages_place_date {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: #777;
-    padding: 6px 0;
-    border-top: 1px solid #eee;
-    margin-top: 8px;
-  }
-  /* EDIT AND DElete */
-  .myadsImages_edit_delete{
-    display: flex;
-    justify-content: space-between;
-  
-  }
-  .myadsImages_edit{
-    padding: 5px;
-  }
-  .myadsImages_delete
-  {
-    padding: 5px;
-  }
- .myadsImages_edit:hover,
- .myadsImages_delete:hover{
-    background-color: #eee;
-    border-radius: 5px;
-  }
-  .myadsImages_edit:active,
-  .myadsImages_delete:active{
-    background-color: rgb(205, 205, 216);
-  }
+}
+
+.myadsImages_wrapper:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Image Container */
+.myadsImages_images {
+  position: relative;
+  width: 100%;
+  height: 194px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.myadsImages_images img {
+  width: 100%;
+  height: 100%;
+  object-fit: fit;
+}
+
+/* Content Section */
+.myadsImages_content {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  margin: 8px 4px;
+}
+
+/* Price */
+.myadsImages_cost {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 6px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.myadsImages_cost img {
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+}
+
+/* Status */
+.myadsImages_status {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Car Name */
+.myadsImages_name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Location & Date */
+.myadsImages_place_date {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #777;
+  padding: 6px 0;
+  border-top: 1px solid #eee;
+  margin-top: 8px;
+}
+
+/* EDIT AND DElete */
+.myadsImages_edit_delete {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.myadsImages_edit {
+  padding: 5px;
+}
+
+.myadsImages_delete {
+  padding: 5px;
+}
+
+.myadsImages_edit:hover,
+.myadsImages_delete:hover {
+  background-color: #eee;
+  border-radius: 5px;
+}
+
+.myadsImages_edit:active,
+.myadsImages_delete:active {
+  background-color: rgb(205, 205, 216);
+}

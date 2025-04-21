@@ -16,10 +16,12 @@ import { toast } from 'react-toastify';
 import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
 
 export default function NewPass() {
+
   const { id, token } = useParams();
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostChangePasswordDataMutation();
+
   // handle click
   async function handleSubmit(values: FORM_VALUES) {
     try {
@@ -34,6 +36,7 @@ export default function NewPass() {
       toast.error(TEXT.FAILURE);
     }
   }
+  
   return (
     <>
       <Formik

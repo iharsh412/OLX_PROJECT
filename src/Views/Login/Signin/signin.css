@@ -30,13 +30,16 @@
   margin: 16px 0 36px;
   position: relative;
 }
+
 .signin_header {
   display: flex;
   justify-content: space-between;
 }
+
 .signin_cross img {
   width: 20px;
 }
+
 .signin_back img {
   width: 20px;
 }
@@ -137,6 +140,7 @@
   margin: -16px 0 16px 4px;
   font-weight: 500;
 }
+
 /*  RESPONSIVE DESIGN  */
 @media (max-width: 480px) {
   .signin_Wrapper {

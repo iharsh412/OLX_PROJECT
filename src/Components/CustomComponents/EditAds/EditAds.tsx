@@ -22,17 +22,20 @@ import {
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
 import { toast } from 'react-toastify';
-import { ClipLoader } from 'react-spinners';
+import Loader from '../../Atom/Loader';
+import Error from '../../Atom/Error';
 
 const EditAds: React.FC<EditAdsProps> = ({
   setEditOpen,
   data: product,
   refetch,
 }) => {
-  const [post] = usePostEditDataMutation();
-  const { data, isLoading } = useGetProductsDetailQuery({ id: product.id });
-  const [formInitialValues, setFormInitialValues] = useState(initialValues);
 
+  const [post] = usePostEditDataMutation();
+  const { data, isLoading, isError } = useGetProductsDetailQuery({ id: product.id });
+  const [formInitialValues, setFormInitialValues] = useState(initialValues);
+  const dropdownRef = useRef<HTMLFormElement>(null);
+  
   useEffect(() => {
     if (data) {
       setFormInitialValues((prev) => ({
@@ -45,8 +48,6 @@ const EditAds: React.FC<EditAdsProps> = ({
       }));
     }
   }, [data]);
-
-  const dropdownRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (
     values: FormValues,
@@ -96,12 +97,12 @@ const EditAds: React.FC<EditAdsProps> = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
   if (isLoading)
-    return (
-      <div className="loading">
-        <ClipLoader color="black" size={50} loading={true} />
-      </div>
-    );
+    return <Loader />
+  if (isError)
+    return <Error />
+
   return (
     <div className={CLASSNAME.WRAPPER}>
       <Formik

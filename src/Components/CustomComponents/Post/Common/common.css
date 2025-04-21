@@ -1,5 +1,8 @@
 /* General Reset for Form Elements */
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   font-family: inherit;
   box-sizing: border-box;
   outline: none;
@@ -56,7 +59,7 @@ input, textarea, select, button {
   resize: vertical;
   border-radius: 6px;
   border: 1px solid #ccc;
-  width:100%;
+  width: 100%;
 }
 
 /* Error Highlight */
@@ -111,7 +114,8 @@ input, textarea, select, button {
 .postForm_file-input {
   display: none;
 }
-.postForm_PreviewWrapper{
+
+.postForm_PreviewWrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -161,10 +165,12 @@ input, textarea, select, button {
   border-radius: 6px;
   border: 1px solid #ccc;
 }
-.postForm_City ,
-.postForm_State{
+
+.postForm_City,
+.postForm_State {
   width: 100%;
 }
+
 /* State Dropdown */
 .postForm_StateWrapper {
   position: relative;
@@ -211,8 +217,9 @@ input, textarea, select, button {
 .postForm_StateItems:active {
   background-color: #a4c8ff;
 }
+
 /* City  */
-.postForm_CityList{
+.postForm_CityList {
   /* position: absolute; */
   bottom: 30%;
   right: 0;
@@ -272,6 +279,7 @@ input, textarea, select, button {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+
   .postForm_Description,
   .postForm_State,
   .postForm_City,
@@ -287,7 +295,8 @@ input, textarea, select, button {
     font-size: 14px;
     padding: 5px 8px;
   }
-  .postForm_PriceInputWrapper input{
+
+  .postForm_PriceInputWrapper input {
     padding: 4px 46px;
   }
 
@@ -301,6 +310,7 @@ input, textarea, select, button {
 }
 
 @media (max-width: 480px) {
+
   .postForm_Description,
   .postForm_State,
   .postForm_City,
@@ -317,7 +327,8 @@ input, textarea, select, button {
     padding: 4px 6px;
 
   }
-  .postForm_PriceInputWrapper input{
+
+  .postForm_PriceInputWrapper input {
     padding: 4px 16px;
   }
 

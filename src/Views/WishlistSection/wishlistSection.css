@@ -5,12 +5,12 @@
   background-color: rgb(242, 253, 255);
   padding: 10px;
 }
+
 .cart_Wrapper h1 {
   text-align: center;
 }
 
 /* cart image section */
-
 .cart_imageSection {
   display: flex;
   justify-content: center;

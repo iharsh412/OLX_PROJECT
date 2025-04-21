@@ -4,7 +4,9 @@ import './wishlistSection.css';
 import { Product } from '../../Interface/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
-import { ClipLoader } from 'react-spinners';
+import Loader from "../../Components/Atom/Loader"
+import Error from "../../Components/Atom/Error";
+
 
 export default function WishlistSection() {
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
@@ -16,12 +18,9 @@ export default function WishlistSection() {
     <>
       <div className={CLASSNAME.WRAPPER}>
         <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
-        {isLoading && (
-          <div className="loading">
-            <ClipLoader color="black" size={50} loading={true} />
-          </div>
-        )}
-        {isError && <h1>{COMMON_TEXT.ERROR}</h1>}
+        {isLoading && <Loader />
+        }
+        {isError && <Error />}
         {/*  data then render */}
         {data && data.length > 0 && (
           <div className={CLASSNAME.IMAGE_SECTION}>

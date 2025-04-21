@@ -17,4 +17,6 @@ export const TEXT = {
   DELETE: 'Delete',
   DELETE_TEXT: 'Are you sure you want to delete this ad?',
   EDIT_TEXT: 'Are you sure you want to edit this ad?',
+  SUCCESS: 'Ad deleted successfully',
+  ERROR: 'Error while deleting ad',
 };

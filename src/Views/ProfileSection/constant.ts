@@ -10,7 +10,6 @@ export const CLASSNAME = {
   EMAIL: 'profile-section-email',
   PHONE: 'profile-section-phone',
   BIO: 'profile-section-bio',
-
   ADS: 'profile-section-adds',
   ADS_TEXT: 'profile-section-adds-text',
   ADS_COUNT: 'profile-section-adds-count',

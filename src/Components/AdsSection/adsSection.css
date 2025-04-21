@@ -8,9 +8,11 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: rgb(242, 253, 255);
 }
+
 .adsSection_Wrapper h4 {
   color: blue;
 }
+
 /* whole content wrapper */
 .adsSection_Content {
   display: flex;
@@ -22,6 +24,7 @@
   padding: 20px;
   border-radius: 12px;
 }
+
 /*each  Images/video wrapper */
 .adsSection_ContentContainer {
   width: 450px;
@@ -31,6 +34,7 @@
   display: flex;
   flex-direction: column;
 }
+
 /* text in each content */
 .adsSection_ContentContainer span {
   width: 100%;
@@ -41,9 +45,11 @@
   overflow: auto;
   margin-top: 2px;
 }
+
 .adsSection_ContentContainer span::-webkit-scrollbar {
   display: none;
 }
+
 /* Video & image styles */
 .adsSection_ContentContainer video,
 .adsSection_ContentContainer img {

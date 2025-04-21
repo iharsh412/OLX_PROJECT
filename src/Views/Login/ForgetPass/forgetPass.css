@@ -28,13 +28,16 @@
   margin: 16px 0 28px;
   position: relative;
 }
+
 .forget_Header {
   display: flex;
   justify-content: space-between;
 }
+
 .forget_Cross img {
   width: 20px;
 }
+
 .forget_Back img {
   width: 20px;
 }

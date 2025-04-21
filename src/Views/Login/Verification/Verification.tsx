@@ -17,7 +17,7 @@ export default function Verification() {
       </div>
       <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
         <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-         {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+          {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
         </p>
         <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
           {LOGIN_SECTION_TEXT.PRIVACY_POLICY}

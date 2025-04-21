@@ -8,8 +8,8 @@ export const CLASSNAME = {
   WRAPPER: 'modal_wrapper',
   BUTTON: 'modal_button',
   YES: "modal_yes",
-  NO:"modal_no",
-  CONTENT:"modal-content"
+  NO: "modal_no",
+  CONTENT: "modal-content"
 };
 export const TEXT = {
   YES: 'Yes',

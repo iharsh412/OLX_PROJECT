@@ -45,11 +45,10 @@ const Year: React.FC<TextFieldProps> = ({
         onBlur={handleBlur}
         value={value as string}
         title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
+        className={`${CLASSNAME.INPUT} ${err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
       />
-      
+
       <ErrorMessage
         name={htmlFor}
         component="div"
@@ -94,9 +93,8 @@ const TextField: React.FC<TextFieldProps> = ({
         onBlur={handleBlur}
         value={value as string}
         title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
+        className={`${CLASSNAME.INPUT} ${err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
       />
 
       <ErrorMessage
@@ -125,7 +123,7 @@ const Email: React.FC<TextFieldProps> = ({
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
           {label} *
         </label>
-        
+
       </div>
       <input
         type={type}
@@ -134,9 +132,8 @@ const Email: React.FC<TextFieldProps> = ({
         onBlur={handleBlur}
         value={value as string}
         title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
+        className={`${CLASSNAME.INPUT} ${err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
       />
 
       <ErrorMessage
@@ -176,9 +173,8 @@ const Price: React.FC<TextFieldProps> = ({
             onChange={handleChange}
             onBlur={handleBlur}
             value={value as string}
-            className={`${CLASSNAME.PRICE} ${
-              err && tch ? CLASSNAME.INPUTERROR : ''
-            }`}
+            className={`${CLASSNAME.PRICE} ${err && tch ? CLASSNAME.INPUTERROR : ''
+              }`}
           />
         </div>
         <ErrorMessage
@@ -221,9 +217,8 @@ const Description: React.FC<TextFieldProps> = ({
         }}
         onBlur={handleBlur}
         value={value as string}
-        className={`${CLASSNAME.DESCRIPTION} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
+        className={`${CLASSNAME.DESCRIPTION} ${err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
       />
       <ErrorMessage
         name={htmlFor}
@@ -263,9 +258,8 @@ const AboutMe: React.FC<TextFieldProps> = ({
         }}
         onBlur={handleBlur}
         value={value as string}
-        className={`${CLASSNAME.DESCRIPTION} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
+        className={`${CLASSNAME.DESCRIPTION} ${err && tch ? CLASSNAME.INPUTERROR : ''
+          }`}
       />
       <ErrorMessage
         name={htmlFor}
@@ -302,9 +296,8 @@ const Seller: React.FC<TextFieldProps> = ({
           onChange={handleChange}
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.MOBILE_NUMBER} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
-          }`}
+          className={`${CLASSNAME.MOBILE_NUMBER} ${err && tch ? CLASSNAME.INPUTERROR : ''
+            }`}
         />
       </div>
       <ErrorMessage
@@ -330,7 +323,7 @@ const PhoneNumber: React.FC<TextFieldProps> = ({
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
         <span>{TEXT.CODE}</span>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} 
+          {label}
         </label>
         <input
           title={htmlFor}
@@ -339,9 +332,8 @@ const PhoneNumber: React.FC<TextFieldProps> = ({
           onChange={handleChange}
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.MOBILE_NUMBER} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
-          }`}
+          className={`${CLASSNAME.MOBILE_NUMBER} ${err && tch ? CLASSNAME.INPUTERROR : ''
+            }`}
         />
       </div>
       <ErrorMessage
@@ -474,9 +466,8 @@ const State: React.FC<TextFieldProps> = ({
           onBlur={handleBlur}
           value={value as string}
           readOnly
-          className={`${CLASSNAME.STATE} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
-          }`}
+          className={`${CLASSNAME.STATE} ${err && tch ? CLASSNAME.INPUTERROR : ''
+            }`}
         />
         <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
@@ -557,9 +548,8 @@ const City: React.FC<TextFieldProps> = ({
           readOnly
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.CITY} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
-          }`}
+          className={`${CLASSNAME.CITY} ${err && tch ? CLASSNAME.INPUTERROR : ''
+            }`}
         />
         <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
@@ -590,4 +580,4 @@ const City: React.FC<TextFieldProps> = ({
     </>
   );
 };
-export { Description, TextField,PhoneNumber, Photos, Price, Seller,Email, State, City, Year,AboutMe };
+export { Description, TextField, PhoneNumber, Photos, Price, Seller, Email, State, City, Year, AboutMe };

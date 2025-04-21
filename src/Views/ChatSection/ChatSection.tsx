@@ -1,51 +1,24 @@
-import { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../Store';
-import { io, Socket } from 'socket.io-client';
+import { useContext,useRef } from 'react';
 import './chatSection.css';
 import { CLASSNAME, ID, TEXT } from './constant';
 import { TYPE } from '../../Interface/constant';
 import ChatMsgSection from '../../Components/CustomComponents/ChatMsgSection/ChatMsgSection';
 import ChatUserSection from '../../Components/CustomComponents/ChatUserSection';
+import { ChatContext } from '../../Components/CustomComponents/ChatWrapper/ChatWrapper';
+import { ChatContextType } from '../../Components/CustomComponents/ChatWrapper/constant';
 
-let socket: Socket | null = null;
+
 
 export default function ChatSection() {
-  const { access } = useSelector((state: RootState) => state?.common);
-  const inputRef = useRef<HTMLInputElement>(null);
-  console.log('hello');
-  const socketRef = useRef<Socket | null>(null);
 
-  useEffect(() => {
-    console.log('hello');
-    if (access && !socketRef.current) {
-      socketRef.current = io('https://bc39-115-245-238-84.ngrok-free.app', { query: { authorization: access } });
-      console.log(socketRef, 'socketRef');
-      socketRef.current.on('connected', (data) => {
-        console.log('Connected',data);
-      });
-      // socketRef.current.on('connected', (data) => {
-      //   console.log('Server says:', data);
-      // });
-      socketRef.current.emit('create_room',{},(data:any) => {
-        console.log('Server says:', data);
-      });
-
-      socketRef.current.on('message', (data) => {
-        console.log('Received', data);
-      });
-    }
-
-    return () => {
-      socketRef.current?.disconnect();
-      socketRef.current = null;
-    };
-  }, [access]);
+  const { socket, setMessages } = useContext(ChatContext) as ChatContextType;
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const onclickSend = () => {
     const msg = inputRef.current?.value.trim();
     if (msg && socket) {
-      socket.emit('message', msg);
+      socket?.emit('message', msg);
+      setMessages((prev: any) => [...prev, { msg, user: 'sender' }]);
       if (inputRef?.current?.value) {
         inputRef.current.value = '';
       }

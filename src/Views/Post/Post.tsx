@@ -1,80 +1,50 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import CarDetail from '../../Components/CustomComponents/Post/CarForm'
 import BikeDetail from '../../Components/CustomComponents/Post/BikeForm';
-import ScootersDetail from '../../Components/CustomComponents/Post/ScootersForm';
 import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
-import TabletDetail from '../../Components/CustomComponents/Post/TabletForm';
-import TVDetail from '../../Components/CustomComponents/Post/TVForm';
-import CameraDetail from '../../Components/CustomComponents/Post/CameraForm';
-import ComputerDetail from '../../Components/CustomComponents/Post/ComputerForm';
 import './post.css';
-import { CLASSNAME } from './constant';
+import { CLASSNAME, TEXT } from './constant';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 export default function Post() {
   const location = useLocation();
-  console.log(location.state, 'state1');
 
   if (!location.state) {
-    return <Navigate to="/sell" />;
+    return <Navigate to={ROUTES_CONFIG.SELL.path} />;
   }
   return (
     <div className={CLASSNAME.WRAPPER}>
       <div className={CLASSNAME.SELECTED_CATEGORY}>
         <span className={CLASSNAME.SELECTED_CATEGORY_TITLE}>
-          SELECTED CATEGORY
+          {TEXT.SELECTED_CATEGORY}
         </span>
         <span className={CLASSNAME.SELECTED_CATEGORY_NAME}>
           {location.state.categoryId} / {location.state.subcategory}
         </span>
       </div>
-      {location.state.categoryId === 'cars' && (
+      {location.state.categoryId === 'multiWheelVehicles' && (
         <div className={CLASSNAME.POST_DETAIL}>
           <CarDetail />
         </div>
       )}
 
-      {location.state.categoryId === 'bikes' &&
-        location.state.subcategory === 'Bikes' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <BikeDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'bikes' &&
-        location.state.subcategory === 'Scooters' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <ScootersDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'mobile' &&
-        location.state.subcategory === 'Mobile' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <MobileDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'electronics' &&
-        location.state.subcategory === 'TVs' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <TVDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'mobile' &&
-        location.state.subcategory === 'Tablet' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <TabletDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'electronics' &&
-        location.state.subcategory === 'Camera' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <CameraDetail />
-          </div>
-        )}
-      {location.state.categoryId === 'electronics' &&
-        location.state.subcategory === 'Computer' && (
-          <div className={CLASSNAME.POST_DETAIL}>
-            <ComputerDetail />
-          </div>
-        )}
+      {location.state.categoryId === 'bikes' && (
+        <div className={CLASSNAME.POST_DETAIL}>
+          <BikeDetail />
+        </div>
+      )}
+
+      {location.state.categoryId === 'mobile' && (
+        <div className={CLASSNAME.POST_DETAIL}>
+          <MobileDetail />
+        </div>
+      )}
+      {location.state.categoryId === 'electronics' && (
+        <div className={CLASSNAME.POST_DETAIL}>
+          <MobileDetail />
+        </div>
+      )}
+
     </div>
   );
 }

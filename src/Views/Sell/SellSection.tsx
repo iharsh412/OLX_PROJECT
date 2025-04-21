@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ICONS from '../../assets';
 import SubCategory from '../../Components/CustomComponents/SellCategory/SellCategory';
 import { CATEGORIES, CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 
 
 export default function SellSection() {
@@ -12,12 +12,11 @@ export default function SellSection() {
   return (
     <div className={CLASSNAME.SS.WRAPPER}>
       <h2 className={CLASSNAME.SS.SUBTITLE}>{TEXT.SS.CATEGORY}</h2>
-
       <div className={CLASSNAME.SS.CATEGORIES}>
         {CATEGORIES.map((category) => (
           <div key={category.id} className={CLASSNAME.SS.CATEGORY}>
             <button
-              type="button"
+              type={TYPE.BUTTON}
               className={`${CLASSNAME.SS.CATEGORY_BUTTON} ${selectedCategory === category.id ? CLASSNAME.SS.ACTIVE : ''
                 }`}
               onClick={() =>
@@ -40,7 +39,6 @@ export default function SellSection() {
                 className={CLASSNAME.SS.ARROW}
               />
             </button>
-
             {selectedCategory === category.id && (
               <div className={CLASSNAME.SS.SUBCATEGORIES}>
                 <SubCategory categoryId={category.id} />

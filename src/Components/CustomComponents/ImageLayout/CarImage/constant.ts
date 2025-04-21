@@ -12,8 +12,8 @@ export const CLASSNAME = {
     DATE: "carImage_date",
 }
 export const TEXT = {
-    ADD_TO_CART: 'Please login to add to cart',
-    ERROR_IN_ADDING: 'Error adding to cart',
+    ADD_TO_Wishlist: 'Please login to add to wishlist',
+    ERROR_IN_ADDING: 'Error adding to wishlist',
     ADDED_IN_FAV: 'Added in Favourites',
     ADDED: 'Added',
 }

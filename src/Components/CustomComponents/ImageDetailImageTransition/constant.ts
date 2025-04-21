@@ -1,3 +1,16 @@
 export interface ImageSectionProps {
-    readonly images?: string | string[]; // Define the type explicitly as an array of strings
-  }
+  readonly images?: string | string[];
+}
+
+export const CLASSNAME = {
+  IMAGE_SECTION: 'imageDetailimageSection',
+  IMAGE_SLIDE: 'imageDetailSlide',
+  ACTIVE: 'imageDetailActive',
+  BUTTON: 'imageDetailLogin_slide_button',
+  PREV: 'imageDetailLogin_slide_prev',
+  NEXT: 'imageDetailLogin_slide_next',
+  DOTS_CONTAINER: 'imageDeatilLogin_dots_container',
+  ACTIVE_IMAGES: 'ActiveImages',
+  DOTS: "imageDetailDot",
+  ACTIVE_DOTS: 'imageDetailActive'
+};

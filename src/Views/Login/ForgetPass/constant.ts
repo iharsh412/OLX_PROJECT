@@ -28,6 +28,6 @@ export const TEXT = {
   VALID: "Please enter your email address and we will send you a link to reset your password.",
   SUBMIT_BUTTON: "Send Reset Link",
   ERROR: "Please enter a valid email address",
-  SUCCESS:"Check your mail",
-  FAILURE:'Something went wrong, please try again',
+  SUCCESS: "Check your mail",
+  FAILURE: 'Something went wrong, please try again',
 }

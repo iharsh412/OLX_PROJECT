@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import Dashboard from '../Views/Dashboard';
 import { CustomRouter } from './RootRoutes';
-import  HomeLayout  from '../Views/Home';
+import HomeLayout from '../Views/Home';
 import Login from '../Views/Login/LoginSection';
 import LoginWithPhone from '../Views/Login/LoginContinueWithPhoneEmail';
 import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
@@ -14,6 +14,7 @@ import ForgetPass from '../Views/Login/ForgetPass';
 import Verification from '../Views/Login/Verification';
 import NewPass from '../Views/Login/NewPass';
 
+
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [
   {
@@ -22,7 +23,7 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
     title: ROUTES_CONFIG.HOMEPAGE.title,
     children: [
       { index: true, element: <Dashboard /> },
-      { path: ROUTES_CONFIG.LOGIN.path, element: <Login  /> },
+      { path: ROUTES_CONFIG.LOGIN.path, element: <Login /> },
       { path: ROUTES_CONFIG.LOGIN_PHONE.path, element: <LoginWithPhone /> },
       { path: ROUTES_CONFIG.SIGNUP.path, element: <Signup /> },
       { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },

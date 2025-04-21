@@ -7,7 +7,7 @@ import {
   TEXT,
 } from './constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation ,useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import {
   TextField,
@@ -20,15 +20,18 @@ import {
 } from '../Common/Common';
 import { toast } from 'react-toastify';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
+import { TEXT as COMMON_TEXT } from '../Common/constant';
+
+
 export default function BikeForm() {
+
   const { state } = useLocation();
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
-  const notifyAdded = () => toast('Posted Successfuly!');
-  const notifyNotAdded = () => toast(' Error!');
-  //  Handle submit
 
+
+  //  Handle submit
   const handleSubmit = async (
     values: FormValues,
     { resetForm }: { resetForm: () => void }
@@ -53,17 +56,17 @@ export default function BikeForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      notifyAdded();
+      toast.success(COMMON_TEXT.SUCCESS);
       setShowResponse('Added');
       resetForm();
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
       setShowResponse('Error');
-      notifyNotAdded();
+      toast.error(COMMON_TEXT.ERROR);
     }
   };
-  // Hooks
 
+  // Hooks
   useEffect(() => {
     if (showResponse) {
       const timer = setTimeout(() => {
@@ -94,7 +97,6 @@ export default function BikeForm() {
           <>
             <div className={CLASSNAME.WRAPPER}>
               <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="brand"
@@ -145,9 +147,7 @@ export default function BikeForm() {
                 {...share}
               />
             </div>
-
             <hr />
-
             {/* Price Input */}
             <Price
               type="number"
@@ -158,9 +158,7 @@ export default function BikeForm() {
               label="Price"
               {...share}
             />
-
             <hr />
-
             {/* Photos input */}
             <Photos
               type="file"
@@ -184,7 +182,6 @@ export default function BikeForm() {
                 label="State"
                 {...share}
               />
-
               {values.state && (
                 <City
                   state={values.state}
@@ -198,13 +195,10 @@ export default function BikeForm() {
                 />
               )}
             </div>
-
             <hr />
-
             {/* Review Your Detail */}
             <div className={CLASSNAME.SELLER_WRAPPER}>
               <h3 className={CLASSNAME.SELLER_TEXT}>{TEXT.REVIEW_DETAIL}</h3>
-
               <TextField
                 type="text"
                 htmlFor="sellerName"
@@ -225,7 +219,6 @@ export default function BikeForm() {
               />
             </div>
             <hr />
-
             {/* Submit Button */}
             <button
               type="submit"
@@ -236,8 +229,8 @@ export default function BikeForm() {
               {showResponse === 'Added'
                 ? 'POST SUCCESSFULLY'
                 : showResponse === 'Error '
-                ? 'ERROR IN POSTING'
-                : 'POST'}
+                  ? 'ERROR IN POSTING'
+                  : 'POST'}
             </button>
           </>
         );

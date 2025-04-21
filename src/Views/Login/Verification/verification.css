@@ -1,26 +1,24 @@
 /*  VERIFICATION WRAPPER */
-   .verification_wrapper {
-    background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
-    border-radius: 12px;
-    min-height: 420px;
-    width: 500px;
-    margin: 20px auto;
-    padding: 40px 32px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    position: relative;
-    overflow: hidden;
-    color: #5a2a7e; /* Changed from red to match theme */
-  }
-  
- 
-  
+.verification_wrapper {
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
+  border-radius: 12px;
+  min-height: 420px;
+  width: 500px;
+  margin: 20px auto;
+  padding: 40px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  position: relative;
+  overflow: hidden;
+  color: #5a2a7e;
+}
+
   /*  CONTENT STYLING  */
   .verification_wrapper span {
     margin: 30px 0;
@@ -30,14 +28,14 @@
     color: #5a2a7e;
     max-width: 320px;
   }
-  
+
   /* VERIFICATION ICON  */
   .verification_icon {
     font-size: 60px;
     color: #00c8c8;
     margin-bottom: 20px;
   }
-  
+
   /* BUTTON STYLING */
   .verification_login_button {
     background: none;
@@ -54,26 +52,26 @@
     align-items: center;
     margin-top: 20px;
   }
-  
+
   .verification_login_button:hover {
     color: #0056b3;
     text-decoration: none;
     background-color: rgba(0, 123, 255, 0.1);
   }
-  
+
   .verification_login_text {
     margin-left: 8px;
   }
-  
+
   /*  SUCCESS/ERROR STATES  */
   .verification_success {
     color: #28a745;
   }
-  
+
   .verification_error {
     color: #dc3545;
   }
-  
+
   /* RESPONSIVE DESIGN  */
   @media (max-width: 480px) {
     .verification_wrapper {
@@ -81,26 +79,26 @@
       padding: 30px 20px;
       min-height: 380px;
     }
-    
+
     .verification_wrapper span {
       font-size: 15px;
       margin: 25px 0;
     }
-    
+
     .verification_icon {
       font-size: 50px;
     }
   }
-  
+
   @media (max-width: 360px) {
     .verification_wrapper {
       padding: 25px 16px;
     }
-    
+
     .verification_wrapper span {
       font-size: 14px;
     }
-    
+
     .verification_login_button {
       font-size: 15px;
     }

@@ -1,7 +1,6 @@
 import * as Yup from 'yup';
 
 export const CLASSNAME = {
-
   LABEL: 'post-label',
   DETAIL_TEXT: 'postForm_detailText',
   WRAPPER: 'postFormWrapper',
@@ -80,8 +79,8 @@ export interface FormValues {
   sellerName?: string;
   mobileNumber?: string;
 }
-export const TEXT ={
-  INCLUDE_DETAIL:"INCLUDE SOME DETAILS",
-  CONFIRM_LOCATION:"CONFIRM YOUR LOCATION",
-  REVIEW_DETAIL:"REVIEW YOUR DETAILS"
+export const TEXT = {
+  INCLUDE_DETAIL: "INCLUDE SOME DETAILS",
+  CONFIRM_LOCATION: "CONFIRM YOUR LOCATION",
+  REVIEW_DETAIL: "REVIEW YOUR DETAILS"
 } 

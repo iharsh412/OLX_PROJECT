@@ -35,6 +35,11 @@ import {
   bikeWale,
   OlxWhite,
 } from './vector/URL';
+import olx1 from "./extra/olx1.jpeg";
+import olx2 from "./extra/olx2.jpeg";
+import olx3 from "./extra/olx3.jpeg";
+import olx4 from "./extra/olx4.jpeg";
+
 
 const ICONS = {
   Olx,
@@ -72,5 +77,9 @@ const ICONS = {
   motivation1,
   motivation5,
   edit,
+  olx1,
+  olx2,
+  olx3,
+  olx4,
 };
 export default ICONS;

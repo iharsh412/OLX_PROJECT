@@ -73,7 +73,7 @@ export default function Signin() {
                   <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
                 </Link>
               </div>
-             
+
               {/* form section */}
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.EMAIL_INPUT}>

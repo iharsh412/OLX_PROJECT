@@ -6,25 +6,31 @@ import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
 import { toast } from 'react-toastify';
+import { setUserId } from '../../Store/ChatUser';
 
 export default function ImageDetail() {
+
   const { productId } = useParams();
   const { access } = useSelector((state: RootState) => state?.common);
   const id = productId !== undefined ? Number(productId) : undefined;
   const navigate = useNavigate();
   const { data } = useGetProductsDetailQuery({ id });
-  console.log(data, 'data');
   const product = Array.isArray(data) ? data[0] : data;
+  const dispatch = useDispatch();
+  
   //  handle click
   // handle click on chat
   function handleClickChat() {
     if (!access) {
       toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
     }
-    navigate(ROUTES_CONFIG.CHAT.path);
+    else {
+      dispatch(setUserId(product?.user_id));
+      navigate(ROUTES_CONFIG.CHAT.path);
+    }
   }
 
   return (
@@ -69,9 +75,8 @@ export default function ImageDetail() {
           <div className={CLASSNAME.CHAT_TEXT_PHOTO}>
             <span className={CLASSNAME.CHAT_PHOTO}>
               <img
-                src={`${
-                  import.meta.env.VITE_BASE_URL
-                }${product?.display_photo}`}
+                src={`${import.meta.env.VITE_BASE_URL
+                  }${product?.display_photo}`}
                 alt={COMMON_TEXT.IMG}
               />
             </span>

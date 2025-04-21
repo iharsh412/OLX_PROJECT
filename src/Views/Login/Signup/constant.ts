@@ -24,19 +24,19 @@ export interface FORM_VALUES {
   password: string;
   confirmPassword: string;
 }
-export const CLASSNAME ={
-    WRAPPER:"signup_Wrapper",
-    HEADER:"signup_Header",
-    CROSS:"signup_Cross",
-    BACK:"signup_Back",
-    TITLE:"signup_title",
-    USERNAME_INPUT:"signup_usernameInput",
-    EMAIL_INPUT:"signup_emailInput",
-    PASSWORD_INPUT:"signup_passwordInput",
-    CONFIRM_PASSWORD_INPUT:"signup_confirmPasswordInput",
-    SUBMIT_BUTTON:"signup_submitButton",
-    ERROR:"signup_error",
-    
+export const CLASSNAME = {
+  WRAPPER: "signup_Wrapper",
+  HEADER: "signup_Header",
+  CROSS: "signup_Cross",
+  BACK: "signup_Back",
+  TITLE: "signup_title",
+  USERNAME_INPUT: "signup_usernameInput",
+  EMAIL_INPUT: "signup_emailInput",
+  PASSWORD_INPUT: "signup_passwordInput",
+  CONFIRM_PASSWORD_INPUT: "signup_confirmPasswordInput",
+  SUBMIT_BUTTON: "signup_submitButton",
+  ERROR: "signup_error",
+
 
 }
 export const TEXT = {
@@ -47,6 +47,6 @@ export const TEXT = {
   PASSWORD: 'Password',
   CONFIRM_PASSWORD: 'Confirm Password',
   SUBMIT: 'Sign Up',
-  SUCCESS:"Signup Successfully"
+  SUCCESS: "Signup Successfully"
 
 };
