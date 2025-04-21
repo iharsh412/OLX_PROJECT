@@ -42,6 +42,7 @@ export const TEXT = {
     OLX_INDIA: "OLX India",
     CHAT_WITH_SELLER: "Chat with Seller",
     POSTE_IN: "Posted in",
-    CHAT:"chat"
+    CHAT:"chat",
+    DAYS_AGO: "days ago",
 }
 

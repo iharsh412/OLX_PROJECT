@@ -9,30 +9,32 @@ import { ReactNode } from 'react';
 
 export const ChatContext = createContext<ChatContextType | null>(null);
 
-
-
 export default function ChatWrapper({ children }: { children: ReactNode }) {
+  const { access } = useSelector((state: RootState) => state?.common);
+  const [socket, setSocket] = useState<Socket | null>(null);
+  const [messages, setMessages] = useState<{ type: string; message: any }[]>(
+    []
+  );
 
-    const { access } = useSelector((state: RootState) => state?.common);
-    const [socket, setSocket] = useState<Socket | null>(null);
-    const [messages, setMessages] = useState<{ type: string; message: any }[]>([]);
+  useEffect(() => {
+    if (access) {
+      const newSocket = io('https://7b45-112-196-113-3.ngrok-free.app', {
+        query: { authorization: access },
+      });
+      setSocket(newSocket);
+      newSocket.on('connected', (data) => {
+        console.log('connected', data);
+        setMessages((prev) => [...prev,{ type: 'server', message: 'Connected to server' }]);
+      });
+    }
+    return () => {
+      socket?.disconnect();
+    };
+  }, [access]);
 
-    useEffect(() => {
-        if (access) {
-            const newSocket = io('http://localhost:3000', { query: { authorization: access } });
-            setSocket(newSocket);
-            newSocket.on('connected', (data) => {
-                setMessages((prev) => [...prev, { type: 'server', message: data }]);    
-            });
-        }
-        return () => {
-            socket?.disconnect();
-        };
-    }, [access]);
-
-    return (
-        <ChatContext.Provider value={{ socket, messages,setMessages }}>
-            {children}
-        </ChatContext.Provider>
-    );
-}   
+  return (
+    <ChatContext.Provider value={{ socket, messages, setMessages }}>
+      {children}
+    </ChatContext.Provider>
+  );
+}

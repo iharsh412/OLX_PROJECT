@@ -8,10 +8,9 @@ import { toast } from 'react-toastify';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import { useNavigate } from 'react-router-dom';
 import EditAds from '../../EditAds';
-
+import { getDaysFromNow } from '../../../../Interface/helper';
 
 const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
-
   const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
@@ -68,9 +67,9 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
           <span className={CLASSNAME.NAME}>{data.name}</span>
           <div className={CLASSNAME.PLACE_DATE}>
             <span className={CLASSNAME.LOCATION}>
-              {data.state} {data.city}
+              {data.state} , {data.city}
             </span>
-            <span className={CLASSNAME.DATE}>{data.created_at}</span>
+            <span className={CLASSNAME.DATE}>  {-1 * getDaysFromNow(String(data?.created_at))} {COMMON_TEXT.DAYS_AGO} </span>
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
             <button

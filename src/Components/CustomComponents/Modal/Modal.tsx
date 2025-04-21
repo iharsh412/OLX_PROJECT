@@ -2,9 +2,7 @@ import './modal.css';
 import { CLASSNAME, ModalProps, TEXT } from './constant';
 import { useEffect, useRef } from 'react';
 
-
-const Modal: React.FC<ModalProps> = ({ setAnswer, setOpen, text }) => {
-
+const Modal: React.FC<ModalProps> = ({ setAnswer, setOpen, text ,setDropdown}) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleYes = () => {
@@ -14,6 +12,7 @@ const Modal: React.FC<ModalProps> = ({ setAnswer, setOpen, text }) => {
   const handleNo = () => {
     setOpen(false);
     setAnswer('no');
+    setDropdown?.(false);
   };
   const handleClickOutside = (event: MouseEvent) => {
     if (
@@ -29,7 +28,7 @@ const Modal: React.FC<ModalProps> = ({ setAnswer, setOpen, text }) => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  
+
   return (
     <div className={CLASSNAME.WRAPPER}>
       <div className={CLASSNAME.CONTENT} ref={dropdownRef}>

@@ -14,14 +14,24 @@ import {
   TEXT,
 } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import { useEffect, useState } from 'react';
+import Modal from '../../CustomComponents/Modal';
+import { setWishlistCount } from '../../../Store/WishlistCount';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
+
+  
+
   const { username, refresh } = useSelector(
     (state: RootState) => state?.common
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [post] = usePostLogoutDataMutation();
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [answer, setAnswer] = useState<String>('no');
+  console.log(openModal, 'openModal');
+
   // Handle CLICK
   // on click any item
   const handleItemClick = () => {
@@ -31,7 +41,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const handleLogout = () => {
     try {
       post({ refresh: refresh }).unwrap();
-      // logout(); // commenting this line to avoid firebase logout
+      dispatch(setWishlistCount(0));
       dispatch(
         updateAuthState({
           refresh: null,
@@ -40,12 +50,19 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           username: null,
         })
       );
+   
       toast.success(TEXT.SUCCESS);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
       toast.error(TEXT.ERROR_LOGOUT);
     }
   };
+  useEffect(() => {
+    if (answer === 'yes') {
+      handleLogout();
+    }
+  }, [answer]);
+  
 
   return (
     <div className={CLASSNAME.PROFILE_DROPDOWN}>
@@ -86,8 +103,8 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           <button
             title={TEXT.LOGOUT}
             onClick={() => {
-              handleItemClick();
-              handleLogout();
+              setOpenModal(true);
+              // handleItemClick();
             }}
             className={CLASSNAME.PROFILE_MENU_ITEM}
           >
@@ -95,6 +112,14 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             <span>{TEXT.LOGOUT}</span>
           </button>
         </div>
+        {openModal && (
+          <Modal
+            setAnswer={setAnswer}
+            setOpen={setOpenModal}
+            text={TEXT.ARE_YOU_SURE}
+            setDropdown={(dropdown: boolean) => setOpenProfile?.(() => dropdown)}
+          />
+        )}
       </div>
     </div>
   );

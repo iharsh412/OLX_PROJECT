@@ -1,4 +1,4 @@
-import { useContext,useRef } from 'react';
+import { useContext, useRef } from 'react';
 import './chatSection.css';
 import { CLASSNAME, ID, TEXT } from './constant';
 import { TYPE } from '../../Interface/constant';
@@ -7,10 +7,7 @@ import ChatUserSection from '../../Components/CustomComponents/ChatUserSection';
 import { ChatContext } from '../../Components/CustomComponents/ChatWrapper/ChatWrapper';
 import { ChatContextType } from '../../Components/CustomComponents/ChatWrapper/constant';
 
-
-
 export default function ChatSection() {
-
   const { socket, setMessages } = useContext(ChatContext) as ChatContextType;
   const inputRef = useRef<HTMLInputElement | null>(null);
 

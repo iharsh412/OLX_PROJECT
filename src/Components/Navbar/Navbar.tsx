@@ -1,24 +1,32 @@
 import './navbar.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
 import ICONS from '../../assets';
 import { RootState } from '../../Store';
-// import LanguageSelector from '../CustomComponents/LanguageSelector';
-// import Place from '../CustomComponents/PlaceSelector';
+import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
+import { setWishlistCount } from '../../Store/WishlistCount';
 
 export default function Navbar() {
 
+  const { count } = useSelector((state: RootState) => state?.wishlistCount);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { access, username } = useSelector((state: RootState) => state?.common);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const profileRef = useRef<HTMLButtonElement>(null);
+  const { data} = useGetWishlistProductsQuery(
+    {},
+    { refetchOnMountOrArgChange: true, refetchOnFocus: true }
+  );
 
+  console.log(count, 'data');
+  console.log(data, 'data');
   // click
   // handle click on sell
   function onClickSell() {
@@ -46,6 +54,11 @@ export default function Navbar() {
   }
 
   //  Hooks
+  useEffect(() => {
+    if (access  && data) {
+      dispatch(setWishlistCount(data?.length));
+    }
+  }, [data]);
   // Close  dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -74,45 +87,41 @@ export default function Navbar() {
           <img src={ICONS.Olx} alt={COMMON_TEXT.IMG} />
         </button>
 
-        {/* place selector */}
-        {/* <div className={CLASSNAME.PLACE_WRAPPER}>
-          <Place />
-        </div> */}
-
         {/* item selector */}
         <Item />
 
-        {/* Language selector */}
-        {/* <div className={CLASSNAME.LANGUAGE_WRAPPER}>
-          <LanguageSelector />
-        </div> */}
         {/* cart login sell section */}
         <div className={CLASSNAME.CART_LOGIN_SELL}>
           {/* cart section */}
-          <button
-            type={TYPE.BUTTON}
-            className={CLASSNAME.CART}
-            onClick={onClickWishlist}
-            title={COMMON_TEXT.BUTTON}
-          >
-            <img
-              src={ICONS.heartIcon}
-              alt={COMMON_TEXT.IMG}
-              className={CLASSNAME.CART_ICON}
-            />
-          </button>
+          <div className="navWishlistWrapper">
+            <button
+              type={TYPE.BUTTON}
+              className={CLASSNAME.CART}
+              onClick={onClickWishlist}
+              title={COMMON_TEXT.BUTTON}
+            >
+              <img
+                src={ICONS.heartIcon}
+                alt={COMMON_TEXT.IMG}
+                className={CLASSNAME.CART_ICON}
+              />
+            </button>
+            {count > 0 && <span>{count}</span>}
+          </div>
           {/* If not logged in */}
           {access && (
             <>
               {/* chat section */}
-              <button className={CLASSNAME.CHAT} onClick={handleClickChat}>
-                <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
-              </button>
-
-              {/* notification section */}
-              {/* <button className={CLASSNAME.NOTIFICATION}>
-                <img src={ICONS.notification} alt={COMMON_TEXT.IMG} />
-              </button> */}
+              <div className="navWishlistWrapper">
+                <button
+                  type={TYPE.BUTTON}
+                  className={CLASSNAME.CHAT}
+                  onClick={handleClickChat}
+                >
+                  <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
+                </button>
+                <span>1</span>
+              </div>
 
               {/* Profile dropdown */}
               <button className={CLASSNAME.PROFILE} ref={profileRef}>

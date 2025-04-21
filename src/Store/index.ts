@@ -18,6 +18,7 @@ import loader from './Loader';
 import language from './Language';
 import areaItem from './AreaItem';
 import chatUser from "./ChatUser";
+import wishlistCount from './WishlistCount';
 
 const rootPersistConfig = {
   key: 'root',
@@ -30,6 +31,7 @@ const reducers = combineReducers({
   language,
   areaItem,
   chatUser,
+  wishlistCount,
   [api.reducerPath]: api.reducer,
 });
 

@@ -6,7 +6,7 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centering the images horizontally */
+  justify-content: center; 
 }
 
 /* Slide styling */
@@ -17,14 +17,12 @@
   padding: 10px;
   display: none;
   opacity: 0;
-
-  transition: opacity 0.5s ease-in-out; /* Smooth transition for slide changes */
+  transition: opacity 0.5s ease-in-out; 
 }
 
 /* Image styling for both active and inactive slides */
 .imageDetailSlide img {
-  object-fit: contain; /* Default for inactive slides */
-
+  object-fit: contain; 
   height: 80%;
   overflow: hidden;
   transition: object-fit 0.3s ease;
@@ -35,11 +33,10 @@
 /* Active slide styling */
 .imageDetailSlide.imageDetailActive {
   display: flex;
-
   width: 100%;
   height: 100%;
-  opacity: 1; /* Ensure active slide is visible */
-  object-fit: contain; /* Make sure active image is fully visible without cropping */
+  opacity: 1; 
+  object-fit: contain; 
 }
 
 /* Slide navigation buttons */
@@ -52,12 +49,14 @@
   height: 40px;
   cursor: pointer;
   z-index: 10;
-  transform: translateY(-50%); /* Center buttons vertically */
+  transform: translateY(-50%); 
   transition: transform 0.3s ease;
+  background-color: rgb(215, 215, 215);
+  border-radius: 50%;
 }
 
 .imageDetailLogin_slide_button:hover {
-  transform: translateY(-50%) scale(1.1); /* Button scaling on hover for better interactivity */
+  transform: translateY(-50%) scale(1.1); 
 }
 
 .imageDetailLogin_slide_prev {
@@ -73,9 +72,9 @@
   position: absolute;
   bottom: 5%;
   left: 50%;
-  transform: translateX(-50%); /* Center dots horizontally */
+  transform: translateX(-50%); 
   display: flex;
-  gap: 12px; /* Adjusted gap between dots */
+  gap: 12px; 
   z-index: 10;
 }
 
@@ -89,61 +88,51 @@
   cursor: pointer;
   transition:
     background-color 0.3s,
-    transform 0.3s; /* Smooth transition for dot color and scaling */
+    transform 0.3s;
 }
 
 .imageDetailDot.imageDetailActive {
   background: #23e5db;
-  transform: scale(1.2); /* Highlight active dot */
+  transform: scale(1.2); 
 }
 
 .imageDetailDot:hover {
-  transform: scale(1.3); /* Dot scaling on hover */
+  transform: scale(1.3); 
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .imageDetailimageSection {
-    min-height: 180px; /* Reduce height for smaller screens */
+    min-height: 180px; /
   }
 
   .imageDetailLogin_slide_button {
-    width: 30px; /* Reduce button size */
+    width: 30px;
     height: 30px;
   }
 
   .imageDeatilLogin_dots_container {
-    bottom: 15px; /* Move dots closer to the bottom */
+    bottom: 15px; 
   }
 
   .imageDetailDot {
-    width: 30px; /* Reduce dot size */
+    width: 30px; 
     height: 30px;
   }
 }
 
 @media (max-width: 480px) {
   .imageDetailimageSection {
-    min-height: 150px; /* Further reduce height for very small screens */
-  }
-
-  .imageDetailSlide img {
-    width: 60px; /* Further reduce image size */
-    height: 60px;
-  }
-
-  .imageDetailLogin_slide_button {
-    width: 250px; /* Further reduce button size */
-    height: 250px;
+    min-height: 150px; 
   }
 
   .imageDeatilLogin_dots_container {
-    bottom: 8px; /* Move dots even closer to the bottom */
-    gap: 8px; /* Reduce gap between dots */
+    bottom: 8px; 
+    gap: 8px; 
   }
 
   .imageDetailDot {
-    width: 30px; /* Further reduce dot size */
+    width: 30px; 
     height: 30px;
   }
 }

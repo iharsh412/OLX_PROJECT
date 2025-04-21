@@ -23,7 +23,10 @@ export default function NavCategory() {
     <div className={CLASSNAME.WRAPPER}>
       <div className={CLASSNAME.CHILD}>
         <div className={CLASSNAME.ALL_CATEGORY}>
-          <button className={CLASSNAME.ALL_CATEGORY_TEXT} onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}>
+          <button
+            className={CLASSNAME.ALL_CATEGORY_TEXT}
+            onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}
+          >
             {TEXT.ALL_CATEGORIES}
           </button>
         </div>

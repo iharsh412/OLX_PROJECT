@@ -1,9 +1,15 @@
 import './chatMsgSection.css';
 import { CLASSNAME } from "./constant"
-import { useContext, useEffect } from 'react';
-import { ChatContext } from '../ChatWrapper/ChatWrapper';
 import { ChatContextType } from '../ChatWrapper/constant';
+
+// consts
+import { ChatContext } from '../ChatWrapper/ChatWrapper';
+
+// libs
+import { useContext, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+
+// store
 import { RootState } from '../../../Store';
 
 
@@ -29,7 +35,8 @@ export default function ChatMsgSection() {
   const { socket, messages, setMessages } = useContext(ChatContext) as ChatContextType;
   console.log(messages, 'message');
   const { userId } = useSelector((state: RootState) => state?.chatUser);
-
+    console.log(userId, 'userId')
+    
   useEffect(() => {
     if (userId) {
       socket?.on("get-message", (data: any) => {

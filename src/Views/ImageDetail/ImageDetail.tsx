@@ -10,27 +10,35 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
 import { toast } from 'react-toastify';
 import { setUserId } from '../../Store/ChatUser';
+import Loader from '../../Components/Atom/Loader';
+import Error from '../../Components/Atom/Error';
+import { getDaysFromNow } from '../../Interface/helper';
 
 export default function ImageDetail() {
-
   const { productId } = useParams();
-  const { access } = useSelector((state: RootState) => state?.common);
+  const { access, id: uid } = useSelector((state: RootState) => state?.common);
   const id = productId !== undefined ? Number(productId) : undefined;
   const navigate = useNavigate();
-  const { data } = useGetProductsDetailQuery({ id });
+  const { data, isLoading, isError } = useGetProductsDetailQuery({ id });
   const product = Array.isArray(data) ? data[0] : data;
   const dispatch = useDispatch();
-  
+
   //  handle click
   // handle click on chat
   function handleClickChat() {
     if (!access) {
       toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
-    }
-    else {
-      dispatch(setUserId(product?.user_id));
+    } else {
+      dispatch(setUserId(data?.user));
       navigate(ROUTES_CONFIG.CHAT.path);
     }
+  }
+
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isError) {
+    return <Error />;
   }
 
   return (
@@ -67,34 +75,39 @@ export default function ImageDetail() {
           </span>
           <div className={CLASSNAME.PRICE_TAG}>
             <span className={CLASSNAME.PRICE_PLACE}>{product?.city}</span>
-            <span className={CLASSNAME.PRICE_PLACE}>{product?.created_at}</span>
+            <span className={CLASSNAME.PRICE_PLACE}>
+              {-1 * getDaysFromNow(product?.created_at)} {TEXT.DAYS_AGO}
+            </span>
           </div>
         </div>
         {/* image chat section */}
-        <div className={CLASSNAME.CHAT}>
-          <div className={CLASSNAME.CHAT_TEXT_PHOTO}>
-            <span className={CLASSNAME.CHAT_PHOTO}>
-              <img
-                src={`${import.meta.env.VITE_BASE_URL
+        {uid !== product.user && (
+          <div className={CLASSNAME.CHAT}>
+            <div className={CLASSNAME.CHAT_TEXT_PHOTO}>
+              <span className={CLASSNAME.CHAT_PHOTO}>
+                <img
+                  src={`${
+                    import.meta.env.VITE_BASE_URL
                   }${product?.display_photo}`}
-                alt={COMMON_TEXT.IMG}
-              />
-            </span>
-            <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
+                  alt={COMMON_TEXT.IMG}
+                />
+              </span>
+              <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
+            </div>
+            <button
+              title={TEXT.CHAT}
+              className={CLASSNAME.CHAT_BUTTON}
+              onClick={handleClickChat}
+            >
+              {TEXT.CHAT_WITH_SELLER}
+            </button>
           </div>
-          <button
-            title={TEXT.CHAT}
-            className={CLASSNAME.CHAT_BUTTON}
-            onClick={handleClickChat}
-          >
-            {TEXT.CHAT_WITH_SELLER}
-          </button>
-        </div>
+        )}
         {/* post section */}
         <div className={CLASSNAME.POST}>
           <span className={CLASSNAME.POST_TEXT}>{TEXT.POSTE_IN}</span>
           <span className={CLASSNAME.POST_VALUE}>
-            {product?.state} {product?.city || product?.district}
+            {product?.state} , {product?.city || product?.district}
           </span>
         </div>
         {/* map section */}

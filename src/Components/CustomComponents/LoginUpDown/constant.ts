@@ -35,4 +35,5 @@ export const TEXT = {
   LOGOUT: 'Logout',
   ERROR_LOGOUT: 'Error occurs in logout',
   SUCCESS: 'Logout successfully',
+  ARE_YOU_SURE: 'Are you sure you want to logout?',
 };

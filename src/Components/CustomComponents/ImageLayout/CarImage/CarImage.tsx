@@ -6,17 +6,21 @@ import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Interface/constant';
 import { RootState } from '../../../../Store';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
-
+import { getDaysFromNow } from '../../../../Interface/helper';
+import { setWishlistCount } from '../../../../Store/WishlistCount';
 
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
-
+  const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
   const { access: token } = useSelector((state: RootState) => state?.common);
+  const wishlistCount = useSelector(
+    (state: RootState) => state?.wishlistCount?.count
+  );
 
   //  click
   // on click cart
@@ -30,6 +34,11 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       const response = await post({ id: 1, product_id: data.id }).unwrap();
       setShowAdded(response.msg === TEXT.ADDED_IN_FAV ? TEXT.ADDED : '');
       refetch?.();
+      if (response.msg === TEXT.ADDED_IN_FAV) {
+        dispatch(setWishlistCount(wishlistCount + 1));
+      } else {
+        dispatch(setWishlistCount(wishlistCount - 1));
+      }
       refetchDashboard?.();
       toast.success(response.msg);
     } catch (error) {
@@ -40,7 +49,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   const onClickImages = async () => {
     navigate(`/product/${data.name}/${data.id}`);
   };
-  
+
   // HOOKS
   useEffect(() => {
     setShowAdded(data.is_favourite ? TEXT.ADDED : '');
@@ -79,9 +88,12 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
         <span className={CLASSNAME.NAME}>{data.name}</span>
         <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
           <span className={CLASSNAME.PLACE}>
-            {data.state} {data.city}
+            {data.state}, {data.city}
           </span>
-          <span className={CLASSNAME.DATE}>{data.created_at}</span>
+          <span className={CLASSNAME.DATE}>
+            {-1 * getDaysFromNow(String(data?.created_at))}{' '}
+            {COMMON_TEXT.DAYS_AGO}
+          </span>
         </div>
       </div>
     </div>

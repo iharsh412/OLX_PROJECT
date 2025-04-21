@@ -140,6 +140,7 @@
   height: 200px;
   justify-content: center;
   align-items: center;
+ 
 }
 
 .sample-price h4 {
@@ -191,6 +192,19 @@
 .sample_priceMax:hover {
   background-color: #f0f0f0;
   border-color: #ccc;
+}
+/* active  */
+.sample-active{
+  padding: 10px;
+  margin: 3px 0;
+  background-color: #a3d0f9;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+  font-size: 14px;
+
 }
 
 /* Apply Button */

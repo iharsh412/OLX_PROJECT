@@ -4,11 +4,11 @@ import './wishlistSection.css';
 import { Product } from '../../Interface/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
-import Loader from "../../Components/Atom/Loader"
-import Error from "../../Components/Atom/Error";
-
+import Schemer from '../../Components/Atom/Schemer';
+import Error from '../../Components/Atom/Error';
 
 export default function WishlistSection() {
+  
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
     {},
     { refetchOnMountOrArgChange: true }
@@ -16,10 +16,9 @@ export default function WishlistSection() {
 
   return (
     <>
-      <div className={CLASSNAME.WRAPPER}>
+      <div className={isLoading ? CLASSNAME.IMAGE_SECTION : CLASSNAME.WRAPPER}>
         <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
-        {isLoading && <Loader />
-        }
+        {isLoading && Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
         {isError && <Error />}
         {/*  data then render */}
         {data && data.length > 0 && (
@@ -34,7 +33,7 @@ export default function WishlistSection() {
           </div>
         )}
         {/* if data length === 0 */}
-        {data && data.length === 0 && <h1>{COMMON_TEXT.NO_PRODUCTS}</h1>}
+        {data && data.length === 0 && <h1>{COMMON_TEXT.NO_WISHLIST}</h1>}
       </div>
     </>
   );

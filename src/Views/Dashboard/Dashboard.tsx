@@ -7,14 +7,13 @@ import { CLASSNAME, TEXT } from './constant.ts';
 import { Product } from '../../Interface/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
-import Loader from "../../Components/Atom/Loader"
-import Error from "../../Components/Atom/Error"
+import Schemer from '../../Components/Atom/Schemer/Schemer.tsx';
+import Error from '../../Components/Atom/Error';
 
 export default function Dashboard() {
-
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
-  const limit = 12;
+  const limit = 15;
   const { data, isError, isLoading } = useGetTypeProductsQuery(
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
@@ -28,7 +27,6 @@ export default function Dashboard() {
   }, [search]);
 
   useEffect(() => {
-
     if (data && page === 1) {
       setTotalImages(() => {
         return [...data];
@@ -47,8 +45,8 @@ export default function Dashboard() {
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           <div className={CLASSNAME.IMAGE_SECTION}>
-            {isLoading && <Loader />
-            }
+            {isLoading &&
+              Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
             {isError && <Error />}
             {/* totalImages.length greater then 0 */}
             {data &&
@@ -58,7 +56,9 @@ export default function Dashboard() {
               ))}
             {/* totalImages.length is eqauls to 0 */}
             {data && totalImages.length === 0 && (
-              <h2>{COMMON_TEXT.NO_PRODUCTS}</h2>
+              <h2 className={CLASSNAME.NO_PRODUCTS}>
+                {COMMON_TEXT.NO_PRODUCTS}
+              </h2>
             )}
           </div>
           {/* load section */}

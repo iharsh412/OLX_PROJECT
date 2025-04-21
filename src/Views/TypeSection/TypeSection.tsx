@@ -1,13 +1,13 @@
 import { CLASSNAME } from './constant';
-// import Sample from '../../Components/Sample';
-import Chat from "../ChatSection"
+import Sample from '../../Components/Sample';
 
 export default function TypeSection() {
 
   return (
     <div className={CLASSNAME.WRAPPER}>
-      {/* <Sample /> */}
-      <Chat/>
+      <Sample />
+
+     
     </div>
   );
 }

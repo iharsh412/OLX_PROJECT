@@ -1,4 +1,13 @@
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useContext, useEffect, useState } from 'react';
+import {
+  JSXElementConstructor,
+  Key,
+  ReactElement,
+  ReactNode,
+  ReactPortal,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import './chatUserSection.css';
 import { CLASSNAME } from './constant';
 import { ChatContextType } from '../ChatWrapper/constant';
@@ -6,7 +15,6 @@ import { ChatContext } from '../ChatWrapper/ChatWrapper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../Store';
 import { setUserId } from '../../../Store/ChatUser';
-
 
 // const user = [
 //   { user: 'hello', key: 1 },
@@ -23,7 +31,6 @@ import { setUserId } from '../../../Store/ChatUser';
 // ];
 
 export default function ChatUserSection() {
-
   const { access } = useSelector((state: RootState) => state?.common);
   const { userId } = useSelector((state: RootState) => state?.chatUser);
   const { socket } = useContext(ChatContext) as ChatContextType;
@@ -32,16 +39,16 @@ export default function ChatUserSection() {
 
   useEffect(() => {
     if (userId) {
-      socket?.emit("create-room", { access, userId });
+      socket?.emit('create-room', { access, userId });
     }
   }, [socket, access, userId]);
 
   useEffect(() => {
-    socket?.on("get-user-list", (data: any) => {
+    socket?.on('get-user-list', (data: any) => {
       setUserList(data);
     });
   }, [socket]);
-  
+
   function handleClick() {
     dispatch(setUserId(userId));
   }
@@ -49,9 +56,28 @@ export default function ChatUserSection() {
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>
-        {userList?.map((data: { key: Key | null | undefined; user: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => (
-          <button className={CLASSNAME.USER} key={data.key} onClick={handleClick}>{data.user}</button>
-        ))}
+        {userList?.map(
+          (data: {
+            key: Key | null | undefined;
+            user:
+              | string
+              | number
+              | boolean
+              | ReactElement<any, string | JSXElementConstructor<any>>
+              | Iterable<ReactNode>
+              | ReactPortal
+              | null
+              | undefined;
+          }) => (
+            <button
+              className={CLASSNAME.USER}
+              key={data.key}
+              onClick={handleClick}
+            >
+              {data.user}
+            </button>
+          )
+        )}
       </div>
     </>
   );

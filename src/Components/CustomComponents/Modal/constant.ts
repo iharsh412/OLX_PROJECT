@@ -2,6 +2,7 @@ export interface ModalProps {
   setAnswer: (answer: string) => void;
   text: string;
   setOpen: (open: boolean) => void;
+  setDropdown?: (dropdown: boolean) => void;
 }
 export const CLASSNAME = {
   TEXT: 'modal_text',

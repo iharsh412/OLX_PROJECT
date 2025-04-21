@@ -1,6 +1,6 @@
 /* Main Container */
 .sample-Wrapper {
-  width: 80vw;
+  width: 85vw;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,7 @@
 /* Selected Options */
 .sample-selectedOptions {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .sample-selectedWrapper {
@@ -101,9 +102,23 @@
 }
 
 /* Responsive Adjustments */
+@media (max-width: 1058px) {
+  .sample-Wrapper {
+    width: 85vw;
+    padding: 10px;
+  }
+
+  .sample-mainSectionWrapper {
+    flex-direction: column;
+    
+  }
+
+  
+
+}
 @media (max-width: 768px) {
   .sample-Wrapper {
-    width: 95vw;
+    width: 85vw;
     padding: 10px;
   }
 
@@ -111,6 +126,7 @@
     flex-direction: column;
   }
 
+  
   .sample-mainSectionImage {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 20px 20px 60px 10px;

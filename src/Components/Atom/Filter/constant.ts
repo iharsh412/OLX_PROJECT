@@ -15,6 +15,7 @@ export const CLASSNAME = {
   PRICE_MIN: "sample_priceMin",
   PRICE_MAX: "sample_priceMax",
   APPLY: "sample-priceOption__apply",
+  ACTIVE:"sample-active"
 
 
 
