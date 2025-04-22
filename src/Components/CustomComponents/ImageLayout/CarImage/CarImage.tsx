@@ -12,7 +12,10 @@ import { CLASSNAME, TEXT } from './constant';
 import { getDaysFromNow } from '../../../../Interface/helper';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 
+
+
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
+
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');

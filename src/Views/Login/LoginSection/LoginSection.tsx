@@ -1,13 +1,11 @@
 import './loginSection.css';
 import { Link } from 'react-router-dom';
-// import { useDispatch } from 'react-redux';
 import ImageSection from './LoginImage.tsx';
 import { CLASSNAME, TEXT } from './constant.ts';
 import { ROUTES_CONFIG } from '../../../Shared/Constants.ts';
 import { TYPE } from '../../../Interface/constant.ts';
 
 export default function LoginPage() {
-
   return (
     <div className={CLASSNAME.WRAPPER}>
       <div className={CLASSNAME.SECTION}>

@@ -21,6 +21,8 @@ const ROUTES = {
   PROFILE: '/profile/info',
   EDIT_PROFILE: '/editprofile/info',
   CHAT: '/user/chat',
+  FIREBASE_CHAT: '/firebase/chat',
+  SINGLE_CHAT: '/firebase/singlechat',
 };
 
 const WILDCARD_ROUTES = {
@@ -100,6 +102,14 @@ const ROUTES_CONFIG = {
   CHAT: {
     path: ROUTES.CHAT,
     title: 'Chat Section',
+  },
+  FIREBASE_CHAT: {
+    path: ROUTES.FIREBASE_CHAT,
+    title: 'Firebase Chat',
+  },
+  SINGLE_CHAT: {
+    path: ROUTES.SINGLE_CHAT,
+    title: 'Single Chat',
   },
 };
 

@@ -17,11 +17,11 @@ import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { useEffect, useState } from 'react';
 import Modal from '../../CustomComponents/Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
+import {setUserId} from '../../../Store/ChatUser'
+
+
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
-
-  
-
   const { username, refresh } = useSelector(
     (state: RootState) => state?.common
   );
@@ -50,7 +50,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           username: null,
         })
       );
-   
+   dispatch(setUserId(null));
       toast.success(TEXT.SUCCESS);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
@@ -62,8 +62,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       handleLogout();
     }
   }, [answer]);
-  
-
+ 
   return (
     <div className={CLASSNAME.PROFILE_DROPDOWN}>
       <div className={CLASSNAME.DROPDOWN_MENU}>
@@ -117,7 +116,9 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             setAnswer={setAnswer}
             setOpen={setOpenModal}
             text={TEXT.ARE_YOU_SURE}
-            setDropdown={(dropdown: boolean) => setOpenProfile?.(() => dropdown)}
+            setDropdown={(dropdown: boolean) =>
+              setOpenProfile?.(() => dropdown)
+            }
           />
         )}
       </div>

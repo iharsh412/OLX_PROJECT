@@ -1,46 +1,26 @@
-import { initializeApp } from 'firebase/app';
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  UserCredential,
-  signOut,
-} from 'firebase/auth';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
-// Firebase configuration
+import { getFirestore} from "firebase/firestore";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: 'AIzaSyA3gGG9K5xsKN7nve2WjJHZ4TBr3rc8e6U',
-  authDomain: 'olx-project-d487b.firebaseapp.com',
-  projectId: 'olx-project-d487b',
-  storageBucket: 'olx-project-d487b.appspot.com',
-  messagingSenderId: '598465242138',
-  appId: '1:598465242138:web:45e4603266c770e11a5da3',
-  measurementId: 'G-Q84Y13R4P6',
+  apiKey: "AIzaSyDJIGl7z31kVGm8IazMLbL5lI70I3qUrIY",
+  authDomain: "olx-project-965af.firebaseapp.com",
+  projectId: "olx-project-965af",
+  storageBucket: "olx-project-965af.firebasestorage.app",
+  messagingSenderId: "44714218532",
+  appId: "1:44714218532:web:c9700d929a19bb98b134b1",
+  measurementId: "G-FJVM49DZ13"
 };
 
-// Initialize Firebase app
+
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
-console.log('firebase');
-
-const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
-
-export const signInWithGoogle = async (): Promise<UserCredential | null> => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider);
-
-    return result;
-  } catch (error) {
-    return null;
-  }
-};
-
-export const logout = async (): Promise<void> => {
-  try {
-    await signOut(auth);
-  } catch (error) {
-    console.error('Error during Google Sign-In:', error);
-  }
-};
-
-export { auth, app };
+const analytics = getAnalytics(app);
+console.log(analytics, 'analytics');
+export const db = getFirestore(app);

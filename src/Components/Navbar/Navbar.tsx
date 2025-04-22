@@ -25,8 +25,7 @@ export default function Navbar() {
     { refetchOnMountOrArgChange: true, refetchOnFocus: true }
   );
 
-  console.log(count, 'data');
-  console.log(data, 'data');
+
   // click
   // handle click on sell
   function onClickSell() {
@@ -50,7 +49,7 @@ export default function Navbar() {
   }
   //handle click on chat
   function handleClickChat() {
-    navigate(ROUTES_CONFIG.CHAT.path);
+    navigate(ROUTES_CONFIG.FIREBASE_CHAT.path);
   }
 
   //  Hooks

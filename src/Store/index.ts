@@ -17,13 +17,13 @@ import common from './Common';
 import loader from './Loader';
 import language from './Language';
 import areaItem from './AreaItem';
-import chatUser from "./ChatUser";
+import chatUser from './ChatUser';
 import wishlistCount from './WishlistCount';
 
 const rootPersistConfig = {
   key: 'root',
-  storage, 
-  whitelist: ['common', 'language',],
+  storage,
+  whitelist: ['common', 'language', 'chatUser'],
 };
 const reducers = combineReducers({
   common,
@@ -48,7 +48,6 @@ const store = configureStore({
     return middlewares;
   },
 });
-
 
 const persistor = persistStore(store);
 setupListeners(store.dispatch);

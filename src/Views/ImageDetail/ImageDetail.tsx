@@ -30,7 +30,7 @@ export default function ImageDetail() {
       toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
     } else {
       dispatch(setUserId(data?.user));
-      navigate(ROUTES_CONFIG.CHAT.path);
+      navigate(ROUTES_CONFIG.SINGLE_CHAT.path);
     }
   }
 
