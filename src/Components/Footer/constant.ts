@@ -23,6 +23,6 @@ export const CLASSNAME = {
 
 }
 export const TEXT = {
-    HELP_SITEMAP: ">Help-Sitemap",
+    HELP_SITEMAP: "Help-Sitemap",
     ALL_RIGHT_RESERVED: "All rights reserved © 2006-2025 OLX"
 }

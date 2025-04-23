@@ -1,21 +1,19 @@
-
 export interface SellCategoryProps {
-    categoryId: string;
+  categoryId: string;
 }
 
 export const SUBCATEGORIES: Record<string, string[]> = {
-    multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
-    mobile: ['Mobile', 'Tablet', 'Watch'],
-    electronics: ['Computer', 'TVs', 'Camera'],
-    bikes: ['Bikes', 'Scooters', 'Cycles'],
+//   multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
+  mobile: ['Mobile', 'Tablet', ],
+  electronics: ['Computer', 'TVs', 'Camera'],
+  bikes: ['Bikes', 'Scooters', 'Cycles'],
 };
 
 export const CLASSNAME = {
-    WRAPPER: "sell-category",
-    OPTIONS: "sell-category__option"
-
-}
+  WRAPPER: 'sell-category',
+  OPTIONS: 'sell-category__option',
+};
 
 export const TEXT = {
-    TITLE: 'Select this category',
-}
+  TITLE: 'Select this category',
+};

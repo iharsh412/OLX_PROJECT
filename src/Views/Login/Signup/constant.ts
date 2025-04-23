@@ -12,10 +12,9 @@ export const VALIDATION = Yup.object().shape({
     .email('Invalid email format')
     .required('Email is required'),
   password: Yup.string().required('Password is required'),
-  confirmPassword: Yup.string().required('Confirm your password ').oneOf(
-    [Yup.ref('password')],
-    'Passwords must match'
-  )
+  confirmPassword: Yup.string()
+    .required('Confirm your password ')
+    .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 
 export interface FORM_VALUES {
@@ -25,20 +24,19 @@ export interface FORM_VALUES {
   confirmPassword: string;
 }
 export const CLASSNAME = {
-  WRAPPER: "signup_Wrapper",
-  HEADER: "signup_Header",
-  CROSS: "signup_Cross",
-  BACK: "signup_Back",
-  TITLE: "signup_title",
-  USERNAME_INPUT: "signup_usernameInput",
-  EMAIL_INPUT: "signup_emailInput",
-  PASSWORD_INPUT: "signup_passwordInput",
-  CONFIRM_PASSWORD_INPUT: "signup_confirmPasswordInput",
-  SUBMIT_BUTTON: "signup_submitButton",
-  ERROR: "signup_error",
-
-
-}
+  WRAPPER: 'signup_Wrapper',
+  HEADER: 'signup_Header',
+  CROSS: 'signup_Cross',
+  BACK: 'signup_Back',
+  TITLE: 'signup_title',
+  USERNAME_INPUT: 'signup_usernameInput',
+  EMAIL_INPUT: 'signup_emailInput',
+  PASSWORD_INPUT: 'signup_passwordInput',
+  CONFIRM_PASSWORD_INPUT: 'signup_confirmPasswordInput',
+  SUBMIT_BUTTON: 'signup_submitButton',
+  ERROR: 'signup_error',
+  SIGNIN: 'signup_signin',
+};
 export const TEXT = {
   TITLE: 'Sign Up',
   USERNAME: 'Username',
@@ -47,6 +45,7 @@ export const TEXT = {
   PASSWORD: 'Password',
   CONFIRM_PASSWORD: 'Confirm Password',
   SUBMIT: 'Sign Up',
-  SUCCESS: "Signup Successfully"
-
+  SUCCESS: 'Signup Successfully',
+  SIGN_IN: 'Sign In',
+  HAVE_ACCOUNT: 'Already have an account?',
 };

@@ -17,14 +17,12 @@ export default function HomeLayout() {
   const dispatch = useDispatch();
   const loader = useSelector((state: RootState) => state.loader.isLoading);
 
-  // HOOKS
-  // for session expired
-
+  // path change remove toast and empty the serach  field
   useEffect(() => {
-    console.log(location.pathname, 'loader');
     dispatch(setItem(''));
     toast.dismiss();
   }, [location?.pathname]);
+  // for session expired
   useEffect(() => {
     if (loader) {
       toast.error(TEXT.SESSION_EXPIRED, {

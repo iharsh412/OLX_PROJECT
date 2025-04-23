@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 export const CLASSNAME = {
   WRAPPER: 'edit-profile-wrapper',
   HEADER_WRAPPER: 'edit-profile-header-wrapper',
@@ -5,7 +6,6 @@ export const CLASSNAME = {
   POST: 'edit-profile-edit',
   CROSS: 'edit-profile-cross',
   VIEW_PROFILE: 'edit-profile-view-profile',
-
 };
 export const TEXT = {
   TITLE: 'Edit Profile',
@@ -15,11 +15,12 @@ export const TEXT = {
   SUCCESS: 'Profile updated successfully',
   ERROR: 'Error updating profile',
 };
-import * as Yup from 'yup';
 
 export const validationSchema = Yup.object().shape({
-  phonenumber: Yup.string()
-    .matches(/^[0-9]{10}$/, 'Mobile number must be exactly 10 digits'),
+  phonenumber: Yup.string().matches(
+    /^[0-9]{10}$/,
+    'Mobile number must be exactly 10 digits'
+  ),
   email: Yup.string()
     .required('Email is required')
     .email('Invalid email format'),
@@ -35,12 +36,12 @@ export const validationSchema = Yup.object().shape({
 export const initialValues = {
   username: '',
   phonenumber: '',
-  ["about me"]: '',
+  ['about me']: '',
   email: '',
 };
 export interface FormValues {
   username: string;
   phonenumber: string;
-  ["about me"]: string;
+  ['about me']: string;
   email: string;
 }

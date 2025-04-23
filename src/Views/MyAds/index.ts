@@ -1,1 +1,1 @@
-export {default} from "./MyAds"
+export { default } from './MyAds';

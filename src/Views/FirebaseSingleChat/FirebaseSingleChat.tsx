@@ -16,19 +16,15 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
 export default function FirebaseChatApp() {
-   const {userId} =useSelector((state:RootState)=>state.chatUser);
+  const { userId } = useSelector((state: RootState) => state.chatUser);
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const messageRef = collection(db, 'messages');
-  const roomId =[userId, id].sort().join('_');
-
-  console.log(id, 'id');
-  console.log(username, 'username');
-  console.log(roomId, 'roomid');
+  const roomId = [userId, id].sort().join('_');
 
   const handleSendMessage = async () => {
-    if (newmsg.trim() === '' ) return;
+    if (newmsg.trim() === '') return;
     console.log(newmsg, 'newmsg');
     try {
       await addDoc(messageRef, {
@@ -65,37 +61,16 @@ export default function FirebaseChatApp() {
     return () => unsubscribe();
   }, [roomId]);
 
-
   console.log(messages, 'messages');
   return (
     <div className="chat-app">
-      {/* <div className="userWrapper">
-        <div className="user">User</div>
-        <div className="user-list">
-          {uniqueUsers.map((user) => (
-            <button
-              key={user}
-              className={`user-item ${user === roomId ? 'activeUser' : ''} `}
-              disabled={user === roomId}
-              onClick={() => {
-                setRoomId(user);
-                setSenderId(
-                  user.split('_')[0] === id
-                    ? user.split('_')[1]
-                    : user.split('_')[0]
-                );
-              }}
-            >
-              {user}
-            </button>
-          ))}
-        </div>
-      </div> */}
       <div className="message-wrapper">
         <div className="message">Messages</div>
         <div className="message-list">
           {messages.length === 0 ? (
-            <div className="no_message">SAY hi to start messaging!</div>
+            <div className="no_message">
+              "No messages yet. Say hello to start the conversation!"
+            </div>
           ) : (
             messages.map((msg) => (
               <div

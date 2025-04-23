@@ -9,22 +9,22 @@ export default function SellLayout() {
   const navigate = useNavigate();
 
   return (
-    <div className={CLASSNAME.SL.WRAPPER}>
-      <header className={CLASSNAME.SL.HEADER}>
+    <div className={CLASSNAME.WRAPPER}>
+      <header className={CLASSNAME.HEADER}>
         <button
-          title={TEXT.SL.BACK}
+          title={TEXT.BACK}
           type={TYPE.BUTTON}
-          className={CLASSNAME.SL.BACK_BUTTON}
+          className={CLASSNAME.BACK_BUTTON}
           onClick={() => navigate(-1)}
         >
           <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
         </button>
       </header>
-      <h1 className={CLASSNAME.SL.TITLE}>{TEXT.SL.ADD}</h1>
-      <div className={CLASSNAME.SL.OUTLET}>
+      <h1 className={CLASSNAME.TITLE}>{TEXT.ADD}</h1>
+      <div className={CLASSNAME.OUTLET}>
         <Outlet />
       </div>
-      <div className={CLASSNAME.SL.FOOTER}>
+      <div className={CLASSNAME.FOOTER}>
         <Footer />
       </div>
     </div>

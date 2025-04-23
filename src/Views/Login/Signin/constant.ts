@@ -1,42 +1,36 @@
 import * as Yup from 'yup';
 export interface FORM_VALUES {
-
   email: string;
   password: string;
-
 }
-
-
 export const INITIAL_VALUES = {
-
   email: '',
   password: '',
-
 };
 export const VALIDATION = Yup.object().shape({
   email: Yup.string()
     .email('Invalid email format')
     .required('Email is required'),
   password: Yup.string().required('Password is required'),
-
 });
 export const CLASSNAME = {
-  WRAPPER: "signin_Wrapper",
-  HEADER: "signin_header",
-  CROSS: "signin_cross",
-  BACK: "signin_back",
-  TITLE: "signin_title",
-  EMAIL_INPUT: "signin_emailInput",
-  PASSWORD_INPUT: "signin_passwordInput",
-  SUBMIT_BUTTON: "signin_submitButton",
-  ERROR: "signin_error",
-  FORGET: "signin_forgetpass",
-
-
-}
+  WRAPPER: 'signin_Wrapper',
+  HEADER: 'signin_header',
+  CROSS: 'signin_cross',
+  BACK: 'signin_back',
+  TITLE: 'signin_title',
+  EMAIL_INPUT: 'signin_emailInput',
+  PASSWORD_INPUT: 'signin_passwordInput',
+  SUBMIT_BUTTON: 'signin_submitButton',
+  ERROR: 'signin_error',
+  FORGET: 'signin_forgetpass',
+  SINUP: 'signin_signup',
+};
 export const TEXT = {
-   LOGIN:"Login",
-   SIGN_IN:"Sign In",
-   FORGET_PASSWORD:"forget password?",
-   LOGIN_SUCCESSFUL:"Login Successfull",
-}
+  LOGIN: 'Login',
+  SIGN_IN: 'Sign In',
+  FORGET_PASSWORD: 'forgot password?',
+  LOGIN_SUCCESSFUL: 'Login Successfull',
+  DONOT_HAVE_ACCOUNT: "Don't have an account?",
+  SIGN_UP: 'Sign Up',
+};

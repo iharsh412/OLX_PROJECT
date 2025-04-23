@@ -69,7 +69,11 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
             <span className={CLASSNAME.LOCATION}>
               {data.state} , {data.city}
             </span>
-            <span className={CLASSNAME.DATE}>  {-1 * getDaysFromNow(String(data?.created_at))} {COMMON_TEXT.DAYS_AGO} </span>
+            <span className={CLASSNAME.DATE}>
+              {' '}
+              {-1 * getDaysFromNow(String(data?.created_at))}{' '}
+              {COMMON_TEXT.DAYS_AGO}{' '}
+            </span>
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
             <button

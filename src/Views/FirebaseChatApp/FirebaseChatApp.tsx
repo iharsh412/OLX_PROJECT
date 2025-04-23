@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './firebaseChatApp.css';
 import {
   addDoc,
@@ -24,11 +24,12 @@ export default function FirebaseChatApp() {
   const messageRef = collection(db, 'messages');
   const [uniqueUsers, setUniqueUsers] = useState<string[]>([]);
   const [roomId, setRoomId] = useState('');
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   console.log(id, 'id');
   console.log(username, 'username');
   console.log(roomId, 'roomid');
-  console.log(uniqueUsers, 'uniqueUsers')
+  console.log(uniqueUsers, 'uniqueUsers');
   const handleSendMessage = async () => {
     if (newmsg.trim() === '' || senderId === null || senderId === id) return;
     console.log(newmsg, 'newmsg');
@@ -82,76 +83,90 @@ export default function FirebaseChatApp() {
 
     return () => unsubscribe();
   }, []);
-  console.log(messages, 'messages');
-  return (
-      <>
-      {uniqueUsers.length === 0 ? (<div className="no_users">No message  yet</div>) : (
-      <div className="chat-app">
-      <div className="userWrapper">
-        <div className="user">User</div>
-        <div className="user-list">
-          {uniqueUsers.map((user) => (
-            <button
-              key={user}
-              className={`user-item ${user === roomId ? 'activeUser' : ''} `}
-              disabled={user === roomId}
-              onClick={() => {
-                setRoomId(user);
-                setSenderId(
-                  user.split('_')[0] === id
-                    ? user.split('_')[1]
-                    : user.split('_')[0]
-                );
-              }}
-            >
-              {user}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div className="message-wrapper">
-        <div className="message">Messages</div>
-        <div className="message-list">
-          {messages.length === 0 ? (
-            <div className='no_message'>select a user to start messaging</div>
-          ) : (
-            messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`message-item ${
-                  msg.user === username ? 'sent' : 'received'
-                }`}
-              >
-                <span className="message-text">{msg.text}</span>
-                <span className="message-time">
-                  {msg.createdAt?.toDate().toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  })}
-                </span>
-              </div>
-            ))
-          )}
-        </div>
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
-        <div className="input-wrapper">
-          <input
-            className="message-input"
-            type="text"
-            placeholder="Type a message"
-            value={newmsg}
-            onChange={(e) => setNewmsg(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleSendMessage();
-            }}
-          />
-          <button className="send-btn" onClick={handleSendMessage}>
-            Send
-          </button>
+  return (
+    <>
+      {uniqueUsers.length === 0 ? (
+        <div className="no_users">
+          No conversations yet. Start chatting by connecting with another user!
         </div>
-      </div>
-      </div>
-    )}
-  </>
+      ) : (
+        <div className="chat-app">
+          <div className="userWrapper">
+            <div className="user">User</div>
+            <div className="user-list">
+              {uniqueUsers.map((user) => (
+                <button
+                  key={user}
+                  className={`user-item ${user === roomId ? 'activeUser' : ''} `}
+                  disabled={user === roomId}
+                  onClick={() => {
+                    setRoomId(user);
+                    setSenderId(
+                      user.split('_')[0] === id
+                        ? user.split('_')[1]
+                        : user.split('_')[0]
+                    );
+                  }}
+                >
+                  {user}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="message-wrapper">
+            <div className="message">Messages</div>
+            <div className="message-list">
+              {messages.length === 0 ? (
+                <div className="no_message">
+                  Select a seller roomId to message and unlock better deals,
+                  faster responses, and secure transactions!
+                </div>
+              ) : (
+                <>
+                  {messages.map((msg) => (
+                    <div
+                      key={msg.id}
+                      className={`message-item ${
+                        msg.user === username ? 'sent' : 'received'
+                      }`}
+                    >
+                      <span className="message-text">{msg.text}</span>
+                      <span className="message-time">
+                        {msg.createdAt?.toDate().toLocaleTimeString([], {
+                          hour: '2-digit',
+                          minute: '2-digit',
+                        })}
+                      </span>
+                    </div>
+                  ))}
+                </>
+              )}
+            </div>
+
+            {messages.length !== 0 && (
+              <div className="input-wrapper">
+                <input
+                  className="message-input"
+                  type="text"
+                  placeholder="Type a message"
+                  value={newmsg}
+                  onChange={(e) => setNewmsg(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleSendMessage();
+                  }}
+                />
+                <button className="send-btn" onClick={handleSendMessage}>
+                  Send
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 }

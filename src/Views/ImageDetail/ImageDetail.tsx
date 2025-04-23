@@ -23,7 +23,7 @@ export default function ImageDetail() {
   const product = Array.isArray(data) ? data[0] : data;
   const dispatch = useDispatch();
 
-  //  handle click
+
   // handle click on chat
   function handleClickChat() {
     if (!access) {
@@ -43,11 +43,15 @@ export default function ImageDetail() {
 
   return (
     <div className={CLASSNAME.WRAPPER}>
+      {/* image transition / detail / description */}
       <div className={CLASSNAME.IMAGE_DETAIL_DESCRIPTION}>
+        {/* image section */}
         <div className={CLASSNAME.IMAGE}>
           <ImageTransition images={product?.images} />
         </div>
+        {/* detail / description section */}
         <div className={CLASSNAME.DETAIL_DESCRIPTION}>
+          {/* detail section */}
           <div className={CLASSNAME.DETAIL}>
             <span className={CLASSNAME.DETAIL_TEXT}>{TEXT.DETAIL}</span>
             <div className={CLASSNAME.BRAND}>
@@ -56,6 +60,7 @@ export default function ImageDetail() {
             </div>
           </div>
           <hr />
+          {/* description section */}
           <div className={CLASSNAME.DESCRIPTION}>
             <span className={CLASSNAME.DESCRIPTION_TITLE}>
               {TEXT.DESCRIPTION}
@@ -66,8 +71,9 @@ export default function ImageDetail() {
           </div>
         </div>
       </div>
-      {/* images price section */}
+      {/*  price / chat/ map section */}
       <div className={CLASSNAME.PRICE_CHAT_WRAPPER}>
+        {/* price section */}
         <div className={CLASSNAME.PRICE}>
           <span className={CLASSNAME.PRICE_VALUE}>₹ {product?.price}</span>
           <span className={CLASSNAME.PRICE_TEXT}>
@@ -80,7 +86,7 @@ export default function ImageDetail() {
             </span>
           </div>
         </div>
-        {/* image chat section */}
+        {/*  chat section */}
         {uid !== product.user && (
           <div className={CLASSNAME.CHAT}>
             <div className={CLASSNAME.CHAT_TEXT_PHOTO}>

@@ -119,7 +119,7 @@ export default function Navbar() {
                 >
                   <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
                 </button>
-                <span>1</span>
+                {/* <span>1</span> */}
               </div>
 
               {/* Profile dropdown */}

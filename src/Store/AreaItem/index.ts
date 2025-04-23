@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const loader = createSlice({
   name: 'area',
-  initialState: { area: 'India', item: "" },
+  initialState: { area: 'India', item: '' },
   reducers: {
     setArea: (state, action) => ({
       ...state,

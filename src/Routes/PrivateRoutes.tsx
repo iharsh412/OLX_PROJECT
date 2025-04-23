@@ -4,7 +4,7 @@ import { CustomRouter } from './RootRoutes';
 import HomeLayout from '../Views/Home';
 import Dashboard from '../Views/Dashboard';
 import SellLayout from '../Views/Sell';
-import SellSection from '../Views/Sell/SellSection';
+import SellSection from '../Components/CustomComponents/SellSection/SellSection';
 import Wishlist from '../Views/WishlistSection';
 import Post from '../Views/Post';
 import ProductDetail from '../Views/ImageDetail';

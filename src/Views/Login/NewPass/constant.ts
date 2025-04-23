@@ -25,10 +25,9 @@ export const CLASSNAME = {
   SUBMIT_BUTTON: 'newpass_submitButton',
   EMAIL_INPUT: 'newpass_emailInput',
   ERROR: 'newpass_error',
-  SUCCESS:"newPass_success",
-  SUCCESS_TEXT:"newPass_sucessText",
-  SUCCESS_LOGIN:"newPass_sucessLogin"
-
+  SUCCESS: 'newPass_success',
+  SUCCESS_TEXT: 'newPass_sucessText',
+  SUCCESS_LOGIN: 'newPass_sucessLogin',
 };
 export const TEXT = {
   TITLE: 'Forgot Password',
@@ -37,7 +36,7 @@ export const TEXT = {
   FORGET_PASWORD: 'Forget Password',
   SUBMIT_BUTTON: 'Set',
   PASSWORD_CHANGED: 'Password Changed',
-  LOGIN:"Login",
-  FAILURE:'Error in changing password',
-  SUCCESS:"Password Changed Successfully"
+  LOGIN: 'Login',
+  FAILURE: 'Error in changing password',
+  SUCCESS: 'Password Changed Successfully',
 };

@@ -76,7 +76,9 @@
   width: 100%;
   display: flex;
   flex-direction: column;
+  background-color: #fff;
   justify-content: space-between;
+  position: relative;
 }
 
 /* Image Grid Section */
@@ -92,13 +94,17 @@
   position: relative;
 }
 
-
 /* no product  */
 .sample-noProduct {
-  height: 100%;
-  width: 100%;
-  font-size: 24px;
   text-align: center;
+  color: #333;
+  font-weight: 800;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Responsive Adjustments */
@@ -110,11 +116,7 @@
 
   .sample-mainSectionWrapper {
     flex-direction: column;
-    
   }
-
-  
-
 }
 @media (max-width: 768px) {
   .sample-Wrapper {
@@ -126,7 +128,6 @@
     flex-direction: column;
   }
 
-  
   .sample-mainSectionImage {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 20px 20px 60px 10px;

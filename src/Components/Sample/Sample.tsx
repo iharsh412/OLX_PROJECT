@@ -137,10 +137,12 @@ export default function Sample() {
           className={`${CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER} ${isLoading ? CLASSNAME.MAIN_SECTION_IMAGE : ''}`}
         >
           {isLoading &&
-            Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
+            Array.from({ length: 8 }, (_, i) => <Schemer key={i} />)}
           {isError && <Error />}
           {!isLoading && !isError && response && (
-            <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+            <div
+              className={response?.products?.length === 0 ? CLASSNAME.NO_PRODUCTS : CLASSNAME.MAIN_SECTION_IMAGE}
+            >
               {(response?.products?.length as number) > 0 &&
                 response?.products?.map((product: Product) => (
                   <ImagesLayout key={product.id} data={product} />

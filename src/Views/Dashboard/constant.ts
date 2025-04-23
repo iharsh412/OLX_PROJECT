@@ -1,9 +1,9 @@
 export const CLASSNAME = {
-    WRAPPER: "homeImageSectionWraper",
-    IMAGE_SECTION: "homeImageSection",
-    LOAD: "homeLoadMore",
-    NO_PRODUCTS: "homeNoProducts",
-}
+  WRAPPER: 'homeImageSectionWraper',
+  IMAGE_SECTION: 'homeImageSection',
+  LOAD: 'homeLoadMore',
+  NO_PRODUCTS: 'homeNoProducts',
+};
 export const TEXT = {
-    LOAD: "Load More"
-}
+  LOAD: 'Load More',
+};

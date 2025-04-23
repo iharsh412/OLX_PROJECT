@@ -64,7 +64,7 @@ button {
 
 /* Error Highlight */
 .postErrorInput {
-  border: 2px solid red;
+  border: 2px solid red !important;
 }
 
 /* Photo Section */
@@ -98,8 +98,8 @@ button {
 
 .postForm_photo-preview {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 40px;
+  object-fit: contain;
 }
 
 .postForm_photo-upload {
@@ -121,7 +121,17 @@ button {
   align-items: center;
   justify-content: space-between;
 }
-
+.post-form-remove-btn{
+  position:absolute;
+  top:0;
+  right:0;
+  width: 15px;
+  height: 15px;
+}
+.post-form-remove-btn img{
+  width: 100%;
+  height: 100%;
+}
 /* Price Section */
 .postForm_PriceWrapper {
   display: flex;

@@ -21,11 +21,10 @@ import { Link } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ForgetPass() {
-
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
 
-  //  HOOKS
+  //  submit
   async function handleSubmit(values: FORM_VALUES) {
     try {
       await post(values).unwrap();
@@ -35,7 +34,7 @@ export default function ForgetPass() {
       toast.error(TEXT.FAILURE);
     }
   }
-  
+
   return (
     <>
       <Formik
@@ -54,7 +53,7 @@ export default function ForgetPass() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
-
+              {/* header */}
               <div className={CLASSNAME.HEADER}>
                 {/* Back */}
                 <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.SIGNIN.path}>
@@ -70,6 +69,7 @@ export default function ForgetPass() {
                   <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
                 </Link>
               </div>
+              {/* email section */}
               <div className={CLASSNAME.EMAIL_INPUT}>
                 <label htmlFor={COMMON_TEXT.EMAIL_S}>Email</label>
                 <input
@@ -84,7 +84,9 @@ export default function ForgetPass() {
                   <div className={CLASSNAME.ERROR}>{errors.email}</div>
                 )}
               </div>
+              {/* validation text */}
               <span className={CLASSNAME.TEXT}>{TEXT.VALID}</span>
+               {/* send reset link text */}
               <button
                 title={COMMON_TEXT.SUBMIT}
                 className={CLASSNAME.SUBMIT_BUTTON}
@@ -95,6 +97,7 @@ export default function ForgetPass() {
                 {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
               </button>
               {disabled && <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>}
+              {/* footer section */}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
                   {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}

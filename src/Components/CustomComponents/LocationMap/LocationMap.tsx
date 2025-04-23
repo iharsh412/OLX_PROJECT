@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 import './locationMap.css';
 import { CLASSNAME, TEXT, PropsType } from './constant';
 
-
 export default function LocationMap({ cityName, mapHeadingText }: PropsType) {
-  
   const [center, setCenter] = useState<[number, number] | null>(null);
 
   useEffect(() => {

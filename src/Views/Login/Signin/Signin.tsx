@@ -24,7 +24,9 @@ export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [post] = usePostSigninDataMutation();
+
   // handle click
+  // handle submit
   async function handleSubmit(
     values: FORM_VALUES,
     { resetForm }: { resetForm: () => void }
@@ -58,6 +60,7 @@ export default function Signin() {
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
+              {/* header */}
               <div className={CLASSNAME.HEADER}>
                 {/* Back */}
                 <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
@@ -73,9 +76,9 @@ export default function Signin() {
                   <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
                 </Link>
               </div>
-
               {/* form section */}
               <form onSubmit={handleSubmit}>
+                {/* email section */}
                 <div className={CLASSNAME.EMAIL_INPUT}>
                   <label htmlFor={COMMON_TEXT.EMAIL_S}>
                     {COMMON_TEXT.EMAIL}
@@ -92,6 +95,7 @@ export default function Signin() {
                     <div className={CLASSNAME.ERROR}>{errors.email}</div>
                   )}
                 </div>
+                {/* password section */}
                 <div className={CLASSNAME.PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                     {COMMON_TEXT.PASSWORD}
@@ -108,7 +112,7 @@ export default function Signin() {
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
                   )}
                 </div>
-
+                {/* submit button */}
                 <button
                   className={CLASSNAME.SUBMIT_BUTTON}
                   type={TYPE.SUBMIT}
@@ -117,16 +121,20 @@ export default function Signin() {
                   {TEXT.LOGIN}
                 </button>
               </form>
+              {/* forget password*/}
               <button
                 className={CLASSNAME.FORGET}
                 type={TYPE.BUTTON}
                 title={COMMON_TEXT.PASSWORD_S}
-                onClick={() =>
-                  navigate(ROUTES_CONFIG.FORGETPASS.path)
-                }
+                onClick={() => navigate(ROUTES_CONFIG.FORGETPASS.path)}
               >
                 {TEXT.FORGET_PASSWORD}
               </button>
+              {/* signup text */}
+              <div className={CLASSNAME.SINUP}>
+                <span>{TEXT.DONOT_HAVE_ACCOUNT}</span>
+                <Link to={ROUTES_CONFIG.SIGNUP.path}>{TEXT.SIGN_UP}</Link>
+              </div>
               {/* footer section */}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>

@@ -44,16 +44,16 @@ export const LOCATION = {
     PUNJAB: ["MOHALI", "JALANDHAR", "CHANDIGARH"],
     HARYANA: ["AMBALA", "KURUKSHETRA", "KARNAL"],
     ["UTTAR PRDESH"]: ["DELHI"],
-    ["HIMACHA PRADESH"]: ["SHIMLA"],
+    ["HIMACHAL PRADESH"]: ["SHIMLA"],
     
 }
 export enum COUNT {
-    Description = 200,
-    Brand = 20,
-    Name = 30,
+    Description = 4000,
+    Brand = 50,
+    Name = 50,
     Year = 4,
     "KM driven" = 5,
-    "Ad title" = 20
+    "Ad title" = 50
 
 }
 export interface TextFieldProps {

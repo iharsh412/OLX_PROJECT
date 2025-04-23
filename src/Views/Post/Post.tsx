@@ -1,5 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
-import CarDetail from '../../Components/CustomComponents/Post/CarForm'
+import CarDetail from '../../Components/CustomComponents/Post/CarForm';
 import BikeDetail from '../../Components/CustomComponents/Post/BikeForm';
 import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
 import './post.css';
@@ -12,9 +12,13 @@ export default function Post() {
   if (!location.state) {
     return <Navigate to={ROUTES_CONFIG.SELL.path} />;
   }
+
   return (
+    // sell form section
     <div className={CLASSNAME.WRAPPER}>
+      {/* header */}
       <div className={CLASSNAME.SELECTED_CATEGORY}>
+        {/* selected category text*/}
         <span className={CLASSNAME.SELECTED_CATEGORY_TITLE}>
           {TEXT.SELECTED_CATEGORY}
         </span>
@@ -22,29 +26,25 @@ export default function Post() {
           {location.state.categoryId} / {location.state.subcategory}
         </span>
       </div>
+      {/* multiwheel vehicles */}
       {location.state.categoryId === 'multiWheelVehicles' && (
         <div className={CLASSNAME.POST_DETAIL}>
           <CarDetail />
         </div>
       )}
-
+      {/* bikes */}
       {location.state.categoryId === 'bikes' && (
         <div className={CLASSNAME.POST_DETAIL}>
           <BikeDetail />
         </div>
       )}
-
-      {location.state.categoryId === 'mobile' && (
+      {/* mobiles and electronics */}
+      {(location.state.categoryId === 'mobile' ||
+        location.state.categoryId === 'electronics') && (
         <div className={CLASSNAME.POST_DETAIL}>
           <MobileDetail />
         </div>
       )}
-      {location.state.categoryId === 'electronics' && (
-        <div className={CLASSNAME.POST_DETAIL}>
-          <MobileDetail />
-        </div>
-      )}
-
     </div>
   );
 }

@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const CLASSNAME = {
   DETAIL_TEXT: 'editForm_detailText',
   WRAPPER: 'editForm_Wrapper',
-  MAIN: "editForm_Main",
+  MAIN: 'editForm_Main',
   LOCATION_WRAPPER: 'editForm_LocationWrapper',
   LOCATION_TEXT: 'editForm_LocationText',
   POST: 'editForm_post',
@@ -55,14 +55,13 @@ export interface FormValues {
 export const TEXT = {
   INCLUDE_DETAIL: 'EDIT YOUR ADS',
   CONFIRM_LOCATION: 'CONFIRM YOUR LOCATION',
-  EDIT: "Edit",
+  EDIT: 'Edit',
   REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
   EDITING: 'Sending...',
   SUCCESS: 'ADs edited successfully',
   ERROR: 'Error in editing',
 };
 export interface EditAdsProps {
-
   setEditOpen: (open: boolean) => void;
   refetch?: () => void;
   data: {
@@ -80,5 +79,5 @@ export interface EditAdsProps {
     user?: React.ReactNode;
     description?: string;
     is_favourite?: boolean;
-  }
+  };
 }

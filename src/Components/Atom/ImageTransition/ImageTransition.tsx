@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import './loginImage.css';
-import {IMAGES,QUOTES} from './constant';
+import './imageTransition.css';
+import { IMAGES, QUOTES } from './constant';
 
-
-
-function ImageSection() {
+export default function ImageTransition() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   function prevSlide() {
@@ -66,5 +64,3 @@ function ImageSection() {
     </div>
   );
 }
-
-export default ImageSection;

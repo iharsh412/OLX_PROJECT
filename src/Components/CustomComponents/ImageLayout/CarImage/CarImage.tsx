@@ -11,11 +11,9 @@ import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
 import { getDaysFromNow } from '../../../../Interface/helper';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
-
-
+import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
 const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
-
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
@@ -25,11 +23,11 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
     (state: RootState) => state?.wishlistCount?.count
   );
 
-  //  click
   // on click cart
   const onClickWishlist = async (e: React.MouseEvent) => {
     e.stopPropagation();
     if (!token) {
+      navigate(ROUTES_CONFIG.LOGIN.path);
       toast.error(TEXT.ADD_TO_Wishlist);
       return;
     }

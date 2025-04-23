@@ -2,7 +2,12 @@ import './modal.css';
 import { CLASSNAME, ModalProps, TEXT } from './constant';
 import { useEffect, useRef } from 'react';
 
-const Modal: React.FC<ModalProps> = ({ setAnswer, setOpen, text ,setDropdown}) => {
+const Modal: React.FC<ModalProps> = ({
+  setAnswer,
+  setOpen,
+  text,
+  setDropdown,
+}) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleYes = () => {

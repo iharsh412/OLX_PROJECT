@@ -1,4 +1,4 @@
-/* Image section styling */
+/* Updated Image section styling */
 .imageDetailimageSection {
   width: 100%;
   height: 100%;
@@ -6,23 +6,41 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center; 
+  justify-content: center;
 }
 
-/* Slide styling */
+/* Updated Slide styling */
 .imageDetailSlide {
-  flex-direction: column;
-  width: 80%;
-  height: 40%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   padding: 10px;
-  display: none;
+  transition:
+    transform 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
   opacity: 0;
-  transition: opacity 0.5s ease-in-out; 
+  display: flex;
+  flex-direction: column;
 }
 
-/* Image styling for both active and inactive slides */
+/* Slide positions */
+.imageDetailSlide.imageDetailPrev {
+  transform: translateX(-100%);
+}
+
+.imageDetailSlide.imageDetailActive {
+  transform: translateX(0);
+  opacity: 1;
+  z-index: 1;
+}
+
+.imageDetailSlide.imageDetailNext {
+  transform: translateX(100%);
+}
+
+/* Image styling remains the same */
 .imageDetailSlide img {
-  object-fit: contain; 
+  object-fit: contain;
   height: 80%;
   overflow: hidden;
   transition: object-fit 0.3s ease;
@@ -30,16 +48,7 @@
   width: 100%;
 }
 
-/* Active slide styling */
-.imageDetailSlide.imageDetailActive {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  opacity: 1; 
-  object-fit: contain; 
-}
-
-/* Slide navigation buttons */
+/* Keep your existing button and dot styles */
 .imageDetailLogin_slide_button {
   position: absolute;
   top: 50%;
@@ -49,14 +58,14 @@
   height: 40px;
   cursor: pointer;
   z-index: 10;
-  transform: translateY(-50%); 
+  transform: translateY(-50%);
   transition: transform 0.3s ease;
   background-color: rgb(215, 215, 215);
   border-radius: 50%;
 }
 
 .imageDetailLogin_slide_button:hover {
-  transform: translateY(-50%) scale(1.1); 
+  transform: translateY(-50%) scale(1.1);
 }
 
 .imageDetailLogin_slide_prev {
@@ -67,21 +76,19 @@
   right: 10px;
 }
 
-/* Dots container */
 .imageDeatilLogin_dots_container {
   position: absolute;
   bottom: 5%;
   left: 50%;
-  transform: translateX(-50%); 
+  transform: translateX(-50%);
   display: flex;
-  gap: 12px; 
+  gap: 12px;
   z-index: 10;
 }
 
 .imageDetailDot {
   width: 40px;
   height: 40px;
-
   border: none;
   border: 1px solid black;
   background: #002f345c;
@@ -93,17 +100,17 @@
 
 .imageDetailDot.imageDetailActive {
   background: #23e5db;
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 .imageDetailDot:hover {
-  transform: scale(1.3); 
+  transform: scale(1.3);
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments remain the same */
 @media (max-width: 768px) {
   .imageDetailimageSection {
-    min-height: 180px; /
+    min-height: 180px;
   }
 
   .imageDetailLogin_slide_button {
@@ -112,27 +119,27 @@
   }
 
   .imageDeatilLogin_dots_container {
-    bottom: 15px; 
+    bottom: 15px;
   }
 
   .imageDetailDot {
-    width: 30px; 
+    width: 30px;
     height: 30px;
   }
 }
 
 @media (max-width: 480px) {
   .imageDetailimageSection {
-    min-height: 150px; 
+    min-height: 150px;
   }
 
   .imageDeatilLogin_dots_container {
-    bottom: 8px; 
-    gap: 8px; 
+    bottom: 8px;
+    gap: 8px;
   }
 
   .imageDetailDot {
-    width: 30px; 
+    width: 30px;
     height: 30px;
   }
 }

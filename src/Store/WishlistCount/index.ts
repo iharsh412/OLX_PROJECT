@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const loader = createSlice({
   name: 'wishlistCount',
-  initialState: {count:0},
+  initialState: { count: 0 },
   reducers: {
     setWishlistCount: (state, action) => ({
       ...state,
-       count: action.payload,
+      count: action.payload,
     }),
   },
 });

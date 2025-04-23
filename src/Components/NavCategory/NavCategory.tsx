@@ -7,9 +7,9 @@ import { TYPE } from '../../Interface/constant';
 export default function NavCategory() {
   const navigate = useNavigate();
 
-  function handleCarClick() {
-    navigate('/type/multiwheelvehicles');
-  }
+  // function handleCarClick() {
+  //   navigate('/type/multiwheelvehicles');
+  // }
   function handleMotorcycleClick() {
     navigate('/type/bikes');
   }
@@ -31,13 +31,13 @@ export default function NavCategory() {
           </button>
         </div>
         <div className={CLASSNAME.LIST}>
-          <button
+          {/* <button
             type={TYPE.BUTTON}
             className={CLASSNAME.CARS}
             onClick={handleCarClick}
           >
             {TEXT.MULTI_WHEEL_VEHICLE}
-          </button>
+          </button> */}
           <button
             type={TYPE.BUTTON}
             className={CLASSNAME.MOTORCYCLE}

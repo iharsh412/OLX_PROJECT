@@ -1,58 +1,55 @@
 /* wrapper */
 /* change page button */
 .sample-PageChange {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    padding: 20px;
-   
-  }
-  .sample-PREV,
-  .sample-NEXT {
-    display: flex;
-    padding: 10px;
-    margin: 3px 5px 0 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.2s;
-    font-size: 16px;
-    width: fit-content;
-    text-align: center;
-    cursor: pointer;
-  }
-  .sample-PREV:hover,
-  .sample-NEXT:hover {
-    background-color: #eaeaea;
-    border-color: #ccc;
-  }
-  .sample-PageChange span:active {
-    background-color: #b3aeed;
-    border-color: #ccc;
-  }
-  .sample-disabled {
-    visibility: hidden;
-  }
-  .sample-pagewrapper {
-    display: flex;
-    align-items: center;
-    
-  }
-  .sample-pageNumber{
-    display: flex;
-    padding: 10px;
-    margin: 3px 5px 0 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    transition: all 0.2s;
-    font-size: 16px;
-    width: fit-content;
-    text-align: center;
-    cursor: pointer;
-  }
-  /* active page nuumber */
-  .sample-activepage{
-    border: 1px solid blue;
-  
-  }
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 20px;
+}
+.sample-PREV,
+.sample-NEXT {
+  display: flex;
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 16px;
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+}
+.sample-PREV:hover,
+.sample-NEXT:hover {
+  background-color: #eaeaea;
+  border-color: #ccc;
+}
+.sample-PageChange span:active {
+  background-color: #b3aeed;
+  border-color: #ccc;
+}
+.sample-disabled {
+  visibility: hidden;
+}
+.sample-pagewrapper {
+  display: flex;
+  align-items: center;
+}
+.sample-pageNumber {
+  display: flex;
+  padding: 10px;
+  margin: 3px 5px 0 0;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  transition: all 0.2s;
+  font-size: 16px;
+  width: fit-content;
+  text-align: center;
+  cursor: pointer;
+}
+/* active page nuumber */
+.sample-activepage {
+  border: 1px solid blue;
+}

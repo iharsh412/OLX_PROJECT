@@ -1,4 +1,3 @@
-
 const STRING: string = 'Test';
 export { STRING };
 
@@ -9,7 +8,7 @@ const ROUTES = {
   LOGIN_PHONE_SMS: 'loginphonesms',
   WISHLIST: 'wishlist',
   PRODUCT: '/product/:productName/:productId',
-  SELL: 'sell',
+  SELL: '/sell',
   ATTRIBUTES: 'attributes',
   CATEGORY: '/type/:category',
   SIGNIN: '/signin',
@@ -26,8 +25,8 @@ const ROUTES = {
 };
 
 const WILDCARD_ROUTES = {
- PRIVATE:ROUTES.HOMEPAGE,
-  PUBLIC:  ROUTES.LOGIN,
+  PRIVATE: ROUTES.HOMEPAGE,
+  PUBLIC: ROUTES.LOGIN,
 };
 
 const ROUTES_CONFIG = {

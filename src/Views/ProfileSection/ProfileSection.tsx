@@ -5,8 +5,8 @@ import './profileSection.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
 import { COMMON_TEXT } from '../../Interface/constant';
-import Loader from "../../Components/Atom/Loader"
-import Error from "../../Components/Atom/Error"
+import Loader from '../../Components/Atom/Loader';
+import Error from '../../Components/Atom/Error';
 
 export default function ProfileSection() {
   const { data, isLoading, isError } = useGetUserInfoQuery(
@@ -14,22 +14,25 @@ export default function ProfileSection() {
     { refetchOnMountOrArgChange: true }
   );
 
-  if (isLoading)
-    return <Loader />
-  if (isError)
-    return <Error />;
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
+
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>
+        {/* header */}
         <div className={CLASSNAME.PROFILE_TEXT_WRAPPER}>
+          {/* coss icon */}
           <Link className={CLASSNAME.CROSS} to={ROUTES_CONFIG.HOMEPAGE.path}>
             <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
           </Link>
           <h3 className={CLASSNAME.PROFILE_TEXT}>{TEXT.PROFILE}</h3>
+          {/* edit icon */}
           <Link className={CLASSNAME.EDIT} to={ROUTES_CONFIG.EDIT_PROFILE.path}>
             <img src={ICONS.edit} alt={COMMON_TEXT.IMG} />
           </Link>
         </div>
+        {/* main section */}
         <div className={CLASSNAME.CONTENT}>
           <div className={CLASSNAME.PROFILE_INITIAL}>{data?.username?.[0]}</div>
           <div className={CLASSNAME.USERNAME}>{data?.username}</div>

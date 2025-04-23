@@ -6,9 +6,10 @@ import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT } from '../../Interface/constant';
 import Schemer from '../../Components/Atom/Schemer';
 import Error from '../../Components/Atom/Error';
+import { Link } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 export default function WishlistSection() {
-  
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
     {},
     { refetchOnMountOrArgChange: true }
@@ -20,7 +21,7 @@ export default function WishlistSection() {
         <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
         {isLoading && Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
         {isError && <Error />}
-        {/*  data then render */}
+        {/*  data LENGTH>0 then render */}
         {data && data.length > 0 && (
           <div className={CLASSNAME.IMAGE_SECTION}>
             {data?.map((products: Product) => (
@@ -33,7 +34,12 @@ export default function WishlistSection() {
           </div>
         )}
         {/* if data length === 0 */}
-        {data && data.length === 0 && <h1>{COMMON_TEXT.NO_WISHLIST}</h1>}
+        {data && data.length === 0 && (
+          <>
+            <h1>{COMMON_TEXT.NO_WISHLIST}</h1>
+            <Link to={ROUTES_CONFIG.HOMEPAGE.path}>{TEXT.GO_TO_HOME}</Link>
+          </>
+        )}
       </div>
     </>
   );

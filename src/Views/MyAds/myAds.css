@@ -1,16 +1,13 @@
+/* Main wrapper */
 .myads-wrapper {
   display: flex;
   flex-direction: column;
   width: 80vw;
   margin: 0 auto;
-  padding: 0 10px;
-  width: 80vw;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  padding: 20px 10px;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   margin-top: 20px;
-  background-color: rgb(242, 253, 255);
+  background-color: #f2fdff; /* light blue */
   box-shadow: 10px 16px 16px rgba(0, 0, 0, 0.28);
 }
 
@@ -26,16 +23,71 @@
   text-decoration: underline;
 }
 
-/* Ads Grid Container */
+/* Grid container for ads */
 .myads-ad-wrapper {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
   padding: 10px 0;
+  justify-content: flex-start;
+  justify-content: center;
+  
 }
 
-/* Responsive adjustments */
+/* Individual ad item */
+.myads-ad-item {
+  flex: 0 1 calc(25% - 15px); /* 4 per row with spacing */
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.myads-ad-item:hover {
+  transform: scale(1.02);
+}
+
+/* Ad image */
+.myads-ad-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* No ads / loading message */
+.myads-no-ads {
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  margin: 50px 0;
+  color: rgb(4, 134, 134);
+  width: 100%;
+}
+
+.myads-no-ads a {
+  color: blue;
+  font-weight: 400;
+  padding-left: 5px;
+  text-decoration: none;
+}
+
+.myads-no-ads a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Responsive Layout ========== */
+
+/* 3 per row */
+@media screen and (max-width: 1024px) {
+  .myads-ad-item {
+    flex: 0 1 calc(33.33% - 14px);
+  }
+}
+
+/* 2 per row */
 @media screen and (max-width: 768px) {
   .myads-wrapper {
     width: 95vw;
@@ -50,8 +102,13 @@
     gap: 16px;
     padding: 8px 0;
   }
+
+  .myads-ad-item {
+    flex: 0 1 calc(50% - 10px);
+  }
 }
 
+/* 1 per row */
 @media screen and (max-width: 480px) {
   .myads-title {
     font-size: 18px;
@@ -62,11 +119,8 @@
     flex-direction: column;
     align-items: center;
   }
-}
-/* loading */
-.myads-no-ads,
-.myads-error,
-.myads-loading {
-  font-size: 20px;
-  font-weight: 700;
+
+  .myads-ad-item {
+    flex: 0 1 100%;
+  }
 }

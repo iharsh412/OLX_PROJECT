@@ -7,5 +7,4 @@ export const CLASSNAME = {
 };
 export const TEXT = {
   SELECTED_CATEGORY: 'SELECTED CATEGORY',
-
 };

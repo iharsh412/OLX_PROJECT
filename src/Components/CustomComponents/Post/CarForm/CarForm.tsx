@@ -23,11 +23,9 @@ import {
   // Year,
 } from '../Common/Common';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { TEXT as COMMON_TEXT } from "../Common/constant"
-
+import { TEXT as COMMON_TEXT } from '../Common/constant';
 
 export default function CarForm() {
-
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
@@ -59,7 +57,7 @@ export default function CarForm() {
       await postNewProducts(formData).unwrap();
       toast.success(COMMON_TEXT.SUCCESS);
       setShowResponse('Added');
-      navigate(ROUTES_CONFIG.HOMEPAGE.path)
+      navigate(ROUTES_CONFIG.HOMEPAGE.path);
       resetForm();
     } catch (error) {
       toast.error(COMMON_TEXT.ERROR);

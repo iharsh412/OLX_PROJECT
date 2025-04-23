@@ -13,93 +13,93 @@
   justify-content: center;
   text-align: center;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
   position: relative;
   overflow: hidden;
   color: #5a2a7e;
 }
 
-  /*  CONTENT STYLING  */
+/*  CONTENT STYLING  */
+.verification_wrapper span {
+  margin: 30px 0;
+  line-height: 1.6;
+  font-size: 16px;
+  font-weight: 500;
+  color: #5a2a7e;
+  max-width: 320px;
+}
+
+.verification_email_text {
+  color: rgb(255, 150, 150);
+}
+/* BUTTON STYLING */
+.verification_login_button {
+  background: none;
+  border: none;
+  color: #007bff;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.verification_login_button:hover {
+  color: #0056b3;
+  text-decoration: none;
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+.verification_login_text {
+  margin-left: 8px;
+}
+
+/*  SUCCESS/ERROR STATES  */
+.verification_success {
+  color: #28a745;
+}
+
+.verification_error {
+  color: #dc3545;
+}
+
+/* RESPONSIVE DESIGN  */
+@media (max-width: 480px) {
+  .verification_wrapper {
+    width: 90%;
+    padding: 30px 20px;
+    min-height: 380px;
+  }
+
   .verification_wrapper span {
-    margin: 30px 0;
-    line-height: 1.6;
-    font-size: 16px;
-    font-weight: 500;
-    color: #5a2a7e;
-    max-width: 320px;
+    font-size: 15px;
+    margin: 25px 0;
   }
 
-  /* VERIFICATION ICON  */
   .verification_icon {
-    font-size: 60px;
-    color: #00c8c8;
-    margin-bottom: 20px;
+    font-size: 50px;
+  }
+}
+
+@media (max-width: 360px) {
+  .verification_wrapper {
+    padding: 25px 16px;
   }
 
-  /* BUTTON STYLING */
+  .verification_wrapper span {
+    font-size: 14px;
+  }
+
   .verification_login_button {
-    background: none;
-    border: none;
-    color: #007bff;
-    text-decoration: underline;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    padding: 8px 12px;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    margin-top: 20px;
+    font-size: 15px;
   }
-
-  .verification_login_button:hover {
-    color: #0056b3;
-    text-decoration: none;
-    background-color: rgba(0, 123, 255, 0.1);
-  }
-
-  .verification_login_text {
-    margin-left: 8px;
-  }
-
-  /*  SUCCESS/ERROR STATES  */
-  .verification_success {
-    color: #28a745;
-  }
-
-  .verification_error {
-    color: #dc3545;
-  }
-
-  /* RESPONSIVE DESIGN  */
-  @media (max-width: 480px) {
-    .verification_wrapper {
-      width: 90%;
-      padding: 30px 20px;
-      min-height: 380px;
-    }
-
-    .verification_wrapper span {
-      font-size: 15px;
-      margin: 25px 0;
-    }
-
-    .verification_icon {
-      font-size: 50px;
-    }
-  }
-
-  @media (max-width: 360px) {
-    .verification_wrapper {
-      padding: 25px 16px;
-    }
-
-    .verification_wrapper span {
-      font-size: 14px;
-    }
-
-    .verification_login_button {
-      font-size: 15px;
-    }
-  }
+}

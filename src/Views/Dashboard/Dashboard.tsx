@@ -13,7 +13,7 @@ import Error from '../../Components/Atom/Error';
 export default function Dashboard() {
   const search = useSelector((state: RootState) => state?.areaItem?.item);
   const [page, setPage] = useState(1);
-  const limit = 15;
+  const limit = 20;
   const { data, isError, isLoading } = useGetTypeProductsQuery(
     { page, limit, search },
     { refetchOnFocus: true, refetchOnMountOrArgChange: true }
@@ -44,10 +44,15 @@ export default function Dashboard() {
       {/* total images  */}
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
+          {isLoading && (
+            <div className="loader">
+              {Array.from({ length: 10 }, (_, i) => (
+                <Schemer key={i} />
+              ))}
+            </div>
+          )}
+          {isError && <Error />}
           <div className={CLASSNAME.IMAGE_SECTION}>
-            {isLoading &&
-              Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
-            {isError && <Error />}
             {/* totalImages.length greater then 0 */}
             {data &&
               totalImages.length > 0 &&
@@ -55,12 +60,10 @@ export default function Dashboard() {
                 <ImagesLayout key={product.id} data={product} />
               ))}
             {/* totalImages.length is eqauls to 0 */}
-            {data && totalImages.length === 0 && (
-              <h2 className={CLASSNAME.NO_PRODUCTS}>
-                {COMMON_TEXT.NO_PRODUCTS}
-              </h2>
-            )}
           </div>
+          {data && totalImages.length === 0 && (
+            <h2 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_PRODUCTS}</h2>
+          )}
           {/* load section */}
           {data?.length === limit && (
             <button

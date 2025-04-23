@@ -28,7 +28,6 @@ const baseQueryWithInterceptor = async (
   api: BaseQueryApi,
   extraOptions: object
 ) => {
-  
   let result = await baseQuery(args, api, extraOptions);
   if (
     (result as ResponseOptions).error &&

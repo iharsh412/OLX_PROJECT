@@ -17,9 +17,7 @@ import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { useEffect, useState } from 'react';
 import Modal from '../../CustomComponents/Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
-import {setUserId} from '../../../Store/ChatUser'
-
-
+import { setUserId } from '../../../Store/ChatUser';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const { username, refresh } = useSelector(
@@ -32,7 +30,6 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const [answer, setAnswer] = useState<String>('no');
   console.log(openModal, 'openModal');
 
-  // Handle CLICK
   // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
@@ -50,7 +47,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
           username: null,
         })
       );
-   dispatch(setUserId(null));
+      dispatch(setUserId(null));
       toast.success(TEXT.SUCCESS);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
@@ -62,7 +59,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       handleLogout();
     }
   }, [answer]);
- 
+
   return (
     <div className={CLASSNAME.PROFILE_DROPDOWN}>
       <div className={CLASSNAME.DROPDOWN_MENU}>

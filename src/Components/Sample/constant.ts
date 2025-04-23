@@ -16,7 +16,7 @@ export const CLASSNAME = {
 };
 
 export const TEXT = {
-  NO_PRODUCT_AVAILABLE: "No product available"
+  NO_PRODUCT_AVAILABLE: "Oops! This shelf is empty for now. Why not explore our other collections while we restock?",
 
 };
 export interface SampleData {

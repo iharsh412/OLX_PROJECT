@@ -6,5 +6,6 @@ export const CLASSNAME = {
 }
 export const TEXT = {
    WISHLIST: "WISHLIST",
+   GO_TO_HOME: "Go to Home",
 }
 

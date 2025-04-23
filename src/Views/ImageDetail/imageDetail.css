@@ -68,7 +68,7 @@
   font-size: 14px;
   color: #666;
   margin-right: 15px;
-  padding: 20px ;
+  padding: 20px;
 }
 
 .imageDetailBrandValue {
@@ -233,7 +233,6 @@
   .imageDetailImageSection {
     height: 360px;
   }
-
 
   .imageDetailPriceChatSection {
     flex-direction: column;

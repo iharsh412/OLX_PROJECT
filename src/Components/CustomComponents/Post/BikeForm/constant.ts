@@ -15,7 +15,7 @@ export const CLASSNAME = {
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Required')
-    .max(20, 'Must be less than 15 characters'),
+    .max(50, 'Must be less than 50 characters'),
   description: Yup.string().required('Required'),
   brand: Yup.string().required('Required'),
   year: Yup.number()
@@ -27,18 +27,18 @@ export const validationSchema = Yup.object().shape({
   price: Yup.number()
     .required('Required')
     .min(100, 'Must be greater than 100')
-    .max(10000000, 'Must be less than 10 lakhs'),
+    .max(15000000, 'Must be less than 15 lakhs'),
   photos: Yup.array()
     .min(1, 'Please upload at least one photo')
-    .max(5, 'min 5 photos')
+
     .required('Required'),
   city: Yup.string().required('Required'),
   state: Yup.string().required('Required'),
   mobileNumber: Yup.string()
-    .required('Mobile number is required')
+    .required('Required')
     .matches(/^\d{10}$/, 'Mobile number must be exactly 10 digits'),
   sellerName: Yup.string()
-    .required('Seller name is required')
+    .required('Required')
     .matches(
       /^[A-Za-z\s]+$/,
       'Seller name should contain only alphabets and spaces'

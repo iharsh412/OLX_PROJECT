@@ -111,6 +111,28 @@
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 180, 180, 0.3);
 }
+/* DONT HAVE AN ACCOUNT */
+.signin_signup {
+  text-align: center;
+}
+.signin_signup span {
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 8px;
+  margin-left: 4px;
+}
+/* signup text */
+.signin_signup a {
+  font-size: 15px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signin_signup a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
 
 /* FORGET PASSWORD  */
 .signin_forgetpass {
@@ -137,7 +159,6 @@
 .signin_error {
   font-size: 13px;
   color: #d32f2f;
-  margin: -16px 0 16px 4px;
   font-weight: 500;
 }
 

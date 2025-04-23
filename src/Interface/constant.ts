@@ -49,7 +49,7 @@ export const COMMON_TEXT ={
   NUMBER:"number",
   ERROR:"Error in loading products",
   LOADING:"Loading products...",
-  NO_PRODUCTS:"Oops... No product",
+  NO_PRODUCTS:"No items found for your current search. Let’s try something else!",
   SENDING:"Sending...",
   EMAIL:"Email",
   EMAIL_S:"email",
@@ -60,7 +60,7 @@ export const COMMON_TEXT ={
   CONFIRM_PASSWORD_S:"confirmPassword",
   LOGIN_TO_CHAT:"Login to chat",
   DAYS_AGO:"days ago",
-  NO_WISHLIST:"Add some products to your wishlist",
+  NO_WISHLIST:"No items saved yet. When you find something you love, click the heart icon to add it here.",
   
 
 

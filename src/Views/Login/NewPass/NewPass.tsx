@@ -13,16 +13,19 @@ import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 import { useState } from 'react';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { toast } from 'react-toastify';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME, TEXT as LOGIN_SECTION_TEXT } from "../LoginSection/constant"
+import {
+  CLASSNAME as LOGIN_SECTION_CLASSNAME,
+  TEXT as LOGIN_SECTION_TEXT,
+} from '../LoginSection/constant';
 
 export default function NewPass() {
-
   const { id, token } = useParams();
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostChangePasswordDataMutation();
 
   // handle click
+  // handle submit
   async function handleSubmit(values: FORM_VALUES) {
     try {
       await post({
@@ -31,12 +34,12 @@ export default function NewPass() {
         id: id,
       }).unwrap;
       setDisabled(true);
-      toast.success(TEXT.SUCCESS)
+      toast.success(TEXT.SUCCESS);
     } catch (error) {
       toast.error(TEXT.FAILURE);
     }
   }
-  
+
   return (
     <>
       <Formik
@@ -58,7 +61,9 @@ export default function NewPass() {
               <h2 className={CLASSNAME.TITLE}>{TEXT.FORGET_PASWORD}</h2>
               <form onSubmit={handleSubmit}>
                 <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>{TEXT.PASSWORD}</label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>
+                    {TEXT.PASSWORD}
+                  </label>
                   <input
                     type={TYPE.PASSWORD}
                     name={COMMON_TEXT.PASSWORD_S}
@@ -72,7 +77,10 @@ export default function NewPass() {
                   )}
                 </div>
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}> {TEXT.CONFIRM_PASSWORD}</label>
+                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>
+                    {' '}
+                    {TEXT.CONFIRM_PASSWORD}
+                  </label>
                   <input
                     title={COMMON_TEXT.PASSWORD}
                     type={TYPE.PASSWORD}
@@ -114,6 +122,7 @@ export default function NewPass() {
                     </span>
                   </div>
                 )}
+                {/* footer section */}
                 <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                   <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
                     {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}

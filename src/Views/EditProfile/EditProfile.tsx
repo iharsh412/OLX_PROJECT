@@ -25,9 +25,9 @@ import {
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { updateUsername } from '../../Store/Common';
-import { useDispatch } from 'react-redux'
-import Loader from "../../Components/Atom/Loader";
-import Error from "../../Components/Atom/Error";
+import { useDispatch } from 'react-redux';
+import Loader from '../../Components/Atom/Loader';
+import Error from '../../Components/Atom/Error';
 
 export default function EditProfile() {
   const { data, isLoading, isError } = useGetUserInfoQuery({});
@@ -37,10 +37,9 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // HandleSubmit
+ 
   //    submiting form
   const handleSubmit = async (values: FormValues) => {
-    console.log(values, 'VALUES');
     try {
       await postEmailValid({ email: values.email }).unwrap();
       await post({
@@ -54,7 +53,7 @@ export default function EditProfile() {
     }
   };
 
-  // HOOKS
+ 
   //    to set the initial value
   useEffect(() => {
     if (data) {
@@ -68,6 +67,7 @@ export default function EditProfile() {
       }));
     }
   }, [data]);
+  
   if (isLoading) return <Loader />;
   if (isError) return <Error />;
 
@@ -147,9 +147,9 @@ export default function EditProfile() {
               <AboutMe
                 type="text"
                 htmlFor="about me"
-                value={values["about me"]}
-                err={errors["about me"]}
-                tch={touched["about me"]}
+                value={values['about me']}
+                err={errors['about me']}
+                tch={touched['about me']}
                 label="About me"
                 {...share}
               />

@@ -12,7 +12,11 @@
   box-shadow:
     0 12px 32px rgba(92, 41, 126, 0.15),
     inset 0 0 0 1px rgba(255, 255, 255, 0.3);
-  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
   position: relative;
   overflow: hidden;
 }
@@ -22,7 +26,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
 }
 
 .edit-profile-text {
@@ -41,13 +44,11 @@
 
 .edit-profile-view-profile {
   cursor: pointer;
-
 }
 
 .edit-profile-view-profile:hover {
   cursor: pointer;
   color: #a382e5;
-
 }
 
 /* edit button */

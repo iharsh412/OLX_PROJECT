@@ -30,12 +30,13 @@ const EditAds: React.FC<EditAdsProps> = ({
   data: product,
   refetch,
 }) => {
-
   const [post] = usePostEditDataMutation();
-  const { data, isLoading, isError } = useGetProductsDetailQuery({ id: product.id });
+  const { data, isLoading, isError } = useGetProductsDetailQuery({
+    id: product.id,
+  });
   const [formInitialValues, setFormInitialValues] = useState(initialValues);
   const dropdownRef = useRef<HTMLFormElement>(null);
-  
+
   useEffect(() => {
     if (data) {
       setFormInitialValues((prev) => ({
@@ -98,10 +99,8 @@ const EditAds: React.FC<EditAdsProps> = ({
     };
   }, []);
 
-  if (isLoading)
-    return <Loader />
-  if (isError)
-    return <Error />
+  if (isLoading) return <Loader />;
+  if (isError) return <Error />;
 
   return (
     <div className={CLASSNAME.WRAPPER}>

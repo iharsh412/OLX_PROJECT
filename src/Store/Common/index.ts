@@ -21,6 +21,7 @@ const common = createSlice({
   },
 });
 
-export const { updateAuthState,updateAuthToken , updateUsername } = common.actions;
+export const { updateAuthState, updateAuthToken, updateUsername } =
+  common.actions;
 
 export default common.reducer;

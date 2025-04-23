@@ -18,11 +18,14 @@ import {
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
+
+
 export default function Signup() {
   const navigate = useNavigate();
   const [post, { isLoading }] = usePostSignupDataMutation();
 
   // handle click
+  // handle submit
   async function handleSubmit(
     values: FORM_VALUES,
     { resetForm }: { resetForm: () => void }
@@ -31,7 +34,10 @@ export default function Signup() {
     try {
       await post(data).unwrap();
       resetForm();
-      navigate(ROUTES_CONFIG.VERIFICATION.path, { replace: true });
+      navigate(ROUTES_CONFIG.VERIFICATION.path, {
+        state: { email: values.email },
+        replace: true,
+      });
       toast.success(TEXT.SUCCESS);
     } catch (error) {
       toast.error((error as any)?.data?.email?.[0]);
@@ -54,15 +60,12 @@ export default function Signup() {
           handleSubmit,
           isSubmitting,
         }) => {
-
           return (
             <div className={CLASSNAME.WRAPPER}>
+              {/* header */}
               <div className={CLASSNAME.HEADER}>
                 {/* Back */}
-                <Link
-                  className={CLASSNAME.BACK}
-                  to={ROUTES_CONFIG.LOGIN.path}
-                >
+                <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
                   <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
                 </Link>
                 {/* text */}
@@ -75,8 +78,9 @@ export default function Signup() {
                   <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
                 </Link>
               </div>
-
+              {/* form section */}
               <form onSubmit={handleSubmit}>
+                {/* username */}
                 <div className={CLASSNAME.USERNAME_INPUT}>
                   <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME} </label>
                   <input
@@ -91,6 +95,7 @@ export default function Signup() {
                     <div className={CLASSNAME.ERROR}>{errors.username}</div>
                   )}
                 </div>
+                {/* email */}
                 <div className={CLASSNAME.EMAIL_INPUT}>
                   <label htmlFor={COMMON_TEXT.EMAIL_S}>{TEXT.EMAIL} </label>
                   <input
@@ -105,6 +110,7 @@ export default function Signup() {
                     <div className={CLASSNAME.ERROR}>{errors.email}</div>
                   )}
                 </div>
+                {/* password */}
                 <div className={CLASSNAME.PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                     {TEXT.PASSWORD}{' '}
@@ -121,6 +127,7 @@ export default function Signup() {
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
                   )}
                 </div>
+                {/* confirm password */}
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
                   <label htmlFor={TEXT.CONFIRM_PASSWORD}>
                     {TEXT.CONFIRM_PASSWORD}
@@ -139,6 +146,7 @@ export default function Signup() {
                     </div>
                   )}
                 </div>
+                {/* send button */}
                 <button
                   className={CLASSNAME.SUBMIT_BUTTON}
                   type={TYPE.SUBMIT}
@@ -146,6 +154,12 @@ export default function Signup() {
                 >
                   {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT}
                 </button>
+                {/* Sign in text */}
+                <div className={CLASSNAME.SIGNIN}>
+                  <span>{TEXT.HAVE_ACCOUNT}</span>
+                  <Link to={ROUTES_CONFIG.SIGNIN.path}>{TEXT.SIGN_IN}</Link>
+                </div>
+                {/* footer section */}
                 <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                   <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
                     {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}

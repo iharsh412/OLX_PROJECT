@@ -4,7 +4,7 @@ export const CLASSNAME = {
   LABEL: 'post-label',
   DETAIL_TEXT: 'postForm_detailText',
   WRAPPER: 'postFormWrapper',
-  ERROR: "textField_error",
+  ERROR: 'textField_error',
   FUEL: 'postForm_FuelOption',
   LOCATION_WRAPPER: 'postForm_LocationWrapper',
   LOCATION_TEXT: 'postForm_LocationText',
@@ -23,27 +23,30 @@ export const FuelOptions = [
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Required')
-    .max(20, 'Must be less than 15 characters'),
+    .max(50, 'Must be less than 50 characters'),
   description: Yup.string().required('Required'),
   brand: Yup.string().required('Required'),
-  year: Yup.number().required('Required').
-    integer("year must be integer").
-    min(1900, 'Must be greater than 1900').
-    max(new Date().getFullYear(), 'Select correct year'),
-  fuel: Yup.string().required('Please select a fuel type'),
-  distance: Yup.number().required('Required').min(0, "Select valid distance"),
-  price: Yup.number().required('Required').min(100, "Must be greater than 100").max(10000000, "Must be less than 10 lakhs"),
+  year: Yup.number()
+    .required('Required')
+    .integer('year must be integer')
+    .min(1900, 'Must be greater than 1900')
+    .max(new Date().getFullYear(), 'Select correct year'),
+  fuel: Yup.string().required('Required'),
+  distance: Yup.number().required('Required').min(0, 'Select valid distance'),
+  price: Yup.number()
+    .required('Required')
+    .min(100, 'Must be greater than 100')
+    .max(15000000, 'Must be less than 15 lakhs'),
   photos: Yup.array()
-    .min(1, 'Please upload at least one photo')
-    .max(5, 'min 5 photos')
+    .min(1, 'Required')
     .required('Required'),
   city: Yup.string().required('Required'),
   state: Yup.string().required('Required'),
   mobileNumber: Yup.string()
-    .required('Mobile number is required')
+    .required('Required')
     .matches(/^[0-9]{10}$/, 'Mobile number must be exactly 10 digits'),
   sellerName: Yup.string()
-    .required('Seller name is required')
+    .required('Required')
     .matches(
       /^[A-Za-z\s]+$/,
       'Seller name should contain only alphabets and spaces'
@@ -80,7 +83,7 @@ export interface FormValues {
   mobileNumber?: string;
 }
 export const TEXT = {
-  INCLUDE_DETAIL: "INCLUDE SOME DETAILS",
-  CONFIRM_LOCATION: "CONFIRM YOUR LOCATION",
-  REVIEW_DETAIL: "REVIEW YOUR DETAILS"
-} 
+  INCLUDE_DETAIL: 'INCLUDE SOME DETAILS',
+  CONFIRM_LOCATION: 'CONFIRM YOUR LOCATION',
+  REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
+};

@@ -5,7 +5,6 @@ import { CLASSNAME, ImageSectionProps } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
 
 function ImageSection({ images }: ImageSectionProps) {
-
   const imageArray: string[] = images
     ? Array.isArray(images)
       ? images
@@ -32,8 +31,9 @@ function ImageSection({ images }: ImageSectionProps) {
       {imageArray.map((image, index) => (
         <div
           key={image}
-          className={`${CLASSNAME.IMAGE_SLIDE} ${index === currentIndex ? CLASSNAME.ACTIVE : ''
-            }`}
+          className={`${CLASSNAME.IMAGE_SLIDE} ${
+            index === currentIndex ? CLASSNAME.ACTIVE : ''
+          }`}
         >
           <img
             src={`${import.meta.env.VITE_BASE_URL}${image}`}
@@ -47,7 +47,6 @@ function ImageSection({ images }: ImageSectionProps) {
         type={TYPE.BUTTON}
         className={`${CLASSNAME.BUTTON} ${CLASSNAME.PREV}`}
         onClick={prevSlide}
-        aria-label="Previous Slide"
       >
         <ChevronLeft size={30} />
       </button>
@@ -55,7 +54,6 @@ function ImageSection({ images }: ImageSectionProps) {
         type={TYPE.BUTTON}
         className={`${CLASSNAME.BUTTON} ${CLASSNAME.NEXT}`}
         onClick={nextSlide}
-        aria-label="Next Slide"
       >
         <ChevronRight size={30} />
       </button>
@@ -65,12 +63,15 @@ function ImageSection({ images }: ImageSectionProps) {
           <button
             type={TYPE.BUTTON}
             key={`loginDots${index + 1}`}
-            className={`${CLASSNAME.DOTS} ${currentIndex === index ? CLASSNAME.ACTIVE_DOTS : ''
-              }`}
+            className={`${CLASSNAME.DOTS} ${
+              currentIndex === index ? CLASSNAME.ACTIVE_DOTS : ''
+            }`}
             onClick={() => goToSlide(index)}
-            aria-label={`Go to slide ${index + 1}`}
           >
-            <img src={`${import.meta.env.VITE_BASE_URL}${image}`} alt={COMMON_TEXT.IMG} />
+            <img
+              src={`${import.meta.env.VITE_BASE_URL}${image}`}
+              alt={COMMON_TEXT.IMG}
+            />
           </button>
         ))}
       </div>
