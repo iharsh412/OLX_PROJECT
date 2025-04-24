@@ -1,11 +1,11 @@
 import './itemSelector.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { ChangeEvent, useEffect, useState } from 'react';
-import ICONS from '../../../assets';
+// import ICONS from '../../../assets';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import {  TYPE } from '../../../Interface/constant';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
@@ -59,7 +59,7 @@ export default function ItemsSelector() {
         }}
       />
       {/* search button */}
-      <button
+      {/* <button
         className={CLASSNAME.SEARCH}
         disabled={items === ''}
         onClick={() => {
@@ -71,7 +71,7 @@ export default function ItemsSelector() {
           src={ICONS.searchIconWhite}
           alt={COMMON_TEXT.IMG}
         />
-      </button>
+      </button> */}
     </div>
   );
 }

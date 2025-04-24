@@ -27,6 +27,8 @@ import motivation2 from "./video/motivation1.mp4"
 import motivation3 from "./video/motivation2.mp4"
 import motivation4 from "./video/motivation3.mp4"
 import motivation5 from "./video/motivation4.mp4"
+import trisog from "./extra/trisog.png"
+import exclusive from "./extra/exclusive.png"
 import {
   carTrade,
   carTradeTech,
@@ -39,6 +41,7 @@ import olx1 from "./extra/olx1.jpeg";
 import olx2 from "./extra/olx2.jpeg";
 import olx3 from "./extra/olx3.jpeg";
 import olx4 from "./extra/olx4.jpeg";
+import playstoreOlx from "./extra/playstore.jpeg"
 
 
 const ICONS = {
@@ -81,5 +84,8 @@ const ICONS = {
   olx2,
   olx3,
   olx4,
+  playstoreOlx,
+  trisog,
+  exclusive,
 };
 export default ICONS;

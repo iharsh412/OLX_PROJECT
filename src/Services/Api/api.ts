@@ -19,6 +19,7 @@ const baseQuery: BaseQueryFn = fetchBaseQuery({
     if (token) {
       headers.append('Authorization', `Bearer ${token}`);
     }
+    headers.append('skip_zrok_interstitial', 'true')
     return headers;
   },
 });

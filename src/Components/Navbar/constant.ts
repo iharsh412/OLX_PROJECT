@@ -23,5 +23,7 @@ export const CLASSNAME = {
 };
 
 export const TEXT = {
-  SELL: "SELL"
+  SELL: "SELL",
+  LOGIN_TO_ACCESS_WISHLIST: "Sign in to view your wishlist",
+  lOGIN_TO_ADD_PRODUCT: "Sign in to start listing your product"
 }

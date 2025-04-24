@@ -7,14 +7,32 @@ import Error from '../../Components/Atom/Error';
 import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import Pagination from '../../Components/Atom/Pagination';
 
 export default function MyAds() {
+  const limit = 12;
+  const [totalpage, setTotalpage] = useState<number>(1);
+  const [page, setPage] = useState<number>(1);
+  const [showButton, setShowButton] = useState({ prev: false, next: false });
+
   const { data, refetch, isError, isLoading } = useGetAdsDataQuery(
-    {},
+    { page: page < totalpage ? page : totalpage, limit: limit },
     { refetchOnMountOrArgChange: true }
   );
 
-  console.log(data, 'data');
+  useEffect(() => {
+    if (!data?.total_count) return;
+
+    const totalPages = Math.max(1, Math.ceil((data?.total_count ?? 0) / limit));
+    setTotalpage(totalPages);
+
+    setShowButton({
+      prev: page > 1,
+      next: page < totalPages,
+    });
+    if (page > totalPages) setPage(totalPages);
+  }, [JSON.stringify(data), page]);
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -31,16 +49,22 @@ export default function MyAds() {
         )}
         {isError && <Error />}
         {/* no ads */}
-        {data?.length === 0 && (
+        {page === 1 && data?.products?.length === 0 && (
           <>
             <div className={CLASSNAME.NO_ADS}>
               {TEXT.NO_ADS} <Link to={ROUTES_CONFIG.SELL.path}>{TEXT.ADS}</Link>
             </div>
           </>
         )}
-        {data?.map((product: Product) => (
+        {data?.products?.map((product: Product) => (
           <Images key={product.id} data={product} refetch={refetch} />
         ))}
+        <Pagination
+          totalpage={totalpage}
+          page={page}
+          showButton={showButton}
+          setPage={setPage}
+        />
       </div>
     </div>
   );

@@ -58,7 +58,7 @@ export const COMMON_TEXT ={
   TEXT:"text",
   SUBMIT:"submit",
   CONFIRM_PASSWORD_S:"confirmPassword",
-  LOGIN_TO_CHAT:"Login to chat",
+  LOGIN_TO_CHAT:"Ready to chat? Log in to get started",
   DAYS_AGO:"days ago",
   NO_WISHLIST:"No items saved yet. When you find something you love, click the heart icon to add it here.",
   

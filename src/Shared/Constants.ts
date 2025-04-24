@@ -19,7 +19,7 @@ const ROUTES = {
   MYADS: '/users/ads',
   PROFILE: '/profile/info',
   EDIT_PROFILE: '/editprofile/info',
-  CHAT: '/user/chat',
+  // CHAT: '/user/chat',
   FIREBASE_CHAT: '/firebase/chat',
   SINGLE_CHAT: '/firebase/singlechat',
 };
@@ -98,10 +98,10 @@ const ROUTES_CONFIG = {
     path: ROUTES.EDIT_PROFILE,
     title: 'Profile Edit',
   },
-  CHAT: {
-    path: ROUTES.CHAT,
-    title: 'Chat Section',
-  },
+  // CHAT: {
+  //   path: ROUTES.CHAT,
+  //   title: 'Chat Section',
+  // },
   FIREBASE_CHAT: {
     path: ROUTES.FIREBASE_CHAT,
     title: 'Firebase Chat',

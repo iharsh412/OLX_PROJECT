@@ -51,7 +51,7 @@
 }
 
 /* Video & image styles */
-.adsSection_ContentContainer video,
+.adsSection_ContentContainer iframe,
 .adsSection_ContentContainer img {
   width: 100%;
   height: 80%;
@@ -59,4 +59,13 @@
   display: block;
   padding: 10px;
   background-color: black;
+}
+
+/* LABEL */
+.adsSection_ContentLabel{
+  color: BLUE;
+  cursor: pointer;
+}
+.adsSection_ContentLabel:hover{
+  text-decoration: underline;
 }

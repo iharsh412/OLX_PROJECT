@@ -24,12 +24,8 @@ export default function FirebaseChatApp() {
   const messageRef = collection(db, 'messages');
   const [uniqueUsers, setUniqueUsers] = useState<string[]>([]);
   const [roomId, setRoomId] = useState('');
-  const messagesEndRef = useRef<HTMLDivElement | null>(null);
+  const messagEnd = useRef<HTMLDivElement | null>(null);
 
-  console.log(id, 'id');
-  console.log(username, 'username');
-  console.log(roomId, 'roomid');
-  console.log(uniqueUsers, 'uniqueUsers');
   const handleSendMessage = async () => {
     if (newmsg.trim() === '' || senderId === null || senderId === id) return;
     console.log(newmsg, 'newmsg');
@@ -84,7 +80,10 @@ export default function FirebaseChatApp() {
     return () => unsubscribe();
   }, []);
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const el = messagEnd.current;
+    if (el) {
+      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+    }
   }, [messages]);
 
   return (
@@ -119,7 +118,7 @@ export default function FirebaseChatApp() {
           </div>
           <div className="message-wrapper">
             <div className="message">Messages</div>
-            <div className="message-list">
+            <div className="message-list" ref={messagEnd}>
               {messages.length === 0 ? (
                 <div className="no_message">
                   Select a seller roomId to message and unlock better deals,

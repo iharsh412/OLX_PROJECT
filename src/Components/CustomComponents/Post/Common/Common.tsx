@@ -461,8 +461,8 @@ const State: React.FC<TextFieldProps> = ({
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   return (
@@ -522,41 +522,49 @@ const City: React.FC<TextFieldProps> = ({
   label,
   value,
   tch,
-  type,
+  type = 'text',
   handleBlur,
   setFieldValue,
   state,
-  // handleChange
 }) => {
-  const [city, setCity] = useState<boolean>(false);
-  function handleCity(e: React.MouseEvent) {
-    e.stopPropagation();
-    setCity(!city);
-  }
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdown when clicking outside the wrapper
+  // Toggle dropdown open/close
+  const toggleDropdown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  // Close dropdown on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
       ) {
-        setCity(false);
+        setIsDropdownOpen(false);
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, []);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  },[]);
+
   return (
-    <>
+    <div ref={dropdownRef}>
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
         {label}*
       </label>
+
       <div
         className={CLASSNAME.STATE_INPUT_WRAPPER}
-        onClick={(e) => handleCity(e)}
+        onClick={toggleDropdown}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') toggleDropdown(e as any);
+        }}
       >
         <input
           title={htmlFor}
@@ -568,23 +576,27 @@ const City: React.FC<TextFieldProps> = ({
           className={`${CLASSNAME.CITY} ${
             err && tch ? CLASSNAME.INPUTERROR : ''
           }`}
+          placeholder="Select City"
         />
         <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
         </span>
       </div>
-      {city && (
-        <div className={CLASSNAME.CITY_LIST} ref={wrapperRef}>
-          {LOCATION?.[state as keyof typeof LOCATION].map((city) => (
+
+      {isDropdownOpen && (
+        <div className={CLASSNAME.CITY_LIST}>
+          {LOCATION?.[state as keyof typeof LOCATION]?.map((cityName) => (
             <button
+              type="button"
               className={CLASSNAME.STATE_ITEMS}
-              key={city}
+              key={cityName}
               onClick={(e) => {
-                setFieldValue?.(htmlFor, city);
-                handleCity(e);
+                e.stopPropagation();
+                setFieldValue?.(htmlFor, cityName);
+                setIsDropdownOpen(false);
               }}
             >
-              {city}
+              {cityName}
             </button>
           ))}
         </div>
@@ -595,9 +607,10 @@ const City: React.FC<TextFieldProps> = ({
         component="div"
         className={CLASSNAME.ERROR}
       />
-    </>
+    </div>
   );
 };
+
 export {
   Description,
   TextField,

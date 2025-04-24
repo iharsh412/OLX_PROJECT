@@ -1,123 +1,234 @@
-/*  WRAPPER  */
+/* WRAPPER - Enhanced Glass Morphism Effect */
 .profile-section-wrapper {
-  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
-  border-radius: 18px;
-  min-height: 460px;
-  width: 500px;
-  margin: 20px auto;
-  padding: 28px 32px;
+  background: linear-gradient(
+    135deg,
+    rgba(250, 241, 254, 0.9) 0%,
+    rgba(214, 252, 255, 0.9) 100%
+  );
+  border-radius: 24px;
+  min-height: 480px;
+  width: 520px;
+  margin: 24px auto;
+  padding: 32px 40px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   box-shadow:
-    0 12px 32px rgba(92, 41, 126, 0.15),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+    0 16px 40px rgba(92, 41, 126, 0.18),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
   font-family:
+    'Inter',
     'Segoe UI',
     system-ui,
     -apple-system,
     sans-serif;
   position: relative;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* HEADER TEXT */
+.profile-section-wrapper:hover {
+  box-shadow:
+    0 20px 48px rgba(92, 41, 126, 0.22),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* HEADER TEXT - Enhanced with Floating Action */
 .profile-section-profile-text-wrapper {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
 }
 
 .profile-section-profile-text {
-  text-align: center;
-  font-size: 26px;
-  font-weight: 650;
-  color: #474444;
-  margin: 16px 0 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #3a3a5c;
+  margin: 0;
   position: relative;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #6d28d9, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 2px 4px rgba(139, 92, 246, 0.1);
 }
 
 .profile-section-cross img,
 .profile-section-edit img {
-  width: 25px;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 6px;
+  border-radius: 50%;
 }
 
-/*CONTENT SECTION  */
+.profile-section-cross img:hover,
+.profile-section-edit img:hover {
+  background-color: rgba(139, 92, 246, 0.1);
+  transform: scale(1.1);
+}
+
+.profile-section-edit img:active {
+  background-color: rgba(139, 92, 246, 0.2);
+}
+
+/* CONTENT SECTION - Improved Spacing */
 .profile-section-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
+  padding: 8px 0;
 }
 
-/* PROFILE INITIAL*/
+/* PROFILE INITIAL - Animated Circle */
 .profile-section-profile-initial {
-  width: 6rem;
-  height: 6rem;
-  background-color: #8b5cf6;
+  width: 7rem;
+  height: 7rem;
+  background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
   border-radius: 9999px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 3rem;
-  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
-  margin-bottom: 10px;
+  font-size: 3.2rem;
+  box-shadow:
+    0 6px 20px rgba(139, 92, 246, 0.4),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+  margin-bottom: 16px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
 }
 
-/* INFO TEXT STYLES  */
+.profile-section-profile-initial::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
+}
+
+.profile-section-profile-initial:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.5);
+}
+
+.profile-section-profile-initial:hover::after {
+  transform: rotate(30deg) translate(10%, 10%);
+}
+
+/* INFO TEXT STYLES - Enhanced Typography */
 .profile-section-info {
   font-size: 16px;
-  color: #555;
+  color: #5a5a7a;
   text-align: center;
   word-break: break-word;
   max-width: 100%;
+  line-height: 1.5;
 }
 
 .profile-section-username {
-  font-weight: 600;
-  font-size: 18px;
-  color: #333;
+  font-weight: 650;
+  font-size: 20px;
+  color: #3a3a5c;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
 }
 
 .profile-section-email {
   font-style: italic;
-  color: #777;
+  color: #6b6b8a;
+  font-size: 15px;
+  margin-bottom: 8px;
 }
 
 .profile-section-phone {
-  color: #666;
+  color: #5a5a7a;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .profile-section-bio {
   font-size: 15px;
-  color: #444;
-  margin-top: 12px;
-  padding: 0 16px;
-  line-height: 1.4;
+  color: #4a4a6a;
+  margin-top: 16px;
+  padding: 0 20px;
+  line-height: 1.6;
+  font-weight: 400;
 }
 
-/* ADS SECTION  */
+/* ADS SECTION - Modern Badge */
 .profile-section-adds {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-top: 24px;
-  background-color: rgba(139, 92, 246, 0.1);
-  padding: 10px 16px;
-  border-radius: 12px;
-  box-shadow: inset 0 0 0 1px rgba(139, 92, 246, 0.2);
+  margin-top: 28px;
+  background-color: rgba(139, 92, 246, 0.08);
+  padding: 12px 20px;
+  border-radius: 16px;
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 92, 246, 0.15),
+    0 2px 8px rgba(139, 92, 246, 0.08);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.profile-section-adds:hover {
+  background-color: rgba(139, 92, 246, 0.12);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 0 0 0 1px rgba(139, 92, 246, 0.2),
+    0 4px 12px rgba(139, 92, 246, 0.12);
 }
 
 .profile-section-adds-text {
   font-size: 15px;
-  color: #5a5a5a;
-  margin-right: 6px;
+  color: #5a5a7a;
+  margin-right: 8px;
+  font-weight: 500;
 }
 
 .profile-section-adds-count {
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
   color: #8b5cf6;
+  letter-spacing: -0.3px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .profile-section-wrapper {
+    width: 90vw;
+    padding: 24px;
+    min-height: auto;
+  }
+
+  .profile-section-profile-text {
+    font-size: 24px;
+  }
+
+  .profile-section-profile-initial {
+    width: 5.5rem;
+    height: 5.5rem;
+    font-size: 2.8rem;
+  }
 }

@@ -18,6 +18,7 @@ const Pagination: React.FC<PaginationProps> = ({
     <>
       <div className={CLASSNAME.WRAPPER}>
         <button
+        
           className={`${CLASSNAME.PREV} ${
             showButton.prev ? '' : CLASSNAME.DISABLED
           }`}

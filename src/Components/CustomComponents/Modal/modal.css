@@ -8,7 +8,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px); 
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .modal-content {
@@ -16,42 +23,85 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255);
-  padding: 20px;
-  border-radius: 2px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
   width: fit-content;
+  max-width: 90vw;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-/* TEXT */
+
+@keyframes scaleUp {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
 .modal_text {
-  font-size: 20px;
-  color: black;
+  font-size: 18px;
+  color: #333;
   text-align: center;
-  margin-bottom: 20px;
-  font-weight: 600;
+  margin-bottom: 25px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0 20px;
 }
+
 .modal_button {
-  width: 50%;
+  width: 100%;
   padding: 10px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 15px; /* Better spacing between buttons */
 }
-/* yes button */
+
+.modal_yes, .modal_no {
+  padding: 10px 25px;
+  min-width: 80px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  font-size: 14px;
+}
+
 .modal_yes {
-  padding: 10px;
-  width: 50px;
-  font-weight: 900;
+  background-color: #e74c3c;
+  color: white;
 }
 
 .modal_no {
-  padding: 10px;
-  width: 50px;
-  font-weight: 900;
-}
-.modal_yes:hover,
-.modal_no:hover{
-  background-color: #cad8e2;
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ddd;
 }
 
-.modal_no :active {
-  border: black;
+.modal_yes:hover {
+  background-color: #c0392b;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.3);
+}
+
+.modal_no:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal_yes:active {
+  transform: translateY(0);
+  background-color: #a53125;
+}
+
+.modal_no:active {
+  transform: translateY(0);
+  background-color: #d0d0d0;
+}
+
+/* Focus states for accessibility */
+.modal_yes:focus-visible,
+.modal_no:focus-visible {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
 }

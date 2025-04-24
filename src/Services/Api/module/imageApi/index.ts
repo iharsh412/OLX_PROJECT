@@ -101,9 +101,10 @@ export const productApi = api.injectEndpoints({
     }),
     // user ads
     getAdsData: builder.query({
-      query: () => ({
+      query: (params) => ({
         url: `categories/userads/`,
         method: 'GET',
+        params
       }),
     }),
     // delete ads

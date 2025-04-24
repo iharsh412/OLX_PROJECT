@@ -18,7 +18,7 @@ export default function ChatWrapper({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (access) {
-      const newSocket = io('https://7b45-112-196-113-3.ngrok-free.app', {
+      const newSocket = io('', {
         query: { authorization: access },
       });
       setSocket(newSocket);

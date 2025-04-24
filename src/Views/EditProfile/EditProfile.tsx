@@ -37,7 +37,6 @@ export default function EditProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
- 
   //    submiting form
   const handleSubmit = async (values: FormValues) => {
     try {
@@ -53,7 +52,6 @@ export default function EditProfile() {
     }
   };
 
- 
   //    to set the initial value
   useEffect(() => {
     if (data) {
@@ -67,7 +65,7 @@ export default function EditProfile() {
       }));
     }
   }, [data]);
-  
+
   if (isLoading) return <Loader />;
   if (isError) return <Error />;
 
@@ -98,9 +96,9 @@ export default function EditProfile() {
                 {/* cross */}
                 <Link
                   className={CLASSNAME.CROSS}
-                  to={ROUTES_CONFIG.HOMEPAGE.path}
+                  to={ROUTES_CONFIG.PROFILE.path}
                 >
-                  <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
+                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
                 </Link>
                 {/* text */}
                 <h3 className={CLASSNAME.EDIT_TEXT}>{TEXT.TITLE}</h3>
@@ -108,9 +106,7 @@ export default function EditProfile() {
                 <Link
                   className={CLASSNAME.VIEW_PROFILE}
                   to={ROUTES_CONFIG.PROFILE.path}
-                >
-                  {TEXT.VIEW_PROFILE}
-                </Link>
+                ></Link>
               </div>
               {/* name Input */}
               <TextField

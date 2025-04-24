@@ -9,16 +9,30 @@ export default function AdsSection() {
         <h4>{TEXT.TITLE}</h4>
         <div className={CLASSNAME.CONTENT}>
           {CONTENTS.map((data) => (
-            <div key={data.id} className={CLASSNAME.CONTAINER}>
-              {data.type === 'video' && (
+            <div
+              key={data.id}
+              className={CLASSNAME.CONTAINER}
+              onClick={() => window.open(data.link || '')}
+            >
+              {data?.type === 'youtube' && (
                 <>
-                  <video src={data.src} autoPlay loop muted></video>
-                  <span>{data.label}</span>
+                  <iframe
+                    src={data.src}
+                    title={data.label || 'Video content'}
+                    allow="autoplay; encrypted-media"
+                  ></iframe>
+                  <span className={CLASSNAME.LABEL}>{data.label}</span>
                 </>
               )}
               {data.type === 'image' && (
                 <>
                   <img src={data.src} alt={COMMON_TEXT.IMG} />
+                  <span className={CLASSNAME.LABEL}>{data.label}</span>
+                </>
+              )}
+              {data?.type === 'video' && (
+                <>
+                  <video src={data.src} autoPlay muted loop></video>
                   <span>{data.label}</span>
                 </>
               )}

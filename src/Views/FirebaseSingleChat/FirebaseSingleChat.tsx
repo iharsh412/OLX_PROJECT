@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   addDoc,
   collection,
@@ -22,7 +22,7 @@ export default function FirebaseChatApp() {
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const messageRef = collection(db, 'messages');
   const roomId = [userId, id].sort().join('_');
-
+  const messagEnd = useRef<HTMLDivElement>(null);
   const handleSendMessage = async () => {
     if (newmsg.trim() === '') return;
     console.log(newmsg, 'newmsg');
@@ -61,12 +61,19 @@ export default function FirebaseChatApp() {
     return () => unsubscribe();
   }, [roomId]);
 
+  useEffect(() => {
+    const el = messagEnd.current;
+    if (el) {
+      el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
+    }
+  }, [messages]);
+
   console.log(messages, 'messages');
   return (
     <div className="chat-app">
       <div className="message-wrapper">
         <div className="message">Messages</div>
-        <div className="message-list">
+        <div className="message-list" ref={messagEnd}>
           {messages.length === 0 ? (
             <div className="no_message">
               "No messages yet. Say hello to start the conversation!"

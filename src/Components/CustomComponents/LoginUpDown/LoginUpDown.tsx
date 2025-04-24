@@ -28,7 +28,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const [post] = usePostLogoutDataMutation();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [answer, setAnswer] = useState<String>('no');
-  console.log(openModal, 'openModal');
+
 
   // on click any item
   const handleItemClick = () => {

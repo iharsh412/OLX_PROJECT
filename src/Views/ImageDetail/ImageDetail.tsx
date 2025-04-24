@@ -23,11 +23,11 @@ export default function ImageDetail() {
   const product = Array.isArray(data) ? data[0] : data;
   const dispatch = useDispatch();
 
-
   // handle click on chat
   function handleClickChat() {
     if (!access) {
       toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
+      navigate(ROUTES_CONFIG.LOGIN.path);
     } else {
       dispatch(setUserId(data?.user));
       navigate(ROUTES_CONFIG.SINGLE_CHAT.path);

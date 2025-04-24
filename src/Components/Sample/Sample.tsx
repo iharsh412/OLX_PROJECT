@@ -137,11 +137,15 @@ export default function Sample() {
           className={`${CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER} ${isLoading ? CLASSNAME.MAIN_SECTION_IMAGE : ''}`}
         >
           {isLoading &&
-            Array.from({ length: 8 }, (_, i) => <Schemer key={i} />)}
+            Array.from({ length: 12 }, (_, i) => <Schemer key={i} />)}
           {isError && <Error />}
           {!isLoading && !isError && response && (
             <div
-              className={response?.products?.length === 0 ? CLASSNAME.NO_PRODUCTS : CLASSNAME.MAIN_SECTION_IMAGE}
+              className={
+                response?.products?.length === 0
+                  ? CLASSNAME.NO_PRODUCTS
+                  : CLASSNAME.MAIN_SECTION_IMAGE
+              }
             >
               {(response?.products?.length as number) > 0 &&
                 response?.products?.map((product: Product) => (
@@ -155,13 +159,14 @@ export default function Sample() {
             </div>
           )}
           {/* Pagination */}
-          <Pagination
+         
+        </div>
+        <Pagination
             page={page}
             totalpage={totalpage}
             showButton={showButton}
             setPage={setPage}
           />
-        </div>
       </div>
     </div>
   );

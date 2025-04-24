@@ -11,6 +11,7 @@ import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
+import { toast } from 'react-toastify';
 
 export default function Navbar() {
 
@@ -32,6 +33,7 @@ export default function Navbar() {
     if (access) {
       navigate(ROUTES_CONFIG.SELL.path);
     } else {
+      toast.error(TEXT.lOGIN_TO_ADD_PRODUCT);
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
@@ -40,6 +42,7 @@ export default function Navbar() {
     if (access) {
       navigate(ROUTES_CONFIG.WISHLIST.path);
     } else {
+      toast.error(TEXT.LOGIN_TO_ACCESS_WISHLIST);
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }

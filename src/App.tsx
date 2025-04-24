@@ -11,7 +11,7 @@ import { store, persistor } from './Store';
 import RootRouter from './Routes/RootRouter';
 import './App.css';
 import { ToastContainer } from 'react-toastify';
-import ChatWrapper from './Components/CustomComponents/ChatWrapper/ChatWrapper';
+// import ChatWrapper from './Components/CustomComponents/ChatWrapper/ChatWrapper';
 
 const baseName = import.meta.env.VITE_BASE_NAME;
 
@@ -26,9 +26,9 @@ function App() {
       <PersistGate persistor={persistor}>
         <ToastContainer />
         <HelmetProvider>
-          <ChatWrapper>
+          {/* <ChatWrapper> */}
             <RouterProvider router={router} />
-          </ChatWrapper>
+          {/* </ChatWrapper> */}
         </HelmetProvider>
       </PersistGate>
     </Provider>
