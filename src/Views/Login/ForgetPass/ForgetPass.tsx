@@ -71,7 +71,9 @@ export default function ForgetPass() {
               </div>
               {/* email section */}
               <div className={CLASSNAME.EMAIL_INPUT}>
-                <label htmlFor={COMMON_TEXT.EMAIL_S}>Email</label>
+                <label htmlFor={COMMON_TEXT.EMAIL_S}>Email
+                  <div className={CLASSNAME.REQUIRED}>*</div>
+                </label>
                 <input
                   type={TYPE.EMAIL}
                   id={COMMON_TEXT.EMAIL_S}
@@ -86,17 +88,18 @@ export default function ForgetPass() {
               </div>
               {/* validation text */}
               <span className={CLASSNAME.TEXT}>{TEXT.VALID}</span>
-               {/* send reset link text */}
-              <button
-                title={COMMON_TEXT.SUBMIT}
-                className={CLASSNAME.SUBMIT_BUTTON}
-                type={TYPE.SUBMIT}
-                disabled={isSubmitting || isLoading || disabled}
-                onClick={() => handleSubmit()}
-              >
-                {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
-              </button>
-              {disabled && <span className={CLASSNAME.TEXT}>{TEXT.NEXT}</span>}
+              {/* send reset link text */}
+              {!disabled && (
+                <button
+                  title={COMMON_TEXT.SUBMIT}
+                  className={CLASSNAME.SUBMIT_BUTTON}
+                  type={TYPE.SUBMIT}
+                  disabled={isSubmitting || isLoading || disabled}
+                  onClick={() => handleSubmit()}
+                >
+                  {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
+                </button>
+              )}
               {/* footer section */}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>

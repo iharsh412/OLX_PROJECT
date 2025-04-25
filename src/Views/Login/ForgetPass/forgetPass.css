@@ -28,7 +28,11 @@
   margin: 16px 0 28px;
   position: relative;
 }
-
+.forget_required{
+  display: inline-block;
+  margin: 3px;
+  color:red;;
+}
 .forget_Header {
   display: flex;
   justify-content: space-between;
@@ -67,6 +71,7 @@
   font-size: 14px;
   font-weight: 500;
   color: #555;
+  cursor: pointer;
   padding: 0 0 10px;
 }
 

@@ -52,6 +52,7 @@ export enum COUNT {
   Year = 4,
   'KM driven' = 5,
   'Ad title' = 50,
+  'Mobile Number' = 10,
 }
 export interface TextFieldProps {
   handleChange?: (e: React.ChangeEvent<any>) => void;

@@ -23,7 +23,7 @@ export default function NewPass() {
   const navigate = useNavigate();
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostChangePasswordDataMutation();
-
+  console.log('hello');
   // handle click
   // handle submit
   async function handleSubmit(values: FORM_VALUES) {
@@ -60,9 +60,11 @@ export default function NewPass() {
             <div className={CLASSNAME.WRAPPER}>
               <h2 className={CLASSNAME.TITLE}>{TEXT.FORGET_PASWORD}</h2>
               <form onSubmit={handleSubmit}>
+                {/* password input */}
                 <div className={CLASSNAME.PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                     {TEXT.PASSWORD}
+                    <span className={CLASSNAME.REQUIRED}>*</span>
                   </label>
                   <input
                     type={TYPE.PASSWORD}
@@ -72,36 +74,39 @@ export default function NewPass() {
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  {errors.password && touched.password && (
-                    <div className={CLASSNAME.ERROR}>{errors.password}</div>
-                  )}
                 </div>
+                {errors.password && touched.password && (
+                  <div className={CLASSNAME.ERROR}>{errors.password}</div>
+                )}
+                {/* confirm password input */}
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                    {' '}
                     {TEXT.CONFIRM_PASSWORD}
+                    <span className={CLASSNAME.REQUIRED}>*</span>
                   </label>
                   <input
-                    title={COMMON_TEXT.PASSWORD}
+                    title={COMMON_TEXT.CONFIRM_PASSWORD_S}
                     type={TYPE.PASSWORD}
-                    name={COMMON_TEXT.PASSWORD_S}
+                    name={COMMON_TEXT.CONFIRM_PASSWORD_S}
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
-                  {errors.confirmPassword && touched.confirmPassword && (
-                    <div className={CLASSNAME.ERROR}>
-                      {errors.confirmPassword}
-                    </div>
-                  )}
                 </div>
-                <button
-                  className={CLASSNAME.SUBMIT_BUTTON}
-                  type={TYPE.SUBMIT}
-                  disabled={isSubmitting || isLoading || disabled}
-                >
-                  {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
-                </button>
+                {errors.confirmPassword && touched.confirmPassword && (
+                  <div className={CLASSNAME.ERROR}>
+                    {errors.confirmPassword}
+                  </div>
+                )}
+                {!disabled && (
+                  <button
+                    className={CLASSNAME.SUBMIT_BUTTON}
+                    type={TYPE.SUBMIT}
+                    disabled={isSubmitting || isLoading || disabled}
+                  >
+                    {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
+                  </button>
+                )}
                 {disabled && (
                   <div className={CLASSNAME.SUCCESS}>
                     <span className={CLASSNAME.SUCCESS_TEXT}>

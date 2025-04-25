@@ -16,7 +16,7 @@ export const TEXT = {
   SUCCESS: 'not working please signup',
   LOGIN: ' Login',
   CONTINUE_WITH_GOOGLE: 'Continue with Google',
-  SIGN_UP: 'signup with email',
+  SIGN_UP: 'Signup with Email',
   ALREADY_HAVE_ACCOUNT: 'Already have an account?',
   PERSONAL_DETAIL: 'All your personal details are safe with us',
   PRIVACY_POLICY:

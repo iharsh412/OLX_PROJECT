@@ -29,6 +29,11 @@ import motivation4 from "./video/motivation3.mp4"
 import motivation5 from "./video/motivation4.mp4"
 import trisog from "./extra/trisog.png"
 import exclusive from "./extra/exclusive.png"
+import fb from "./vector/fb.svg";
+import twitter from "./vector/twitter.svg"
+import insta from "./vector/insta.svg"
+import olxintv from "./vector/olxintv.svg"
+
 import {
   carTrade,
   carTradeTech,
@@ -36,6 +41,8 @@ import {
   carWale,
   bikeWale,
   OlxWhite,
+  playstore,
+  appstore,
 } from './vector/URL';
 import olx1 from "./extra/olx1.jpeg";
 import olx2 from "./extra/olx2.jpeg";
@@ -87,5 +94,12 @@ const ICONS = {
   playstoreOlx,
   trisog,
   exclusive,
+  fb,
+  insta,
+  twitter,
+  olxintv,
+  playstore,
+  appstore,
+
 };
 export default ICONS;

@@ -7,11 +7,18 @@ export const INITIAL_VALUES = {
   email: '',
   password: '',
 };
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 export const VALIDATION = Yup.object().shape({
   email: Yup.string()
-    .email('Invalid email format')
-    .required('Email is required'),
-  password: Yup.string().required('Password is required'),
+    .required('Email is required')
+    .matches(emailRegex, 'Please enter a valid email address'),
+  password: Yup.string()
+    .required('Password is required')
+    // .matches(
+    //   passwordRegex,
+    //   'Password must be at least 8 characters, include uppercase, lowercase, number, and special character'
+    // ),
 });
 export const CLASSNAME = {
   WRAPPER: 'signin_Wrapper',
@@ -25,12 +32,13 @@ export const CLASSNAME = {
   ERROR: 'signin_error',
   FORGET: 'signin_forgetpass',
   SINUP: 'signin_signup',
+  REQUIRED:"signin_required"
 };
 export const TEXT = {
   LOGIN: 'Login',
   SIGN_IN: 'Sign In',
   FORGET_PASSWORD: 'forgot password?',
   LOGIN_SUCCESSFUL: 'Login Successfull',
-  DONOT_HAVE_ACCOUNT: "Don't have an account?",
+  DONOT_HAVE_ACCOUNT: "Don't have an account ?",
   SIGN_UP: 'Sign Up',
 };

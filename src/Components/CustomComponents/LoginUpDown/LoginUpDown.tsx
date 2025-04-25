@@ -29,7 +29,6 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [answer, setAnswer] = useState<String>('no');
 
-
   // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
@@ -65,17 +64,17 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       <div className={CLASSNAME.DROPDOWN_MENU}>
         <div className={CLASSNAME.PROFILE_SECTION}>
           <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
             <div className={CLASSNAME.PROFILE_INFO}>
+              <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
               <h3>{username}</h3>
-              <Link
-                onClick={handleItemClick}
-                to={ROUTES_CONFIG.PROFILE.path}
-                className={CLASSNAME.PROFILE_EDIT_PROFILE}
-              >
-                {TEXT.VIEW_EDIT}
-              </Link>
             </div>
+            <Link
+              onClick={handleItemClick}
+              to={ROUTES_CONFIG.PROFILE.path}
+              className={CLASSNAME.PROFILE_EDIT_PROFILE}
+            >
+              {TEXT.VIEW_EDIT}
+            </Link>
           </div>
         </div>
 

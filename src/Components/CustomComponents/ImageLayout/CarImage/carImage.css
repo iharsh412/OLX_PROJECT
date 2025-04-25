@@ -6,15 +6,16 @@
   align-items: center;
   border: 1px solid rgba(14, 4, 5, 0.1);
   border-radius: 8px;
+  width: 100%;
   max-width: 300px;
   margin: 10px;
-  box-sizing: border-box;
   padding: 12px;
+  box-sizing: border-box;
   box-shadow: 10px 13px 12px rgba(0, 0, 0, 0.28);
   cursor: pointer;
   transition: all 0.3s ease;
   overflow: hidden;
-  height: 400px;
+  height: 360px;
 }
 
 .carImages_wrapper:hover {
@@ -26,7 +27,7 @@
 .carImages {
   position: relative;
   width: 100%;
-  height: 194px;
+  aspect-ratio: 4 / 3;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +40,7 @@
 .carImages_image {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 
@@ -75,25 +77,21 @@
 
 /* Content Section */
 .carImages_content {
-  width: 90%;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  margin: 8px 4px;
   text-align: left;
+  overflow: hidden;
 }
 
 /* Price */
 .carImage_cost {
-  width: 100%;
   font-size: 20px;
   font-weight: 700;
   color: #2c3e50;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-bottom: 6px;
   display: flex;
   align-items: center;
+  margin-bottom: 6px;
 }
 
 .carImage_cost img {
@@ -106,11 +104,10 @@
 .carImage_distance {
   font-size: 16px;
   color: #555;
+  margin-bottom: 4px;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 100%;
-  padding: 4px 0;
-  margin-bottom: 4px;
 }
 
 /* Name */
@@ -118,25 +115,35 @@
   font-size: 18px;
   font-weight: 600;
   color: #333;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;
-  padding: 4px 0;
   margin-bottom: 4px;
 }
 
 /* Location & Date */
 .carImage_placeAndDate {
-  width: 100%;
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
   font-size: 12px;
   color: #777;
-  padding: 6px 0;
+  padding-top: 6px;
   border-top: 0.5px solid #d1d1d1;
   margin-top: 8px;
+  gap: 4px;
+  flex-wrap: wrap;
+  word-break: break-word;
 }
 
+.carImage_date {
+  align-self: flex-end;
+}
+.carImage_place {
+  align-self: flex-start;
+  color: rgb(137, 116, 116);
+  font-weight: 700;
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .carImages_wrapper {
@@ -145,7 +152,7 @@
   }
 
   .carImages {
-    height: 180px;
+    aspect-ratio: 4 / 3;
   }
 
   .carImage_cost {
@@ -160,7 +167,7 @@
 
 @media (max-width: 480px) {
   .carImages {
-    height: 160px;
+    aspect-ratio: 4 / 3;
   }
 
   .carImage_cost {

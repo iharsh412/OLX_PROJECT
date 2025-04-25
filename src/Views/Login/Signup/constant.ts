@@ -6,17 +6,27 @@ export const INITIAL_VALUES = {
   password: '',
   confirmPassword: '',
 };
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
 export const VALIDATION = Yup.object().shape({
   username: Yup.string().required('Username is required'),
+
   email: Yup.string()
-    .email('Invalid email format')
-    .required('Email is required'),
-  password: Yup.string().required('Password is required'),
+    .required('Email is required')
+    .matches(emailRegex, 'Please enter a valid email address'),
+
+  password: Yup.string()
+    .required('Password is required')
+    .matches(
+      passwordRegex,
+      'Password must be at least 8 characters, include uppercase, lowercase, number, and special character'
+    ),
+
   confirmPassword: Yup.string()
-    .required('Confirm your password ')
+    .required('Please confirm your password')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
-
 export interface FORM_VALUES {
   username: string;
   email: string;
@@ -36,6 +46,7 @@ export const CLASSNAME = {
   SUBMIT_BUTTON: 'signup_submitButton',
   ERROR: 'signup_error',
   SIGNIN: 'signup_signin',
+  REQUIRED:'signup_required'
 };
 export const TEXT = {
   TITLE: 'Sign Up',
@@ -47,5 +58,5 @@ export const TEXT = {
   SUBMIT: 'Sign Up',
   SUCCESS: 'Signup Successfully',
   SIGN_IN: 'Sign In',
-  HAVE_ACCOUNT: 'Already have an account?',
+  HAVE_ACCOUNT: 'Already have an account ?',
 };

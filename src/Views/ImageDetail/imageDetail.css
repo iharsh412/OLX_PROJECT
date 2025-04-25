@@ -224,7 +224,7 @@
 
 /* RESPONSIVE DESIGN */
 
-@media (max-width: 768px) {
+@media (max-width: 868px) {
   .imageDetailWrapper {
     width: 90vw;
     padding: 8px;

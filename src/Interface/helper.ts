@@ -1,14 +1,20 @@
-function getDaysFromNow(isoDateString: string) {
+function getDaysFromNow(isoDateString: string): string {
   const now = new Date();
   const target = new Date(isoDateString);
-  const Now = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  const Target = Date.UTC(
-    target.getFullYear(),
-    target.getMonth(),
-    target.getDate()
-  );
-  const diffInMs = Target - Now;
-  const diffInDays = Math.round(diffInMs / (1000 * 60 * 60 * 24));
-  return diffInDays;
+
+  const todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+  const targetUTC = Date.UTC(target.getFullYear(), target.getMonth(), target.getDate());
+
+  const diffInDays = Math.round((targetUTC - todayUTC) / (1000 * 60 * 60 * 24));
+
+  if (diffInDays === 0) return 'today';
+  if (diffInDays === -1) return 'yesterday';
+
+  return target.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  });
 }
+
 export { getDaysFromNow };

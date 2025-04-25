@@ -13,7 +13,7 @@ import Filter from '../Atom/Filter';
 import Schemer from '../Atom/Schemer';
 
 export default function Sample() {
-  const limit = 12;
+  const limit = 8;
   const [totalpage, setTotalpage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const { category } = useParams();
@@ -133,40 +133,32 @@ export default function Sample() {
           setSampleData={setSampleData}
         />
         {/* Image Section */}
-        <div
-          className={`${CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER} ${isLoading ? CLASSNAME.MAIN_SECTION_IMAGE : ''}`}
-        >
-          {isLoading &&
-            Array.from({ length: 12 }, (_, i) => <Schemer key={i} />)}
+        <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
           {isError && <Error />}
-          {!isLoading && !isError && response && (
-            <div
-              className={
-                response?.products?.length === 0
-                  ? CLASSNAME.NO_PRODUCTS
-                  : CLASSNAME.MAIN_SECTION_IMAGE
-              }
-            >
-              {(response?.products?.length as number) > 0 &&
-                response?.products?.map((product: Product) => (
-                  <ImagesLayout key={product.id} data={product} />
-                ))}
-              {response?.products?.length === 0 && (
-                <h3 className={CLASSNAME.NO_PRODUCTS}>
-                  {TEXT.NO_PRODUCT_AVAILABLE}
-                </h3>
-              )}
-            </div>
-          )}
+          <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+            {isLoading &&
+              Array.from({ length: 8 }, (_, i) => <Schemer key={i} />)}
+            {!isLoading &&
+              response &&
+              (response?.products?.length as number) > 0 &&
+              response?.products?.map((product: Product) => (
+                <ImagesLayout key={product.id} data={product} />
+              ))}
+            {!isLoading && response && response?.products?.length === 0 && (
+              <h3 className={CLASSNAME.NO_PRODUCTS}>
+                {TEXT.NO_PRODUCT_AVAILABLE}
+              </h3>
+            )}
+          </div>
+
           {/* Pagination */}
-         
-        </div>
-        <Pagination
+          <Pagination
             page={page}
             totalpage={totalpage}
             showButton={showButton}
             setPage={setPage}
           />
+        </div>
       </div>
     </div>
   );

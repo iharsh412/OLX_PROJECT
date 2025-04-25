@@ -18,8 +18,6 @@ import {
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
-
-
 export default function Signup() {
   const navigate = useNavigate();
   const [post, { isLoading }] = usePostSignupDataMutation();
@@ -60,6 +58,7 @@ export default function Signup() {
           handleSubmit,
           isSubmitting,
         }) => {
+          console.log(values.email, 'email');
           return (
             <div className={CLASSNAME.WRAPPER}>
               {/* header */}
@@ -82,7 +81,8 @@ export default function Signup() {
               <form onSubmit={handleSubmit}>
                 {/* username */}
                 <div className={CLASSNAME.USERNAME_INPUT}>
-                  <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME} </label>
+                  <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME}
+                  <div className={CLASSNAME.REQUIRED}>*</div> </label>
                   <input
                     title={TEXT.USERNAME}
                     type={TYPE.TEXT}
@@ -90,6 +90,7 @@ export default function Signup() {
                     value={values.username}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    id={TEXT.USERNAME}
                   />
                   {errors.username && touched.username && (
                     <div className={CLASSNAME.ERROR}>{errors.username}</div>
@@ -97,7 +98,11 @@ export default function Signup() {
                 </div>
                 {/* email */}
                 <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor={COMMON_TEXT.EMAIL_S}>{TEXT.EMAIL} </label>
+                  <label htmlFor={COMMON_TEXT.EMAIL_S}>
+                    {TEXT.EMAIL}
+                    <div className={CLASSNAME.REQUIRED}>*</div>
+                  </label>
+                 
                   <input
                     title={COMMON_TEXT.EMAIL_S}
                     type={TYPE.EMAIL}
@@ -105,6 +110,7 @@ export default function Signup() {
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    id={COMMON_TEXT.EMAIL_S}
                   />
                   {errors.email && touched.email && (
                     <div className={CLASSNAME.ERROR}>{errors.email}</div>
@@ -113,7 +119,8 @@ export default function Signup() {
                 {/* password */}
                 <div className={CLASSNAME.PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                    {TEXT.PASSWORD}{' '}
+                    {TEXT.PASSWORD}
+                    <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
                   <input
                     name={COMMON_TEXT.PASSWORD_S}
@@ -122,6 +129,7 @@ export default function Signup() {
                     value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    id={COMMON_TEXT.PASSWORD_S}
                   />
                   {errors.password && touched.password && (
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
@@ -131,6 +139,7 @@ export default function Signup() {
                 <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
                   <label htmlFor={TEXT.CONFIRM_PASSWORD}>
                     {TEXT.CONFIRM_PASSWORD}
+                    <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
                   <input
                     title={COMMON_TEXT.CONFIRM_PASSWORD_S}
@@ -139,6 +148,7 @@ export default function Signup() {
                     value={values.confirmPassword}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    id={TEXT.CONFIRM_PASSWORD}
                   />
                   {errors.confirmPassword && touched.confirmPassword && (
                     <div className={CLASSNAME.ERROR}>

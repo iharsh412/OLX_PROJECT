@@ -29,18 +29,11 @@
   position: relative;
 }
 
-.newpass_title::after {
-  content: '';
-  position: absolute;
-  bottom: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 3px;
-  background: linear-gradient(90deg, #a269d6, #00c8c8);
-  border-radius: 3px;
+/* REQUIRED */
+.newpass_required{
+  color: red;
+  margin: 1px;
 }
-
 /* INPUT FIELDS  */
 .newpass_passwordInput,
 .newpass_confirmPasswordInput,
@@ -58,6 +51,7 @@
   font-weight: 500;
   color: #555;
   padding-right: 12px;
+  
 }
 
 .newpass_passwordInput input,
@@ -137,18 +131,17 @@
   font-size: 18px;
   font-weight: 600;
   color: #28a745;
-  /* Changed from red to success green */
   margin-bottom: 16px;
 }
 
-.newpass_successLogin {
+.newpass_sucessLogin  {
   font-size: 14px;
   font-weight: 500;
   color: #4a4a4a;
   margin-top: 8px;
 }
 
-.newpass_successLogin button {
+.newpass_sucessLogin button {
   background: none;
   border: none;
   border-radius: 6px;

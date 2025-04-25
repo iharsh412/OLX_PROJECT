@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { setLoading } from '../../Store/Loader';
 import { CLASSNAME, TEXT } from './constant';
 import { setItem } from '../../Store/AreaItem';
+// import FooterInfo from '../../Components/CustomComponents/FooterInfo';
 
 export default function HomeLayout() {
   const location = useLocation();
@@ -20,8 +21,7 @@ export default function HomeLayout() {
   // path change remove toast and empty the serach  field
   useEffect(() => {
     dispatch(setItem(''));
-    if(location?.pathname!== '/login')
-    toast.dismiss();
+    if (location?.pathname !== '/login') toast.dismiss();
   }, [location?.pathname]);
   // for session expired
   useEffect(() => {
@@ -48,6 +48,8 @@ export default function HomeLayout() {
         </div>
         {/* add section */}
         <Ads />
+        {/* footerINfo */}
+        {/* <FooterInfo /> */}
         {/* Footer */}
         <Footer />
       </div>

@@ -36,7 +36,7 @@ export default function BikeForm() {
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log(values, 'values');
+   
     const formData = new FormData();
     formData.append('user', '1');
     formData.append('category', state.categoryId);
@@ -209,7 +209,7 @@ export default function BikeForm() {
                 {...share}
               />
               <Seller
-                type="number"
+                type="text"
                 htmlFor="mobileNumber"
                 value={values.mobileNumber}
                 label="Mobile Number"

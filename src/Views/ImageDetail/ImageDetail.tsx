@@ -82,7 +82,7 @@ export default function ImageDetail() {
           <div className={CLASSNAME.PRICE_TAG}>
             <span className={CLASSNAME.PRICE_PLACE}>{product?.city}</span>
             <span className={CLASSNAME.PRICE_PLACE}>
-              {-1 * getDaysFromNow(product?.created_at)} {TEXT.DAYS_AGO}
+              { getDaysFromNow(product?.created_at)} 
             </span>
           </div>
         </div>

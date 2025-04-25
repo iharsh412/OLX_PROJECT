@@ -14,7 +14,7 @@
 .homeImageSection,
 .loader {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 on XL screens */
+  grid-template-columns: repeat(5, 1fr);
   gap: 20px;
   width: 100%;
   padding: 20px;
@@ -29,8 +29,16 @@
   }
 }
 
+/* Medium Desktops & Laptops: 3 columns */
+@media (max-width: 1200px) {
+  .homeImageSection,
+  .loader {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* Tablets: 2 columns */
-@media (max-width: 1024px) {
+@media (max-width: 992px) {
   .homeImageSectionWraper {
     width: 90vw;
   }

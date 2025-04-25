@@ -6,7 +6,7 @@ export const SUBCATEGORIES: Record<string, string[]> = {
 //   multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
   mobile: ['Mobile', 'Tablet', ],
   electronics: ['Computer', 'TVs', 'Camera'],
-  bikes: ['Bikes', 'Scooters', 'Cycles'],
+  bikes: ['Bikes', 'Scooters'],
 };
 
 export const CLASSNAME = {

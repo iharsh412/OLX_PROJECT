@@ -17,22 +17,24 @@ export default function WishlistSection() {
 
   return (
     <>
-      <div className={isLoading ? CLASSNAME.IMAGE_SECTION : CLASSNAME.WRAPPER}>
+      <div className={CLASSNAME.WRAPPER}>
         <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
-        {isLoading && Array.from({ length: 10 }, (_, i) => <Schemer key={i} />)}
         {isError && <Error />}
         {/*  data LENGTH>0 then render */}
-        {data && data.length > 0 && (
-          <div className={CLASSNAME.IMAGE_SECTION}>
-            {data?.map((products: Product) => (
-              <ImageLayout
-                key={products?.id}
-                data={products}
-                refetch={refetch}
-              />
-            ))}
-          </div>
-        )}
+
+        <div className={CLASSNAME.IMAGE_SECTION}>
+          {isLoading
+            ? Array.from({ length: 12 }, (_, i) => <Schemer key={i} />)
+            : data &&
+              data.length > 0 &&
+              data?.map((products: Product) => (
+                <ImageLayout
+                  key={products?.id}
+                  data={products}
+                  refetch={refetch}
+                />
+              ))}
+        </div>
         {/* if data length === 0 */}
         {data && data.length === 0 && (
           <>

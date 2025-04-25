@@ -35,7 +35,17 @@ const Year: React.FC<TextFieldProps> = ({
     <div className={CLASSNAME.CONTAINER}>
       <div className={CLASSNAME.LABEL_WRAPPER}>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label}{' '}
+          <div
+            style={{
+              display: 'inline-block',
+              color: 'red',
+              width: '10px',
+              height: '10px',
+            }}
+          >
+            *
+          </div>
         </label>
       </div>
       <input
@@ -81,7 +91,18 @@ const TextField: React.FC<TextFieldProps> = ({
     <div className={CLASSNAME.CONTAINER}>
       <div className={CLASSNAME.LABEL_WRAPPER}>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label}{' '}
+          <div
+            style={{
+              display: 'inline-block',
+              color: 'red',
+              height: '20px',
+              width: '20px',
+              fontWeight: '900',
+            }}
+          >
+            *
+          </div>
         </label>
         <span>
           {value?.toString().length}/{COUNT[label as keyof typeof COUNT]}
@@ -121,7 +142,7 @@ const Email: React.FC<TextFieldProps> = ({
     <div className={CLASSNAME.CONTAINER}>
       <div className={CLASSNAME.LABEL_WRAPPER}>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
         </label>
       </div>
       <input
@@ -160,7 +181,7 @@ const Price: React.FC<TextFieldProps> = ({
       <div className={CLASSNAME.PRICE_WRAPPER}>
         <h3 className={CLASSNAME.PRICE_TEXT}>SET A PRICE</h3>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
         </label>
         <div className={CLASSNAME.PRICE_INPUT_WRAPPER}>
           <span>
@@ -201,7 +222,8 @@ const Description: React.FC<TextFieldProps> = ({
     <>
       <div className={CLASSNAME.LABEL_WRAPPER}>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label}
+          <div style={{ display: 'inline-block', color: 'red' }}>*</div>
         </label>
         <span>
           {value?.toString().length}/{COUNT.Description}
@@ -281,8 +303,15 @@ const Seller: React.FC<TextFieldProps> = ({
   tch,
   type,
   handleBlur,
-  handleChange,
+  // handleChange,
+  setFieldValue,
 }) => {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const rawValue = e.target.value;
+    const numericOnly = rawValue.replace(/\D/g, ''); // remove non-digits
+    const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
+    setFieldValue?.(htmlFor, trimmed);
+  }
   return (
     <>
       <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{TEXT.VERIFY}</h3>
@@ -290,7 +319,7 @@ const Seller: React.FC<TextFieldProps> = ({
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
         <span>{TEXT.CODE}</span>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} *
+          {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
         </label>
         <input
           title={htmlFor}
@@ -361,7 +390,7 @@ const Photos: React.FC<PhotosProps> = ({
       <h3 className={CLASSNAME.UPLOAD_TEXT}>{TEXT.UPLOAD_PHOTOS}</h3>
       <div className={CLASSNAME.PHOTO_CONTAINER}>
         {Array.from({
-          length: Math.max(5, value?.length + 1),
+          length: Math.max(5, 0),
         }).map((_, index) => (
           <div key={index} className={CLASSNAME.PHOTO_BOX}>
             {value?.[index] ? (
@@ -468,7 +497,7 @@ const State: React.FC<TextFieldProps> = ({
   return (
     <>
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-        {label} *
+        {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
       <div
         className={CLASSNAME.STATE_INPUT_WRAPPER}
@@ -549,12 +578,12 @@ const City: React.FC<TextFieldProps> = ({
 
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
-  },[]);
+  }, []);
 
   return (
     <div ref={dropdownRef}>
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-        {label}*
+        {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
 
       <div

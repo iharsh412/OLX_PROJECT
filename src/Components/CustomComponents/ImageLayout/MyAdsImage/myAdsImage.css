@@ -14,7 +14,7 @@
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   overflow: hidden;
-  height: 420px;
+  height: 360px;
   position: relative;
 }
 
@@ -102,6 +102,9 @@
   padding: 10px 0;
   border-top: 1px solid #c7c7c7;
   margin-top: auto; /* Pushes to bottom */
+}
+.myadsImages_location{
+  font-weight: 600;
 }
 
 /* Action Buttons Container */

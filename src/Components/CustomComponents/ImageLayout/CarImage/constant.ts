@@ -16,4 +16,6 @@ export const TEXT = {
     ERROR_IN_ADDING: 'Error adding to wishlist',
     ADDED_IN_FAV: 'Added in Favourites',
     ADDED: 'Added',
+    ADDED_IN_WISHLIST: "Added to your wishlist!",
+    REMOVE_FROM_WISHLIST:"Removed from your wishlist.",
 }

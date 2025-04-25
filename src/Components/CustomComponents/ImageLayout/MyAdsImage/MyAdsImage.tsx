@@ -63,16 +63,16 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
           <span className={CLASSNAME.COST}>
             <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
           </span>
-          <span className={CLASSNAME.STATUS}>{data.status}</span>
+          {/* <span className={CLASSNAME.STATUS}>{data.status}</span> */}
           <span className={CLASSNAME.NAME}>{data.name}</span>
           <div className={CLASSNAME.PLACE_DATE}>
             <span className={CLASSNAME.LOCATION}>
-              {data.state} , {data.city}
+            {data.city} , {data.state}
             </span>
             <span className={CLASSNAME.DATE}>
-              {' '}
-              {-1 * getDaysFromNow(String(data?.created_at))}{' '}
-              {COMMON_TEXT.DAYS_AGO}{' '}
+         
+              { getDaysFromNow(String(data?.created_at))}{' '}
+             
             </span>
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>

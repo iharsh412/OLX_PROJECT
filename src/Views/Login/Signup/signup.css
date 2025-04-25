@@ -61,6 +61,7 @@
   font-weight: 500;
   color: #555;
   margin-bottom: 8px;
+  cursor: pointer;
   margin-left: 4px;
 }
 
@@ -92,6 +93,12 @@
 .signup_passwordInput input:hover,
 .signup_confirmPasswordInput input:hover {
   border-color: #b88ae0;
+}
+.signup_required{
+  color: red;
+  display: inline-block;
+  margin-left: 3px;
+
 }
 
 /* BUTTON SECTION */
@@ -142,8 +149,10 @@
 /* signup text */
 .signup_signin a {
   font-size: 15px;
+  text-decoration: underline;
   color: #007bff;
-  text-decoration: none;
+
+  margin-left: 5px;
 }
 
 .signup_signin a:hover {
@@ -181,7 +190,6 @@
     margin-bottom: 6px;
     padding-right: 0;
   }
-
   .signup_usernameInput input,
   .signup_emailInput input,
   .signup_passwordInput input,

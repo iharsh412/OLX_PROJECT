@@ -187,7 +187,7 @@ export default function MobileForm() {
                 {...share}
               />
               <Seller
-                type="number"
+                type="text"
                 htmlFor="mobileNumber"
                 value={values.mobileNumber}
                 label="Mobile Number"

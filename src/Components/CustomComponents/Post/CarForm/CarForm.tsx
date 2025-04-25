@@ -233,7 +233,7 @@ export default function CarForm() {
                 {...share}
               />
               <Seller
-                type="number"
+                type="text"
                 htmlFor="mobileNumber"
                 value={values.mobileNumber}
                 label="Mobile Number"

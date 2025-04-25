@@ -58,6 +58,7 @@
   font-weight: 500;
   color: #555;
   margin-bottom: 8px;
+  cursor: pointer;
   margin-left: 4px;
 }
 
@@ -72,7 +73,12 @@
   transition: all 0.25s ease;
   background-color: #fff;
 }
-
+/* required section */
+.signin_required{
+  color: red;
+  display: inline-block;
+  margin-left: 3px;
+}
 .signin_emailInput input:focus,
 .signin_passwordInput input:focus {
   border-color: #a269d6;
@@ -127,6 +133,8 @@
   font-size: 15px;
   color: #007bff;
   text-decoration: none;
+  margin-left: 5px;
+  text-decoration: underline;
 }
 
 .signin_signup a:hover {

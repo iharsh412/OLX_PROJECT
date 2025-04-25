@@ -4,13 +4,18 @@ export const INITIAL_VALUES = {
   password: '',
   confirmPassword: '',
 };
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 export const VALIDATION = Yup.object().shape({
   password: Yup.string()
-    .min(8, 'Password must be at least 8 characters long')
-    .required('Password is required'),
+    .required('Password is required')
+    .matches(
+      passwordRegex,
+      'Password must be at least 8 characters, include uppercase, lowercase, number, and special character'
+    ),
+
   confirmPassword: Yup.string()
-    .oneOf([Yup.ref('password')], 'Passwords must match')
-    .required('Confirm Password is required'),
+    .required('Please confirm your password')
+    .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
 
 export interface FORM_VALUES {
@@ -25,9 +30,10 @@ export const CLASSNAME = {
   SUBMIT_BUTTON: 'newpass_submitButton',
   EMAIL_INPUT: 'newpass_emailInput',
   ERROR: 'newpass_error',
-  SUCCESS: 'newPass_success',
-  SUCCESS_TEXT: 'newPass_sucessText',
-  SUCCESS_LOGIN: 'newPass_sucessLogin',
+  SUCCESS: 'newpass_success',
+  SUCCESS_TEXT: 'newpass_sucessText',
+  SUCCESS_LOGIN: 'newpass_sucessLogin',
+  REQUIRED: 'newpass_required',
 };
 export const TEXT = {
   TITLE: 'Forgot Password',
@@ -35,8 +41,8 @@ export const TEXT = {
   PASSWORD: 'New Password',
   FORGET_PASWORD: 'Forget Password',
   SUBMIT_BUTTON: 'Set',
-  PASSWORD_CHANGED: 'Password Changed',
-  LOGIN: 'Login',
+  PASSWORD_CHANGED: '🔐  Your password has been changed. Please sign in again to continue.',
+  LOGIN: 'Sign In',
   FAILURE: 'Error in changing password',
   SUCCESS: 'Password Changed Successfully',
 };

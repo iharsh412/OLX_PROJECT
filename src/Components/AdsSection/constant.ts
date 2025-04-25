@@ -38,7 +38,7 @@ export const CONTENTS = [
   {
     id: 6,
     type: 'youtube',
-    src: 'https://www.youtube.com/embed/2vIi8Y2PWEE?autoplay=1&mute=1',
+    src: 'https://www.youtube.com/embed/2vIi8Y2PWEE',
     label: 'Olx Ads',
     link: 'https://www.youtube.com/watch?v=2vIi8Y2PWEE',
   },

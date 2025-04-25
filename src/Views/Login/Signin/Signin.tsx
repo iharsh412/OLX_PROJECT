@@ -19,12 +19,13 @@ import {
   TEXT as LOGIN_SECTION_TEXT,
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
+import { useRef } from 'react';
 
 export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [post] = usePostSigninDataMutation();
-
+  const passwordFocus = useRef<HTMLInputElement | null>(null);
   // handle click
   // handle submit
   async function handleSubmit(
@@ -38,6 +39,7 @@ export default function Signin() {
       dispatch(updateAuthState(response));
       navigate(ROUTES_CONFIG.HOMEPAGE.path, { replace: true });
     } catch (error) {
+      passwordFocus.current?.focus(); 
       toast.error((error as any)?.data?.detail);
     }
   }
@@ -82,6 +84,7 @@ export default function Signin() {
                 <div className={CLASSNAME.EMAIL_INPUT}>
                   <label htmlFor={COMMON_TEXT.EMAIL_S}>
                     {COMMON_TEXT.EMAIL}
+                    <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
                   <input
                     type={TYPE.EMAIL}
@@ -99,8 +102,10 @@ export default function Signin() {
                 <div className={CLASSNAME.PASSWORD_INPUT}>
                   <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                     {COMMON_TEXT.PASSWORD}
+                    <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
                   <input
+                    ref={passwordFocus}
                     type={TYPE.PASSWORD}
                     id={COMMON_TEXT.PASSWORD_S}
                     name={COMMON_TEXT.PASSWORD_S}

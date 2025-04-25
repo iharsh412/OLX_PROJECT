@@ -37,11 +37,13 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       refetch?.();
       if (response.msg === TEXT.ADDED_IN_FAV) {
         dispatch(setWishlistCount(wishlistCount + 1));
+        toast.success(TEXT.ADDED_IN_WISHLIST)
       } else {
         dispatch(setWishlistCount(wishlistCount - 1));
+        toast.success(TEXT.REMOVE_FROM_WISHLIST)
       }
       refetchDashboard?.();
-      toast.success(response.msg);
+      // toast.success(response.msg);
     } catch (error) {
       toast.error(TEXT.ERROR_IN_ADDING);
     }
@@ -85,15 +87,14 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
         <span className={CLASSNAME.COST}>
           <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
         </span>
-        <span className={CLASSNAME.DISTANCE}>{data.status}</span>
+        {/* <span className={CLASSNAME.DISTANCE}>{data.status}</span> */}
         <span className={CLASSNAME.NAME}>{data.name}</span>
         <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
           <span className={CLASSNAME.PLACE}>
-            {data.state}, {data.city}
+          {data.city},{data.state}
           </span>
           <span className={CLASSNAME.DATE}>
-            {-1 * getDaysFromNow(String(data?.created_at))}{' '}
-            {COMMON_TEXT.DAYS_AGO}
+            {getDaysFromNow(String(data?.created_at))}{' '}
           </span>
         </div>
       </div>
