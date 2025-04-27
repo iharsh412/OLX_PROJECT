@@ -1,13 +1,13 @@
 import { CLASSNAME } from './constant';
-import Sample from '../../Components/Sample';
-
-// import NewPass from '../Login/NewPass';
+// import Sample from '../../Components/Sample';
+import ChatApp from "../FirebaseChatApp/FirebaseChatApp.tsx"
 
 export default function TypeSection() {
   return (
     <div className={CLASSNAME.WRAPPER}>
-      <Sample />
+      {/* <Sample /> */}
       {/* <NewPass /> */}
+      <ChatApp/>
     </div>
   );
 }

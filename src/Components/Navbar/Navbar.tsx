@@ -12,12 +12,22 @@ import { COMMON_TEXT, TYPE } from '../../Interface/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
 import { toast } from 'react-toastify';
+// import {
+//   collection,
+//   onSnapshot,
+//   orderBy,
+//   query,
+//   where,
 
+// } from 'firebase/firestore';
+// import { db } from './firebase';
 export default function Navbar() {
-
+  // const[unseenMsgCount,setUnseenMsgCount] =useState(0);
+  // const { id } = useSelector((state: RootState) => state?.common);
   const { count } = useSelector((state: RootState) => state?.wishlistCount);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  //  const messageRef = collection(db, 'messages');
   const { access, username } = useSelector((state: RootState) => state?.common);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const profileRef = useRef<HTMLButtonElement>(null);
@@ -25,9 +35,8 @@ export default function Navbar() {
     {},
     { refetchOnMountOrArgChange: true, refetchOnFocus: true }
   );
+  
 
-
-  // click
   // handle click on sell
   function onClickSell() {
     if (access) {
@@ -76,6 +85,22 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+  // for unseen message count
+  // useEffect(() => {
+  //   const q = query(
+  //     messageRef,
+  //     where('receiverId', '==', id),
+  //     where('seen', '==', false),
+  //     orderBy('createdAt')
+  //   );
+  
+  //   const unsubscribe = onSnapshot(q, (snapshot) => {
+  //     setUnseenMsgCount(snapshot.size); // This gives the count of unseen messages
+  //   });
+  
+  //   return () => unsubscribe();
+  // }, []);
+
   return (
     <div className={CLASSNAME.NAV_PARENT}>
       <div className={CLASSNAME.NAV}>
@@ -122,7 +147,7 @@ export default function Navbar() {
                 >
                   <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
                 </button>
-                {/* <span>1</span> */}
+                {/* <span>{unseenMsgCount}</span> */}
               </div>
 
               {/* Profile dropdown */}

@@ -21,6 +21,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export default function ForgetPass() {
+ 
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
 

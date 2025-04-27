@@ -7,6 +7,8 @@ import {
   query,
   serverTimestamp,
   where,
+  doc,
+  updateDoc,
 } from 'firebase/firestore';
 import { db } from '../../firebase';
 
@@ -23,22 +25,48 @@ export default function FirebaseChatApp() {
   const messageRef = collection(db, 'messages');
   const roomId = [userId, id].sort().join('_');
   const messagEnd = useRef<HTMLDivElement>(null);
+  const messageListRef = useRef<HTMLDivElement>(null);
+
+
   const handleSendMessage = async () => {
     if (newmsg.trim() === '') return;
-    console.log(newmsg, 'newmsg');
+    
+    const tempId = Date.now().toString();
     try {
-      await addDoc(messageRef, {
+      const newMessage: MessageProps = {
+        id: tempId,
+        text: newmsg,
+        createdAt: new Date(),
+        user: username || '',
+        room: roomId,
+        seen: false,
+        senderId: id || '',
+        receiverId: userId || '',
+      };
+      setMessages(prev => [...prev, newMessage]);
+      setNewmsg('');
+
+      // Add to Firebase
+      const docRef = await addDoc(messageRef, {
         text: newmsg,
         createdAt: serverTimestamp(),
         user: username,
         room: roomId,
+        seen: false,
+        senderId: id,
+        receiverId: userId,
       });
-      setNewmsg('');
+
+      
+      setMessages(prev => prev.map(msg => 
+        msg.id === tempId ? { ...msg, id: docRef.id } : msg
+      ));
     } catch (error) {
       toast.error('Error sending message. Please try again later.');
+      
+      setMessages(prev => prev.filter(msg => msg.id !== tempId));
     }
   };
-
   useEffect(() => {
     const queryMessages = query(
       messageRef,
@@ -60,7 +88,58 @@ export default function FirebaseChatApp() {
 
     return () => unsubscribe();
   }, [roomId]);
+  // mark user aseen to viewport 
+   useEffect(() => {
+    if (!roomId || !id) return;
 
+    const observerOptions = {
+      root: messageListRef.current,
+      threshold: 0.5,
+    };
+
+    const observers: IntersectionObserver[] = [];
+
+    messages.forEach((msg) => {
+      // Only mark as seen if:
+      // 1. Message is not from current user
+      // 2. Message is addressed to current user
+      // 3. Message is not already marked as seen
+      if (msg.senderId === id || msg.receiverId !== id || msg.seen) return;
+
+      const messageElement = document.getElementById(msg.id);
+      if (!messageElement) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // Update in Firebase
+            const msgRef = doc(db, 'messages', msg.id);
+            updateDoc(msgRef, { seen: true })
+              .then(() => {
+                // Update local state
+                setMessages(prev => prev.map(m => 
+                  m.id === msg.id ? { ...m, seen: true } : m
+                ));
+              })
+              .catch(error => {
+                console.error('Error updating seen status:', error);
+              });
+            
+            observer.disconnect();
+          }
+        });
+      }, observerOptions);
+
+      observer.observe(messageElement);
+      observers.push(observer);
+    });
+
+    return () => {
+      observers.forEach(obs => obs.disconnect());
+    };
+  }, [messages, id, roomId]);
+
+  
   useEffect(() => {
     const el = messagEnd.current;
     if (el) {
@@ -68,12 +147,20 @@ export default function FirebaseChatApp() {
     }
   }, [messages]);
 
-  console.log(messages, 'messages');
   return (
     <div className="chat-app">
       <div className="message-wrapper">
         <div className="message">Messages</div>
-        <div className="message-list" ref={messagEnd}>
+        <div
+          className="message-list"
+          ref={(el) => {
+            if (el) {
+              // Type assertion to bypass read-only restriction
+              (messagEnd as React.MutableRefObject<HTMLDivElement>).current = el;
+              (messageListRef as React.MutableRefObject<HTMLDivElement>).current = el;
+            }
+          }}
+        >
           {messages.length === 0 ? (
             <div className="no_message">
               "No messages yet. Say hello to start the conversation!"
@@ -88,11 +175,16 @@ export default function FirebaseChatApp() {
               >
                 <span className="message-text">{msg.text}</span>
                 <span className="message-time">
-                  {msg.createdAt?.toDate().toLocaleTimeString([], {
+                  {msg.createdAt instanceof Date ? msg.createdAt.toLocaleTimeString([], {
                     hour: '2-digit',
                     minute: '2-digit',
-                  })}
+                  }) : ''}
                 </span>
+                {msg.user === username && (
+                    <span className={`tick-status ${msg.seen ? 'seen' : ''}`}>
+                      {msg.seen ? '✓✓' : '✓'}
+                    </span>
+                  )}
               </div>
             ))
           )}

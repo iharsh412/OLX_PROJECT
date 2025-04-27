@@ -169,6 +169,20 @@
   color: #d32f2f;
   font-weight: 500;
 }
+/* password eye button */
+.signin_isSeenPassword {
+  position: absolute;
+  right: 2%;
+  top: 25%;
+  border: none;
+  background-color: white;
+}
+.signin_passwordWrapper{
+  position:relative;
+}
+.signin_passwordWrapper input{
+ padding-right:40px
+}
 
 /*  RESPONSIVE DESIGN  */
 @media (max-width: 480px) {

@@ -19,14 +19,15 @@ import {
   TEXT as LOGIN_SECTION_TEXT,
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export default function Signin() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [post] = usePostSigninDataMutation();
   const passwordFocus = useRef<HTMLInputElement | null>(null);
-  // handle click
+
   // handle submit
   async function handleSubmit(
     values: FORM_VALUES,
@@ -39,7 +40,7 @@ export default function Signin() {
       dispatch(updateAuthState(response));
       navigate(ROUTES_CONFIG.HOMEPAGE.path, { replace: true });
     } catch (error) {
-      passwordFocus.current?.focus(); 
+      passwordFocus.current?.focus();
       toast.error((error as any)?.data?.detail);
     }
   }
@@ -104,15 +105,18 @@ export default function Signin() {
                     {COMMON_TEXT.PASSWORD}
                     <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
-                  <input
-                    ref={passwordFocus}
-                    type={TYPE.PASSWORD}
-                    id={COMMON_TEXT.PASSWORD_S}
-                    name={COMMON_TEXT.PASSWORD_S}
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
+                  <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                    <input
+                      ref={passwordFocus}
+                      type={isPasswordVisible?TYPE.TEXT:TYPE.PASSWORD}
+                      id={COMMON_TEXT.PASSWORD_S}
+                      name={COMMON_TEXT.PASSWORD_S}
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {values.password && <button className={CLASSNAME.EYE} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}><img src={isPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                  </div>
                   {errors.password && touched.password && (
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
                   )}

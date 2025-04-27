@@ -1,4 +1,5 @@
 import { Formik } from 'formik';
+import { useState } from 'react';
 import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
 import './signup.css';
 import {
@@ -18,12 +19,16 @@ import {
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
+
+
 export default function Signup() {
   const navigate = useNavigate();
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
   const [post, { isLoading }] = usePostSignupDataMutation();
 
-  // handle click
-  // handle submit
+
+  // handle form submit
   async function handleSubmit(
     values: FORM_VALUES,
     { resetForm }: { resetForm: () => void }
@@ -82,7 +87,7 @@ export default function Signup() {
                 {/* username */}
                 <div className={CLASSNAME.USERNAME_INPUT}>
                   <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME}
-                  <div className={CLASSNAME.REQUIRED}>*</div> </label>
+                    <div className={CLASSNAME.REQUIRED}>*</div> </label>
                   <input
                     title={TEXT.USERNAME}
                     type={TYPE.TEXT}
@@ -102,7 +107,7 @@ export default function Signup() {
                     {TEXT.EMAIL}
                     <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
-                 
+
                   <input
                     title={COMMON_TEXT.EMAIL_S}
                     type={TYPE.EMAIL}
@@ -122,15 +127,18 @@ export default function Signup() {
                     {TEXT.PASSWORD}
                     <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
-                  <input
-                    name={COMMON_TEXT.PASSWORD_S}
-                    title={COMMON_TEXT.PASSWORD_S}
-                    type={TYPE.PASSWORD}
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    id={COMMON_TEXT.PASSWORD_S}
-                  />
+                  <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                    <input
+                      name={COMMON_TEXT.PASSWORD_S}
+                      title={COMMON_TEXT.PASSWORD_S}
+                      type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      id={COMMON_TEXT.PASSWORD_S}
+                    />
+                    {values.password && <button className={CLASSNAME.EYE} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}><img src={isPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                  </div>
                   {errors.password && touched.password && (
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
                   )}
@@ -141,15 +149,18 @@ export default function Signup() {
                     {TEXT.CONFIRM_PASSWORD}
                     <div className={CLASSNAME.REQUIRED}>*</div>
                   </label>
-                  <input
-                    title={COMMON_TEXT.CONFIRM_PASSWORD_S}
-                    name={COMMON_TEXT.CONFIRM_PASSWORD_S}
-                    type={TYPE.PASSWORD}
-                    value={values.confirmPassword}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    id={TEXT.CONFIRM_PASSWORD}
-                  />
+                  <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                    <input
+                      title={COMMON_TEXT.CONFIRM_PASSWORD_S}
+                      name={COMMON_TEXT.CONFIRM_PASSWORD_S}
+                      type={isConfirmPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
+                      value={values.confirmPassword}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      id={TEXT.CONFIRM_PASSWORD}
+                    />
+                    {values.confirmPassword && <button className={CLASSNAME.EYE} onClick={() => { setIsConfirmPasswordVisible(!isConfirmPasswordVisible) }}><img src={isConfirmPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                  </div>
                   {errors.confirmPassword && touched.confirmPassword && (
                     <div className={CLASSNAME.ERROR}>
                       {errors.confirmPassword}

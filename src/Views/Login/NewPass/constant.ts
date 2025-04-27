@@ -34,6 +34,8 @@ export const CLASSNAME = {
   SUCCESS_TEXT: 'newpass_sucessText',
   SUCCESS_LOGIN: 'newpass_sucessLogin',
   REQUIRED: 'newpass_required',
+  EYE: "newpass_isSeenPassword",
+  INPUT_PASSWORD_WRAPPER:'newpass_passwordWrapper',
 };
 export const TEXT = {
   TITLE: 'Forgot Password',

@@ -159,6 +159,20 @@
   background-color: rgba(0, 123, 255, 0.1);
   text-decoration: none;
 }
+/* password eye button */
+.newpass_isSeenPassword {
+  position: absolute;
+  right: 2%;
+  top: 25%;
+  border: none;
+  background-color: white;
+}
+.newpass_passwordWrapper{
+  position:relative;
+}
+.newpass_passwordWrapper input{
+ padding-right:40px
+}
 
 /*
      RESPONSIVE DESIGN */

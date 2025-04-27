@@ -46,7 +46,9 @@ export const CLASSNAME = {
   SUBMIT_BUTTON: 'signup_submitButton',
   ERROR: 'signup_error',
   SIGNIN: 'signup_signin',
-  REQUIRED:'signup_required'
+  REQUIRED: 'signup_required',
+  EYE: "signup_isSeenPassword",
+  INPUT_PASSWORD_WRAPPER:'signup_passwordWrapper',
 };
 export const TEXT = {
   TITLE: 'Sign Up',

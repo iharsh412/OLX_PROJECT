@@ -32,7 +32,9 @@ export const CLASSNAME = {
   ERROR: 'signin_error',
   FORGET: 'signin_forgetpass',
   SINUP: 'signin_signup',
-  REQUIRED:"signin_required"
+  REQUIRED:"signin_required",
+  EYE: "signin_isSeenPassword",
+  INPUT_PASSWORD_WRAPPER:'signin_passwordWrapper',
 };
 export const TEXT = {
   LOGIN: 'Login',

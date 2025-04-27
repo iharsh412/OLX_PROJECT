@@ -1,7 +1,10 @@
 export interface MessageProps{
+    id: string;
     text: string;
-    createdAt: any;
+    createdAt: Date;
     user: string;
     room: string;
-    id: string;
+    senderId: string;
+    receiverId: string;
+    seen:boolean;
 }
