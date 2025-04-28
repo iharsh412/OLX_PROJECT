@@ -18,6 +18,7 @@ import { useEffect, useState } from 'react';
 import Modal from '../../CustomComponents/Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
 import { setUserId } from '../../../Store/ChatUser';
+import { TYPE } from '../../../Helper/constant';
 
 const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const { username, refresh } = useSelector(
@@ -28,7 +29,8 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const [post] = usePostLogoutDataMutation();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [answer, setAnswer] = useState<String>('no');
-
+  console.log(answer, 'answer');
+  console.log(openModal, 'opnMODAL');
   // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
@@ -96,8 +98,11 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             );
           })}
           <button
+            type={TYPE.BUTTON}
             title={TEXT.LOGOUT}
-            onClick={() => {
+            onClick={(e) => {
+              console.log("hello")
+              e.stopPropagation();
               setOpenModal(true);
               // handleItemClick();
             }}
@@ -112,6 +117,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             setAnswer={setAnswer}
             setOpen={setOpenModal}
             text={TEXT.ARE_YOU_SURE}
+            onConfirm={handleLogout}
             setDropdown={(dropdown: boolean) =>
               setOpenProfile?.(() => dropdown)
             }

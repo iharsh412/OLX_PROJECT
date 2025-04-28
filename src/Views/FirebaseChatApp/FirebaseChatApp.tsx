@@ -121,8 +121,7 @@ export default function FirebaseChatApp() {
       el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
     }
   }, [messages]);
-  console.log(unreadCounts, 'unreadCounts');
-  console.log(uniqueUsers, 'uniqueUsers');
+
   // mark user aseen to viewport
   useEffect(() => {
     if (!roomId || !id) return;
@@ -191,7 +190,7 @@ export default function FirebaseChatApp() {
                   }}
                 >
                   {user}
-                  {user!== roomId && unreadCounts[user] > 0 && (
+                  {user !== roomId && unreadCounts[user] > 0 && (
                     <span className={CLASSNAME.UNREAD}>
                       {unreadCounts[user]}
                     </span>
