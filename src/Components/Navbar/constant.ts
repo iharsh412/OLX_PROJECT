@@ -19,6 +19,7 @@ export const CLASSNAME = {
   SELL_INNER: 'home_nav_sell_inner',
   SELL_ADD: 'home_nav_sell_add',
   SELL_TEXT: 'home_nav_sell_text',
+  WISHLIST_WRAPPER:"navWishlistWrapper"
 
 };
 

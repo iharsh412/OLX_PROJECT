@@ -1,5 +1,5 @@
 import api from '../../api';
-import { Product, PaginationParams } from '../../../../Interface/constant';
+import { Product, PaginationParams } from '../../../../Helper/constant';
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({

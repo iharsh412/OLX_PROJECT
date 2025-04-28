@@ -1,14 +1,14 @@
 import './myAdsImage.css';
 import { CLASSNAME, TEXT } from './constant';
 import ICONS from '../../../../assets';
-import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Interface/constant';
+import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
 import { useEffect, useState } from 'react';
 import Modal from '../../Modal';
 import { toast } from 'react-toastify';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import { useNavigate } from 'react-router-dom';
 import EditAds from '../../EditAds';
-import { getDaysFromNow } from '../../../../Interface/helper';
+import { getDaysFromNow } from '../../../../Helper/function';
 
 const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
   const navigate = useNavigate();

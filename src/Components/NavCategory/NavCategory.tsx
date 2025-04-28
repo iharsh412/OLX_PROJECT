@@ -2,7 +2,7 @@ import { ROUTES_CONFIG } from '../../Shared/Constants';
 import './navCategory.css';
 import { useNavigate } from 'react-router-dom';
 import { CLASSNAME, TEXT } from './constant';
-import { TYPE } from '../../Interface/constant';
+import { TYPE } from '../../Helper/constant';
 
 export default function NavCategory() {
   const navigate = useNavigate();

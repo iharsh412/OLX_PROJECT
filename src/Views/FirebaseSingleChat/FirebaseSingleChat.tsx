@@ -16,6 +16,8 @@ import { RootState } from '../../Store';
 import { MessageProps } from './constant';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { CLASSNAME, TEXT } from '../FirebaseChatApp/constant';
+import { TYPE } from '../../Helper/constant';
 
 export default function FirebaseChatApp() {
   const { userId } = useSelector((state: RootState) => state.chatUser);
@@ -27,10 +29,9 @@ export default function FirebaseChatApp() {
   const messagEnd = useRef<HTMLDivElement>(null);
   const messageListRef = useRef<HTMLDivElement>(null);
 
-
   const handleSendMessage = async () => {
     if (newmsg.trim() === '') return;
-    
+
     const tempId = Date.now().toString();
     try {
       const newMessage: MessageProps = {
@@ -43,7 +44,7 @@ export default function FirebaseChatApp() {
         senderId: id || '',
         receiverId: userId || '',
       };
-      setMessages(prev => [...prev, newMessage]);
+      setMessages((prev) => [...prev, newMessage]);
       setNewmsg('');
 
       // Add to Firebase
@@ -57,14 +58,13 @@ export default function FirebaseChatApp() {
         receiverId: userId,
       });
 
-      
-      setMessages(prev => prev.map(msg => 
-        msg.id === tempId ? { ...msg, id: docRef.id } : msg
-      ));
+      setMessages((prev) =>
+        prev.map((msg) => (msg.id === tempId ? { ...msg, id: docRef.id } : msg))
+      );
     } catch (error) {
-      toast.error('Error sending message. Please try again later.');
-      
-      setMessages(prev => prev.filter(msg => msg.id !== tempId));
+      toast.error(TEXT.ERROR);
+
+      setMessages((prev) => prev.filter((msg) => msg.id !== tempId));
     }
   };
   useEffect(() => {
@@ -88,43 +88,36 @@ export default function FirebaseChatApp() {
 
     return () => unsubscribe();
   }, [roomId]);
-  // mark user aseen to viewport 
-   useEffect(() => {
+  // mark user aseen to viewport
+  useEffect(() => {
     if (!roomId || !id) return;
 
     const observerOptions = {
       root: messageListRef.current,
       threshold: 0.5,
     };
-
     const observers: IntersectionObserver[] = [];
-
     messages.forEach((msg) => {
-      // Only mark as seen if:
-      // 1. Message is not from current user
-      // 2. Message is addressed to current user
-      // 3. Message is not already marked as seen
       if (msg.senderId === id || msg.receiverId !== id || msg.seen) return;
-
       const messageElement = document.getElementById(msg.id);
       if (!messageElement) return;
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Update in Firebase
             const msgRef = doc(db, 'messages', msg.id);
             updateDoc(msgRef, { seen: true })
               .then(() => {
                 // Update local state
-                setMessages(prev => prev.map(m => 
-                  m.id === msg.id ? { ...m, seen: true } : m
-                ));
+                setMessages((prev) =>
+                  prev.map((m) => (m.id === msg.id ? { ...m, seen: true } : m))
+                );
               })
-              .catch(error => {
+              .catch((error) => {
                 console.error('Error updating seen status:', error);
               });
-            
+
             observer.disconnect();
           }
         });
@@ -135,11 +128,10 @@ export default function FirebaseChatApp() {
     });
 
     return () => {
-      observers.forEach(obs => obs.disconnect());
+      observers.forEach((obs) => obs.disconnect());
     };
   }, [messages, id, roomId]);
 
-  
   useEffect(() => {
     const el = messagEnd.current;
     if (el) {
@@ -148,60 +140,68 @@ export default function FirebaseChatApp() {
   }, [messages]);
 
   return (
-    <div className="chat-app">
-      <div className="message-wrapper">
-        <div className="message">Messages</div>
+    <div className={CLASSNAME.CHAT_APP}>
+      <div className={CLASSNAME.MESSAGE_WRAPPER}>
+        <div className={CLASSNAME.MESSAGE}>{TEXT.MESSAGES}</div>
         <div
-          className="message-list"
+          className={CLASSNAME.MESSAGE_LIST}
           ref={(el) => {
             if (el) {
               // Type assertion to bypass read-only restriction
-              (messagEnd as React.MutableRefObject<HTMLDivElement>).current = el;
-              (messageListRef as React.MutableRefObject<HTMLDivElement>).current = el;
+              (messagEnd as React.MutableRefObject<HTMLDivElement>).current =
+                el;
+              (
+                messageListRef as React.MutableRefObject<HTMLDivElement>
+              ).current = el;
             }
           }}
         >
           {messages.length === 0 ? (
-            <div className="no_message">
-              "No messages yet. Say hello to start the conversation!"
-            </div>
+            <div className={CLASSNAME.NO_MSG}>{TEXT.NO_MSG}</div>
           ) : (
             messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`message-item ${
-                  msg.user === username ? 'sent' : 'received'
+                id={msg.id}
+                className={`${CLASSNAME.MESSAGE_ITEM} ${
+                  msg.user === username ? CLASSNAME.SENT : CLASSNAME.RECEIVED
                 }`}
               >
-                <span className="message-text">{msg.text}</span>
-                <span className="message-time">
-                  {msg.createdAt instanceof Date ? msg.createdAt.toLocaleTimeString([], {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                  }) : ''}
+                <span className={CLASSNAME.MESSAGE_TEXT}>{msg.text}</span>
+                <span className={CLASSNAME.MESSAGE_TIME}>
+                  {msg.createdAt
+                    ? new Date(
+                        (msg.createdAt as any).seconds * 1000
+                      ).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })
+                    : ''}
                 </span>
                 {msg.user === username && (
-                    <span className={`tick-status ${msg.seen ? 'seen' : ''}`}>
-                      {msg.seen ? '✓✓' : '✓'}
-                    </span>
-                  )}
+                  <span
+                    className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
+                  >
+                    {msg.seen ? '✓✓' : '✓'}
+                  </span>
+                )}
               </div>
             ))
           )}
         </div>
-
-        <div className="input-wrapper">
+           {/* send button and input wrapper  */}
+        <div className={CLASSNAME.INPUT_WRAPPER}>
           <input
-            className="message-input"
-            type="text"
-            placeholder="Type a message"
+            className={CLASSNAME.MESSAGE_INPUT}
+            type={TYPE.TEXT}
+            placeholder={TEXT.TYPE_MESSAGE}
             value={newmsg}
             onChange={(e) => setNewmsg(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleSendMessage();
             }}
           />
-          <button className="send-btn" onClick={handleSendMessage}>
+          <button className={CLASSNAME.SEND_BUTTON} onClick={handleSendMessage}>
             Send
           </button>
         </div>

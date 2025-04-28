@@ -3,7 +3,7 @@ import ICONS from '../../assets';
 import Footer from '../../Components/Footer';
 import './sellLayout.css';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../Helper/constant';
 
 export default function SellLayout() {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { CLASSNAME, TEXT } from './constant';
 import './profileSection.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import Loader from '../../Components/Atom/Loader';
 import Error from '../../Components/Atom/Error';
 
@@ -22,7 +22,7 @@ export default function ProfileSection() {
       <div className={CLASSNAME.WRAPPER}>
         {/* header */}
         <div className={CLASSNAME.PROFILE_TEXT_WRAPPER}>
-          {/* coss icon */}
+          {/* cross icon */}
           <Link className={CLASSNAME.CROSS} to={ROUTES_CONFIG.HOMEPAGE.path}>
             <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
           </Link>

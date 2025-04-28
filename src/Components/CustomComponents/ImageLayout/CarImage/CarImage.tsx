@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Interface/constant';
+import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
 import { RootState } from '../../../../Store';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
-import { getDaysFromNow } from '../../../../Interface/helper';
+import { getDaysFromNow } from '../../../../Helper/function';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 

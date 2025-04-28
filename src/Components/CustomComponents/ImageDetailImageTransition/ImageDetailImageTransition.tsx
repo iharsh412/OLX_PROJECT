@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './imageDetailImageTransition.css';
 import { CLASSNAME, ImageSectionProps } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
 function ImageSection({ images }: ImageSectionProps) {
   const imageArray: string[] = images

@@ -9,7 +9,7 @@ import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Login/Signup';
 import ProductDetail from '../Views/ImageDetail';
 import Signin from '../Views/Login/Signin';
-import ForgetPass from '../Views/Login/ForgetPass';
+import ForgetPass from '../Views/Login/ForgetPassEmailValidation';
 import Verification from '../Views/Login/Verification';
 import NewPass from '../Views/Login/NewPass';
 

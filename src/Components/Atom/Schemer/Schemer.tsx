@@ -1,5 +1,5 @@
 import { Heart } from 'lucide-react';
-import { TYPE } from '../../../Interface/constant';
+import { TYPE } from '../../../Helper/constant';
 import { CLASSNAME } from '../../CustomComponents/ImageLayout/CarImage/constant';
 import { CLASSNAME as SCHEMER_CLASSNAME, TEXT } from './constant';
 import './schemer.css';

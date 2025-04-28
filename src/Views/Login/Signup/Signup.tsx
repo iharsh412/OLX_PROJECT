@@ -12,21 +12,19 @@ import {
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import {
   CLASSNAME as LOGIN_SECTION_CLASSNAME,
   TEXT as LOGIN_SECTION_TEXT,
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
-
-
 export default function Signup() {
   const navigate = useNavigate();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   const [post, { isLoading }] = usePostSignupDataMutation();
-
 
   // handle form submit
   async function handleSubmit(
@@ -63,7 +61,6 @@ export default function Signup() {
           handleSubmit,
           isSubmitting,
         }) => {
-          console.log(values.email, 'email');
           return (
             <div className={CLASSNAME.WRAPPER}>
               {/* header */}
@@ -86,8 +83,10 @@ export default function Signup() {
               <form onSubmit={handleSubmit}>
                 {/* username */}
                 <div className={CLASSNAME.USERNAME_INPUT}>
-                  <label htmlFor={TEXT.USERNAME}>{TEXT.USERNAME}
-                    <div className={CLASSNAME.REQUIRED}>*</div> </label>
+                  <label htmlFor={TEXT.USERNAME}>
+                    {TEXT.USERNAME}
+                    <div className={CLASSNAME.REQUIRED}>*</div>{' '}
+                  </label>
                   <input
                     title={TEXT.USERNAME}
                     type={TYPE.TEXT}
@@ -137,7 +136,20 @@ export default function Signup() {
                       onBlur={handleBlur}
                       id={COMMON_TEXT.PASSWORD_S}
                     />
-                    {values.password && <button className={CLASSNAME.EYE} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}><img src={isPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                    {values.password && (
+                      <button
+                        type={TYPE.BUTTON}
+                        className={CLASSNAME.EYE}
+                        onClick={() => {
+                          setIsPasswordVisible(!isPasswordVisible);
+                        }}
+                      >
+                        <img
+                          src={isPasswordVisible ? ICONS.closeEye : ICONS.eye}
+                          alt={COMMON_TEXT.IMG}
+                        />
+                      </button>
+                    )}
                   </div>
                   {errors.password && touched.password && (
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>
@@ -153,13 +165,34 @@ export default function Signup() {
                     <input
                       title={COMMON_TEXT.CONFIRM_PASSWORD_S}
                       name={COMMON_TEXT.CONFIRM_PASSWORD_S}
-                      type={isConfirmPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
+                      type={
+                        isConfirmPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD
+                      }
                       value={values.confirmPassword}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       id={TEXT.CONFIRM_PASSWORD}
                     />
-                    {values.confirmPassword && <button className={CLASSNAME.EYE} onClick={() => { setIsConfirmPasswordVisible(!isConfirmPasswordVisible) }}><img src={isConfirmPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                    {values.confirmPassword && (
+                      <button
+                        type={TYPE.BUTTON}
+                        className={CLASSNAME.EYE}
+                        onClick={() => {
+                          setIsConfirmPasswordVisible(
+                            !isConfirmPasswordVisible
+                          );
+                        }}
+                      >
+                        <img
+                          src={
+                            isConfirmPasswordVisible
+                              ? ICONS.closeEye
+                              : ICONS.eye
+                          }
+                          alt={COMMON_TEXT.IMG}
+                        />
+                      </button>
+                    )}
                   </div>
                   {errors.confirmPassword && touched.confirmPassword && (
                     <div className={CLASSNAME.ERROR}>

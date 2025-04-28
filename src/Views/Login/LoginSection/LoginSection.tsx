@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import ImageSection from '../../../Components/Atom/ImageTransition';
 import { CLASSNAME, TEXT } from './constant.ts';
 import { ROUTES_CONFIG } from '../../../Shared/Constants.ts';
-import { TYPE } from '../../../Interface/constant.ts';
+import { TYPE } from '../../../Helper/constant.ts';
 
 export default function LoginPage() {
   return (

@@ -12,14 +12,13 @@ import {
   updateDoc,
 } from 'firebase/firestore';
 import { db } from '../../firebase';
-
 import { RootState } from '../../Store';
-import { MessageProps } from './constant';
+import { MessageProps, CLASSNAME, TEXT } from './constant';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-
+import { TYPE } from '../../Helper/constant';
 export default function FirebaseChatApp() {
-  const [senderId, setSenderId] = useState<string | null>(null);
+  const [receiverId, setReceiverId] = useState<string | null>(null);
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
@@ -28,10 +27,13 @@ export default function FirebaseChatApp() {
   const [roomId, setRoomId] = useState('');
   const messagEnd = useRef<HTMLDivElement | null>(null);
   const messageListRef = useRef<HTMLDivElement | null>(null);
-
+  const [unreadCounts, setUnreadCounts] = useState<{
+    [roomId: string]: number;
+  }>({});
 
   const handleSendMessage = async () => {
-    if (newmsg.trim() === '' || senderId === null || senderId === id) return;
+    if (newmsg.trim() === '' || receiverId === null || receiverId === id)
+      return;
 
     const tempId = Date.now().toString();
     try {
@@ -43,9 +45,9 @@ export default function FirebaseChatApp() {
         room: roomId,
         seen: false,
         senderId: id || '',
-        receiverId: senderId || '',
+        receiverId: receiverId || '',
       };
-      setMessages(prev => [...prev, newMessage]);
+      setMessages((prev) => [...prev, newMessage]);
       setNewmsg('');
 
       // Add to Firebase
@@ -56,17 +58,16 @@ export default function FirebaseChatApp() {
         room: roomId,
         seen: false,
         senderId: id,
-        receiverId: senderId,
+        receiverId: receiverId,
       });
 
-
-      setMessages(prev => prev.map(msg =>
-        msg.id === tempId ? { ...msg, id: docRef.id } : msg
-      ));
+      setMessages((prev) =>
+        prev.map((msg) => (msg.id === tempId ? { ...msg, id: docRef.id } : msg))
+      );
     } catch (error) {
-      toast.error('Error sending message. Please try again later.');
+      toast.error(TEXT.ERROR);
 
-      setMessages(prev => prev.filter(msg => msg.id !== tempId));
+      setMessages((prev) => prev.filter((msg) => msg.id !== tempId));
     }
   };
 
@@ -97,12 +98,18 @@ export default function FirebaseChatApp() {
 
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let uniqueRooms: Set<string> = new Set();
-
+      const counts: { [roomId: string]: number } = {};
       snapshot.forEach((doc) => {
-        if (doc.data().room.split('_').includes(String(id)))
+        if (doc.data().room.split('_').includes(String(id))) {
           uniqueRooms.add(doc.data().room);
+          if (doc.data().receiverId == id && !doc.data().seen) {
+            console.log(doc.data().room, 'doc.data().room');
+            counts[doc.data().room] = (counts[doc.data().room] || 0) + 1;
+          }
+        }
       });
       setUniqueUsers(Array.from(uniqueRooms));
+      setUnreadCounts(counts);
     });
 
     return () => unsubscribe();
@@ -114,8 +121,9 @@ export default function FirebaseChatApp() {
       el.scrollTo({ top: el.scrollHeight, behavior: 'smooth' });
     }
   }, [messages]);
-
-  // mark user aseen to viewport 
+  console.log(unreadCounts, 'unreadCounts');
+  console.log(uniqueUsers, 'uniqueUsers');
+  // mark user aseen to viewport
   useEffect(() => {
     if (!roomId || !id) return;
 
@@ -126,28 +134,22 @@ export default function FirebaseChatApp() {
     const observers: IntersectionObserver[] = [];
 
     messages.forEach((msg) => {
-      // Only mark as seen if:
-      // 1. Message is not from current user
-      // 2. Message is addressed to current user
-      // 3. Message is not already marked as seen
-      if (msg.senderId === id || msg.receiverId !== id || msg.seen) return;
-
+      if (msg.senderId === id || msg.receiverId != id || msg.seen) return;
       const messageElement = document.getElementById(msg.id);
       if (!messageElement) return;
 
       const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+        entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Update in Firebase
             const msgRef = doc(db, 'messages', msg.id);
             updateDoc(msgRef, { seen: true })
               .then(() => {
-                // Update local state
-                setMessages(prev => prev.map(m =>
-                  m.id === msg.id ? { ...m, seen: true } : m
-                ));
+                setMessages((prev) =>
+                  prev.map((m) => (m.id === msg.id ? { ...m, seen: true } : m))
+                );
               })
-              .catch(error => {
+              .catch((error) => {
                 console.error('Error updating seen status:', error);
               });
 
@@ -161,73 +163,89 @@ export default function FirebaseChatApp() {
     });
 
     return () => {
-      observers.forEach(obs => obs.disconnect());
+      observers.forEach((obs) => obs.disconnect());
     };
   }, [messages, id, roomId]);
 
   return (
     <>
       {uniqueUsers.length === 0 ? (
-        <div className="no_users">
-          No conversations yet. Start chatting by connecting with  seller!
-        </div>
+        <div className={CLASSNAME.NO_USERS}>{TEXT.NO_CONVERSATIONS}</div>
       ) : (
-        <div className="chat-app">
-          <div className="userWrapper">
-            <div className="user">User</div>
-            <div className="user-list">
+        <div className={CLASSNAME.CHAT_APP}>
+          <div className={CLASSNAME.USER_WRAPPER}>
+            <div className={CLASSNAME.USER}>{TEXT.USER}</div>
+            <div className={CLASSNAME.USER_LIST}>
               {uniqueUsers.map((user) => (
                 <button
                   key={user}
-                  className={`user-item ${user === roomId ? 'activeUser' : ''} `}
-                  disabled={user === roomId}
+                  className={`${CLASSNAME.USER_ITEM} ${user == roomId ? CLASSNAME.ACTIVE_USER : ''} `}
+                  disabled={user == roomId}
                   onClick={() => {
                     setRoomId(user);
-                    setSenderId(
-                      user.split('_')[0] === id
+                    setReceiverId(
+                      user.split('_')[0] == id
                         ? user.split('_')[1]
                         : user.split('_')[0]
                     );
                   }}
                 >
                   {user}
+                  {user!== roomId && unreadCounts[user] > 0 && (
+                    <span className={CLASSNAME.UNREAD}>
+                      {unreadCounts[user]}
+                    </span>
+                  )}
                 </button>
               ))}
             </div>
           </div>
-          <div className="message-wrapper">
+          <div className={CLASSNAME.MESSAGE_WRAPPER}>
+            <div className={CLASSNAME.MESSAGE}>{TEXT.MESSAGES}</div>
             <div
-              className="message-list"
+              className={CLASSNAME.MESSAGE_LIST}
               ref={(el) => {
                 if (el) {
-                  (messagEnd as React.MutableRefObject<HTMLDivElement>).current = el;
-                  (messageListRef as React.MutableRefObject<HTMLDivElement>).current = el;
+                  (
+                    messagEnd as React.MutableRefObject<HTMLDivElement>
+                  ).current = el;
+                  (
+                    messageListRef as React.MutableRefObject<HTMLDivElement>
+                  ).current = el;
                 }
               }}
             >
               {messages.length === 0 ? (
-                <div className="no_message">
-                  Select a seller roomId to message and unlock better deals,
-                  faster responses, and secure transactions!
+                <div className={CLASSNAME.NO_MSG}>
+                  {TEXT.SELECT_SELLER_ROOMID}
                 </div>
               ) : (
                 <>
                   {messages.map((msg) => (
                     <div
                       key={msg.id}
-                      className={`message-item ${msg.user === username ? 'sent' : 'received'
-                        }`}
-
+                      id={msg.id}
+                      className={`${CLASSNAME.MESSAGE_ITEM} ${
+                        msg.user === username
+                          ? CLASSNAME.SENT
+                          : CLASSNAME.RECEIVED
+                      }`}
                     >
-                      <span className="message-text">{msg.text}</span>
-                      <span className="message-time">
-                        {msg.createdAt instanceof Date ? msg.createdAt.toLocaleTimeString([], {
-                          hour: '2-digit',
-                          minute: '2-digit',
-                        }) : ''}
+                      <span className={CLASSNAME.MESSAGE_TEXT}>{msg.text}</span>
+                      <span className={CLASSNAME.MESSAGE_TIME}>
+                        {msg.createdAt
+                          ? new Date(
+                              (msg.createdAt as any).seconds * 1000
+                            ).toLocaleTimeString([], {
+                              hour: '2-digit',
+                              minute: '2-digit',
+                            })
+                          : ''}
                       </span>
                       {msg.user === username && (
-                        <span className={`tick-status ${msg.seen ? 'seen' : ''}`}>
+                        <span
+                          className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
+                        >
                           {msg.seen ? '✓✓' : '✓'}
                         </span>
                       )}
@@ -238,26 +256,28 @@ export default function FirebaseChatApp() {
             </div>
 
             {messages.length !== 0 && (
-              <div className="input-wrapper">
+              <div className={CLASSNAME.INPUT_WRAPPER}>
                 <input
-                  className="message-input"
-                  type="text"
-                  placeholder="Type a message"
+                  className={CLASSNAME.MESSAGE_INPUT}
+                  type={TYPE.TEXT}
+                  placeholder={TEXT.TYPE_MESSAGE}
                   value={newmsg}
                   onChange={(e) => setNewmsg(e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key === 'Enter') handleSendMessage();
                   }}
                 />
-                <button className="send-btn" onClick={handleSendMessage}>
-                  Send
+                <button
+                  className={CLASSNAME.SEND_BUTTON}
+                  onClick={handleSendMessage}
+                >
+                  {TEXT.SEND}
                 </button>
               </div>
             )}
           </div>
-        </div >
-      )
-      }
+        </div>
+      )}
     </>
   );
 }

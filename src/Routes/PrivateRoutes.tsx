@@ -3,7 +3,7 @@ import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import { CustomRouter } from './RootRoutes';
 import HomeLayout from '../Views/Home';
 import Dashboard from '../Views/Dashboard';
-import SellLayout from '../Views/Sell';
+import SellLayout from '../Views/SellLayout';
 import SellSection from '../Components/CustomComponents/SellSection/SellSection';
 import Wishlist from '../Views/WishlistSection';
 import Post from '../Views/Post';

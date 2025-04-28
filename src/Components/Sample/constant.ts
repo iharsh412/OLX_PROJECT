@@ -1,4 +1,4 @@
-import { Product } from "../../Interface/constant";
+import { Product } from "../../Helper/constant";
 
 export const CLASSNAME = {
   WRAPPER: 'sample-Wrapper',

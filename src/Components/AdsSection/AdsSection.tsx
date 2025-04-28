@@ -1,6 +1,6 @@
 import './adsSection.css';
 import { CLASSNAME, CONTENTS, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function AdsSection() {
   return (

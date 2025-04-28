@@ -5,7 +5,7 @@ import { setLanguage } from '../../../Store/Language';
 import './languageSelector.css';
 import ICONS from '../../../assets';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
 export default function LanguageSelector() {
   const language = useSelector((state: RootState) => state?.language?.language);

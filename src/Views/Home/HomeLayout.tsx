@@ -20,6 +20,7 @@ export default function HomeLayout() {
 
   // path change remove toast and empty the serach  field
   useEffect(() => {
+    console.log(location?.pathname);
     dispatch(setItem(''));
     if (location?.pathname !== '/login') toast.dismiss();
   }, [location?.pathname]);

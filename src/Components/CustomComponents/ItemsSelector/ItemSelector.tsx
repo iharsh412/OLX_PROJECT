@@ -1,77 +1,74 @@
 import './itemSelector.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { ChangeEvent, useEffect, useState } from 'react';
-// import ICONS from '../../../assets';
+import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 import { CLASSNAME, TEXT } from './constant';
-import {  TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import ICONS from '../../../assets';
 
 export default function ItemsSelector() {
-  const items = useSelector((state: RootState) => state?.areaItem?.item);
   const dispatch = useDispatch();
-  const [object, setObject] = useState(items);
   const navigate = useNavigate();
-  const [debouncedValue, setDebouncedValue] = useState(object);
+  const items = useSelector((state: RootState) => state?.areaItem?.item);
+  const [localValue, setLocalValue] = useState(items);
+  const [debouncedValue, setDebouncedValue] = useState(items);
 
- 
-  // onchange dispatch the input
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.value.trim()) navigate(ROUTES_CONFIG.HOMEPAGE.path);
-    setObject(e.target.value);
-  }
-
-
-  // for debouncing
-  useEffect(() => {
-    setObject(items);
-  }, [items]);
   useEffect(() => {
     const timer = setTimeout(() => {
-      setDebouncedValue(object);
-    }, 1000);
+      setDebouncedValue(localValue);
+    }, 500); // Reduced debounce time from 1000ms to 500ms
 
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [object]);
+    return () => clearTimeout(timer);
+  }, [localValue]);
 
   useEffect(() => {
-    if (debouncedValue === '' || debouncedValue === null) {
-      dispatch(setItem(''));
-    } else {
-      dispatch(setItem(debouncedValue));
-    }
+    setLocalValue(items);
+  }, [items]);
+  useEffect(() => {
+    dispatch(setItem(debouncedValue ?? ''));
   }, [debouncedValue, dispatch]);
+
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value.trim();
+      setLocalValue(value);
+      if (value) navigate(ROUTES_CONFIG.HOMEPAGE.path);
+    },
+    [navigate]
+  );
+
+  const handleClear = useCallback(() => {
+    setLocalValue('');
+    dispatch(setItem(''));
+  }, [dispatch]);
 
   return (
     <div className={CLASSNAME.WRAPPER}>
-      {/* input field */}
       <input
         type={TYPE.TEXT}
         className={CLASSNAME.INPUT}
         placeholder={TEXT.PLACEHOLDER}
-        value={object}
-        onChange={(e) => {
-          handleChange(e);
-        }}
+        value={localValue ?? ''}
+        onChange={handleChange}
+        aria-label={TEXT.PLACEHOLDER}
       />
-      {/* search button */}
-      {/* <button
+
+      <button
         className={CLASSNAME.SEARCH}
-        disabled={items === ''}
-        onClick={() => {
-          dispatch(setItem(object));
-        }}
+        // disabled={isButtonDisabled}
+        onClick={handleClear}
+        aria-label="Clear search"
       >
         <img
           className={CLASSNAME.SEARCH_ICON}
-          src={ICONS.searchIconWhite}
+          src={ICONS.cross}
           alt={COMMON_TEXT.IMG}
+          loading="lazy" // Optimize image loading
         />
-      </button> */}
+      </button>
     </div>
   );
 }

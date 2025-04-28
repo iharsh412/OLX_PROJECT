@@ -13,7 +13,7 @@ import { updateAuthState } from '../../../Store/Common';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import {
   CLASSNAME as LOGIN_SECTION_CLASSNAME,
   TEXT as LOGIN_SECTION_TEXT,
@@ -108,14 +108,27 @@ export default function Signin() {
                   <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
                     <input
                       ref={passwordFocus}
-                      type={isPasswordVisible?TYPE.TEXT:TYPE.PASSWORD}
+                      type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
                       id={COMMON_TEXT.PASSWORD_S}
                       name={COMMON_TEXT.PASSWORD_S}
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {values.password && <button className={CLASSNAME.EYE} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}><img src={isPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
+                    {values.password && (
+                      <button
+                        type={TYPE.BUTTON}
+                        className={CLASSNAME.EYE}
+                        onClick={() => {
+                          setIsPasswordVisible(!isPasswordVisible);
+                        }}
+                      >
+                        <img
+                          src={isPasswordVisible ? ICONS.closeEye : ICONS.eye}
+                          alt={COMMON_TEXT.IMG}
+                        />
+                      </button>
+                    )}
                   </div>
                   {errors.password && touched.password && (
                     <div className={CLASSNAME.ERROR}>{errors.password}</div>

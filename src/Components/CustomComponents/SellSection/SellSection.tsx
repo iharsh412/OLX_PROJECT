@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ICONS from '../../../assets';
 import SubCategory from '../SellCategory/SellCategory';
 import { CATEGORIES, CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
 export default function SellSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');

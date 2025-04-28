@@ -16,7 +16,7 @@ import {
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { Link, useNavigate } from 'react-router-dom';
 import ICONS from '../../assets';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import {
   useGetUserInfoQuery,
   usePostEditProfileDataMutation,

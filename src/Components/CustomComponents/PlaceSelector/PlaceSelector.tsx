@@ -5,7 +5,7 @@ import { setArea } from '../../../Store/AreaItem';
 import './placeSelector.css';
 import ICONS from '../../../assets';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../../Interface/constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
 
 export default function PlaceSelector() {
   const area = useSelector((state: RootState) => state?.areaItem?.area);

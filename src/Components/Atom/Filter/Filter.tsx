@@ -3,7 +3,7 @@ import { FilterProps, CLASSNAME, TEXT } from './constant';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import { SampleData } from '../../Sample/constant';
-import { TYPE } from '../../../Interface/constant';
+import { TYPE } from '../../../Helper/constant';
 
 const Filter: React.FC<FilterProps> = ({
   category,

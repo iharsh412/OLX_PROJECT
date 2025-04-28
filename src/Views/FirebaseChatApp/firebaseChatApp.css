@@ -68,6 +68,7 @@
   transition: all 0.2s ease;
   border: 1px solid #e0e0e0;
   flex-shrink: 0;
+  position: relative;
 }
 
 .user-item:hover {
@@ -81,7 +82,17 @@
   color: white;
   border-color: #2c3e50;
 }
-
+/* unread-mssage-count */
+.unreadcount {
+  background-color: red;
+  position: absolute;
+  right: 2%;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+ 
+}
 /* ===== MESSAGING AREA ===== */
 .message-wrapper {
   flex: 1;
@@ -126,15 +137,14 @@
   word-break: break-word;
   display: flex;
   flex-direction: column;
- 
 }
-
+/* message text */
 .message-text {
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 4px;
 }
-
+/* time */
 .message-time {
   font-size: 11px;
   color: #666;
@@ -143,7 +153,15 @@
   text-align: right;
   width: 100%;
 }
-
+/* tick */
+.tick-status {
+  font-size: 11px;
+  color: #666;
+  text-align: right;
+  width: 30px;
+  text-align: right;
+  width: 100%;
+}
 .message-item.sent {
   align-self: flex-end;
   background-color: #dcf8c6;

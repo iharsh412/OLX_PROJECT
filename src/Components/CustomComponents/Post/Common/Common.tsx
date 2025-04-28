@@ -11,7 +11,7 @@ import {
   TextFieldProps,
 } from './constant';
 import ICONS from '../../../../assets';
-import { COMMON_TEXT } from '../../../../Interface/constant';
+import { COMMON_TEXT } from '../../../../Helper/constant';
 
 const Year: React.FC<TextFieldProps> = ({
   htmlFor,

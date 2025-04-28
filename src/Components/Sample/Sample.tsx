@@ -3,7 +3,7 @@ import { CLASSNAME, TEXT } from './constant';
 import './sample.css';
 import { useParams } from 'react-router-dom';
 import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
-import { COMMON_TEXT, Product } from '../../Interface/constant';
+import { COMMON_TEXT, Product } from '../../Helper/constant';
 import { useEffect, useState } from 'react';
 import ICONS from '../../assets';
 import { SampleData, ResponseData } from './constant';

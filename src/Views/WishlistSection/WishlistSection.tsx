@@ -1,9 +1,9 @@
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 import ImageLayout from '../../Components/CustomComponents/ImageLayout/CarImage';
 import './wishlistSection.css';
-import { Product } from '../../Interface/constant';
+import { Product } from '../../Helper/constant';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import Schemer from '../../Components/Atom/Schemer';
 import Error from '../../Components/Atom/Error';
 import { Link } from 'react-router-dom';

@@ -7,7 +7,8 @@ export const CLASSNAME = {
   LOADING: 'myads-loading',
 };
 export const TEXT = {
-  NO_ADS: 'Ready to sell something? List your first product and start reaching buyers today! ',
+  NO_ADS:
+    'Ready to sell something? List your first product and start reaching buyers today! ',
   MY_ADS: 'My Ads',
   ADS: 'click',
 };

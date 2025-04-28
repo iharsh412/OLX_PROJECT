@@ -3,7 +3,7 @@ import './imageDetail.css';
 import ImageTransition from '../../Components/CustomComponents/ImageDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ import { toast } from 'react-toastify';
 import { setUserId } from '../../Store/ChatUser';
 import Loader from '../../Components/Atom/Loader';
 import Error from '../../Components/Atom/Error';
-import { getDaysFromNow } from '../../Interface/helper';
+import { getDaysFromNow } from '../../Helper/function';
 
 export default function ImageDetail() {
   const { productId } = useParams();

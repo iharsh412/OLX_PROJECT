@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 // import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
-import './forgetPass.css';
+import './forgetPassEmailValidation.css';
 import { usePostForgetPasswordDataMutation } from '../../../Services/Api/module/imageApi';
 import {
   VALIDATION,
@@ -10,7 +10,7 @@ import {
   TEXT,
 } from './constant';
 import { toast } from 'react-toastify';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import { useState } from 'react';
 import {
   CLASSNAME as LOGIN_SECTION_CLASSNAME,
@@ -20,8 +20,7 @@ import ICONS from '../../../assets';
 import { Link } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
-export default function ForgetPass() {
- 
+export default function ForgetPassEmailValidation() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
 
@@ -72,7 +71,8 @@ export default function ForgetPass() {
               </div>
               {/* email section */}
               <div className={CLASSNAME.EMAIL_INPUT}>
-                <label htmlFor={COMMON_TEXT.EMAIL_S}>Email
+                <label htmlFor={COMMON_TEXT.EMAIL_S}>
+                  Email
                   <div className={CLASSNAME.REQUIRED}>*</div>
                 </label>
                 <input

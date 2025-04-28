@@ -2,7 +2,7 @@ import './myAds.css';
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
 import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
-import { Product } from '../../Interface/constant';
+import { Product } from '../../Helper/constant';
 import Error from '../../Components/Atom/Error';
 import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
 import { ROUTES_CONFIG } from '../../Shared/Constants';

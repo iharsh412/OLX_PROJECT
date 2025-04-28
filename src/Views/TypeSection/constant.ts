@@ -1,4 +1,3 @@
 export const CLASSNAME = {
-    WRAPPER :"carWrapper",
-}
-
+  WRAPPER: 'carWrapper',
+};

@@ -9,7 +9,7 @@ import {
   TEXT,
 } from './constant';
 import { useNavigate, useParams } from 'react-router-dom';
-import { COMMON_TEXT, TYPE } from '../../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import { useState } from 'react';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { toast } from 'react-toastify';
@@ -25,7 +25,8 @@ export default function NewPass() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const [post, { isLoading }] = usePostChangePasswordDataMutation();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+  const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
+    useState(false);
   // handle submit
   async function handleSubmit(values: FORM_VALUES) {
     try {
@@ -68,17 +69,30 @@ export default function NewPass() {
                     <span className={CLASSNAME.REQUIRED}>*</span>
                   </label>
                   <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
-                  <input
-                    type={isPasswordVisible?TYPE.TEXT:TYPE.PASSWORD}
-                    name={COMMON_TEXT.PASSWORD_S}
-                    title={COMMON_TEXT.PASSWORD}
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-                
-                {values.password && <button className={CLASSNAME.EYE} onClick={() => { setIsPasswordVisible(!isPasswordVisible) }}><img src={isPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
-                </div>
+                    <input
+                      type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
+                      name={COMMON_TEXT.PASSWORD_S}
+                      title={COMMON_TEXT.PASSWORD}
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+
+                    {values.password && (
+                      <button
+                        type={TYPE.BUTTON}
+                        className={CLASSNAME.EYE}
+                        onClick={() => {
+                          setIsPasswordVisible(!isPasswordVisible);
+                        }}
+                      >
+                        <img
+                          src={isPasswordVisible ? ICONS.closeEye : ICONS.eye}
+                          alt={COMMON_TEXT.IMG}
+                        />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 {errors.password && touched.password && (
                   <div className={CLASSNAME.ERROR}>{errors.password}</div>
@@ -90,17 +104,38 @@ export default function NewPass() {
                     <span className={CLASSNAME.REQUIRED}>*</span>
                   </label>
                   <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
-                  <input
-                    title={COMMON_TEXT.CONFIRM_PASSWORD_S}
-                    type={isConfirmPasswordVisible?TYPE.TEXT:TYPE.PASSWORD}
-                    name={COMMON_TEXT.CONFIRM_PASSWORD_S}
-                    value={values.confirmPassword}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
-               
-                {values.confirmPassword && <button className={CLASSNAME.EYE} onClick={() => { setIsConfirmPasswordVisible(!isConfirmPasswordVisible) }}><img src={isConfirmPasswordVisible ? ICONS.closeEye : ICONS.eye} alt={COMMON_TEXT.IMG} /></button>}
-                </div>
+                    <input
+                      title={COMMON_TEXT.CONFIRM_PASSWORD_S}
+                      type={
+                        isConfirmPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD
+                      }
+                      name={COMMON_TEXT.CONFIRM_PASSWORD_S}
+                      value={values.confirmPassword}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+
+                    {values.confirmPassword && (
+                      <button
+                        type={TYPE.BUTTON}
+                        className={CLASSNAME.EYE}
+                        onClick={() => {
+                          setIsConfirmPasswordVisible(
+                            !isConfirmPasswordVisible
+                          );
+                        }}
+                      >
+                        <img
+                          src={
+                            isConfirmPasswordVisible
+                              ? ICONS.closeEye
+                              : ICONS.eye
+                          }
+                          alt={COMMON_TEXT.IMG}
+                        />
+                      </button>
+                    )}
+                  </div>
                 </div>
                 {errors.confirmPassword && touched.confirmPassword && (
                   <div className={CLASSNAME.ERROR}>

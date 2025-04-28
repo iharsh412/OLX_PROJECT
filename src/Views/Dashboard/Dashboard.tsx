@@ -2,9 +2,9 @@ import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/inde
 import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index.ts';
 import './dashboard.css';
 import { useEffect, useState } from 'react';
-import { COMMON_TEXT } from '../../Interface/constant.ts';
+import { COMMON_TEXT } from '../../Helper/constant.ts';
 import { CLASSNAME, TEXT } from './constant.ts';
-import { Product } from '../../Interface/constant.ts';
+import { Product } from '../../Helper/constant.ts';
 import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
 import Schemer from '../../Components/Atom/Schemer/Schemer.tsx';
@@ -37,7 +37,7 @@ export default function Dashboard() {
           return [...prev, ...data];
         });
     }
-  }, [data]);
+  }, [data,search]);
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function Dashboard() {
       {totalImages && (
         <div className={CLASSNAME.WRAPPER}>
           {isLoading && (
-            <div className="loader">
+            <div className={CLASSNAME.LOADER}>
               {Array.from({ length: 10 }, (_, i) => (
                 <Schemer key={i} />
               ))}
@@ -65,7 +65,7 @@ export default function Dashboard() {
             <h2 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_PRODUCTS}</h2>
           )}
           {/* load section */}
-          {data?.length === limit && (
+          {data?.length != 0 && data?.length === limit && (
             <button
               className={CLASSNAME.LOAD}
               onClick={() => setPage((prev) => prev + 1)}

@@ -8,34 +8,28 @@ import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi'
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../Interface/constant';
+import { COMMON_TEXT, TYPE } from '../../Helper/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
 import { toast } from 'react-toastify';
-// import {
-//   collection,
-//   onSnapshot,
-//   orderBy,
-//   query,
-//   where,
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
+import { db } from '../../firebase';
 
-// } from 'firebase/firestore';
-// import { db } from './firebase';
 export default function Navbar() {
-  // const[unseenMsgCount,setUnseenMsgCount] =useState(0);
-  // const { id } = useSelector((state: RootState) => state?.common);
+  const [unseenMsgCount, setUnseenMsgCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const { id } = useSelector((state: RootState) => state?.common);
   const { count } = useSelector((state: RootState) => state?.wishlistCount);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  //  const messageRef = collection(db, 'messages');
+  const messageRef = collection(db, 'messages');
   const { access, username } = useSelector((state: RootState) => state?.common);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const profileRef = useRef<HTMLButtonElement>(null);
-  const { data} = useGetWishlistProductsQuery(
+  const { data } = useGetWishlistProductsQuery(
     {},
     { refetchOnMountOrArgChange: true, refetchOnFocus: true }
   );
-  
 
   // handle click on sell
   function onClickSell() {
@@ -66,7 +60,7 @@ export default function Navbar() {
 
   //  Hooks
   useEffect(() => {
-    if (access  && data) {
+    if (access && data) {
       dispatch(setWishlistCount(data?.length));
     }
   }, [data]);
@@ -85,21 +79,37 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
+
   // for unseen message count
-  // useEffect(() => {
-  //   const q = query(
-  //     messageRef,
-  //     where('receiverId', '==', id),
-  //     where('seen', '==', false),
-  //     orderBy('createdAt')
-  //   );
-  
-  //   const unsubscribe = onSnapshot(q, (snapshot) => {
-  //     setUnseenMsgCount(snapshot.size); // This gives the count of unseen messages
-  //   });
-  
-  //   return () => unsubscribe();
-  // }, []);
+  useEffect(() => {
+    if (!id) {
+      setUnseenMsgCount(0);
+      setLoading(false);
+      return;
+    }
+
+    const q = query(
+      messageRef,
+      where('receiverId', '==', String(id)),
+      where('seen', '==', false)
+    );
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        setUnseenMsgCount(snapshot.size);
+        setLoading(false);
+      },
+      (error) => {
+        console.error(error);
+        setLoading(false);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, [id]);
 
   return (
     <div className={CLASSNAME.NAV_PARENT}>
@@ -120,7 +130,7 @@ export default function Navbar() {
         {/* cart login sell section */}
         <div className={CLASSNAME.CART_LOGIN_SELL}>
           {/* cart section */}
-          <div className="navWishlistWrapper">
+          <div className={CLASSNAME.WISHLIST_WRAPPER}>
             <button
               type={TYPE.BUTTON}
               className={CLASSNAME.CART}
@@ -139,7 +149,7 @@ export default function Navbar() {
           {access && (
             <>
               {/* chat section */}
-              <div className="navWishlistWrapper">
+              <div className={CLASSNAME.WISHLIST_WRAPPER}>
                 <button
                   type={TYPE.BUTTON}
                   className={CLASSNAME.CHAT}
@@ -147,23 +157,23 @@ export default function Navbar() {
                 >
                   <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
                 </button>
-                {/* <span>{unseenMsgCount}</span> */}
+                {!loading && unseenMsgCount > 0 && (
+                  <span>{unseenMsgCount}</span>
+                )}
               </div>
 
               {/* Profile dropdown */}
-              <button className={CLASSNAME.PROFILE} ref={profileRef}>
+              <button
+                className={CLASSNAME.PROFILE}
+                ref={profileRef}
+                onClick={onClickProfileUpDown}
+              >
                 <span className={CLASSNAME.PROFILE_PHOTO}>
-                  <div
-                    className={CLASSNAME.PROFILE_INITIAL}
-                    onClick={onClickProfileUpDown}
-                  >
+                  <div className={CLASSNAME.PROFILE_INITIAL}>
                     {username?.[0]}
                   </div>
                 </span>
-                <span
-                  className={CLASSNAME.PROFILE_UPDOWN}
-                  onClick={onClickProfileUpDown}
-                >
+                <span className={CLASSNAME.PROFILE_UPDOWN}>
                   <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
                 </span>
                 {openProfile && (

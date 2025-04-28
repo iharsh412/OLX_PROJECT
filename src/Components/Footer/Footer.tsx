@@ -1,7 +1,7 @@
 import './footer.css';
 import ICONS from '../../assets';
 import { CLASSNAME, LINK, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Interface/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function Footer() {
   const handleClick = (link: string) => {
