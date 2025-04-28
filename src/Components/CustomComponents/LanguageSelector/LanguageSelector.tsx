@@ -55,10 +55,7 @@ export default function LanguageSelector() {
       {/* selected language */}
       <span className={CLASSNAME.LANGUAGE}>{selectedLanguage}</span>
       {/* updown icon */}
-      <button
-        type={TYPE.BUTTON}
-        className={CLASSNAME.DROPDOWN}
-      >
+      <button type={TYPE.BUTTON} className={CLASSNAME.DROPDOWN}>
         <img
           src={ICONS.upDown}
           alt={COMMON_TEXT.IMG}

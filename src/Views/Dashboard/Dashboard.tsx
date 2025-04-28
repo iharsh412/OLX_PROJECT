@@ -37,7 +37,7 @@ export default function Dashboard() {
           return [...prev, ...data];
         });
     }
-  }, [data,search]);
+  }, [data, search]);
 
   return (
     <>
