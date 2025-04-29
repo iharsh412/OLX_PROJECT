@@ -61,7 +61,7 @@ export const COMMON_TEXT ={
   LOGIN_TO_CHAT:"Ready to chat? Log in to get started",
   DAYS_AGO:"days ago",
   NO_WISHLIST:"No items saved yet. When you find something you love, click the heart icon to add it here.",
-  
+  EDITING:"Editing..."
 
 
   

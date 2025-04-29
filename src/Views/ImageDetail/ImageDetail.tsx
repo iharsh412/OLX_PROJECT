@@ -55,7 +55,7 @@ export default function ImageDetail() {
           <div className={CLASSNAME.DETAIL}>
             <span className={CLASSNAME.DETAIL_TEXT}>{TEXT.DETAIL}</span>
             <div className={CLASSNAME.BRAND}>
-              <span className={CLASSNAME.BRAND_TEXT}>{TEXT.BRAND}</span>
+              <span className={CLASSNAME.BRAND_TEXT}>{TEXT.TITLE}</span>
               <span className={CLASSNAME.BRAND_VALUE}>{product?.name}</span>
             </div>
           </div>

@@ -86,7 +86,6 @@ export default function EditProfile() {
         handleSubmit,
         isSubmitting,
       }) => {
-     
         const share = { handleChange, handleBlur, setFieldValue };
 
         return (
@@ -158,7 +157,7 @@ export default function EditProfile() {
                 className={CLASSNAME.POST}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? COMMON_TEXT.SENDING : TEXT.EDIT}
+                {isSubmitting ? COMMON_TEXT.EDITING : TEXT.EDIT}
               </button>
             </div>
           </>

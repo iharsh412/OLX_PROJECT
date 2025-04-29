@@ -32,8 +32,8 @@ export const CLASSNAME = {
 };
 export const TEXT = {
   VIEW_EDIT: ' View and Edit Profile',
-  LOGOUT: 'Logout',
-  ERROR_LOGOUT: 'Error occurs in logout',
-  SUCCESS: 'Logout successfully',
-  ARE_YOU_SURE: 'Are you sure you want to logout?',
+  LOGOUT: 'Sign Out',
+  ERROR_LOGOUT: 'Error occurs in Sign Out',
+  SUCCESS: 'Sign Out successfully',
+  ARE_YOU_SURE: 'Are you sure you want to Sign Out?',
 };

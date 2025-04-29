@@ -5,6 +5,7 @@ import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
 import './post.css';
 import { CLASSNAME, TEXT } from './constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
+import { capitalizeFirstLetter } from '../../Helper/function';
 
 export default function Post() {
   const location = useLocation();
@@ -23,7 +24,8 @@ export default function Post() {
           {TEXT.SELECTED_CATEGORY}
         </span>
         <span className={CLASSNAME.SELECTED_CATEGORY_NAME}>
-          {location.state.categoryId} / {location.state.subcategory}
+          {capitalizeFirstLetter(location.state.categoryId)} /{' '}
+          {location.state.subcategory}
         </span>
       </div>
       {/* multiwheel vehicles */}

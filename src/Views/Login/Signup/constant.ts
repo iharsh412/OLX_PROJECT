@@ -14,7 +14,7 @@ export const VALIDATION = Yup.object().shape({
     .required('Username  is required')
     .matches(
       /^[A-Za-z\s]+$/,
-      'Seller name should contain only alphabets and spaces'
+      'Username should contain only alphabets and spaces'
     ),
 
   email: Yup.string()

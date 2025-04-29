@@ -122,51 +122,63 @@ const Filter: React.FC<FilterProps> = ({
       <div className={CLASSNAME.PRICE}>
         <h4>{TEXT.PRICE}</h4>
         <RangeSlider
-          min={0}
+          min={100}
           max={1500000}
-          step={10}
-          value={price}
+          step={100}
+          value={price ?? [100, 1500000]}
           onInput={(value: [number, number]) => handlePrice(value)}
         />
         <div className={CLASSNAME.PRICE_LIST}>
           <input
             title={TEXT.PRICE_MIN}
-            min={0}
-            max={1500000}
+            min={100}
+            max={price?.[1] ?? 1500000}
             type={TYPE.NUMBER}
             className={CLASSNAME.PRICE_MIN}
-            value={
-              (price?.[0] ?? 0) < (price?.[1] ?? 0)
-                ? (price?.[0] ?? 0)
-                : (price?.[1] ?? 0)
-            }
+            value={price?.[0] ?? ''}
+            placeholder="Min"
             onChange={(e) => {
-              const value = Number(e.target.value);
+              const value = Math.max(
+                100,
+                Math.min(Number(e.target.value) || 100, price?.[1] ?? 1500000)
+              );
               setPrice?.([value, price?.[1]]);
             }}
+            onBlur={(e) => {
+              if (!e.target.value) {
+                setPrice?.([100, price?.[1]]);
+              }
+            }}
           />
+
           <input
             title={TEXT.PRICE_MAX}
-            min={0}
+            min={price?.[0] ?? 100}
             max={1500000}
             type={TYPE.NUMBER}
             className={CLASSNAME.PRICE_MAX}
-            value={
-              (price?.[1] ?? 0) > (price?.[0] ?? 0)
-                ? (price?.[1] ?? 0)
-                : (price?.[0] ?? 0)
-            }
+            value={price?.[1] ?? ''}
+            placeholder="Max"
             onChange={(e) => {
-              const value = Number(e.target.value);
+              const value = Math.max(
+                price?.[0] ?? 100,
+                Math.min(Number(e.target.value) || 100, 1500000)
+              );
               setPrice?.([price?.[0], value]);
+            }}
+            onBlur={(e) => {
+              if (!e.target.value) {
+                setPrice?.([price?.[0], 1500000]);
+              }
             }}
           />
         </div>
         <button
           className={CLASSNAME.APPLY}
           type={TYPE.BUTTON}
+          disabled={!price || (price[0] === 100 && price[1] === 1500001)}
           onClick={() => {
-            handlePriceRangeChange(price ?? [0, 0]);
+            handlePriceRangeChange(price ?? [100, 1500000]);
           }}
         >
           {TEXT.APPLY}

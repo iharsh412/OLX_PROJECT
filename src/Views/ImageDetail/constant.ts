@@ -32,7 +32,7 @@ export const CLASSNAME = {
 
 export const TEXT = {
   DETAIL: 'Details',
-  BRAND: 'Brand',
+  TITLE: 'Title',
   DESCRIPTION: 'Description',
   PRODUCT: 'Product',
   OLX_INDIA: 'OLX India',

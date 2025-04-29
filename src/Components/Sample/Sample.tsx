@@ -22,9 +22,9 @@ export default function Sample() {
     category: category,
     subcategory: '',
     brand: [],
-    price: [0, 1500000],
+    price: [100, 1500000],
   });
-  const [price, setPrice] = useState<[number, number]>([0, 1500000]);
+  const [price, setPrice] = useState<[number, number]>([100, 1500000]);
   const [response, setResponse] = useState<ResponseData | undefined>();
   const [productData, { isLoading, isError }] =
     usePostCategoryProductsMutation();
@@ -56,7 +56,7 @@ export default function Sample() {
       category: category,
       subcategory: '',
       brand: [],
-      price: [0, 1500000],
+      price: [100, 1500000],
     });
   }, [JSON.stringify(category)]);
 

@@ -100,7 +100,6 @@
   color: red;
   display: inline-block;
   margin-left: 3px;
-
 }
 
 /* BUTTON SECTION */
@@ -173,11 +172,11 @@
   border: none;
   background-color: white;
 }
-.signup_passwordWrapper{
-  position:relative;
+.signup_passwordWrapper {
+  position: relative;
 }
-.signup_passwordWrapper input{
- padding-right:40px
+.signup_passwordWrapper input {
+  padding-right: 40px;
 }
 /* RESPONSIVE DESIGN */
 @media (max-width: 480px) {
