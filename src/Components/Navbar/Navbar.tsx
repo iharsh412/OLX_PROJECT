@@ -52,6 +52,7 @@ export default function Navbar() {
   // handle profile dropdown toggle
   function onClickProfileUpDown() {
     setOpenProfile(!openProfile);
+    console.log("hello")
   }
   //handle click on chat
   function handleClickChat() {

@@ -29,8 +29,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const [post] = usePostLogoutDataMutation();
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [answer, setAnswer] = useState<String>('no');
-  console.log(answer, 'answer');
-  console.log(openModal, 'opnMODAL');
+
   // on click any item
   const handleItemClick = () => {
     setOpenProfile?.((prev) => !prev);
@@ -55,6 +54,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       toast.error(TEXT.ERROR_LOGOUT);
     }
   };
+  console.log('handleLogout');
   useEffect(() => {
     if (answer === 'yes') {
       handleLogout();
@@ -87,7 +87,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
               <button
                 key={item.label}
                 onClick={() => {
-                  handleItemClick();
+                  // handleItemClick();
                   item.clickHandler && item?.clickHandler(navigate);
                 }}
                 className={CLASSNAME.PROFILE_MENU_ITEM}
@@ -101,10 +101,9 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             type={TYPE.BUTTON}
             title={TEXT.LOGOUT}
             onClick={(e) => {
-              console.log("hello")
+              console.log('hello');
               e.stopPropagation();
               setOpenModal(true);
-              // handleItemClick();
             }}
             className={CLASSNAME.PROFILE_MENU_ITEM}
           >
@@ -117,10 +116,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             setAnswer={setAnswer}
             setOpen={setOpenModal}
             text={TEXT.ARE_YOU_SURE}
-            onConfirm={handleLogout}
-            setDropdown={(dropdown: boolean) =>
-              setOpenProfile?.(() => dropdown)
-            }
+            setDropdown={() => setOpenProfile?.((prev) => !prev)}
           />
         )}
       </div>

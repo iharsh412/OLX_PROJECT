@@ -7,15 +7,15 @@ const Modal: React.FC<ModalProps> = ({
   setOpen,
   text,
   setDropdown,
-  onConfirm,
+
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
- 
-  const handleYes = () => {
+
+  const handleYes = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
     setOpen(false);
     setAnswer('yes');
-    onConfirm?.()
-    console.log("yekhdk")
+   
   };
   const handleNo = () => {
     setOpen(false);
