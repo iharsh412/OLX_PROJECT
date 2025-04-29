@@ -60,10 +60,8 @@ export default function Signup() {
           handleBlur,
           handleSubmit,
           isSubmitting,
-          setFieldValue
+          setFieldValue,
         }) => {
-        
-
           return (
             <div className={CLASSNAME.WRAPPER}>
               {/* header */}
@@ -113,7 +111,7 @@ export default function Signup() {
                   <input
                     title={COMMON_TEXT.EMAIL_S}
                     type={TYPE.EMAIL}
-                    name={COMMON_TEXT.EMAIL_S}
+                    name="email"
                     value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -135,7 +133,9 @@ export default function Signup() {
                       title={COMMON_TEXT.PASSWORD_S}
                       type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
                       value={values.password}
-                      onChange={(e)=>{setFieldValue('password', e.target.value.trim())}}
+                      onChange={(e) => {
+                        setFieldValue('password', e.target.value.trim());
+                      }}
                       onBlur={handleBlur}
                       id={COMMON_TEXT.PASSWORD_S}
                     />
@@ -173,10 +173,7 @@ export default function Signup() {
                       }
                       value={values.confirmPassword}
                       onChange={(e) =>
-                        setFieldValue(
-                          'confirmPassword',
-                          e.target.value.trim()
-                        )
+                        setFieldValue('confirmPassword', e.target.value.trim())
                       }
                       onBlur={handleBlur}
                       id={TEXT.CONFIRM_PASSWORD}

@@ -6,7 +6,7 @@ export const INITIAL_VALUES = {
   password: '',
   confirmPassword: '',
 };
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const emailRegex =  /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
 export const VALIDATION = Yup.object().shape({
@@ -14,13 +14,12 @@ export const VALIDATION = Yup.object().shape({
     .required('Username  is required')
     .matches(
       /^[A-Za-z\s]+$/,
-      'Username should contain only alphabets and spaces'
+      ' Username should contain only alphabets and spaces'
     ),
 
   email: Yup.string()
     .required('Email is required')
     .matches(emailRegex, 'Please enter a valid email address'),
-
   password: Yup.string()
     .required('Password is required')
     .matches(
