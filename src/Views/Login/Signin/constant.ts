@@ -38,7 +38,7 @@ export const CLASSNAME = {
 };
 export const TEXT = {
   LOGIN: 'Login',
-  SIGN_IN: 'Sign In',
+  SIGN_IN: 'Login',
   FORGET_PASSWORD: 'forgot password?',
   LOGIN_SUCCESSFUL: 'Login Successfull',
   DONOT_HAVE_ACCOUNT: "Don't have an account ?",

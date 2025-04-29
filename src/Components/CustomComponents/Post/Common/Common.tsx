@@ -308,7 +308,7 @@ const Seller: React.FC<TextFieldProps> = ({
 }) => {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const rawValue = e.target.value;
-    const numericOnly = rawValue.replace(/\D/g, ''); // remove non-digits
+    const numericOnly = rawValue.replace(/\D/g, ''); 
     const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
     setFieldValue?.(htmlFor, trimmed);
   }
@@ -349,8 +349,18 @@ const PhoneNumber: React.FC<TextFieldProps> = ({
   tch,
   type,
   handleBlur,
-  handleChange,
+  // handleChange,
+  setFieldValue,
 }) => {
+  function handleChangeMobileNumber(e: ChangeEvent<HTMLInputElement>) {
+    const rawValue = e.target.value;
+    const numericOnly = rawValue.replace(/\D/g, ''); 
+    const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
+    setFieldValue?.(htmlFor, trimmed);
+
+    
+  
+  }
   return (
     <>
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
@@ -362,7 +372,7 @@ const PhoneNumber: React.FC<TextFieldProps> = ({
           title={htmlFor}
           type={type}
           name={htmlFor}
-          onChange={handleChange}
+          onChange={handleChangeMobileNumber}
           onBlur={handleBlur}
           value={value as string}
           className={`${CLASSNAME.MOBILE_NUMBER} ${

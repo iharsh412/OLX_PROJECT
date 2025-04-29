@@ -86,6 +86,7 @@ export default function EditProfile() {
         handleSubmit,
         isSubmitting,
       }) => {
+     
         const share = { handleChange, handleBlur, setFieldValue };
 
         return (
@@ -130,7 +131,7 @@ export default function EditProfile() {
               />
               {/* phone number */}
               <PhoneNumber
-                type="number"
+                type="text"
                 htmlFor="phonenumber"
                 value={values.phonenumber}
                 label="Phone Number"

@@ -240,14 +240,15 @@ export default function FirebaseChatApp() {
                               minute: '2-digit',
                             })
                           : ''}
-                      </span>
-                      {msg.user === username && (
+                                {msg.user === username && (
                         <span
                           className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
                         >
                           {msg.seen ? '✓✓' : '✓'}
                         </span>
                       )}
+                      </span>
+                
                     </div>
                   ))}
                 </>

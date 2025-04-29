@@ -31,7 +31,7 @@ export const CLASSNAME = {
   PROFILE_MENU_ITEM: 'menu-item',
 };
 export const TEXT = {
-  VIEW_EDIT: ' View and edit profile',
+  VIEW_EDIT: ' View and Edit Profile',
   LOGOUT: 'Logout',
   ERROR_LOGOUT: 'Error occurs in logout',
   SUCCESS: 'Logout successfully',

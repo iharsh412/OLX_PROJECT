@@ -161,6 +161,7 @@
   width: 30px;
   text-align: right;
   width: 100%;
+  padding-left: 10px;
 }
 .message-item.sent {
   align-self: flex-end;

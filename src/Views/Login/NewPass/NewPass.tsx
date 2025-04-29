@@ -53,10 +53,10 @@ export default function NewPass() {
           values,
           errors,
           touched,
-          handleChange,
           handleBlur,
           handleSubmit,
           isSubmitting,
+          setFieldValue,
         }) => {
           return (
             <div className={CLASSNAME.WRAPPER}>
@@ -74,7 +74,7 @@ export default function NewPass() {
                       name={COMMON_TEXT.PASSWORD_S}
                       title={COMMON_TEXT.PASSWORD}
                       value={values.password}
-                      onChange={handleChange}
+                      onChange={(e)=>{setFieldValue('password', e.target.value.trim())}}
                       onBlur={handleBlur}
                     />
 
@@ -111,7 +111,7 @@ export default function NewPass() {
                       }
                       name={COMMON_TEXT.CONFIRM_PASSWORD_S}
                       value={values.confirmPassword}
-                      onChange={handleChange}
+                      onChange={(e)=>{setFieldValue('confirmPassword', e.target.value.trim())}}
                       onBlur={handleBlur}
                     />
 

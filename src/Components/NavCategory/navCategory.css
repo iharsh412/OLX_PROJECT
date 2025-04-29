@@ -46,6 +46,7 @@
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
+  background-color: rgb(242, 253, 255);
 }
 
 /* Category items */
@@ -59,7 +60,7 @@
   color: #6640d7;
   cursor: pointer;
   border: none;
-  background-color: white;
+  background-color: rgb(242, 253, 255);
   text-decoration: underline;
 }
 

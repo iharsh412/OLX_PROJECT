@@ -59,6 +59,7 @@ export default function Signin() {
           handleChange,
           handleBlur,
           handleSubmit,
+          setFieldValue,
           isSubmitting,
         }) => {
           return (
@@ -112,7 +113,7 @@ export default function Signin() {
                       id={COMMON_TEXT.PASSWORD_S}
                       name={COMMON_TEXT.PASSWORD_S}
                       value={values.password}
-                      onChange={handleChange}
+                      onChange={(e)=>{setFieldValue('password', e.target.value.trim());}}
                       onBlur={handleBlur}
                     />
                     {values.password && (
