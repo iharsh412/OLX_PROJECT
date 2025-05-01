@@ -73,12 +73,14 @@
   transition: all 0.25s ease;
   background-color: #fff;
 }
+
 /* required section */
-.signin_required{
+.signin_required {
   color: red;
   display: inline-block;
   margin-left: 3px;
 }
+
 .signin_emailInput input:focus,
 .signin_passwordInput input:focus {
   border-color: #a269d6;
@@ -117,10 +119,12 @@
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 180, 180, 0.3);
 }
+
 /* DONT HAVE AN ACCOUNT */
 .signin_signup {
   text-align: center;
 }
+
 .signin_signup span {
   font-size: 14px;
   font-weight: 500;
@@ -128,6 +132,7 @@
   margin-bottom: 8px;
   margin-left: 4px;
 }
+
 /* signup text */
 .signin_signup a {
   font-size: 15px;
@@ -169,6 +174,7 @@
   color: #d32f2f;
   font-weight: 500;
 }
+
 /* password eye button */
 .signin_isSeenPassword {
   position: absolute;
@@ -177,11 +183,13 @@
   border: none;
   background-color: white;
 }
-.signin_passwordWrapper{
-  position:relative;
+
+.signin_passwordWrapper {
+  position: relative;
 }
-.signin_passwordWrapper input{
- padding-right:40px
+
+.signin_passwordWrapper input {
+  padding-right: 40px;
 }
 
 /*  RESPONSIVE DESIGN  */

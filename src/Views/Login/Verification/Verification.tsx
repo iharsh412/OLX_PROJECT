@@ -23,6 +23,7 @@ export default function Verification() {
       {/* login button and text */}
       <div className={CLASSNAME.TEXT_WRAPPER}>
         <button
+          type="button"
           className={CLASSNAME.LOGIN}
           onClick={() => navigate(ROUTES_CONFIG.SIGNIN.path, { replace: true })}
         >
