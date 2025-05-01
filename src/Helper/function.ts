@@ -3,7 +3,11 @@ function getDaysFromNow(isoDateString: string): string {
   const target = new Date(isoDateString);
 
   const todayUTC = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
-  const targetUTC = Date.UTC(target.getFullYear(), target.getMonth(), target.getDate());
+  const targetUTC = Date.UTC(
+    target.getFullYear(),
+    target.getMonth(),
+    target.getDate()
+  );
 
   const diffInDays = Math.round((targetUTC - todayUTC) / (1000 * 60 * 60 * 24));
 

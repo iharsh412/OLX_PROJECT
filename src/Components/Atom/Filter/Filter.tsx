@@ -1,7 +1,7 @@
 import './filter.css';
-import { FilterProps, CLASSNAME, TEXT } from './constant';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
+import { FilterProps, CLASSNAME, TEXT } from './constant';
 import { SampleData } from '../../Sample/constant';
 import { TYPE } from '../../../Helper/constant';
 

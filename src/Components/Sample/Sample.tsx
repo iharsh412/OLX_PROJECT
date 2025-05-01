@@ -34,7 +34,7 @@ export default function Sample() {
       try {
         const response = await productData({
           sampleData,
-          page: page,
+          page,
           limit,
         }).unwrap();
 

@@ -1,14 +1,15 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import './imageDetail.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import ImageTransition from '../../Components/CustomComponents/ImageDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
+import { COMMON_TEXT, TYPE } from '../../Helper/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
-import { toast } from 'react-toastify';
 import { setUserId } from '../../Store/ChatUser';
 import Loader from '../../Components/Atom/Loader';
 import Error from '../../Components/Atom/Error';
@@ -33,7 +34,9 @@ export default function ImageDetail() {
       navigate(ROUTES_CONFIG.SINGLE_CHAT.path);
     }
   }
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
   if (isLoading) {
     return <Loader />;
   }
@@ -82,7 +85,7 @@ export default function ImageDetail() {
           <div className={CLASSNAME.PRICE_TAG}>
             <span className={CLASSNAME.PRICE_PLACE}>{product?.city}</span>
             <span className={CLASSNAME.PRICE_PLACE}>
-              { getDaysFromNow(product?.created_at)} 
+              {getDaysFromNow(product?.created_at)}
             </span>
           </div>
         </div>
@@ -101,6 +104,7 @@ export default function ImageDetail() {
               <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
             </div>
             <button
+              type={TYPE.BUTTON}
               title={TEXT.CHAT}
               className={CLASSNAME.CHAT_BUTTON}
               onClick={handleClickChat}
