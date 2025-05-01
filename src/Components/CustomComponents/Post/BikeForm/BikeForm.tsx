@@ -1,4 +1,8 @@
 import { Formik } from 'formik';
+
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import {
   CLASSNAME,
   validationSchema,
@@ -7,8 +11,6 @@ import {
   TEXT,
 } from './constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import {
   TextField,
   Description,
@@ -18,25 +20,20 @@ import {
   City,
   Seller,
 } from '../Common/Common';
-import { toast } from 'react-toastify';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 import { TEXT as COMMON_TEXT } from '../Common/constant';
 
-
 export default function BikeForm() {
-
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
   const [postNewProducts] = usePostNewProductsMutation();
-
 
   //  Handle submit
   const handleSubmit = async (
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-   
     const formData = new FormData();
     formData.append('user', '1');
     formData.append('category', state.categoryId);
@@ -226,11 +223,11 @@ export default function BikeForm() {
               className={CLASSNAME.POST}
               disabled={isSubmitting}
             >
-              {showResponse === 'Added'
-                ? 'POST SUCCESSFULLY'
-                : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+              {(() => {
+                if (showResponse === 'Added') return 'POST SUCCESSFULLY';
+                if (showResponse === 'Error') return 'ERROR IN POSTING';
+                return 'POST';
+              })()}
             </button>
           </>
         );

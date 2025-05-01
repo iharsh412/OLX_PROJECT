@@ -1,12 +1,11 @@
-import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
-import { CLASSNAME, TEXT } from './constant';
-import './sample.css';
-import { useParams } from 'react-router-dom';
-import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
-import { COMMON_TEXT, Product } from '../../Helper/constant';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
+import './sample.css';
+import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
+import { COMMON_TEXT, Product, TYPE } from '../../Helper/constant';
 import ICONS from '../../assets';
-import { SampleData, ResponseData } from './constant';
+import { SampleData, ResponseData, CLASSNAME, TEXT } from './constant';
 import Pagination from '../Atom/Pagination/Pagination';
 import Error from '../Atom/Error';
 import Filter from '../Atom/Filter';
@@ -71,6 +70,9 @@ export default function Sample() {
       next: page < totalPages,
     });
   }, [JSON.stringify(response), page]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -92,6 +94,7 @@ export default function Sample() {
                 {sampleData.subcategory}
               </span>
               <button
+                type={TYPE.BUTTON}
                 className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({ ...sampleData, subcategory: '' });
@@ -106,6 +109,7 @@ export default function Sample() {
             <div className={CLASSNAME.SELECTED_OPTION_WRAPPER} key={brand}>
               <span className={CLASSNAME.SELECTED_OPTION_TEXT}>{brand}</span>
               <button
+                type={TYPE.BUTTON}
                 className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({

@@ -1,4 +1,6 @@
 import './myAds.css';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
 import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
@@ -6,8 +8,6 @@ import { Product } from '../../Helper/constant';
 import Error from '../../Components/Atom/Error';
 import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
 import { ROUTES_CONFIG } from '../../Shared/Constants';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import Pagination from '../../Components/Atom/Pagination';
 
 export default function MyAds() {
@@ -17,7 +17,7 @@ export default function MyAds() {
   const [showButton, setShowButton] = useState({ prev: false, next: false });
 
   const { data, refetch, isError, isLoading } = useGetAdsDataQuery(
-    { page: page < totalpage ? page : totalpage, limit: limit },
+    { page: page < totalpage ? page : totalpage, limit },
     { refetchOnMountOrArgChange: true }
   );
 
@@ -32,7 +32,10 @@ export default function MyAds() {
       next: page < totalPages,
     });
     if (page > totalPages) setPage(totalPages);
-  }, [JSON.stringify(data), page]);
+  }, [data?.total_count, page]);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [page]);
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -50,11 +53,9 @@ export default function MyAds() {
         {isError && <Error />}
         {/* no ads */}
         {page === 1 && data?.products?.length === 0 && (
-          <>
-            <div className={CLASSNAME.NO_ADS}>
-              {TEXT.NO_ADS} <Link to={ROUTES_CONFIG.SELL.path}>{TEXT.ADS}</Link>
-            </div>
-          </>
+          <div className={CLASSNAME.NO_ADS}>
+            {TEXT.NO_ADS} <Link to={ROUTES_CONFIG.SELL.path}>{TEXT.ADS}</Link>
+          </div>
         )}
         {data?.products?.map((product: Product) => (
           <Images key={product.id} data={product} refetch={refetch} />

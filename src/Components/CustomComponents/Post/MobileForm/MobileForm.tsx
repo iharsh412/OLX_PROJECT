@@ -1,3 +1,6 @@
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 import {
   City,
@@ -16,14 +19,11 @@ import {
   TEXT,
 } from './costant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { TEXT as COMMON_TEXT } from "../Common/constant"
+import { TEXT as COMMON_TEXT } from '../Common/constant';
 
 export default function MobileForm() {
-
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
@@ -42,7 +42,6 @@ export default function MobileForm() {
     values: FormValues,
     { resetForm }: { resetForm: () => void }
   ) => {
-
     const formData = new FormData();
     formData.append('user', '1');
     formData.append('category', state.categoryId);
@@ -62,9 +61,9 @@ export default function MobileForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      toast.success(COMMON_TEXT.SUCCESS)
+      toast.success(COMMON_TEXT.SUCCESS);
       setShowResponse('Added');
-      navigate(ROUTES_CONFIG.HOMEPAGE.path)
+      navigate(ROUTES_CONFIG.HOMEPAGE.path);
 
       resetForm();
     } catch (error) {
@@ -90,7 +89,7 @@ export default function MobileForm() {
         isSubmitting,
       }) => {
         const share = { handleChange, handleBlur, setFieldValue };
-        
+
         return (
           <>
             <div className={CLASSNAME.WRAPPER}>
@@ -204,11 +203,11 @@ export default function MobileForm() {
               className={CLASSNAME.POST}
               disabled={isSubmitting}
             >
-              {showResponse === 'Added'
-                ? 'POST SUCCESSFULLY'
-                : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+              {(() => {
+                if (showResponse === 'Added') return 'POST SUCCESSFULLY';
+                if (showResponse === 'Error') return 'ERROR IN POSTING';
+                return 'POST';
+              })()}
             </button>
           </>
         );

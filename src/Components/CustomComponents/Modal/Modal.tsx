@@ -7,7 +7,6 @@ const Modal: React.FC<ModalProps> = ({
   setOpen,
   text,
   setDropdown,
-
 }) => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -15,7 +14,6 @@ const Modal: React.FC<ModalProps> = ({
     e.stopPropagation();
     setOpen(false);
     setAnswer('yes');
-   
   };
   const handleNo = () => {
     setOpen(false);
@@ -35,6 +33,12 @@ const Modal: React.FC<ModalProps> = ({
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
     };
   }, []);
 

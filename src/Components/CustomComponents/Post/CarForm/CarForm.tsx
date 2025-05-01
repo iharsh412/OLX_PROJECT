@@ -250,11 +250,11 @@ export default function CarForm() {
               className={CLASSNAME.POST}
               disabled={isSubmitting}
             >
-              {showResponse === 'Added'
-                ? 'POST SUCCESSFULLY'
-                : showResponse === 'Error '
-                  ? 'ERROR IN POSTING'
-                  : 'POST'}
+              {(() => {
+                if (showResponse === 'Added') return 'POST SUCCESSFULLY';
+                if (showResponse === 'Error') return 'ERROR IN POSTING';
+                return 'POST';
+              })()}
             </button>
           </>
         );

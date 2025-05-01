@@ -18,8 +18,6 @@
   cursor: pointer;
 }
 
-
-
 /* Label */
 .post-label {
   font-size: 14px;
@@ -33,11 +31,7 @@
   font-size: 0.9rem;
   padding: 0 5px;
   color: red;
-
 }
-
-
-
 
 /* Location Section */
 .postForm_LocationWrapper {
@@ -47,8 +41,6 @@
   position: relative;
 }
 
-
-
 /* Seller Details */
 .postForm_SellerWrapper {
   display: flex;
@@ -56,15 +48,12 @@
   padding: 16px;
 }
 
-
-
-
-
 /* Post Button Section */
 .postForm_post {
   padding: 10px 200px;
   margin: 10px;
   margin-left: 25%;
+  cursor: pointer;
 }
 
 /* Responsive Styles */
@@ -75,21 +64,16 @@
     padding: 12px;
   }
 
-
   .postForm_FuelOption button {
     font-size: 16px;
     padding: 8px;
     height: 40px;
   }
 
-
-
   .postForm_post {
     padding: 10px 40px;
     margin-left: 10%;
   }
-
-
 }
 
 /* For screens smaller than 480px (phones) */
@@ -98,18 +82,14 @@
     padding: 8px;
   }
 
-
   .postForm_FuelOption button {
     font-size: 14px;
     padding: 6px;
     height: 36px;
   }
 
-
   .postForm_post {
     padding: 10px 20px;
     margin-left: 5%;
   }
-
-
 }
