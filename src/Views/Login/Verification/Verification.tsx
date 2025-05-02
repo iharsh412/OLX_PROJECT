@@ -1,6 +1,6 @@
 import './verification.css';
-import { CLASSNAME, TEXT } from './constant';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { CLASSNAME, TEXT } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import {
   CLASSNAME as LOGIN_SECTION_CLASSNAME,

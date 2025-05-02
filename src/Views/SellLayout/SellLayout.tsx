@@ -3,7 +3,7 @@ import ICONS from '../../assets';
 import Footer from '../../Components/Footer';
 import './sellLayout.css';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../Helper/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function SellLayout() {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function SellLayout() {
       <header className={CLASSNAME.HEADER}>
         <button
           title={TEXT.BACK}
-          type={TYPE.BUTTON}
+          type="button"
           className={CLASSNAME.BACK_BUTTON}
           onClick={() => navigate(-1)}
         >

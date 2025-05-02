@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
 import './carImage.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
 import { RootState } from '../../../../Store';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 import { CLASSNAME, TEXT } from './constant';
 import { getDaysFromNow } from '../../../../Helper/function';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
-const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
+export default function Images({
+  data,
+  refetch,
+  refetchDashboard,
+}: ImageProps) {
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
@@ -37,10 +41,10 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       refetch?.();
       if (response.msg === TEXT.ADDED_IN_FAV) {
         dispatch(setWishlistCount(wishlistCount + 1));
-        toast.success(TEXT.ADDED_IN_WISHLIST)
+        toast.success(TEXT.ADDED_IN_WISHLIST);
       } else {
         dispatch(setWishlistCount(wishlistCount - 1));
-        toast.success(TEXT.REMOVE_FROM_WISHLIST)
+        toast.success(TEXT.REMOVE_FROM_WISHLIST);
       }
       refetchDashboard?.();
       // toast.success(response.msg);
@@ -59,7 +63,18 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
   }, [data.is_favourite]);
 
   return (
-    <div className={CLASSNAME.WRAPPER} onClick={onClickImages}>
+    <div
+      className={CLASSNAME.WRAPPER}
+      onClick={onClickImages}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClickImages();
+        }
+      }}
+    >
       <div className={CLASSNAME.IMAGE_WRAPPER}>
         {/* image section */}
         <img
@@ -91,7 +106,7 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
         <span className={CLASSNAME.NAME}>{data.name}</span>
         <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
           <span className={CLASSNAME.PLACE}>
-          {data.city},{data.state}
+            {data.city},{data.state}
           </span>
           <span className={CLASSNAME.DATE}>
             {getDaysFromNow(String(data?.created_at))}{' '}
@@ -100,6 +115,4 @@ const Images: React.FC<ImageProps> = ({ data, refetch, refetchDashboard }) => {
       </div>
     </div>
   );
-};
-
-export default Images;
+}

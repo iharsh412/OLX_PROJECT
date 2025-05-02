@@ -1,13 +1,14 @@
 import './modal.css';
-import { CLASSNAME, ModalProps, TEXT } from './constant';
 import { useEffect, useRef } from 'react';
+import { CLASSNAME, ModalProps, TEXT } from './constant';
+import { TYPE } from '../../../Helper/constant';
 
-const Modal: React.FC<ModalProps> = ({
+export default function Modal({
   setAnswer,
   setOpen,
   text,
   setDropdown,
-}) => {
+}: ModalProps) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleYes = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -48,19 +49,23 @@ const Modal: React.FC<ModalProps> = ({
         <span className={CLASSNAME.TEXT}>{text}</span>
         <div className={CLASSNAME.BUTTON}>
           <button
+            type={TYPE.BUTTON}
             title={TEXT.YES}
             onClick={handleYes}
             className={CLASSNAME.YES}
           >
             {TEXT.YES}
           </button>
-          <button title={TEXT.NO} onClick={handleNo} className={CLASSNAME.NO}>
+          <button
+            type={TYPE.BUTTON}
+            title={TEXT.NO}
+            onClick={handleNo}
+            className={CLASSNAME.NO}
+          >
             {TEXT.NO}
           </button>
         </div>
       </div>
     </div>
   );
-};
-
-export default Modal;
+}

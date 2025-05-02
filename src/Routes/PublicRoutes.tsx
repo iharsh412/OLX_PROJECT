@@ -4,7 +4,6 @@ import Dashboard from '../Views/Dashboard';
 import { CustomRouter } from './RootRoutes';
 import HomeLayout from '../Views/Home';
 import Login from '../Views/Login/LoginSection';
-import LoginPhoneSms from '../Views/Login/OtpSection/LoginOtp';
 import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Login/Signup';
 import ProductDetail from '../Views/ImageDetail';
@@ -25,7 +24,6 @@ export const PUBLIC_ROUTES: Array<CustomRouter> = [
       { path: ROUTES_CONFIG.SIGNUP.path, element: <Signup /> },
       { path: ROUTES_CONFIG.SIGNIN.path, element: <Signin /> },
       { path: ROUTES_CONFIG.FORGETPASS.path, element: <ForgetPass /> },
-      { path: ROUTES_CONFIG.LOGIN_PHONE_SMS.path, element: <LoginPhoneSms /> },
       { path: ROUTES_CONFIG.VERIFICATION.path, element: <Verification /> },
       { path: ROUTES_CONFIG.NEWPASSWORD.path, element: <NewPass /> },
       { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },

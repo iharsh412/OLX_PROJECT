@@ -1,4 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 import './firebaseChatApp.css';
 import {
   addDoc,
@@ -14,9 +16,8 @@ import {
 import { db } from '../../firebase';
 import { RootState } from '../../Store';
 import { MessageProps, CLASSNAME, TEXT } from './constant';
-import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 import { TYPE } from '../../Helper/constant';
+
 export default function FirebaseChatApp() {
   const [receiverId, setReceiverId] = useState<string | null>(null);
   const { username, id } = useSelector((state: RootState) => state?.common);
@@ -168,6 +169,7 @@ export default function FirebaseChatApp() {
 
   return (
     <>
+      {}
       {uniqueUsers.length === 0 ? (
         <div className={CLASSNAME.NO_USERS}>{TEXT.NO_CONVERSATIONS}</div>
       ) : (
@@ -177,6 +179,7 @@ export default function FirebaseChatApp() {
             <div className={CLASSNAME.USER_LIST}>
               {uniqueUsers.map((user) => (
                 <button
+                  type="button"
                   key={user}
                   className={`${CLASSNAME.USER_ITEM} ${user == roomId ? CLASSNAME.ACTIVE_USER : ''} `}
                   disabled={user == roomId}
@@ -240,15 +243,14 @@ export default function FirebaseChatApp() {
                               minute: '2-digit',
                             })
                           : ''}
-                                {msg.user === username && (
-                        <span
-                          className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
-                        >
-                          {msg.seen ? '✓✓' : '✓'}
-                        </span>
-                      )}
+                        {msg.user === username && (
+                          <span
+                            className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
+                          >
+                            {msg.seen ? '✓✓' : '✓'}
+                          </span>
+                        )}
                       </span>
-                
                     </div>
                   ))}
                 </>
@@ -268,6 +270,7 @@ export default function FirebaseChatApp() {
                   }}
                 />
                 <button
+                  type="button"
                   className={CLASSNAME.SEND_BUTTON}
                   onClick={handleSendMessage}
                 >

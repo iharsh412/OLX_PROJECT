@@ -98,10 +98,7 @@ const ROUTES_CONFIG = {
     path: ROUTES.EDIT_PROFILE,
     title: 'Profile Edit',
   },
-  // CHAT: {
-  //   path: ROUTES.CHAT,
-  //   title: 'Chat Section',
-  // },
+
   FIREBASE_CHAT: {
     path: ROUTES.FIREBASE_CHAT,
     title: 'Firebase Chat',

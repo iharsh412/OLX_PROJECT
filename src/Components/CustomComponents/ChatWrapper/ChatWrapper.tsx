@@ -1,11 +1,8 @@
 import { io, Socket } from 'socket.io-client';
-import { useEffect } from 'react';
-import { createContext } from 'react';
-import { useState } from 'react';
+import { useEffect, createContext, useState, ReactNode } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../Store';
 import { ChatContextType } from './constant';
-import { ReactNode } from 'react';
 
 export const ChatContext = createContext<ChatContextType | null>(null);
 
@@ -24,7 +21,10 @@ export default function ChatWrapper({ children }: { children: ReactNode }) {
       setSocket(newSocket);
       newSocket.on('connected', (data) => {
         console.log('connected', data);
-        setMessages((prev) => [...prev,{ type: 'server', message: 'Connected to server' }]);
+        setMessages((prev) => [
+          ...prev,
+          { type: 'server', message: 'Connected to server' },
+        ]);
       });
     }
     return () => {

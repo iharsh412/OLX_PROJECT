@@ -34,8 +34,8 @@ export const CLASSNAME = {
   SUCCESS_TEXT: 'newpass_sucessText',
   SUCCESS_LOGIN: 'newpass_sucessLogin',
   REQUIRED: 'newpass_required',
-  EYE: "newpass_isSeenPassword",
-  INPUT_PASSWORD_WRAPPER:'newpass_passwordWrapper',
+  EYE: 'newpass_isSeenPassword',
+  INPUT_PASSWORD_WRAPPER: 'newpass_passwordWrapper',
 };
 export const TEXT = {
   TITLE: 'Forgot Password',
@@ -43,7 +43,8 @@ export const TEXT = {
   PASSWORD: 'New Password',
   FORGET_PASWORD: 'Forget Password',
   SUBMIT_BUTTON: 'Set',
-  PASSWORD_CHANGED: '🔐  Your password has been changed. Please sign in again to continue.',
+  PASSWORD_CHANGED:
+    '🔐  Your password has been changed. Please sign in again to continue.',
   LOGIN: 'Sign In',
   FAILURE: 'Error in changing password',
   SUCCESS: 'Password Changed Successfully',

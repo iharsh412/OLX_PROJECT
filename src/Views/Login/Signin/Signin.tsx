@@ -46,131 +46,132 @@ export default function Signin() {
   }
 
   return (
-    <>
-      <Formik
-        initialValues={INITIAL_VALUES}
-        validationSchema={VALIDATION}
-        onSubmit={handleSubmit}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          setFieldValue,
-          isSubmitting,
-        }) => {
-          return (
-            <div className={CLASSNAME.WRAPPER}>
-              {/* header */}
-              <div className={CLASSNAME.HEADER}>
-                {/* Back */}
-                <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
-                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
-                </Link>
-                {/* text */}
-                <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
-                {/* cross */}
-                <Link
-                  className={CLASSNAME.CROSS}
-                  to={ROUTES_CONFIG.HOMEPAGE.path}
-                >
-                  <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
-                </Link>
+    <Formik
+      initialValues={INITIAL_VALUES}
+      validationSchema={VALIDATION}
+      onSubmit={handleSubmit}
+    >
+      {({
+        values,
+        errors,
+        touched,
+        handleBlur,
+        handleSubmit,
+        setFieldValue,
+        isSubmitting,
+      }) => {
+        return (
+          <div className={CLASSNAME.WRAPPER}>
+            {/* header */}
+            <div className={CLASSNAME.HEADER}>
+              {/* Back */}
+              <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
+                <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
+              </Link>
+              {/* text */}
+              <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
+              {/* cross */}
+              <Link
+                className={CLASSNAME.CROSS}
+                to={ROUTES_CONFIG.HOMEPAGE.path}
+              >
+                <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
+              </Link>
+            </div>
+            {/* form section */}
+            <form onSubmit={handleSubmit}>
+              {/* email section */}
+              <div className={CLASSNAME.EMAIL_INPUT}>
+                <label htmlFor={COMMON_TEXT.EMAIL_S}>
+                  {COMMON_TEXT.EMAIL}
+                  <div className={CLASSNAME.REQUIRED}>*</div>
+                </label>
+                <input
+                  type={TYPE.TEXT}
+                  id={COMMON_TEXT.EMAIL_S}
+                  name={COMMON_TEXT.EMAIL_S}
+                  value={values.email}
+                  onChange={(e) =>
+                    setFieldValue('email', e.target.value.trim())
+                  }
+                  onBlur={handleBlur}
+                />
+                {errors.email && touched.email && (
+                  <div className={CLASSNAME.ERROR}>{errors.email}</div>
+                )}
               </div>
-              {/* form section */}
-              <form onSubmit={handleSubmit}>
-                {/* email section */}
-                <div className={CLASSNAME.EMAIL_INPUT}>
-                  <label htmlFor={COMMON_TEXT.EMAIL_S}>
-                    {COMMON_TEXT.EMAIL}
-                    <div className={CLASSNAME.REQUIRED}>*</div>
-                  </label>
+              {/* password section */}
+              <div className={CLASSNAME.PASSWORD_INPUT}>
+                <label htmlFor={COMMON_TEXT.PASSWORD_S}>
+                  {COMMON_TEXT.PASSWORD}
+                  <div className={CLASSNAME.REQUIRED}>*</div>
+                </label>
+                <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
                   <input
-                    type={TYPE.EMAIL}
-                    id={COMMON_TEXT.EMAIL_S}
-                    name={COMMON_TEXT.EMAIL_S}
-                    value={values.email}
-                    onChange={handleChange}
+                    ref={passwordFocus}
+                    type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
+                    id={COMMON_TEXT.PASSWORD_S}
+                    name={COMMON_TEXT.PASSWORD_S}
+                    value={values.password}
+                    onChange={(e) => {
+                      setFieldValue('password', e.target.value.trim());
+                    }}
                     onBlur={handleBlur}
                   />
-                  {errors.email && touched.email && (
-                    <div className={CLASSNAME.ERROR}>{errors.email}</div>
+                  {values.password && (
+                    <button
+                      type={TYPE.BUTTON}
+                      className={CLASSNAME.EYE}
+                      onClick={() => {
+                        setIsPasswordVisible(!isPasswordVisible);
+                      }}
+                    >
+                      <img
+                        src={isPasswordVisible ? ICONS.closeEye : ICONS.eye}
+                        alt={COMMON_TEXT.IMG}
+                      />
+                    </button>
                   )}
                 </div>
-                {/* password section */}
-                <div className={CLASSNAME.PASSWORD_INPUT}>
-                  <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                    {COMMON_TEXT.PASSWORD}
-                    <div className={CLASSNAME.REQUIRED}>*</div>
-                  </label>
-                  <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
-                    <input
-                      ref={passwordFocus}
-                      type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
-                      id={COMMON_TEXT.PASSWORD_S}
-                      name={COMMON_TEXT.PASSWORD_S}
-                      value={values.password}
-                      onChange={(e)=>{setFieldValue('password', e.target.value.trim());}}
-                      onBlur={handleBlur}
-                    />
-                    {values.password && (
-                      <button
-                        type={TYPE.BUTTON}
-                        className={CLASSNAME.EYE}
-                        onClick={() => {
-                          setIsPasswordVisible(!isPasswordVisible);
-                        }}
-                      >
-                        <img
-                          src={isPasswordVisible ? ICONS.closeEye : ICONS.eye}
-                          alt={COMMON_TEXT.IMG}
-                        />
-                      </button>
-                    )}
-                  </div>
-                  {errors.password && touched.password && (
-                    <div className={CLASSNAME.ERROR}>{errors.password}</div>
-                  )}
-                </div>
-                {/* submit button */}
-                <button
-                  className={CLASSNAME.SUBMIT_BUTTON}
-                  type={TYPE.SUBMIT}
-                  disabled={isSubmitting}
-                >
-                  {TEXT.LOGIN}
-                </button>
-              </form>
-              {/* forget password*/}
-              <button
-                className={CLASSNAME.FORGET}
-                type={TYPE.BUTTON}
-                title={COMMON_TEXT.PASSWORD_S}
-                onClick={() => navigate(ROUTES_CONFIG.FORGETPASS.path)}
-              >
-                {TEXT.FORGET_PASSWORD}
-              </button>
-              {/* signup text */}
-              <div className={CLASSNAME.SINUP}>
-                <span>{TEXT.DONOT_HAVE_ACCOUNT}</span>
-                <Link to={ROUTES_CONFIG.SIGNUP.path}>{TEXT.SIGN_UP}</Link>
+                {errors.password && touched.password && (
+                  <div className={CLASSNAME.ERROR}>{errors.password}</div>
+                )}
               </div>
-              {/* footer section */}
-              <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-                  {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
-                </p>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-                  {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
-                </p>
-              </footer>
+              {/* submit button */}
+              <button
+                className={CLASSNAME.SUBMIT_BUTTON}
+                type={TYPE.SUBMIT}
+                disabled={isSubmitting}
+              >
+                {TEXT.LOGIN}
+              </button>
+            </form>
+            {/* forget password*/}
+            <button
+              className={CLASSNAME.FORGET}
+              type={TYPE.BUTTON}
+              title={COMMON_TEXT.PASSWORD_S}
+              onClick={() => navigate(ROUTES_CONFIG.FORGETPASS.path)}
+            >
+              {TEXT.FORGET_PASSWORD}
+            </button>
+            {/* signup text */}
+            <div className={CLASSNAME.SINUP}>
+              <span>{TEXT.DONOT_HAVE_ACCOUNT}</span>
+              <Link to={ROUTES_CONFIG.SIGNUP.path}>{TEXT.SIGN_UP}</Link>
             </div>
-          );
-        }}
-      </Formik>
-    </>
+            {/* footer section */}
+            <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
+              <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+                {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+              </p>
+              <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+              </p>
+            </footer>
+          </div>
+        );
+      }}
+    </Formik>
   );
 }

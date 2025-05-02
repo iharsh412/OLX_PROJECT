@@ -1,11 +1,11 @@
 import './itemSelector.css';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 import { CLASSNAME, TEXT } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import ICONS from '../../../assets';
 
@@ -19,7 +19,7 @@ export default function ItemsSelector() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedValue(localValue);
-    }, 500); // Reduced debounce time from 1000ms to 500ms
+    }, 500);
 
     return () => clearTimeout(timer);
   }, [localValue]);
@@ -57,8 +57,8 @@ export default function ItemsSelector() {
       />
 
       <button
+        type={TYPE.BUTTON}
         className={CLASSNAME.SEARCH}
-        // disabled={isButtonDisabled}
         onClick={handleClear}
         aria-label="Clear search"
       >
@@ -66,7 +66,6 @@ export default function ItemsSelector() {
           className={CLASSNAME.SEARCH_ICON}
           src={ICONS.cross}
           alt={COMMON_TEXT.IMG}
-          loading="lazy" // Optimize image loading
         />
       </button>
     </div>

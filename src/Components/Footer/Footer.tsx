@@ -12,11 +12,12 @@ export default function Footer() {
     <div className={CLASSNAME.WRAPPER}>
       <div className={CLASSNAME.CHILD}>
         <div className={CLASSNAME.IMAGES_LIST}>
-          <button className={CLASSNAME.CAR_TRADE_TECH}>
+          <button className={CLASSNAME.CAR_TRADE_TECH} type="button">
             <img src={ICONS.carTradeTech} alt={COMMON_TEXT.IMG} />
           </button>
           <button
             className={CLASSNAME.OLX}
+            type="button"
             onClick={() => handleClick(LINK.OLX)}
           >
             <img
@@ -27,6 +28,7 @@ export default function Footer() {
           </button>
           <button
             className={CLASSNAME.CARWALE}
+            type="button"
             onClick={() => handleClick(LINK.CARWALE)}
           >
             <img
@@ -37,6 +39,7 @@ export default function Footer() {
           </button>
           <button
             className={CLASSNAME.BIKEWALE}
+            type="button"
             onClick={() => handleClick(LINK.BIKEWALE)}
           >
             <img
@@ -47,6 +50,7 @@ export default function Footer() {
           </button>
           <button
             className={CLASSNAME.CAR_TRADE}
+            type="button"
             onClick={() => handleClick(LINK.CARTRADE)}
           >
             <img
@@ -57,6 +61,7 @@ export default function Footer() {
           </button>
           <button
             className={CLASSNAME.MOBILITY_OUTLOOK}
+            type="button"
             onClick={() => handleClick(LINK.MOBILITY_OUTLOOK)}
           >
             <img
@@ -67,7 +72,7 @@ export default function Footer() {
           </button>
         </div>
         <div className={CLASSNAME.SECTION_TEXT}>
-          <button className={CLASSNAME.SECTION_HELP}>
+          <button className={CLASSNAME.SECTION_HELP} type="button">
             {TEXT.HELP_SITEMAP}
           </button>
           <span className={CLASSNAME.ALL_RIGHT_RESERVED}>

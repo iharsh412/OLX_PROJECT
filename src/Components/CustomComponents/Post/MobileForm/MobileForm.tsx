@@ -47,7 +47,7 @@ export default function MobileForm() {
     formData.append('category', state.categoryId);
     formData.append('subcategory', state.subcategory);
 
-    for (let key in values) {
+    Object.keys(values).forEach((key) => {
       const typedKey = key as keyof FormValues;
 
       if (Array.isArray(values[typedKey])) {
@@ -57,7 +57,7 @@ export default function MobileForm() {
       } else {
         formData.append(typedKey, values[typedKey] as string);
       }
-    }
+    });
 
     try {
       await postNewProducts(formData).unwrap();

@@ -1,17 +1,16 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import './homeLayout.css';
+import { useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
 import Navbar from '../../Components/Navbar';
 import NavCategory from '../../Components/NavCategory';
 import Ads from '../../Components/AdsSection';
 import Footer from '../../Components/Footer';
-import { toast } from 'react-toastify';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../Store';
-import { useEffect } from 'react';
 import { setLoading } from '../../Store/Loader';
 import { CLASSNAME, TEXT } from './constant';
 import { setItem } from '../../Store/AreaItem';
-// import FooterInfo from '../../Components/CustomComponents/FooterInfo';
 
 export default function HomeLayout() {
   const location = useLocation();
@@ -20,10 +19,10 @@ export default function HomeLayout() {
 
   // path change remove toast and empty the serach  field
   useEffect(() => {
-    console.log(location?.pathname);
     dispatch(setItem(''));
     if (location?.pathname !== '/login') toast.dismiss();
   }, [location?.pathname]);
+
   // for session expired
   useEffect(() => {
     if (loader) {
@@ -37,23 +36,21 @@ export default function HomeLayout() {
   }, [loader]);
 
   return (
-    <>
-      <div className={CLASSNAME.WRAPPER}>
-        {/* Navbar */}
-        <Navbar />
-        {/* Nav Category */}
-        <NavCategory />
-        {/* Outlet */}
-        <div className={CLASSNAME.OUTLET}>
-          <Outlet />
-        </div>
-        {/* add section */}
-        <Ads />
-        {/* footerINfo */}
-        {/* <FooterInfo /> */}
-        {/* Footer */}
-        <Footer />
+    <div className={CLASSNAME.WRAPPER}>
+      {/* Navbar */}
+      <Navbar />
+      {/* Nav Category */}
+      <NavCategory />
+      {/* Outlet */}
+      <div className={CLASSNAME.OUTLET}>
+        <Outlet />
       </div>
-    </>
+      {/* add section */}
+      <Ads />
+      {/* footerINfo */}
+      {/* <FooterInfo /> */}
+      {/* Footer */}
+      <Footer />
+    </div>
   );
 }

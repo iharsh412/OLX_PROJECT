@@ -1,4 +1,6 @@
 import './navbar.css';
+import { toast } from 'react-toastify';
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
@@ -8,11 +10,10 @@ import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi'
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../Helper/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
-import { toast } from 'react-toastify';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
+
 import { db } from '../../firebase';
 
 export default function Navbar() {
@@ -52,9 +53,8 @@ export default function Navbar() {
   // handle profile dropdown toggle
   function onClickProfileUpDown() {
     setOpenProfile(!openProfile);
-    console.log("hello")
   }
-  //handle click on chat
+  // handle click on chat
   function handleClickChat() {
     navigate(ROUTES_CONFIG.FIREBASE_CHAT.path);
   }
@@ -101,8 +101,7 @@ export default function Navbar() {
         setUnseenMsgCount(snapshot.size);
         setLoading(false);
       },
-      (error) => {
-        console.error(error);
+      () => {
         setLoading(false);
       }
     );
@@ -117,7 +116,7 @@ export default function Navbar() {
       <div className={CLASSNAME.NAV}>
         {/* olx logo */}
         <button
-          type={TYPE.BUTTON}
+          type="button"
           title={COMMON_TEXT.BUTTON}
           className={CLASSNAME.LOGO}
           onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}
@@ -133,7 +132,7 @@ export default function Navbar() {
           {/* cart section */}
           <div className={CLASSNAME.WISHLIST_WRAPPER}>
             <button
-              type={TYPE.BUTTON}
+              type="button"
               className={CLASSNAME.CART}
               onClick={onClickWishlist}
               title={COMMON_TEXT.BUTTON}
@@ -152,7 +151,7 @@ export default function Navbar() {
               {/* chat section */}
               <div className={CLASSNAME.WISHLIST_WRAPPER}>
                 <button
-                  type={TYPE.BUTTON}
+                  type="button"
                   className={CLASSNAME.CHAT}
                   onClick={handleClickChat}
                 >
@@ -165,6 +164,7 @@ export default function Navbar() {
 
               {/* Profile dropdown */}
               <button
+                type="button"
                 className={CLASSNAME.PROFILE}
                 ref={profileRef}
                 onClick={onClickProfileUpDown}
@@ -192,7 +192,7 @@ export default function Navbar() {
           {/* Sell button */}
           <button
             title={COMMON_TEXT.BUTTON}
-            type={TYPE.BUTTON}
+            type="button"
             className={CLASSNAME.SELL}
             onClick={onClickSell}
           >

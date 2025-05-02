@@ -1,8 +1,8 @@
 import { Formik, ErrorMessage } from 'formik';
-import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import './carForm.css';
 import {
   CLASSNAME,
@@ -41,7 +41,7 @@ export default function CarForm() {
     formData.append('category', state.categoryId);
     formData.append('subcategory', state.subcategory);
 
-    for (let key in values) {
+    Object.keys(values).forEach((key) => {
       const typedKey = key as keyof FormValues;
 
       if (Array.isArray(values[typedKey])) {
@@ -51,7 +51,7 @@ export default function CarForm() {
       } else {
         formData.append(typedKey, values[typedKey] as string);
       }
-    }
+    });
 
     try {
       await postNewProducts(formData).unwrap();

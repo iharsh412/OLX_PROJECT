@@ -19,7 +19,7 @@ export default function Post() {
     <div className={CLASSNAME.WRAPPER}>
       {/* header */}
       <div className={CLASSNAME.SELECTED_CATEGORY}>
-        {/* selected category text*/}
+        {/* selected category text */}
         <span className={CLASSNAME.SELECTED_CATEGORY_TITLE}>
           {TEXT.SELECTED_CATEGORY}
         </span>

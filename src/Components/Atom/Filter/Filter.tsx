@@ -5,14 +5,14 @@ import { FilterProps, CLASSNAME, TEXT } from './constant';
 import { SampleData } from '../../Sample/constant';
 import { TYPE } from '../../../Helper/constant';
 
-const Filter: React.FC<FilterProps> = ({
+function Filter({
   category,
   response,
   sampleData,
   setSampleData,
   price,
   setPrice,
-}) => {
+}: FilterProps) {
   const handlePrice = (value: [number, number]) => {
     setPrice?.(value);
   };
@@ -53,22 +53,19 @@ const Filter: React.FC<FilterProps> = ({
         <div className={CLASSNAME.SUBCATEGORY_LIST}>
           {response?.subcategories && response?.subcategories?.length > 0 ? (
             response?.subcategories?.map(
-              (
-                category: {
-                  subcategory_name: string;
-                  product_count: number;
-                },
-                index: number
-              ) => (
+              (category: {
+                subcategory_name: string;
+                product_count: number;
+              }) => (
                 <button
                   title={category.subcategory_name}
-                  key={index}
+                  key={category.subcategory_name}
                   className={
                     category.subcategory_name === sampleData?.subcategory
                       ? CLASSNAME.ACTIVE
                       : CLASSNAME.SUBCATEGORY_ITEM
                   }
-                  type={TYPE.BUTTON}
+                  type="button"
                   onClick={() => {
                     if (category.subcategory_name !== sampleData?.subcategory) {
                       setSampleData?.({
@@ -97,11 +94,11 @@ const Filter: React.FC<FilterProps> = ({
         <h4>{TEXT.BRAND}</h4>
         <div className={CLASSNAME.BRAND_LIST}>
           {response?.Brand && response?.Brand?.length > 0 ? (
-            response?.Brand?.map((brand: string | undefined, index: number) => (
+            response?.Brand?.map((brand: string | undefined) => (
               <button
-                type={TYPE.BUTTON}
+                type="button"
                 title={brand}
-                key={index}
+                key={brand}
                 className={
                   sampleData?.brand.includes(brand as string)
                     ? CLASSNAME.ACTIVE
@@ -175,7 +172,7 @@ const Filter: React.FC<FilterProps> = ({
         </div>
         <button
           className={CLASSNAME.APPLY}
-          type={TYPE.BUTTON}
+          type="button"
           disabled={!price || (price[0] === 100 && price[1] === 1500001)}
           onClick={() => {
             handlePriceRangeChange(price ?? [100, 1500000]);
@@ -186,5 +183,5 @@ const Filter: React.FC<FilterProps> = ({
       </div>
     </div>
   );
-};
+}
 export default Filter;

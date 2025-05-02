@@ -17,8 +17,7 @@ import EditProfile from '../Views/EditProfile';
 import FirebaseChatApp from '../Views/FirebaseChatApp';
 import SingleChatApp from '../Views/FirebaseSingleChat';
 
-
-export const PRIVATE_ROUTES: Array<CustomRouter> = [
+const PRIVATE_ROUTES: Array<CustomRouter> = [
   {
     path: ROUTES_CONFIG.HOMEPAGE.path,
     element: <HomeLayout />,
@@ -52,3 +51,5 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
     title: 'Rendering wildcard',
   },
 ];
+
+export { PRIVATE_ROUTES };

@@ -3,7 +3,7 @@ export const CLASSNAME = {
   IMAGE_SECTION: 'homeImageSection',
   LOAD: 'homeLoadMore',
   NO_PRODUCTS: 'homeNoProducts',
-  LOADER:"loader"
+  LOADER: 'loader',
 };
 export const TEXT = {
   LOAD: 'Load More',

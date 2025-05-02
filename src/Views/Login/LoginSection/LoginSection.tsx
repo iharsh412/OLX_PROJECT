@@ -1,9 +1,9 @@
 import './loginSection.css';
 import { Link } from 'react-router-dom';
 import ImageSection from '../../../Components/Atom/ImageTransition';
-import { CLASSNAME, TEXT } from './constant.ts';
-import { ROUTES_CONFIG } from '../../../Shared/Constants.ts';
-import { TYPE } from '../../../Helper/constant.ts';
+import { CLASSNAME, TEXT } from './constant';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import { TYPE } from '../../../Helper/constant';
 
 export default function LoginPage() {
   return (

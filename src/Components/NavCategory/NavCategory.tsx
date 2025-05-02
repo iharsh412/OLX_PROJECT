@@ -1,8 +1,7 @@
+import { useNavigate } from 'react-router-dom';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import './navCategory.css';
-import { useNavigate } from 'react-router-dom';
 import { CLASSNAME, TEXT } from './constant';
-import { TYPE } from '../../Helper/constant';
 
 export default function NavCategory() {
   const navigate = useNavigate();
@@ -24,6 +23,7 @@ export default function NavCategory() {
       <div className={CLASSNAME.CHILD}>
         <div className={CLASSNAME.ALL_CATEGORY}>
           <button
+            type="button"
             className={CLASSNAME.ALL_CATEGORY_TEXT}
             onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}
           >
@@ -39,14 +39,14 @@ export default function NavCategory() {
             {TEXT.MULTI_WHEEL_VEHICLE}
           </button> */}
           <button
-            type={TYPE.BUTTON}
+            type="button"
             className={CLASSNAME.MOTORCYCLE}
             onClick={handleMotorcycleClick}
           >
             {TEXT.BIKES}
           </button>
           <button
-            type={TYPE.BUTTON}
+            type="button"
             className={CLASSNAME.MOBILEPHONE}
             onClick={handleMobilePhoneClick}
           >
@@ -54,7 +54,7 @@ export default function NavCategory() {
           </button>
 
           <button
-            type={TYPE.BUTTON}
+            type="button"
             className={CLASSNAME.COMMERCIAL}
             onClick={handleElecyronicsClick}
           >

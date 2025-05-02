@@ -1,10 +1,11 @@
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
 // import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
-import { toast } from 'react-toastify';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
 import './loginUpDown.css';
 import {
@@ -14,13 +15,11 @@ import {
   TEXT,
 } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { useEffect, useState } from 'react';
-import Modal from '../../CustomComponents/Modal';
+import Modal from '../Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
 import { setUserId } from '../../../Store/ChatUser';
-import { TYPE } from '../../../Helper/constant';
 
-const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
+export default function LoginUpDown({ setOpenProfile }: ProfileDropdownProps) {
   const { username, refresh } = useSelector(
     (state: RootState) => state?.common
   );
@@ -28,7 +27,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   const navigate = useNavigate();
   const [post] = usePostLogoutDataMutation();
   const [openModal, setOpenModal] = useState<boolean>(false);
-  const [answer, setAnswer] = useState<String>('no');
+  const [answer, setAnswer] = useState<string>('no');
 
   // on click any item
   const handleItemClick = () => {
@@ -37,7 +36,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
   // onclick logout
   const handleLogout = () => {
     try {
-      post({ refresh: refresh }).unwrap();
+      post({ refresh }).unwrap();
       dispatch(setWishlistCount(0));
       dispatch(
         updateAuthState({
@@ -54,7 +53,7 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       toast.error(TEXT.ERROR_LOGOUT);
     }
   };
-  console.log('handleLogout');
+
   useEffect(() => {
     if (answer === 'yes') {
       handleLogout();
@@ -70,13 +69,16 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
               <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
               <h3>{username}</h3>
             </div>
-            <Link
-              onClick={handleItemClick}
-              to={ROUTES_CONFIG.PROFILE.path}
+            <button
+              type="button"
+              onClick={() => {
+                handleItemClick();
+                navigate(ROUTES_CONFIG.PROFILE.path);
+              }}
               className={CLASSNAME.PROFILE_EDIT_PROFILE}
             >
               {TEXT.VIEW_EDIT}
-            </Link>
+            </button>
           </div>
         </div>
 
@@ -85,10 +87,13 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             const Icon = item.icon;
             return (
               <button
+                type="button"
                 key={item.label}
                 onClick={() => {
-                  // handleItemClick();
-                  item.clickHandler && item?.clickHandler(navigate);
+                  if (item.clickHandler) {
+                    item.clickHandler(navigate);
+                  }
+                  item?.clickHandler?.(navigate);
                 }}
                 className={CLASSNAME.PROFILE_MENU_ITEM}
               >
@@ -98,10 +103,9 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
             );
           })}
           <button
-            type={TYPE.BUTTON}
+            type="button"
             title={TEXT.LOGOUT}
             onClick={(e) => {
-              console.log('hello');
               e.stopPropagation();
               setOpenModal(true);
             }}
@@ -122,6 +126,4 @@ const LoginUpDown: React.FC<ProfileDropdownProps> = ({ setOpenProfile }) => {
       </div>
     </div>
   );
-};
-
-export default LoginUpDown;
+}

@@ -1,13 +1,12 @@
-import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index.ts';
-import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index.ts';
-import './dashboard.css';
-import { useEffect, useState } from 'react';
-import { COMMON_TEXT } from '../../Helper/constant.ts';
-import { CLASSNAME, TEXT } from './constant.ts';
-import { Product } from '../../Helper/constant.ts';
-import { RootState } from '../../Store/index.ts';
 import { useSelector } from 'react-redux';
-import Schemer from '../../Components/Atom/Schemer/Schemer.tsx';
+import { useEffect, useState } from 'react';
+import Schemer from '../../Components/Atom/Schemer/Schemer';
+import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index';
+import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index';
+import './dashboard.css';
+import { COMMON_TEXT, Product } from '../../Helper/constant';
+import { CLASSNAME, TEXT } from './constant';
+import { RootState } from '../../Store/index';
 import Error from '../../Components/Atom/Error';
 
 export default function Dashboard() {
@@ -31,11 +30,10 @@ export default function Dashboard() {
       setTotalImages(() => {
         return [...data];
       });
-    } else {
-      if (data)
-        setTotalImages((prev) => {
-          return [...prev, ...data];
-        });
+    } else if (data) {
+      setTotalImages((prev) => {
+        return [...prev, ...data];
+      });
     }
   }, [data, search]);
 
@@ -65,8 +63,9 @@ export default function Dashboard() {
             <h2 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_PRODUCTS}</h2>
           )}
           {/* load section */}
-          {data?.length != 0 && data?.length === limit && (
+          {data?.length !== 0 && data?.length === limit && (
             <button
+              type="button"
               className={CLASSNAME.LOAD}
               onClick={() => setPage((prev) => prev + 1)}
             >

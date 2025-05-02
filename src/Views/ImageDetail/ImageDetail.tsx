@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import ImageTransition from '../../Components/CustomComponents/ImageDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../Helper/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { RootState } from '../../Store';
@@ -104,7 +104,7 @@ export default function ImageDetail() {
               <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
             </div>
             <button
-              type={TYPE.BUTTON}
+              type="button"
               title={TEXT.CHAT}
               className={CLASSNAME.CHAT_BUTTON}
               onClick={handleClickChat}

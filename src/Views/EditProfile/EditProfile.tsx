@@ -1,5 +1,9 @@
 import { Formik } from 'formik';
 import './editProfile.css';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   CLASSNAME,
   FormValues,
@@ -14,7 +18,6 @@ import {
   PhoneNumber,
 } from '../../Components/CustomComponents/Post/Common/Common';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
-import { Link, useNavigate } from 'react-router-dom';
 import ICONS from '../../assets';
 import { COMMON_TEXT } from '../../Helper/constant';
 import {
@@ -22,10 +25,7 @@ import {
   usePostEditProfileDataMutation,
   usePostEmailValidMutation,
 } from '../../Services/Api/module/imageApi';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import { updateUsername } from '../../Store/Common';
-import { useDispatch } from 'react-redux';
 import Loader from '../../Components/Atom/Loader';
 import Error from '../../Components/Atom/Error';
 
@@ -89,78 +89,73 @@ export default function EditProfile() {
         const share = { handleChange, handleBlur, setFieldValue };
 
         return (
-          <>
-            <div className={CLASSNAME.WRAPPER}>
-              {/* header wrapper */}
-              <div className={CLASSNAME.HEADER_WRAPPER}>
-                {/* cross */}
-                <Link
-                  className={CLASSNAME.CROSS}
-                  to={ROUTES_CONFIG.PROFILE.path}
-                >
-                  <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
-                </Link>
-                {/* text */}
-                <h3 className={CLASSNAME.EDIT_TEXT}>{TEXT.TITLE}</h3>
-                {/* view profile */}
-                <Link
-                  className={CLASSNAME.VIEW_PROFILE}
-                  to={ROUTES_CONFIG.PROFILE.path}
-                ></Link>
-              </div>
-              {/* name Input */}
-              <TextField
-                type="text"
-                htmlFor="username"
-                value={values.username}
-                label="Name"
-                err={errors.username}
-                tch={touched.username}
-                {...share}
+          <div className={CLASSNAME.WRAPPER}>
+            {/* header wrapper */}
+            <div className={CLASSNAME.HEADER_WRAPPER}>
+              {/* cross */}
+              <Link className={CLASSNAME.CROSS} to={ROUTES_CONFIG.PROFILE.path}>
+                <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
+              </Link>
+              {/* text */}
+              <h3 className={CLASSNAME.EDIT_TEXT}>{TEXT.TITLE}</h3>
+              {/* view profile */}
+              <Link
+                className={CLASSNAME.VIEW_PROFILE}
+                to={ROUTES_CONFIG.PROFILE.path}
               />
-              {/* email section */}
-              <Email
-                type="email"
-                htmlFor="email"
-                value={values.email}
-                label="Email"
-                err={errors.email}
-                tch={touched.email}
-                {...share}
-              />
-              {/* phone number */}
-              <PhoneNumber
-                type="text"
-                htmlFor="phonenumber"
-                value={values.phonenumber}
-                label="Phone Number"
-                err={errors.phonenumber}
-                tch={touched.phonenumber}
-                {...share}
-              />
-
-              {/* About Me Input */}
-              <AboutMe
-                type="text"
-                htmlFor="about me"
-                value={values['about me']}
-                err={errors['about me']}
-                tch={touched['about me']}
-                label="About me"
-                {...share}
-              />
-              <hr />
-              {/* Submit Button */}
-              <button
-                type="submit"
-                onClick={() => handleSubmit()}
-                className={CLASSNAME.POST}
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? COMMON_TEXT.EDITING : TEXT.EDIT}
-              </button>
             </div>
-          </>
+            {/* name Input */}
+            <TextField
+              type="text"
+              htmlFor="username"
+              value={values.username}
+              label="Name"
+              err={errors.username}
+              tch={touched.username}
+              {...share}
+            />
+            {/* email section */}
+            <Email
+              type="email"
+              htmlFor="email"
+              value={values.email}
+              label="Email"
+              err={errors.email}
+              tch={touched.email}
+              {...share}
+            />
+            {/* phone number */}
+            <PhoneNumber
+              type="text"
+              htmlFor="phonenumber"
+              value={values.phonenumber}
+              label="Phone Number"
+              err={errors.phonenumber}
+              tch={touched.phonenumber}
+              {...share}
+            />
+
+            {/* About Me Input */}
+            <AboutMe
+              type="text"
+              htmlFor="about me"
+              value={values['about me']}
+              err={errors['about me']}
+              tch={touched['about me']}
+              label="About me"
+              {...share}
+            />
+            <hr />
+            {/* Submit Button */}
+            <button
+              type="submit"
+              onClick={() => handleSubmit()}
+              className={CLASSNAME.POST}
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? COMMON_TEXT.EDITING : TEXT.EDIT}
+            </button>
+          </div>
         );
       }}
     </Formik>

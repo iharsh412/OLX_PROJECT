@@ -1,6 +1,6 @@
 import './footerInfo.css';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { Link } from 'react-router-dom';
+import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import ICONS from '../../../assets';
 
 export default function Footer() {

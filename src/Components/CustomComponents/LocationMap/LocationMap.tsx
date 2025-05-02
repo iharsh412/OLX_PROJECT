@@ -42,7 +42,7 @@ export default function LocationMap({ cityName, mapHeadingText }: PropsType) {
         className={CLASSNAME.IFRAMES}
         title={`Map of ${cityName}`}
         src={mapSrc}
-      ></iframe>
+      />
     </div>
   );
 }

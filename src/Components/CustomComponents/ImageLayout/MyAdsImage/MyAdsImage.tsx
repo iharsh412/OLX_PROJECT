@@ -1,16 +1,16 @@
 import './myAdsImage.css';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useEffect, useState } from 'react';
 import { CLASSNAME, TEXT } from './constant';
 import ICONS from '../../../../assets';
 import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
-import { useEffect, useState } from 'react';
 import Modal from '../../Modal';
-import { toast } from 'react-toastify';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
-import { useNavigate } from 'react-router-dom';
 import EditAds from '../../EditAds';
 import { getDaysFromNow } from '../../../../Helper/function';
 
-const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
+export default function MyAdsImage({ data, refetch }: ImageProps) {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
@@ -51,7 +51,17 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
 
   return (
     <>
-      <div className={CLASSNAME.WRAPPER} onClick={onClickImages}>
+      <div
+        className={CLASSNAME.WRAPPER}
+        onClick={onClickImages}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            onClickImages();
+          }
+        }}
+      >
         <div className={CLASSNAME.IMAGE}>
           <img
             src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
@@ -67,12 +77,10 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
           <span className={CLASSNAME.NAME}>{data.name}</span>
           <div className={CLASSNAME.PLACE_DATE}>
             <span className={CLASSNAME.LOCATION}>
-            {data.city} , {data.state}
+              {data.city} , {data.state}
             </span>
             <span className={CLASSNAME.DATE}>
-         
-              { getDaysFromNow(String(data?.created_at))}{' '}
-             
+              {getDaysFromNow(String(data?.created_at))}{' '}
             </span>
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
@@ -101,5 +109,4 @@ const MyAds: React.FC<ImageProps> = ({ data, refetch }) => {
       )}
     </>
   );
-};
-export default MyAds;
+}

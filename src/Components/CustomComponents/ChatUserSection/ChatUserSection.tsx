@@ -8,13 +8,14 @@ import {
   useEffect,
   useState,
 } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './chatUserSection.css';
 import { CLASSNAME } from './constant';
 import { ChatContextType } from '../ChatWrapper/constant';
 import { ChatContext } from '../ChatWrapper/ChatWrapper';
-import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../Store';
 import { setUserId } from '../../../Store/ChatUser';
+import { TYPE } from '../../../Helper/constant';
 
 // const user = [
 //   { user: 'hello', key: 1 },
@@ -54,31 +55,30 @@ export default function ChatUserSection() {
   }
 
   return (
-    <>
-      <div className={CLASSNAME.WRAPPER}>
-        {userList?.map(
-          (data: {
-            key: Key | null | undefined;
-            user:
-              | string
-              | number
-              | boolean
-              | ReactElement<any, string | JSXElementConstructor<any>>
-              | Iterable<ReactNode>
-              | ReactPortal
-              | null
-              | undefined;
-          }) => (
-            <button
-              className={CLASSNAME.USER}
-              key={data.key}
-              onClick={handleClick}
-            >
-              {data.user}
-            </button>
-          )
-        )}
-      </div>
-    </>
+    <div className={CLASSNAME.WRAPPER}>
+      {userList?.map(
+        (data: {
+          key: Key | null | undefined;
+          user:
+            | string
+            | number
+            | boolean
+            | ReactElement<any, string | JSXElementConstructor<any>>
+            | Iterable<ReactNode>
+            | ReactPortal
+            | null
+            | undefined;
+        }) => (
+          <button
+            type={TYPE.BUTTON}
+            className={CLASSNAME.USER}
+            key={data.key}
+            onClick={handleClick}
+          >
+            {data.user}
+          </button>
+        )
+      )}
+    </div>
   );
 }

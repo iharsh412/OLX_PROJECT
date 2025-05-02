@@ -10,12 +10,11 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore';
-import { db } from '../../firebase';
-
-import { RootState } from '../../Store';
-import { MessageProps } from './constant';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
+import { db } from '../../firebase';
+import { RootState } from '../../Store';
+import { MessageProps } from './constant';
 import { CLASSNAME, TEXT } from '../FirebaseChatApp/constant';
 import { TYPE } from '../../Helper/constant';
 
@@ -177,20 +176,19 @@ export default function FirebaseChatApp() {
                         minute: '2-digit',
                       })
                     : ''}
-                         {msg.user === username && (
-                  <span
-                    className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
-                  >
-                    {msg.seen ? '✓✓' : '✓'}
-                  </span>
-                )}
+                  {msg.user === username && (
+                    <span
+                      className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
+                    >
+                      {msg.seen ? '✓✓' : '✓'}
+                    </span>
+                  )}
                 </span>
-           
               </div>
             ))
           )}
         </div>
-           {/* send button and input wrapper  */}
+        {/* send button and input wrapper  */}
         <div className={CLASSNAME.INPUT_WRAPPER}>
           <input
             className={CLASSNAME.MESSAGE_INPUT}
@@ -202,7 +200,11 @@ export default function FirebaseChatApp() {
               if (e.key === 'Enter') handleSendMessage();
             }}
           />
-          <button className={CLASSNAME.SEND_BUTTON} onClick={handleSendMessage}>
+          <button
+            type="button"
+            className={CLASSNAME.SEND_BUTTON}
+            onClick={handleSendMessage}
+          >
             Send
           </button>
         </div>

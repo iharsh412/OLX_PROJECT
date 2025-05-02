@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
 import './sample.css';
 import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
-import { COMMON_TEXT, Product, TYPE } from '../../Helper/constant';
+import { COMMON_TEXT, Product } from '../../Helper/constant';
 import ICONS from '../../assets';
 import { SampleData, ResponseData, CLASSNAME, TEXT } from './constant';
 import Pagination from '../Atom/Pagination/Pagination';
@@ -18,7 +18,7 @@ export default function Sample() {
   const { category } = useParams();
   const [showButton, setShowButton] = useState({ prev: false, next: false });
   const [sampleData, setSampleData] = useState<SampleData>({
-    category: category,
+    category,
     subcategory: '',
     brand: [],
     price: [100, 1500000],
@@ -52,7 +52,7 @@ export default function Sample() {
 
   useEffect(() => {
     setSampleData({
-      category: category,
+      category,
       subcategory: '',
       brand: [],
       price: [100, 1500000],
@@ -94,7 +94,7 @@ export default function Sample() {
                 {sampleData.subcategory}
               </span>
               <button
-                type={TYPE.BUTTON}
+                type="button"
                 className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({ ...sampleData, subcategory: '' });
@@ -109,7 +109,7 @@ export default function Sample() {
             <div className={CLASSNAME.SELECTED_OPTION_WRAPPER} key={brand}>
               <span className={CLASSNAME.SELECTED_OPTION_TEXT}>{brand}</span>
               <button
-                type={TYPE.BUTTON}
+                type="button"
                 className={CLASSNAME.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({

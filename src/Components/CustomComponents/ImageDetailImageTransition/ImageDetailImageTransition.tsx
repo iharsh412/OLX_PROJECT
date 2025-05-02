@@ -5,11 +5,10 @@ import { CLASSNAME, ImageSectionProps } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
 function ImageSection({ images }: ImageSectionProps) {
-  const imageArray: string[] = images
-    ? Array.isArray(images)
-      ? images
-      : [images]
-    : [];
+  let imageArray: string[] = [];
+  if (images) {
+    imageArray = Array.isArray(images) ? images : [images];
+  }
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevSlide = () => {

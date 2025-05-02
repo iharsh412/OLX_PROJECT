@@ -26,11 +26,11 @@ import {
 import Loader from '../../Atom/Loader';
 import Error from '../../Atom/Error';
 
-const EditAds: React.FC<EditAdsProps> = ({
+export default function EditAds({
   setEditOpen,
   data: product,
   refetch,
-}) => {
+}: EditAdsProps) {
   const [post] = usePostEditDataMutation();
   const { data, isLoading, isError } = useGetProductsDetailQuery({
     id: product.id,
@@ -62,17 +62,17 @@ const EditAds: React.FC<EditAdsProps> = ({
     if (product?.subcategory)
       formData.append('subcategory', String(product.subcategory));
 
-    for (const key in values) {
+    Object.entries(values).forEach(([key, value]) => {
       const typedKey = key as keyof FormValues;
 
-      if (Array.isArray(values[typedKey])) {
-        (values[typedKey] as File[]).forEach((file) => {
+      if (Array.isArray(value)) {
+        (value as File[]).forEach((file) => {
           formData.append(typedKey, file);
         });
-      } else if (values[typedKey] !== undefined && values[typedKey] !== null) {
-        formData.append(typedKey, String(values[typedKey]));
+      } else if (value !== undefined && value !== null) {
+        formData.append(typedKey, String(value));
       }
-    }
+    });
 
     try {
       await post(formData).unwrap();
@@ -224,6 +224,4 @@ const EditAds: React.FC<EditAdsProps> = ({
       </Formik>
     </div>
   );
-};
-
-export default EditAds;
+}
