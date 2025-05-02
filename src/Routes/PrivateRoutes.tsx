@@ -9,7 +9,7 @@ import Wishlist from '../Views/WishlistSection';
 import Post from '../Views/Post';
 import ProductDetail from '../Views/ImageDetail';
 import TypeSection from '../Views/TypeSection';
-import NewPass from '../Views/Login/NewPass';
+import NewPass from '../Views/Authentication/NewPass';
 import MyAds from '../Views/MyAds';
 import Profile from '../Views/ProfileSection';
 import EditProfile from '../Views/EditProfile';
