@@ -121,14 +121,14 @@ button {
   align-items: center;
   justify-content: space-between;
 }
-.post-form-remove-btn{
-  position:absolute;
-  top:0;
-  right:0;
+.post-form-remove-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
   width: 15px;
   height: 15px;
 }
-.post-form-remove-btn img{
+.post-form-remove-btn img {
   width: 100%;
   height: 100%;
 }
@@ -174,10 +174,6 @@ button {
   padding: 10px;
   border-radius: 6px;
   border: 1px solid #ccc;
-}
-
-.postForm_City,
-.postForm_State {
   width: 100%;
 }
 
@@ -194,7 +190,6 @@ button {
 }
 
 .postForm_StateList {
-  /* position: absolute; */
   bottom: 70%;
   right: 0;
   width: 100%;
@@ -207,7 +202,6 @@ button {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }
-
 
 .postForm_StateItems {
   padding: 10px 12px;
@@ -231,7 +225,6 @@ button {
 
 /* City  */
 .postForm_CityList {
-  /* position: absolute; */
   bottom: 30%;
   right: 0;
   width: 100%;
@@ -243,7 +236,6 @@ button {
   background: white;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   border-radius: 6px;
-
 }
 
 /* Seller */
@@ -290,7 +282,6 @@ button {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-
   .postForm_Description,
   .postForm_State,
   .postForm_City,
@@ -321,7 +312,6 @@ button {
 }
 
 @media (max-width: 480px) {
-
   .postForm_Description,
   .postForm_State,
   .postForm_City,
@@ -336,7 +326,6 @@ button {
   .postForm_mobileNumberWrapper span {
     font-size: 12px;
     padding: 4px 6px;
-
   }
 
   .postForm_PriceInputWrapper input {

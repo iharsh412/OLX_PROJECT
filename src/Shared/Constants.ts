@@ -19,7 +19,6 @@ const ROUTES = {
   MYADS: '/users/ads',
   PROFILE: '/profile/info',
   EDIT_PROFILE: '/editprofile/info',
-  // CHAT: '/user/chat',
   FIREBASE_CHAT: '/firebase/chat',
   SINGLE_CHAT: '/firebase/singlechat',
 };

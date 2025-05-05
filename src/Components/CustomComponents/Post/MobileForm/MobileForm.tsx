@@ -11,17 +11,11 @@ import {
   State,
   TextField,
 } from '../Common/Common';
-import {
-  CLASSNAME,
-  validationSchema,
-  initialValues,
-  FormValues,
-  TEXT,
-} from './costant';
+import { validationSchema, initialValues } from './costant';
+import { FormValues, TEXT, CLASSNAME } from '../Common/constant';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { TEXT as COMMON_TEXT } from '../Common/constant';
 
 export default function MobileForm() {
   const { state } = useLocation();
@@ -61,13 +55,13 @@ export default function MobileForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      toast.success(COMMON_TEXT.SUCCESS);
+      toast.success(TEXT.SUCCESS);
       setShowResponse('Added');
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
 
       resetForm();
     } catch (error) {
-      toast.error(COMMON_TEXT.ERROR);
+      toast.error(TEXT.ERROR);
       setShowResponse('Error');
     }
   };

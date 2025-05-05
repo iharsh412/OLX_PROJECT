@@ -8,11 +8,10 @@ export default function AdsSection() {
       <h4>{TEXT.TITLE}</h4>
       <div className={CLASSNAME.CONTENT}>
         {CONTENTS.map((data) => (
-          <div
+          <button
+            type="button"
             key={data.id}
             className={CLASSNAME.CONTAINER}
-            role="button"
-            tabIndex={0}
             onClick={() => window.open(data.link || '')}
             onKeyDown={(e) => {
               if (e.key === 'Enter' || e.key === ' ') {
@@ -42,7 +41,7 @@ export default function AdsSection() {
                 <span>{data.label}</span>
               </>
             )}
-          </div>
+          </button>
         ))}
       </div>
     </div>

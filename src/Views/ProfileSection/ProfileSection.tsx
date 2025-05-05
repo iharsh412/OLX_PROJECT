@@ -6,7 +6,7 @@ import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
 import { COMMON_TEXT } from '../../Helper/constant';
 import Loader from '../../Components/Atom/Loader';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 
 export default function ProfileSection() {
   const { data, isLoading, isError } = useGetUserInfoQuery(
@@ -15,7 +15,7 @@ export default function ProfileSection() {
   );
 
   if (isLoading) return <Loader />;
-  if (isError) return <Error />;
+  if (isError) return <ErrorSection />;
 
   return (
     <div className={CLASSNAME.WRAPPER}>

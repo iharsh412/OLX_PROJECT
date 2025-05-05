@@ -7,7 +7,7 @@ import './signup.css';
 import {
   VALIDATION,
   INITIAL_VALUES,
-  FORM_VALUES,
+  FormValue,
   CLASSNAME,
   TEXT,
 } from './constant';
@@ -28,7 +28,7 @@ export default function Signup() {
 
   // handle form submit
   async function handleSubmit(
-    values: FORM_VALUES,
+    values: FormValue,
     { resetForm }: { resetForm: () => void }
   ) {
     const { confirmPassword, ...data } = { ...values };

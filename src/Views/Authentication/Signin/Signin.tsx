@@ -1,17 +1,20 @@
 import { Formik } from 'formik';
 import './signin.css';
+import { useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import { Link, useNavigate } from 'react-router-dom';
 import {
-  FORM_VALUES,
+  FormValue,
   INITIAL_VALUES,
   VALIDATION,
   CLASSNAME,
   TEXT,
 } from './constant';
-import { toast } from 'react-toastify';
+
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import {
@@ -19,7 +22,6 @@ import {
   TEXT as LOGIN_SECTION_TEXT,
 } from '../LoginSection/constant';
 import ICONS from '../../../assets';
-import { useRef, useState } from 'react';
 
 export default function Signin() {
   const navigate = useNavigate();
@@ -30,7 +32,7 @@ export default function Signin() {
 
   // handle submit
   async function handleSubmit(
-    values: FORM_VALUES,
+    values: FormValue,
     { resetForm }: { resetForm: () => void }
   ) {
     try {

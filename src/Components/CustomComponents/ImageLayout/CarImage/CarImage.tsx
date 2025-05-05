@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
+import { COMMON_TEXT, ImageProps } from '../../../../Helper/constant';
 import { RootState } from '../../../../Store';
 import { CLASSNAME, TEXT } from './constant';
 import { getDaysFromNow } from '../../../../Helper/function';
@@ -47,7 +47,6 @@ export default function Images({
         toast.success(TEXT.REMOVE_FROM_WISHLIST);
       }
       refetchDashboard?.();
-      // toast.success(response.msg);
     } catch (error) {
       toast.error(TEXT.ERROR_IN_ADDING);
     }
@@ -86,7 +85,7 @@ export default function Images({
         {/* wishlist section */}
         <button
           title={COMMON_TEXT.BUTTON}
-          type={TYPE.BUTTON}
+          type="button"
           onClick={onClickWishlist}
           className={CLASSNAME.CART_WRAPPER}
           disabled={isLoading}
@@ -102,14 +101,15 @@ export default function Images({
         <span className={CLASSNAME.COST}>
           <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
         </span>
-        {/* <span className={CLASSNAME.DISTANCE}>{data.status}</span> */}
         <span className={CLASSNAME.NAME}>{data.name}</span>
         <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
           <span className={CLASSNAME.PLACE}>
             {data.city},{data.state}
           </span>
           <span className={CLASSNAME.DATE}>
-            {getDaysFromNow(String(data?.created_at))}{' '}
+            {typeof data?.created_at === 'string'
+              ? getDaysFromNow(data.created_at)
+              : ''}
           </span>
         </div>
       </div>

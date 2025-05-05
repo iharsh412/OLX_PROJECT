@@ -31,10 +31,8 @@
 /*  SIGNUP LINK - FLOATING */
 .login_signup {
   color: blue;
-  font-weight: 600;
   text-decoration: none;
   position: relative;
-  padding: 0 4px;
   transition: all 0.3s ease;
   border: 2px solid black;
   width: 100%;
@@ -42,7 +40,6 @@
   padding: 10px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-
   font-family: 'Google Sans', sans-serif;
   font-size: 20px;
   font-weight: 800;

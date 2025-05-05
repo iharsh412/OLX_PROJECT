@@ -9,7 +9,7 @@ export const VALIDATION = Yup.object().shape({
     .required('Email is required')
     .matches(emailRegex, 'Please enter a valid email address'),
 });
-export interface FORM_VALUES {
+export interface FormValue {
   email: string;
 }
 export const CLASSNAME = {

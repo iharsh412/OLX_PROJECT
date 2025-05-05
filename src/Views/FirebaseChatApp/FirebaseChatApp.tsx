@@ -42,11 +42,11 @@ export default function FirebaseChatApp() {
         id: tempId,
         text: newmsg,
         createdAt: new Date(),
-        user: username || '',
+        user: username ?? '',
         room: roomId,
         seen: false,
-        senderId: id || '',
-        receiverId: receiverId || '',
+        senderId: id ?? '',
+        receiverId: receiverId ?? '',
       };
       setMessages((prev) => [...prev, newMessage]);
       setNewmsg('');
@@ -104,7 +104,6 @@ export default function FirebaseChatApp() {
         if (doc.data().room.split('_').includes(String(id))) {
           uniqueRooms.add(doc.data().room);
           if (doc.data().receiverId == id && !doc.data().seen) {
-            console.log(doc.data().room, 'doc.data().room');
             counts[doc.data().room] = (counts[doc.data().room] || 0) + 1;
           }
         }

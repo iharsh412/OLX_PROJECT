@@ -24,7 +24,11 @@ export default function FirebaseChatApp() {
   const [newmsg, setNewmsg] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const messageRef = collection(db, 'messages');
-  const roomId = [userId, id].sort().join('_');
+  const roomId =
+    userId != null && id != null
+      ? [userId, id].sort((a, b) => a - b).join('_')
+      : '';
+
   const messagEnd = useRef<HTMLDivElement>(null);
   const messageListRef = useRef<HTMLDivElement>(null);
 
@@ -37,11 +41,11 @@ export default function FirebaseChatApp() {
         id: tempId,
         text: newmsg,
         createdAt: new Date(),
-        user: username || '',
+        user: username ?? '',
         room: roomId,
         seen: false,
-        senderId: id || '',
-        receiverId: userId || '',
+        senderId: id ?? '',
+        receiverId: userId ?? '',
       };
       setMessages((prev) => [...prev, newMessage]);
       setNewmsg('');

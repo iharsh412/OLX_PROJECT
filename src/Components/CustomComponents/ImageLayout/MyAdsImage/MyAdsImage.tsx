@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
 import { CLASSNAME, TEXT } from './constant';
 import ICONS from '../../../../assets';
-import { COMMON_TEXT, ImageProps, TYPE } from '../../../../Helper/constant';
+import { COMMON_TEXT, ImageProps } from '../../../../Helper/constant';
 import Modal from '../../Modal';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import EditAds from '../../EditAds';
@@ -73,20 +73,21 @@ export default function MyAdsImage({ data, refetch }: ImageProps) {
           <span className={CLASSNAME.COST}>
             <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
           </span>
-          {/* <span className={CLASSNAME.STATUS}>{data.status}</span> */}
           <span className={CLASSNAME.NAME}>{data.name}</span>
           <div className={CLASSNAME.PLACE_DATE}>
             <span className={CLASSNAME.LOCATION}>
               {data.city} , {data.state}
             </span>
             <span className={CLASSNAME.DATE}>
-              {getDaysFromNow(String(data?.created_at))}{' '}
+              {typeof data?.created_at === 'string'
+                ? getDaysFromNow(data.created_at)
+                : ''}
             </span>
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
             <button
               title={TEXT.EDIT}
-              type={TYPE.BUTTON}
+              type="button"
               className={CLASSNAME.EDIT}
               onClick={(e) => handleClickEdit(e)}
             >
@@ -94,7 +95,7 @@ export default function MyAdsImage({ data, refetch }: ImageProps) {
             </button>
             <button
               title={TEXT.DELETE}
-              type={TYPE.BUTTON}
+              type="button"
               className={CLASSNAME.DELETE}
               onClick={handleClickDelete}
             >

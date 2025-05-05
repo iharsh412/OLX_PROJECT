@@ -18,7 +18,7 @@ export const TEXT = {
 
 export const validationSchema = Yup.object().shape({
   phonenumber: Yup.string().matches(
-    /^[0-9]{10}$/,
+    /^\d{10}$/,
     'Mobile number must be exactly 10 digits'
   ),
   email: Yup.string()

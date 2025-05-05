@@ -7,7 +7,7 @@ import { COMMON_TEXT, Product } from '../../Helper/constant';
 import ICONS from '../../assets';
 import { SampleData, ResponseData, CLASSNAME, TEXT } from './constant';
 import Pagination from '../Atom/Pagination/Pagination';
-import Error from '../Atom/Error';
+import ErrorSection from '../Atom/ErrorSection';
 import Filter from '../Atom/Filter';
 import Schemer from '../Atom/Schemer';
 
@@ -138,7 +138,7 @@ export default function Sample() {
         />
         {/* Image Section */}
         <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
-          {isError && <Error />}
+          {isError && <ErrorSection />}
           <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
             {isLoading &&
               Array.from({ length: 8 }, (_, i) => <Schemer key={i} />)}

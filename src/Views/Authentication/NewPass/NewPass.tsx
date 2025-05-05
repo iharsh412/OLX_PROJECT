@@ -7,7 +7,7 @@ import './newPass.css';
 import {
   VALIDATION,
   INITIAL_VALUES,
-  FORM_VALUES,
+  FormValue,
   CLASSNAME,
   TEXT,
 } from './constant';
@@ -28,13 +28,13 @@ export default function NewPass() {
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] =
     useState(false);
   // handle submit
-  async function handleSubmit(values: FORM_VALUES) {
+  async function handleSubmit(values: FormValue) {
     try {
       await post({
         password: values.password,
         token,
         id,
-      }).unwrap;
+      }).unwrap();
       setDisabled(true);
       toast.success(TEXT.SUCCESS);
     } catch (error) {

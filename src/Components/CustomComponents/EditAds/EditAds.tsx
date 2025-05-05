@@ -24,7 +24,7 @@ import {
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
 import Loader from '../../Atom/Loader';
-import Error from '../../Atom/Error';
+import Error from '../../Atom/ErrorSection';
 
 export default function EditAds({
   setEditOpen,
@@ -57,9 +57,9 @@ export default function EditAds({
   ) => {
     const formData = new FormData();
     if (product?.id !== undefined) formData.append('id', String(product.id));
-    if (product?.category)
+    if (product?.category !== undefined)
       formData.append('category', String(product.category));
-    if (product?.subcategory)
+    if (product?.subcategory !== undefined)
       formData.append('subcategory', String(product.subcategory));
 
     Object.entries(values).forEach(([key, value]) => {
@@ -180,7 +180,7 @@ export default function EditAds({
               <Photos
                 type="file"
                 label="images"
-                value={values.images as File[]}
+                value={values?.images}
                 {...share}
               />
               <hr />

@@ -13,6 +13,18 @@ import {
 import ICONS from '../../../../assets';
 import { COMMON_TEXT } from '../../../../Helper/constant';
 
+function handleChangeMobileNumber(
+  e: ChangeEvent<HTMLInputElement>,
+  htmlFor: string,
+  label: string,
+  setFieldValue: any
+) {
+  const rawValue = e.target.value;
+  const numericOnly = rawValue.replace(/\D/g, '');
+  const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
+  setFieldValue?.(htmlFor, trimmed);
+}
+
 function Year({
   htmlFor,
   type,
@@ -303,12 +315,6 @@ function Seller({
   handleBlur,
   setFieldValue,
 }: TextFieldProps) {
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const rawValue = e.target.value;
-    const numericOnly = rawValue.replace(/\D/g, '');
-    const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
-    setFieldValue?.(htmlFor, trimmed);
-  }
   return (
     <>
       <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{TEXT.VERIFY}</h3>
@@ -322,7 +328,9 @@ function Seller({
           title={htmlFor}
           type={type}
           name={htmlFor}
-          onChange={handleChange}
+          onChange={(e) =>
+            handleChangeMobileNumber(e, htmlFor, label, setFieldValue)
+          }
           onBlur={handleBlur}
           value={value as string}
           className={`${CLASSNAME.MOBILE_NUMBER} ${
@@ -349,12 +357,6 @@ function PhoneNumber({
   handleBlur,
   setFieldValue,
 }: TextFieldProps) {
-  function handleChangeMobileNumber(e: ChangeEvent<HTMLInputElement>) {
-    const rawValue = e.target.value;
-    const numericOnly = rawValue.replace(/\D/g, '');
-    const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
-    setFieldValue?.(htmlFor, trimmed);
-  }
   return (
     <>
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
@@ -366,7 +368,9 @@ function PhoneNumber({
           title={htmlFor}
           type={type}
           name={htmlFor}
-          onChange={handleChangeMobileNumber}
+          onChange={(e) =>
+            handleChangeMobileNumber(e, htmlFor, label, setFieldValue)
+          }
           onBlur={handleBlur}
           value={value as string}
           className={`${CLASSNAME.MOBILE_NUMBER} ${
@@ -421,7 +425,7 @@ function Photos({ type, value, label, setFieldValue }: PhotosProps) {
                     className={CLASSNAME.FILE_INPUT}
                     onChange={(e) => {
                       const { files } = e.target;
-                      if (files && files[0]) {
+                      if (files?.[0]) {
                         const updated: File[] = [...value];
                         updated[index] = files[0];
                         setFieldValue?.(label, updated);

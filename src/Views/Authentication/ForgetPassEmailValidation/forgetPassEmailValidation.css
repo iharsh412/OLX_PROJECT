@@ -31,7 +31,7 @@
 .forget_required{
   display: inline-block;
   margin: 3px;
-  color:red;;
+  color:red;
 }
 .forget_Header {
   display: flex;
@@ -149,7 +149,6 @@
   }
 
   .forget_emailInput label {
-    /* min-width: auto; */
     margin-bottom: 8px;
     padding-right: 0;
   }

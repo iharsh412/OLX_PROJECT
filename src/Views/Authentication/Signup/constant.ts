@@ -31,7 +31,7 @@ export const VALIDATION = Yup.object().shape({
     .required('Please confirm your password')
     .oneOf([Yup.ref('password')], 'Passwords must match'),
 });
-export interface FORM_VALUES {
+export interface FormValue {
   username: string;
   email: string;
   password: string;

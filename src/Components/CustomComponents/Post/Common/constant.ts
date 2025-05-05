@@ -1,15 +1,23 @@
 import { FormikErrors } from 'formik';
 
 export const CLASSNAME = {
+  LABEL: 'post-label',
+  DETAIL_TEXT: 'postForm_detailText',
+  WRAPPER: 'postFormWrapper',
+  ERROR: 'textField_error',
+  FUEL: 'postForm_FuelOption',
+  LOCATION_WRAPPER: 'postForm_LocationWrapper',
+  LOCATION_TEXT: 'postForm_LocationText',
+  SELLER_WRAPPER: 'postForm_SellerWrapper',
+  SELLER_TEXT: 'postForm_SellerText',
+  POST: 'postForm_post',
   //   Description
   LABEL_WRAPPER: 'post-labelWrapper',
-  LABEL: 'post-label',
   DESCRIPTION: 'postForm_Description',
   INPUTERROR: 'postErrorInput',
-  //Text Field
+  // Text Field
   CONTAINER: 'textField',
   INPUT: 'textField_input',
-  ERROR: 'textField_error',
   // Photos Field
   UPLOAD_TEXT: 'postForm_UploadText',
   PHOTO_CONTAINER: 'postForm_photo-container',
@@ -35,7 +43,7 @@ export const CLASSNAME = {
   STATE: 'postForm_State',
   STATE_LIST: 'postForm_StateList',
   STATE_ITEMS: 'postForm_StateItems',
-  //City
+  // City
   CITY: 'postForm_City',
   CITY_LIST: 'postForm_CityList',
 };
@@ -48,28 +56,41 @@ export const LOCATION = {
 export enum COUNT {
   Description = 4000,
   Brand = 50,
-  Name = 50,
+  Name = 70,
   Year = 4,
   'KM driven' = 5,
-  'Ad title' = 50,
+  'Ad title' = 100,
   'Mobile Number' = 10,
-  'Phone Number' =10,
 }
 export interface TextFieldProps {
-  handleChange?: (e: React.ChangeEvent<any>) => void;
-  handleBlur?: (e: React.FocusEvent<any>) => void;
-  htmlFor: string;
-  label: string;
-  value?: string | number | boolean | [];
-  type?: string;
-  err?: string | object | boolean | undefined;
-  tch?: boolean;
-  setFieldValue?: (
+  readonly handleChange?: (e: React.ChangeEvent<any>) => void;
+  readonly handleBlur?: (e: React.FocusEvent<any>) => void;
+  readonly htmlFor: string;
+  readonly label: string;
+  readonly value?: string | number | boolean | [];
+  readonly type?: string;
+  readonly err: string | object | boolean | undefined;
+  readonly tch?: boolean;
+  readonly setFieldValue?: (
     field: string,
     value: any,
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<any>>;
+  readonly state?: string;
+}
+export interface FormValues {
+  title?: string;
+  description?: string;
+  brand?: string;
+  year?: string;
+  fuel?: string;
+  distance?: string;
+  price?: string;
+  photos?: File[];
   state?: string;
+  city?: string;
+  sellerName?: string;
+  mobileNumber?: string;
 }
 export interface PhotosProps {
   value: File[];
@@ -81,6 +102,7 @@ export interface PhotosProps {
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<any>>;
 }
+
 export const TEXT = {
   VERIFY: "Let's verify your account",
   CONFIRMATION:
@@ -90,4 +112,7 @@ export const TEXT = {
   ADD_PHOTO: 'Add Photo',
   SUCCESS: 'Posted Successfuly!',
   ERROR: 'Error',
+  INCLUDE_DETAIL: 'INCLUDE SOME DETAILS',
+  CONFIRM_LOCATION: 'CONFIRM YOUR LOCATION',
+  REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
 };

@@ -12,7 +12,7 @@ import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { RootState } from '../../Store';
 import { setUserId } from '../../Store/ChatUser';
 import Loader from '../../Components/Atom/Loader';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 import { getDaysFromNow } from '../../Helper/function';
 
 export default function ImageDetail() {
@@ -41,7 +41,7 @@ export default function ImageDetail() {
     return <Loader />;
   }
   if (isError) {
-    return <Error />;
+    return <ErrorSection />;
   }
 
   return (

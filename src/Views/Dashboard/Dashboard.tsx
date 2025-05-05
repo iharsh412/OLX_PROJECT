@@ -7,7 +7,7 @@ import './dashboard.css';
 import { COMMON_TEXT, Product } from '../../Helper/constant';
 import { CLASSNAME, TEXT } from './constant';
 import { RootState } from '../../Store/index';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 
 export default function Dashboard() {
   const search = useSelector((state: RootState) => state?.areaItem?.item);
@@ -49,7 +49,7 @@ export default function Dashboard() {
               ))}
             </div>
           )}
-          {isError && <Error />}
+          {isError && <ErrorSection />}
           <div className={CLASSNAME.IMAGE_SECTION}>
             {/* totalImages.length greater then 0 */}
             {data &&

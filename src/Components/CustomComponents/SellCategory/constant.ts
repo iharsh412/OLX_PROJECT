@@ -1,10 +1,10 @@
 export interface SellCategoryProps {
-  categoryId: string;
+  readonly categoryId: string;
 }
 
 export const SUBCATEGORIES: Record<string, string[]> = {
-//   multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
-  mobile: ['Mobile', 'Tablet', ],
+  //   multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
+  mobile: ['Mobile', 'Tablet'],
   electronics: ['Computer', 'TVs', 'Camera'],
   bikes: ['Bikes', 'Scooters'],
 };

@@ -4,14 +4,7 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import './carForm.css';
-import {
-  CLASSNAME,
-  FuelOptions,
-  FormValues,
-  validationSchema,
-  initialValues,
-  TEXT,
-} from './constant';
+import { FuelOptions, validationSchema, initialValues } from './constant';
 import {
   Description,
   TextField,
@@ -23,7 +16,7 @@ import {
   // Year,
 } from '../Common/Common';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { TEXT as COMMON_TEXT } from '../Common/constant';
+import { TEXT, FormValues, CLASSNAME } from '../Common/constant';
 
 export default function CarForm() {
   const { state } = useLocation();
@@ -55,12 +48,12 @@ export default function CarForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      toast.success(COMMON_TEXT.SUCCESS);
+      toast.success(TEXT.SUCCESS);
       setShowResponse('Added');
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
       resetForm();
     } catch (error) {
-      toast.error(COMMON_TEXT.ERROR);
+      toast.error(TEXT.ERROR);
       setShowResponse('Error');
     }
   };

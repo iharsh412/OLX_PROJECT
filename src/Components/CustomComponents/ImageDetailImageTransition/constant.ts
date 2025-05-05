@@ -11,6 +11,6 @@ export const CLASSNAME = {
   NEXT: 'imageDetailLogin_slide_next',
   DOTS_CONTAINER: 'imageDeatilLogin_dots_container',
   ACTIVE_IMAGES: 'ActiveImages',
-  DOTS: "imageDetailDot",
-  ACTIVE_DOTS: 'imageDetailActive'
+  DOTS: 'imageDetailDot',
+  ACTIVE_DOTS: 'imageDetailActive',
 };

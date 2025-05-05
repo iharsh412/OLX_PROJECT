@@ -1,3 +1,5 @@
-export const CLASSNAME = {
-  WRAPPER: 'carWrapper' ,
+const CLASSNAME = {
+  WRAPPER: 'carWrapper',
 };
+
+export { CLASSNAME };

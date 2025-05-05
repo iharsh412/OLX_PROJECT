@@ -27,7 +27,7 @@ function Pagination({ page, totalpage, showButton, setPage }: PaginationProps) {
             return (
               <button
                 type="button"
-                key={index}
+                key={`page-${index + 1}`}
                 onClick={() => setPage(index + 1)}
                 disabled={index + 1 === page}
                 className={`${CLASSNAME.PAGE_NUMBER} ${

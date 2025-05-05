@@ -1,5 +1,4 @@
 import { Formik } from 'formik';
-// import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
 import './forgetPassEmailValidation.css';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -8,7 +7,7 @@ import { usePostForgetPasswordDataMutation } from '../../../Services/Api/module/
 import {
   VALIDATION,
   INITIAL_VALUES,
-  FORM_VALUES,
+  FormValue,
   CLASSNAME,
   TEXT,
 } from './constant';
@@ -26,7 +25,7 @@ export default function ForgetPassEmailValidation() {
   const [post, { isLoading }] = usePostForgetPasswordDataMutation();
 
   //  submit
-  async function handleSubmit(values: FORM_VALUES) {
+  async function handleSubmit(values: FormValue) {
     try {
       await post(values).unwrap();
       setDisabled(true);

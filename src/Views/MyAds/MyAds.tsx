@@ -5,7 +5,7 @@ import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME, TEXT } from './constant';
 import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
 import { Product } from '../../Helper/constant';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import Pagination from '../../Components/Atom/Pagination';
@@ -50,7 +50,7 @@ export default function MyAds() {
             ))}
           </div>
         )}
-        {isError && <Error />}
+        {isError && <ErrorSection />}
         {/* no ads */}
         {page === 1 && data?.products?.length === 0 && (
           <div className={CLASSNAME.NO_ADS}>

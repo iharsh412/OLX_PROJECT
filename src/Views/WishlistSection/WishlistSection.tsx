@@ -5,7 +5,7 @@ import './wishlistSection.css';
 import { Product, COMMON_TEXT } from '../../Helper/constant';
 import { CLASSNAME, TEXT } from './constant';
 import Schemer from '../../Components/Atom/Schemer';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 
 export default function WishlistSection() {
@@ -17,7 +17,7 @@ export default function WishlistSection() {
   return (
     <div className={CLASSNAME.WRAPPER}>
       <span className={CLASSNAME.TEXT}>{TEXT.WISHLIST}</span>
-      {isError && <Error />}
+      {isError && <ErrorSection />}
       {/*  data LENGTH>0 then render */}
       <div className={CLASSNAME.IMAGE_SECTION}>
         {isLoading

@@ -7,6 +7,6 @@ export const TEXT = {
   LOADING: 'Loading map...',
 };
 export interface PropsType {
-  cityName: string;
-  mapHeadingText: string;
+  readonly cityName: string;
+  readonly mapHeadingText: string;
 }

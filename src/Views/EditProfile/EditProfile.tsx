@@ -27,7 +27,7 @@ import {
 } from '../../Services/Api/module/imageApi';
 import { updateUsername } from '../../Store/Common';
 import Loader from '../../Components/Atom/Loader';
-import Error from '../../Components/Atom/Error';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 
 export default function EditProfile() {
   const { data, isLoading, isError } = useGetUserInfoQuery({});
@@ -67,7 +67,7 @@ export default function EditProfile() {
   }, [data]);
 
   if (isLoading) return <Loader />;
-  if (isError) return <Error />;
+  if (isError) return <ErrorSection />;
 
   return (
     <Formik
@@ -129,7 +129,7 @@ export default function EditProfile() {
               type="text"
               htmlFor="phonenumber"
               value={values.phonenumber}
-              label="Phone Number"
+              label="Mobile Number"
               err={errors.phonenumber}
               tch={touched.phonenumber}
               {...share}

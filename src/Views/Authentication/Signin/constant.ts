@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-export interface FORM_VALUES {
+export interface FormValue {
   email: string;
   password: string;
 }
@@ -7,14 +7,12 @@ export const INITIAL_VALUES = {
   email: '',
   password: '',
 };
-const emailRegex =  /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 export const VALIDATION = Yup.object().shape({
   email: Yup.string()
     .required('Email is required')
     .matches(emailRegex, 'Please enter a valid email address'),
-  password: Yup.string()
-    .required('Password is required')
-  
+  password: Yup.string().required('Password is required'),
 });
 export const CLASSNAME = {
   WRAPPER: 'signin_Wrapper',
@@ -28,9 +26,9 @@ export const CLASSNAME = {
   ERROR: 'signin_error',
   FORGET: 'signin_forgetpass',
   SINUP: 'signin_signup',
-  REQUIRED:"signin_required",
-  EYE: "signin_isSeenPassword",
-  INPUT_PASSWORD_WRAPPER:'signin_passwordWrapper',
+  REQUIRED: 'signin_required',
+  EYE: 'signin_isSeenPassword',
+  INPUT_PASSWORD_WRAPPER: 'signin_passwordWrapper',
 };
 export const TEXT = {
   LOGIN: 'Login',

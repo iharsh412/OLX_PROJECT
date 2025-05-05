@@ -1,7 +1,7 @@
-import './error.css';
+import './errorSection.css';
 import { CLASSNAME, TEXT } from './constant';
 
-export default function Error() {
+export default function ErrorSection() {
   return (
     <div className={CLASSNAME.ERROR}>
       <h1>{TEXT.SOMETHING_WENT_WRONG}</h1>

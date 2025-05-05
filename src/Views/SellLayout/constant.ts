@@ -1,4 +1,3 @@
-
 export const CLASSNAME = {
   WRAPPER: 'sell-section',
   HEADER: 'sell-section__header',
@@ -11,5 +10,3 @@ export const TEXT = {
   ADD: 'Post your Ad',
   BACK: 'back',
 };
-
-

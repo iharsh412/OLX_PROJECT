@@ -1,6 +1,5 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import CarDetail from '../../Components/CustomComponents/Post/CarForm';
-import BikeDetail from '../../Components/CustomComponents/Post/BikeForm';
 import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
 import './post.css';
 import { CLASSNAME, TEXT } from './constant';
@@ -37,7 +36,7 @@ export default function Post() {
       {/* bikes */}
       {location.state.categoryId === 'bikes' && (
         <div className={CLASSNAME.POST_DETAIL}>
-          <BikeDetail />
+          <MobileDetail />
         </div>
       )}
       {/* mobiles and electronics */}

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../../../Store';
-// import { logout } from '../../../firebase';
 import { updateAuthState } from '../../../Store/Common';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
 import './loginUpDown.css';

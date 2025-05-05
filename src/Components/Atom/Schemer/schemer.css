@@ -4,13 +4,7 @@
   overflow: hidden;
   display: flex;
   border-radius: 8px;
-   flex: 1;
-}
-
-.schemer_common_box {
-  background-color: #e0e0e0;
-  border-radius: 4px;
-  animation: shimmer 1.2s infinite linear;
+  flex: 1;
 }
 
 .schemer_common img {

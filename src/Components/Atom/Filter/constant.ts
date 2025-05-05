@@ -1,4 +1,4 @@
-import { ResponseData, SampleData } from "../../Sample/constant";
+import { ResponseData, SampleData } from '../../Sample/constant';
 
 export const CLASSNAME = {
   MAIN_SECTION_FILTER: 'sample-mainSectionFilter',
@@ -6,30 +6,24 @@ export const CLASSNAME = {
   SUBCATEGORY: 'sample-subcategory',
   BRAND: 'sample-brand',
   PRICE: 'sample-price',
-  SUBCATEGORY_LIST: "sample-subcategoryOption",
-  SUBCATEGORY_ITEM: "sample-subcategoryOption__item",
-  NO_PRODUCTS: "sample-brandOption__noBrand",
-  BRAND_LIST: "sample-brandOption",
-  BRAND_ITEMS: "sample-brandOption__item",
-  PRICE_LIST: "sample-priceOption",
-  PRICE_MIN: "sample_priceMin",
-  PRICE_MAX: "sample_priceMax",
-  APPLY: "sample-priceOption__apply",
-  ACTIVE:"sample-active"
-
-
-
-
-
-
-}
+  SUBCATEGORY_LIST: 'sample-subcategoryOption',
+  SUBCATEGORY_ITEM: 'sample-subcategoryOption__item',
+  NO_PRODUCTS: 'sample-brandOption__noBrand',
+  BRAND_LIST: 'sample-brandOption',
+  BRAND_ITEMS: 'sample-brandOption__item',
+  PRICE_LIST: 'sample-priceOption',
+  PRICE_MIN: 'sample_priceMin',
+  PRICE_MAX: 'sample_priceMax',
+  APPLY: 'sample-priceOption__apply',
+  ACTIVE: 'sample-active',
+};
 export interface FilterProps {
-  category?: string;
-  response?: ResponseData;
-  sampleData?: SampleData;
-  setSampleData?: (arg: any) => void;
-  price?: [number, number];
-  setPrice?: (arg: any) => void;
+  readonly category?: string;
+  readonly response?: ResponseData;
+  readonly sampleData?: SampleData;
+  readonly setSampleData?: (arg: any) => void;
+  readonly price?: [number, number];
+  readonly setPrice?: (arg: any) => void;
 }
 export const TEXT = {
   CATEGORY: 'Category',
@@ -40,4 +34,4 @@ export const TEXT = {
   PRICE_MIN: 'Min',
   PRICE_MAX: 'Max',
   APPLY: 'Apply',
-}
+};

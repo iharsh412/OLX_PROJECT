@@ -23,7 +23,7 @@ export interface PaginationParams {
   category?: string;
 }
 export interface ImageProps {
-  data: {
+  readonly data: {
     created_at?: React.ReactNode;
     id: number;
     name: string;
@@ -38,8 +38,8 @@ export interface ImageProps {
     user?: React.ReactNode;
     is_favourite?: boolean;
   };
-  refetch?: () => void;
-  refetchDashboard?: () => void;
+  readonly refetch?: () => void;
+  readonly refetchDashboard?: () => void;
 }
 
 export const COMMON_TEXT = {
