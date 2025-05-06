@@ -5,7 +5,7 @@ import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
 import { CLASSNAME, TEXT } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import ICONS from '../../../assets';
 
@@ -48,7 +48,7 @@ export default function ItemsSelector() {
   return (
     <div className={CLASSNAME.WRAPPER}>
       <input
-        type={TYPE.TEXT}
+        type="text"
         className={CLASSNAME.INPUT}
         placeholder={TEXT.PLACEHOLDER}
         value={localValue ?? ''}
@@ -57,7 +57,7 @@ export default function ItemsSelector() {
       />
 
       <button
-        type={TYPE.BUTTON}
+        type="button"
         className={CLASSNAME.SEARCH}
         onClick={handleClear}
         aria-label="Clear search"

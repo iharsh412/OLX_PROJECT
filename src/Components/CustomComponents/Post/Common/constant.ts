@@ -77,6 +77,8 @@ export interface TextFieldProps {
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<any>>;
   state?: string;
+  countRequired?: boolean;
+  compulsory?: boolean;
 }
 export interface FormValues {
   title?: string;

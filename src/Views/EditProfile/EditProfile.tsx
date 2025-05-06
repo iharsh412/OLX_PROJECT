@@ -12,9 +12,8 @@ import {
   TEXT,
 } from './constant';
 import {
-  AboutMe,
+  Description,
   TextField,
-  Email,
   PhoneNumber,
 } from '../../Components/CustomComponents/Post/Common/Common';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
@@ -115,13 +114,15 @@ export default function EditProfile() {
               {...share}
             />
             {/* email section */}
-            <Email
+
+            <TextField
               type="email"
               htmlFor="email"
               value={values.email}
               label="Email"
               err={errors.email}
               tch={touched.email}
+              compulsory
               {...share}
             />
             {/* phone number */}
@@ -134,9 +135,8 @@ export default function EditProfile() {
               tch={touched.phonenumber}
               {...share}
             />
-
             {/* About Me Input */}
-            <AboutMe
+            <Description
               type="text"
               htmlFor="about me"
               value={values['about me']}

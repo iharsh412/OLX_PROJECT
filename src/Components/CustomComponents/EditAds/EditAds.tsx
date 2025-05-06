@@ -9,22 +9,15 @@ import {
   validationSchema,
   initialValues,
 } from './constant';
-import {
-  City,
-  Description,
-  Photos,
-  Price,
-  State,
-  TextField,
-} from '../Post/Common/Common';
-import './EditAds.css';
 
+import './EditAds.css';
 import {
   usePostEditDataMutation,
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
 import Loader from '../../Atom/Loader';
 import Error from '../../Atom/ErrorSection';
+import Form from '../Form/index';
 
 export default function EditAds({
   setEditOpen,
@@ -129,88 +122,13 @@ export default function EditAds({
               ref={dropdownRef}
               onSubmit={handleSubmit}
             >
-              <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
-              <TextField
-                type="text"
-                htmlFor="brand"
-                value={values.brand}
-                err={errors.brand}
-                tch={touched.brand}
-                label="Brand"
-                {...share}
+              <Form
+                share={share}
+                values={values}
+                touched={touched}
+                errors={errors}
               />
-              <TextField
-                type="number"
-                htmlFor="year"
-                value={values.year}
-                err={errors.year}
-                tch={touched.year}
-                label="Year"
-                {...share}
-              />
-              <TextField
-                type="text"
-                htmlFor="title"
-                value={values.title}
-                label="Ad title"
-                err={errors.title}
-                tch={touched.title}
-                {...share}
-              />
-              <Description
-                type="text"
-                htmlFor="description"
-                value={values.description}
-                err={errors.description}
-                tch={touched.description}
-                label="Description"
-                {...share}
-              />
-              <hr />
-              <Price
-                type="number"
-                htmlFor="price"
-                value={values.price}
-                err={errors.price}
-                tch={touched.price}
-                label="Price"
-                {...share}
-              />
-              <hr />
-              <Photos
-                type="file"
-                label="images"
-                value={values?.images}
-                {...share}
-              />
-              <hr />
-              <div className={CLASSNAME.LOCATION_WRAPPER}>
-                <h3 className={CLASSNAME.LOCATION_TEXT}>
-                  {TEXT.CONFIRM_LOCATION}
-                </h3>
-                <State
-                  type="text"
-                  htmlFor="state"
-                  value={values.state}
-                  err={errors.state}
-                  tch={touched.state}
-                  label="State"
-                  {...share}
-                />
-                {values.state && (
-                  <City
-                    state={values.state}
-                    type="text"
-                    htmlFor="city"
-                    value={values.city}
-                    err={errors.city}
-                    tch={touched.city}
-                    label="City"
-                    {...share}
-                  />
-                )}
-              </div>
-              <hr />
+
               <button
                 type="submit"
                 className={CLASSNAME.POST}

@@ -5,7 +5,7 @@ import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { RootState } from '../../Store';
 import { CLASSNAME, TEXT } from './constant';
-import MessageSection from '../../Components/ChatMsgSection/index';
+import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
 import { setUserId } from '../../Store/ChatUser/index';
 
 export default function FirebaseChatApp() {
@@ -15,7 +15,6 @@ export default function FirebaseChatApp() {
   const messageRef = collection(db, 'messages');
   const [uniqueUsers, setUniqueUsers] = useState<string[]>([]);
   const [roomId, setRoomId] = useState('');
-
   const [unreadCounts, setUnreadCounts] = useState<{
     [roomId: string]: number;
   }>({});
@@ -40,6 +39,7 @@ export default function FirebaseChatApp() {
 
     return () => unsubscribe();
   }, []);
+
   useEffect(() => {
     dispatch(setUserId(receiverId));
   }, [receiverId]);

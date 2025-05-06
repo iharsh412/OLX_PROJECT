@@ -6,7 +6,7 @@ import HomeLayout from '../Views/Home';
 import Login from '../Views/Authentication/LoginSection';
 import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Authentication/Signup';
-import ProductDetail from '../Views/ImageDetail';
+import ProductDetail from '../Views/ProductDetail';
 import Signin from '../Views/Authentication/Signin';
 import ForgetPass from '../Views/Authentication/ForgetPassEmailValidation';
 import Verification from '../Views/Authentication/Verification';

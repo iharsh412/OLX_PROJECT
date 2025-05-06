@@ -2,6 +2,7 @@ import { ErrorMessage } from 'formik';
 
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './common.css';
+import InputField from '../../../Atom/InputField';
 import {
   CLASSNAME,
   COUNT,
@@ -24,6 +25,18 @@ function handleChangeMobileNumber(
   const trimmed = numericOnly.slice(0, COUNT[label as keyof typeof COUNT]);
   setFieldValue?.(htmlFor, trimmed);
 }
+function handleChange(
+  e: ChangeEvent<HTMLInputElement>,
+  htmlFor: string,
+  setFieldValue: (field: string, value: any) => void,
+  label: string
+) {
+  const value: string = e.target.value.slice(
+    0,
+    COUNT[label as keyof typeof COUNT]
+  );
+  setFieldValue?.(htmlFor, value);
+}
 
 function TextField({
   htmlFor,
@@ -34,91 +47,23 @@ function TextField({
   tch,
   handleBlur,
   setFieldValue,
-}: Readonly<TextFieldProps>) {
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const value: string = e.target.value.slice(
-      0,
-      COUNT[label as keyof typeof COUNT]
-    );
-    setFieldValue?.(htmlFor, value);
-  }
-
-  return (
-    <div className={CLASSNAME.CONTAINER}>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label}{' '}
-          <div
-            style={{
-              display: 'inline-block',
-              color: 'red',
-              height: '20px',
-              width: '20px',
-              fontWeight: '900',
-            }}
-          >
-            *
-          </div>
-        </label>
-        <span>
-          {value?.toString().length}/{COUNT[label as keyof typeof COUNT]}
-        </span>
-      </div>
-      <input
-        type={type}
-        name={htmlFor}
-        onChange={(e) => handleChange(e)}
-        onBlur={handleBlur}
-        value={value as string}
-        title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
-      />
-
-      <ErrorMessage
-        name={htmlFor}
-        component="div"
-        className={CLASSNAME.ERROR}
-      />
-    </div>
-  );
-}
-function Email({
-  htmlFor,
-  type,
-  err,
-  label,
-  value,
-  tch,
-  handleChange,
-  handleBlur,
+  countRequired,
+  compulsory,
 }: Readonly<TextFieldProps>) {
   return (
-    <div className={CLASSNAME.CONTAINER}>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
-        </label>
-      </div>
-      <input
-        type={type}
-        name={htmlFor}
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={value as string}
-        title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
-      />
-
-      <ErrorMessage
-        name={htmlFor}
-        component="div"
-        className={CLASSNAME.ERROR}
-      />
-    </div>
+    <InputField
+      htmlFor={htmlFor}
+      type={type}
+      err={!!err}
+      label={label}
+      value={value}
+      tch={tch}
+      handleBlur={handleBlur || (() => {})}
+      setFieldValue={setFieldValue}
+      handleChange={handleChange}
+      compulsory={compulsory}
+      countRequired={countRequired}
+    />
   );
 }
 
@@ -171,55 +116,16 @@ function Description({
   tch,
   handleBlur,
   setFieldValue,
+  compulsory,
 }: Readonly<TextFieldProps>) {
   return (
     <>
       <div className={CLASSNAME.LABEL_WRAPPER}>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
           {label}
-          <div style={{ display: 'inline-block', color: 'red' }}>*</div>
-        </label>
-        <span>
-          {value?.toString().length}/{COUNT.Description}
-        </span>
-      </div>
-      <textarea
-        title={htmlFor}
-        name={htmlFor}
-        onChange={(e) => {
-          setFieldValue?.(
-            htmlFor,
-            e.target.value.slice(0, COUNT['Description'])
-          );
-        }}
-        onBlur={handleBlur}
-        value={value as string}
-        className={`${CLASSNAME.DESCRIPTION} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
-      />
-      <ErrorMessage
-        name={htmlFor}
-        component="div"
-        className={CLASSNAME.ERROR}
-      />
-    </>
-  );
-}
-function AboutMe({
-  htmlFor,
-  err,
-  label,
-  value,
-  tch,
-  handleBlur,
-  setFieldValue,
-}: Readonly<TextFieldProps>) {
-  return (
-    <>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label}
+          {compulsory && (
+            <div style={{ display: 'inline-block', color: 'red' }}>*</div>
+          )}
         </label>
         <span>
           {value?.toString().length}/{COUNT.Description}
@@ -258,34 +164,24 @@ function Seller({
   type,
   handleBlur,
   setFieldValue,
+  compulsory,
 }: Readonly<TextFieldProps>) {
   return (
     <>
       <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{TEXT.VERIFY}</h3>
       <span className={CLASSNAME.SELLER_CODE_TEXT}>{TEXT.CONFIRMATION}</span>
-      <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
-        <span>{TEXT.CODE}</span>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
-        </label>
-        <input
-          title={htmlFor}
-          type={type}
-          name={htmlFor}
-          onChange={(e) =>
-            handleChangeMobileNumber(e, htmlFor, label, setFieldValue)
-          }
-          onBlur={handleBlur}
-          value={value as string}
-          className={`${CLASSNAME.MOBILE_NUMBER} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
-          }`}
-        />
-      </div>
-      <ErrorMessage
-        name={htmlFor}
-        component="div"
-        className={CLASSNAME.ERROR}
+      <PhoneNumber
+        {...{
+          htmlFor,
+          err,
+          label,
+          value,
+          tch,
+          type,
+          handleBlur,
+          setFieldValue,
+          compulsory,
+        }}
       />
     </>
   );
@@ -300,13 +196,17 @@ function PhoneNumber({
   type,
   handleBlur,
   setFieldValue,
+  compulsory,
 }: Readonly<TextFieldProps>) {
   return (
     <>
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
         <span>{TEXT.CODE}</span>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label}
+          {label}{' '}
+          {compulsory && (
+            <div style={{ display: 'inline-block', color: 'red' }}>*</div>
+          )}
         </label>
         <input
           title={htmlFor}
@@ -592,8 +492,6 @@ export {
   Photos,
   Price,
   Seller,
-  Email,
   State,
   City,
-  AboutMe,
 };

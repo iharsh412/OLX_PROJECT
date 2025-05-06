@@ -38,7 +38,7 @@ export const TEXT = {
   SEND: 'Send',
   TYPE_MESSAGE: 'Type a message',
   NO_MSG:
-    'No messages yet. Say hello to start the conversation! Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
+    'No messages yet. Say hello to start the conversation!  Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
   NO_CONVERSATIONS:
     'No conversations yet. Start chatting by connecting with seller!',
   SELECT_SELLER_ROOMID:
