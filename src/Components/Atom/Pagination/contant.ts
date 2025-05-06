@@ -1,8 +1,8 @@
 export interface PaginationProps {
-  readonly page: number;
-  readonly totalpage: number;
-  readonly setPage: (prev: any) => any;
-  readonly showButton: { prev: boolean; next: boolean };
+  page: number;
+  totalpage: number;
+  setPage: (prev: any) => any;
+  showButton: { prev: boolean; next: boolean };
 }
 export const CLASSNAME = {
   WRAPPER: 'sample-PageChange',

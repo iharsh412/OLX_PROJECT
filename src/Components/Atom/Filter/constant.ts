@@ -18,12 +18,12 @@ export const CLASSNAME = {
   ACTIVE: 'sample-active',
 };
 export interface FilterProps {
-  readonly category?: string;
-  readonly response?: ResponseData;
-  readonly sampleData?: SampleData;
-  readonly setSampleData?: (arg: any) => void;
-  readonly price?: [number, number];
-  readonly setPrice?: (arg: any) => void;
+  category?: string;
+  response?: ResponseData;
+  sampleData?: SampleData;
+  setSampleData?: (arg: any) => void;
+  price?: [number, number];
+  setPrice?: (arg: any) => void;
 }
 export const TEXT = {
   CATEGORY: 'Category',

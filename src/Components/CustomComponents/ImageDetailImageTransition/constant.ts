@@ -1,5 +1,5 @@
 export interface ImageSectionProps {
-  readonly images?: string | string[];
+  images?: string | string[];
 }
 
 export const CLASSNAME = {

@@ -1,8 +1,8 @@
 export interface ModalProps {
-  readonly setAnswer: (answer: string) => void;
-  readonly text: string;
-  readonly setOpen: (open: boolean) => void;
-  readonly setDropdown?: (dropdown: boolean) => void;
+  setAnswer: (answer: string) => void;
+  text: string;
+  setOpen: (open: boolean) => void;
+  setDropdown?: (dropdown: boolean) => void;
 }
 export const CLASSNAME = {
   TEXT: 'modal_text',

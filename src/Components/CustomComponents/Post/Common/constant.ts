@@ -63,20 +63,20 @@ export enum COUNT {
   'Mobile Number' = 10,
 }
 export interface TextFieldProps {
-  readonly handleChange?: (e: React.ChangeEvent<any>) => void;
-  readonly handleBlur?: (e: React.FocusEvent<any>) => void;
-  readonly htmlFor: string;
-  readonly label: string;
-  readonly value?: string | number | boolean | [];
-  readonly type?: string;
-  readonly err: string | object | boolean | undefined;
-  readonly tch?: boolean;
-  readonly setFieldValue?: (
+  handleChange?: (e: React.ChangeEvent<any>) => void;
+  handleBlur?: (e: React.FocusEvent<any>) => void;
+  htmlFor: string;
+  label: string;
+  value?: string | number | boolean | [];
+  type?: string;
+  err: string | object | boolean | undefined;
+  tch?: boolean;
+  setFieldValue?: (
     field: string,
     value: any,
     shouldValidate?: boolean
   ) => Promise<void | FormikErrors<any>>;
-  readonly state?: string;
+  state?: string;
 }
 export interface FormValues {
   title?: string;

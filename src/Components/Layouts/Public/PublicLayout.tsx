@@ -1,7 +1,6 @@
 import { AppLayoutProps } from '../AppLayout.d';
 
-function PublicLayout({ children }: AppLayoutProps): JSX.Element {
- 
+function PublicLayout({ children }: Readonly<AppLayoutProps>): JSX.Element {
   return (
     <>
       {children}

@@ -6,9 +6,6 @@ import { CLASSNAME, TEXT } from './constant';
 export default function NavCategory() {
   const navigate = useNavigate();
 
-  // function handleCarClick() {
-  //   navigate('/type/multiwheelvehicles');
-  // }
   function handleMotorcycleClick() {
     navigate('/type/bikes');
   }

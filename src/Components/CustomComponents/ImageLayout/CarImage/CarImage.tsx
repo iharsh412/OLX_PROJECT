@@ -17,7 +17,7 @@ export default function Images({
   data,
   refetch,
   refetchDashboard,
-}: ImageProps) {
+}: Readonly<ImageProps>) {
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
   const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
@@ -62,17 +62,11 @@ export default function Images({
   }, [data.is_favourite]);
 
   return (
-    <div
+    <button
       className={CLASSNAME.WRAPPER}
       onClick={onClickImages}
-      role="button"
+      type="button"
       tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onClickImages();
-        }
-      }}
     >
       <div className={CLASSNAME.IMAGE_WRAPPER}>
         {/* image section */}
@@ -113,6 +107,6 @@ export default function Images({
           </span>
         </div>
       </div>
-    </div>
+    </button>
   );
 }

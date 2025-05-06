@@ -30,7 +30,7 @@ export default function EditAds({
   setEditOpen,
   data: product,
   refetch,
-}: EditAdsProps) {
+}: Readonly<EditAdsProps>) {
   const [post] = usePostEditDataMutation();
   const { data, isLoading, isError } = useGetProductsDetailQuery({
     id: product.id,
@@ -58,9 +58,9 @@ export default function EditAds({
     const formData = new FormData();
     if (product?.id !== undefined) formData.append('id', String(product.id));
     if (product?.category !== undefined)
-      formData.append('category', String(product.category));
+      formData.append('category', JSON.stringify(product.category));
     if (product?.subcategory !== undefined)
-      formData.append('subcategory', String(product.subcategory));
+      formData.append('subcategory', JSON.stringify(product.subcategory));
 
     Object.entries(values).forEach(([key, value]) => {
       const typedKey = key as keyof FormValues;

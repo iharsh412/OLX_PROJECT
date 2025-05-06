@@ -1,10 +1,10 @@
-import { Formik, ErrorMessage } from 'formik';
+import { Formik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 import './carForm.css';
-import { FuelOptions, validationSchema, initialValues } from './constant';
+import { validationSchema, initialValues } from './constant';
 import {
   Description,
   TextField,
@@ -109,41 +109,7 @@ export default function CarForm() {
                 label="Year"
                 {...share}
               />
-              {/* Fuel Selection */}
-              <label htmlFor="fuel" className={CLASSNAME.LABEL}>
-                Fuel *
-              </label>
-              <div className={CLASSNAME.FUEL}>
-                {FuelOptions.map((value) => (
-                  <button
-                    title="fuel"
-                    type="button"
-                    key={value.id}
-                    onClick={() => setFieldValue('fuel', value.label)}
-                    style={{
-                      backgroundColor:
-                        values.fuel === value.label ? 'lightblue' : 'white',
-                    }}
-                  >
-                    {value.label}
-                  </button>
-                ))}
-              </div>
-              <ErrorMessage
-                name="fuel"
-                component="div"
-                className={CLASSNAME.ERROR}
-              />
-              {/* KM Driven */}
-              <TextField
-                type="number"
-                htmlFor="distance"
-                value={values.distance}
-                err={errors.distance}
-                tch={touched.distance}
-                label="KM driven"
-                {...share}
-              />
+
               {/* Title Input */}
               <TextField
                 type="text"

@@ -4,7 +4,7 @@ import './imageDetailImageTransition.css';
 import { CLASSNAME, ImageSectionProps } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
-function ImageSection({ images }: ImageSectionProps) {
+function ImageSection({ images }: Readonly<ImageSectionProps>) {
   let imageArray: string[] = [];
   if (images) {
     imageArray = Array.isArray(images) ? images : [images];

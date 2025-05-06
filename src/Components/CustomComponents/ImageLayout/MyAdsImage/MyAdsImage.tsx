@@ -10,7 +10,7 @@ import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageA
 import EditAds from '../../EditAds';
 import { getDaysFromNow } from '../../../../Helper/function';
 
-export default function MyAdsImage({ data, refetch }: ImageProps) {
+export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
   const navigate = useNavigate();
   const [answer, setAnswer] = useState('');
   const [open, setOpen] = useState(false);
@@ -51,16 +51,11 @@ export default function MyAdsImage({ data, refetch }: ImageProps) {
 
   return (
     <>
-      <div
+      <button
         className={CLASSNAME.WRAPPER}
         onClick={onClickImages}
-        role="button"
+        type="button"
         tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            onClickImages();
-          }
-        }}
       >
         <div className={CLASSNAME.IMAGE}>
           <img
@@ -103,7 +98,7 @@ export default function MyAdsImage({ data, refetch }: ImageProps) {
             </button>
           </div>
         </div>
-      </div>
+      </button>
       {open && <Modal setAnswer={setAnswer} setOpen={setOpen} text={text} />}
       {text === TEXT.EDIT_TEXT && answer === 'yes' && editOpen === true && (
         <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch} />

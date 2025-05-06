@@ -1,5 +1,5 @@
 export interface SellCategoryProps {
-  readonly categoryId: string;
+  categoryId: string;
 }
 
 export const SUBCATEGORIES: Record<string, string[]> = {

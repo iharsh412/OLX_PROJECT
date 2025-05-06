@@ -2,8 +2,8 @@ import { User } from 'lucide-react';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
 export interface ProfileDropdownProps {
-  readonly setOpenProfile?: (arg0: (prev: boolean) => boolean) => void;
-  readonly profileRef?: React.RefObject<HTMLDivElement>;
+  setOpenProfile?: (arg0: (prev: boolean) => boolean) => void;
+  profileRef?: React.RefObject<HTMLDivElement>;
 }
 interface DropdownItem {
   icon: React.ElementType;

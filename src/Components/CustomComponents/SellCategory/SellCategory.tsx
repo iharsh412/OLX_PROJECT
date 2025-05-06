@@ -3,7 +3,9 @@ import './SellCategory.css';
 import { CLASSNAME, SellCategoryProps, SUBCATEGORIES, TEXT } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
-export default function SellCategory({ categoryId }: SellCategoryProps) {
+export default function SellCategory({
+  categoryId,
+}: Readonly<SellCategoryProps>) {
   const subcategories = SUBCATEGORIES[categoryId] || [];
   const navigate = useNavigate();
 

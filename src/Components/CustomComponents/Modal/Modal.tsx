@@ -8,7 +8,7 @@ export default function Modal({
   setOpen,
   text,
   setDropdown,
-}: ModalProps) {
+}: Readonly<ModalProps>) {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleYes = (e: React.MouseEvent<HTMLButtonElement>) => {

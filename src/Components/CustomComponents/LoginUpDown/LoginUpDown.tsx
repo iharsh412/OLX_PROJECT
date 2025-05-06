@@ -18,7 +18,9 @@ import Modal from '../Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
 import { setUserId } from '../../../Store/ChatUser';
 
-export default function LoginUpDown({ setOpenProfile }: ProfileDropdownProps) {
+export default function LoginUpDown({
+  setOpenProfile,
+}: Readonly<ProfileDropdownProps>) {
   const { username, refresh } = useSelector(
     (state: RootState) => state?.common
   );

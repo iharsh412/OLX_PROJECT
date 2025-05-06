@@ -1,7 +1,12 @@
 import './pagination.css';
 import { CLASSNAME, PaginationProps, TEXT } from './contant';
 
-function Pagination({ page, totalpage, showButton, setPage }: PaginationProps) {
+function Pagination({
+  page,
+  totalpage,
+  showButton,
+  setPage,
+}: Readonly<PaginationProps>) {
   const handlePrevPage = () => {
     setPage((prev: number) => prev - 1);
   };

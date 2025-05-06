@@ -166,6 +166,15 @@ button {
 }
 
 /* Location */
+.postForm_CityWrapper {
+  width: 100%;
+}
+.postForm_CityInputWrapper {
+  width: 100%;
+  position: relative;
+  background-color: white;
+  border: none;
+}
 .postForm_State,
 .postForm_City {
   margin: 5px 5px 5px 0;
@@ -175,11 +184,22 @@ button {
   border-radius: 6px;
   border: 1px solid #ccc;
   width: 100%;
-}
 
+  position: relative;
+}
+.postForm_CityInputWrapper span {
+  position: absolute;
+  top: 30%;
+  right: 1%;
+  cursor: pointer;
+}
 /* State Dropdown */
 .postForm_StateWrapper {
+  border: none;
+  background-color: white;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .postForm_StateWrapper span {

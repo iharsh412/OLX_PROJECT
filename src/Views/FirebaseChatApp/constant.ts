@@ -22,25 +22,26 @@ export const CLASSNAME = {
   INPUT_WRAPPER: 'input-wrapper',
   MESSAGE_INPUT: 'message-input',
   SEND_BUTTON: 'send-btn',
- USER_ITEM:"user-item",
- ACTIVE_USER:'activeUser',
- MESSAGE_ITEM:"message-item",
- SENT:'sent',
- RECEIVED:'received',
- TICK_STATUS:"tick-status",
- SEEN:"seen",
- MESSAGE:"message",
- UNREAD:"unreadcount",
-
+  USER_ITEM: 'user-item',
+  ACTIVE_USER: 'activeUser',
+  MESSAGE_ITEM: 'message-item',
+  SENT: 'sent',
+  RECEIVED: 'received',
+  TICK_STATUS: 'tick-status',
+  SEEN: 'seen',
+  MESSAGE: 'message',
+  UNREAD: 'unreadcount',
 };
 export const TEXT = {
-  MESSAGES:"Messages",
+  MESSAGES: 'Messages',
   USER: 'User',
   SEND: 'Send',
   TYPE_MESSAGE: 'Type a message',
-  NO_MSG:"No messages yet. Say hello to start the conversation!",
-  NO_CONVERSATIONS: "No conversations yet. Start chatting by connecting with seller!",
+  NO_MSG:
+    'No messages yet. Say hello to start the conversation! Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
+  NO_CONVERSATIONS:
+    'No conversations yet. Start chatting by connecting with seller!',
   SELECT_SELLER_ROOMID:
     'Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
-  ERROR:'Error sending message. Please try again later.'
-  };
+  ERROR: 'Error sending message. Please try again later.',
+};

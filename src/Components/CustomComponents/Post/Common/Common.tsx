@@ -25,62 +25,6 @@ function handleChangeMobileNumber(
   setFieldValue?.(htmlFor, trimmed);
 }
 
-function Year({
-  htmlFor,
-  type,
-  err,
-  label,
-  value,
-  tch,
-  handleBlur,
-  setFieldValue,
-}: TextFieldProps) {
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const rawValue: string = e.target.value.slice(
-      0,
-      COUNT[label as keyof typeof COUNT]
-    );
-    setFieldValue?.(htmlFor, rawValue);
-  }
-
-  return (
-    <div className={CLASSNAME.CONTAINER}>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
-          {label}{' '}
-          <div
-            style={{
-              display: 'inline-block',
-              color: 'red',
-              width: '10px',
-              height: '10px',
-            }}
-          >
-            *
-          </div>
-        </label>
-      </div>
-      <input
-        type={type}
-        name={htmlFor}
-        onChange={(e) => handleChange(e)}
-        onBlur={handleBlur}
-        value={value as string}
-        title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
-        }`}
-      />
-
-      <ErrorMessage
-        name={htmlFor}
-        component="div"
-        className={CLASSNAME.ERROR}
-      />
-    </div>
-  );
-}
-
 function TextField({
   htmlFor,
   type,
@@ -90,7 +34,7 @@ function TextField({
   tch,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const value: string = e.target.value.slice(
       0,
@@ -149,7 +93,7 @@ function Email({
   tch,
   handleChange,
   handleBlur,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <div className={CLASSNAME.CONTAINER}>
       <div className={CLASSNAME.LABEL_WRAPPER}>
@@ -187,7 +131,7 @@ function Price({
   handleChange,
   tch,
   handleBlur,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <div className={CLASSNAME.PRICE_WRAPPER}>
       <h3 className={CLASSNAME.PRICE_TEXT}>SET A PRICE</h3>
@@ -227,7 +171,7 @@ function Description({
   tch,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <>
       <div className={CLASSNAME.LABEL_WRAPPER}>
@@ -270,7 +214,7 @@ function AboutMe({
   tch,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <>
       <div className={CLASSNAME.LABEL_WRAPPER}>
@@ -314,7 +258,7 @@ function Seller({
   type,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <>
       <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{TEXT.VERIFY}</h3>
@@ -356,7 +300,7 @@ function PhoneNumber({
   type,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   return (
     <>
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
@@ -387,7 +331,7 @@ function PhoneNumber({
   );
 }
 
-function Photos({ type, value, label, setFieldValue }: PhotosProps) {
+function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
   return (
     <>
       <h3 className={CLASSNAME.UPLOAD_TEXT}>{TEXT.UPLOAD_PHOTOS}</h3>
@@ -395,7 +339,7 @@ function Photos({ type, value, label, setFieldValue }: PhotosProps) {
         {Array.from({
           length: Math.max(5, 0),
         }).map((_, index) => (
-          <div key={index} className={CLASSNAME.PHOTO_BOX}>
+          <div key={`label-${index + 1}`} className={CLASSNAME.PHOTO_BOX}>
             {value?.[index] ? (
               <div className={CLASSNAME.PREVIEW_WRAPPER}>
                 <button
@@ -474,7 +418,7 @@ function State({
   type,
   handleBlur,
   setFieldValue,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   const [state, setState] = useState<boolean>(false);
   function handleState(e: React.MouseEvent) {
     e.stopPropagation();
@@ -502,14 +446,10 @@ function State({
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
         {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
-      <div
+      <button
         className={CLASSNAME.STATE_INPUT_WRAPPER}
-        role="button"
-        tabIndex={0}
+        type="button"
         onClick={(e) => handleState(e)}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') handleState(e as any);
-        }}
       >
         <input
           title={htmlFor}
@@ -525,7 +465,7 @@ function State({
         <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
         </span>
-      </div>
+      </button>
       {state && (
         <div className={CLASSNAME.STATE_LIST} ref={wrapperRef}>
           {Object.keys(LOCATION).map((state) => (
@@ -564,7 +504,7 @@ function City({
   handleBlur,
   setFieldValue,
   state,
-}: TextFieldProps) {
+}: Readonly<TextFieldProps>) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -590,19 +530,15 @@ function City({
   }, []);
 
   return (
-    <div ref={dropdownRef}>
+    <div ref={dropdownRef} className="postForm_CityWrapper">
       <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
         {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
 
-      <div
-        className={CLASSNAME.STATE_INPUT_WRAPPER}
+      <button
+        className="postForm_CityInputWrapper"
         onClick={toggleDropdown}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') toggleDropdown(e as any);
-        }}
+        type="button"
       >
         <input
           title={htmlFor}
@@ -619,7 +555,7 @@ function City({
         <span>
           <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
         </span>
-      </div>
+      </button>
 
       {isDropdownOpen && (
         <div className={CLASSNAME.CITY_LIST}>
@@ -659,6 +595,5 @@ export {
   Email,
   State,
   City,
-  Year,
   AboutMe,
 };

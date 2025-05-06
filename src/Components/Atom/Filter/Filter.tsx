@@ -12,7 +12,7 @@ function Filter({
   setSampleData,
   price,
   setPrice,
-}: FilterProps) {
+}: Readonly<FilterProps>) {
   const handlePrice = (value: [number, number]) => {
     setPrice?.(value);
   };
@@ -139,11 +139,11 @@ function Filter({
                 100,
                 Math.min(Number(e.target.value) || 100, price?.[1] ?? 1500000)
               );
-              setPrice?.([value, price?.[1]]);
+              setPrice?.([value, price?.[1] ?? 1500000]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([100, price?.[1]]);
+                setPrice?.([100, price?.[1] ?? 1500000]);
               }
             }}
           />
@@ -161,11 +161,11 @@ function Filter({
                 price?.[0] ?? 100,
                 Math.min(Number(e.target.value) || 100, 1500000)
               );
-              setPrice?.([price?.[0], value]);
+              setPrice?.([price?.[0] ?? 100, value]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([price?.[0], 1500000]);
+                setPrice?.([price?.[0] ?? 100, 1500000]);
               }
             }}
           />

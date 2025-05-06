@@ -62,9 +62,9 @@ export const TEXT = {
   ERROR: 'Error in editing',
 };
 export interface EditAdsProps {
-  readonly setEditOpen: (open: boolean) => void;
-  readonly refetch?: () => void;
-  readonly data: {
+  setEditOpen: (open: boolean) => void;
+  refetch?: () => void;
+  data: {
     created_at?: React.ReactNode;
     id: number;
     name: string;

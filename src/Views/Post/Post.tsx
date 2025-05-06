@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import CarDetail from '../../Components/CustomComponents/Post/CarForm';
-import MobileDetail from '../../Components/CustomComponents/Post/MobileForm';
+
 import './post.css';
 import { CLASSNAME, TEXT } from './constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
@@ -27,25 +27,10 @@ export default function Post() {
           {location.state.subcategory}
         </span>
       </div>
-      {/* multiwheel vehicles */}
-      {location.state.categoryId === 'multiWheelVehicles' && (
-        <div className={CLASSNAME.POST_DETAIL}>
-          <CarDetail />
-        </div>
-      )}
-      {/* bikes */}
-      {location.state.categoryId === 'bikes' && (
-        <div className={CLASSNAME.POST_DETAIL}>
-          <MobileDetail />
-        </div>
-      )}
-      {/* mobiles and electronics */}
-      {(location.state.categoryId === 'mobile' ||
-        location.state.categoryId === 'electronics') && (
-        <div className={CLASSNAME.POST_DETAIL}>
-          <MobileDetail />
-        </div>
-      )}
+
+      <div className={CLASSNAME.POST_DETAIL}>
+        <CarDetail />
+      </div>
     </div>
   );
 }
