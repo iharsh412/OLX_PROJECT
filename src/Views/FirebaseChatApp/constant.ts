@@ -1,13 +1,3 @@
-export interface MessageProps {
-  id: string;
-  text: string;
-  createdAt: Date;
-  user: string;
-  room: string;
-  senderId: string;
-  receiverId: string;
-  seen: boolean;
-}
 export const CLASSNAME = {
   NO_USERS: 'no_users',
   CHAT_APP: 'chat-app',
@@ -31,17 +21,4 @@ export const CLASSNAME = {
   SEEN: 'seen',
   MESSAGE: 'message',
   UNREAD: 'unreadcount',
-};
-export const TEXT = {
-  MESSAGES: 'Messages',
-  USER: 'User',
-  SEND: 'Send',
-  TYPE_MESSAGE: 'Type a message',
-  NO_MSG:
-    'No messages yet. Say hello to start the conversation!  Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
-  NO_CONVERSATIONS:
-    'No conversations yet. Start chatting by connecting with seller!',
-  SELECT_SELLER_ROOMID:
-    'Select a seller roomId to message and unlock better deals, faster responses, and secure transactions!',
-  ERROR: 'Error sending message. Please try again later.',
 };

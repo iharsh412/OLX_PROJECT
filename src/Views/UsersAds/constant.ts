@@ -6,9 +6,3 @@ export const CLASSNAME = {
   ERROR: 'myads-error',
   LOADING: 'myads-loading',
 };
-export const TEXT = {
-  NO_ADS:
-    'Ready to sell something? List your first product and start reaching buyers today! ',
-  MY_ADS: 'My Ads',
-  ADS: 'click',
-};

@@ -2,7 +2,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import ICONS from '../../assets';
 import Footer from '../../Components/Footer';
 import './sell.css';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function Sell() {
@@ -12,7 +12,7 @@ export default function Sell() {
     <div className={CLASSNAME.WRAPPER}>
       <header className={CLASSNAME.HEADER}>
         <button
-          title={TEXT.BACK}
+          title={COMMON_TEXT.BACK}
           type="button"
           className={CLASSNAME.BACK_BUTTON}
           onClick={() => navigate(-1)}
@@ -20,7 +20,7 @@ export default function Sell() {
           <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
         </button>
       </header>
-      <h1 className={CLASSNAME.TITLE}>{TEXT.ADD}</h1>
+      <h1 className={CLASSNAME.TITLE}>{COMMON_TEXT.POST_YOUR_AD}</h1>
       <div className={CLASSNAME.OUTLET}>
         <Outlet />
       </div>

@@ -37,15 +37,3 @@ export const CLASSNAME = {
   EYE: 'newpass_isSeenPassword',
   INPUT_PASSWORD_WRAPPER: 'newpass_passwordWrapper',
 };
-export const TEXT = {
-  TITLE: 'Forgot Password',
-  CONFIRM_PASSWORD: 'Confirm Password',
-  PASSWORD: 'New Password',
-  FORGET_PASWORD: 'Forget Password',
-  SUBMIT_BUTTON: 'Set',
-  PASSWORD_CHANGED:
-    '🔐  Your password has been changed. Please sign in again to continue.',
-  LOGIN: 'Sign In',
-  FAILURE: 'Error in changing password',
-  SUCCESS: 'Password Changed Successfully',
-};

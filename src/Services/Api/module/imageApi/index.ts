@@ -1,5 +1,5 @@
 import api from '../../api';
-import { Product, PaginationParams } from '../../../../Helper/constant';
+import { Product, PaginationParams } from '../../../../Helper/interface';
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
@@ -91,7 +91,7 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-    //post edit
+    // post edit
     postEditData: builder.mutation({
       query: (data) => ({
         url: `categories/editads/`,
@@ -104,7 +104,7 @@ export const productApi = api.injectEndpoints({
       query: (params) => ({
         url: `categories/userads/`,
         method: 'GET',
-        params
+        params,
       }),
     }),
     // delete ads
@@ -115,7 +115,7 @@ export const productApi = api.injectEndpoints({
         params,
       }),
     }),
-    //useINFO
+    // useINFO
     getUserInfo: builder.query({
       query: () => ({
         url: `account/userinfo/`,
@@ -138,20 +138,6 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
-    // postChechRefreshTokenData: builder.mutation({
-    //   query: (data) => ({
-    //     url: `account/refresh/`,
-    //     body: data,
-    //     method: 'POST',
-    //   }),
-    // }),
-    // getCheckTokenData: builder.query({
-    //   query: (data) => ({
-    //     url: `account/sell`,
-    //     method: 'GET',
-    //     data,
-    //   }),
-    // }),
   }),
   overrideExisting: false,
 });
@@ -175,6 +161,4 @@ export const {
   useGetUserInfoQuery,
   usePostEditProfileDataMutation,
   usePostEmailValidMutation,
-  // useGetCheckTokenDataQuery,
-  // usePostChechRefreshTokenDataMutation,
 } = productApi;

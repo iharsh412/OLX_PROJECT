@@ -1,15 +1,7 @@
 import { User } from 'lucide-react';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
+import { DropdownItem } from '../../../Helper/interface';
 
-export interface ProfileDropdownProps {
-  setOpenProfile?: (arg0: (prev: boolean) => boolean) => void;
-  profileRef?: React.RefObject<HTMLDivElement>;
-}
-interface DropdownItem {
-  icon: React.ElementType;
-  label: string;
-  clickHandler?: (arg: any) => void;
-}
 export const dropdownItems: DropdownItem[] = [
   {
     icon: User,
@@ -29,11 +21,4 @@ export const CLASSNAME = {
   PROFILE_EDIT_PROFILE: 'edit-profile-button',
   PROFILE_MENU_ITEMS: 'menu-items',
   PROFILE_MENU_ITEM: 'menu-item',
-};
-export const TEXT = {
-  VIEW_EDIT: ' View and Edit Profile',
-  LOGOUT: 'Sign Out',
-  ERROR_LOGOUT: 'Error occurs in Sign Out',
-  SUCCESS: 'Sign Out successfully',
-  ARE_YOU_SURE: 'Are you sure you want to Sign Out?',
 };

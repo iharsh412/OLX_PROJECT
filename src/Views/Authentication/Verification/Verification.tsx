@@ -1,11 +1,9 @@
 import './verification.css';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import {
-  CLASSNAME as LOGIN_SECTION_CLASSNAME,
-  TEXT as LOGIN_SECTION_TEXT,
-} from '../LoginSection/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
 
 export default function Verification() {
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ export default function Verification() {
     <div className={CLASSNAME.WRAPPER}>
       {/* verification text */}
       <span>
-        {TEXT.VERIFICATION_TEXT}
+        {COMMON_TEXT.VERIFICATION_TEXT}
         <div className={CLASSNAME.EMAIL}>{email}</div>
       </span>
       {/* login button and text */}
@@ -27,17 +25,17 @@ export default function Verification() {
           className={CLASSNAME.LOGIN}
           onClick={() => navigate(ROUTES_CONFIG.SIGNIN.path, { replace: true })}
         >
-          {TEXT.LOGIN}
+          {COMMON_TEXT.LOGIN}
         </button>
-        <span className={CLASSNAME.TEXT}>{TEXT.LOGIN_TEXT}</span>
+        <span className={CLASSNAME.TEXT}>{COMMON_TEXT.AFTER_VERIFICATION}</span>
       </div>
       {/* footer section */}
       <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
         <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-          {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+          {COMMON_TEXT.PERSONAL_DETAIL}
         </p>
         <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-          {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+          {COMMON_TEXT.PRIVACY_POLICY}
         </p>
       </footer>
     </div>

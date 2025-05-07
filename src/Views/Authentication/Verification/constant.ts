@@ -5,9 +5,3 @@ export const CLASSNAME = {
   TEXT: 'verification_login_text',
   EMAIL: 'verification_email_text',
 };
-export const TEXT = {
-  VERIFICATION_TEXT:
-    'we sent you a verification link to your email, please check your inbox.',
-  LOGIN: 'Login',
-  LOGIN_TEXT: 'After Verification',
-};

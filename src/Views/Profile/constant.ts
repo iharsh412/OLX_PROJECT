@@ -14,7 +14,3 @@ export const CLASSNAME = {
   ADS_TEXT: 'profile-section-adds-text',
   ADS_COUNT: 'profile-section-adds-count',
 };
-export const TEXT = {
-  PROFILE: 'Profile',
-  MYADS: 'my ads',
-};

@@ -6,7 +6,3 @@ export const CLASSNAME = {
   OUTLET: 'sell-section-Outlet',
   FOOTER: 'sell-section-footer',
 };
-export const TEXT = {
-  ADD: 'Post your Ad',
-  BACK: 'back',
-};

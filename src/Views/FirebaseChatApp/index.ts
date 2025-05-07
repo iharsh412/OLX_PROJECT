@@ -1,1 +1,1 @@
-export {default} from "./FirebaseChatApp"
+export { default } from './FirebaseChatApp';

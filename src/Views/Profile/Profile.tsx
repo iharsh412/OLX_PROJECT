@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useGetUserInfoQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import './profile.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';
@@ -25,7 +25,7 @@ export default function Profile() {
         <Link className={CLASSNAME.CROSS} to={ROUTES_CONFIG.HOMEPAGE.path}>
           <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
         </Link>
-        <h3 className={CLASSNAME.PROFILE_TEXT}>{TEXT.PROFILE}</h3>
+        <h3 className={CLASSNAME.PROFILE_TEXT}>{COMMON_TEXT.PROFILE}</h3>
         {/* edit icon */}
         <Link className={CLASSNAME.EDIT} to={ROUTES_CONFIG.EDIT_PROFILE.path}>
           <img src={ICONS.edit} alt={COMMON_TEXT.IMG} />
@@ -40,7 +40,7 @@ export default function Profile() {
         <div className={CLASSNAME.BIO}>{data?.['about me']}</div>
         <div className={CLASSNAME.ADS}>
           <Link to={ROUTES_CONFIG.MYADS.path} className={CLASSNAME.ADS_TEXT}>
-            {TEXT.MYADS}
+            {COMMON_TEXT.MYADS}
           </Link>
           <span className={CLASSNAME.ADS_COUNT}>{data?.ads_count}</span>
         </div>

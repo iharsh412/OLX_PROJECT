@@ -1,5 +1,7 @@
 import './pagination.css';
-import { CLASSNAME, PaginationProps, TEXT } from './contant';
+import { CLASSNAME } from './contant';
+import { COMMON_TEXT } from '../../../Helper/constant';
+import { PaginationProps } from '../../../Helper/interface';
 
 function Pagination({
   page,
@@ -23,7 +25,7 @@ function Pagination({
         }`}
         onClick={handlePrevPage}
       >
-        {TEXT.PREV}
+        {COMMON_TEXT.PREV}
       </button>
       <div className={CLASSNAME.PAGE_COUNT_WRAPPER}>
         {Array(totalpage)
@@ -32,7 +34,7 @@ function Pagination({
             return (
               <button
                 type="button"
-                key={`page-${index + 1}`}
+                key={`${COMMON_TEXT.PAGE}-${index + 1}`}
                 onClick={() => setPage(index + 1)}
                 disabled={index + 1 === page}
                 className={`${CLASSNAME.PAGE_NUMBER} ${
@@ -52,7 +54,7 @@ function Pagination({
         }`}
         onClick={handleNextPage}
       >
-        {TEXT.NEXT}
+        {COMMON_TEXT.NEXT}
       </button>
     </div>
   );

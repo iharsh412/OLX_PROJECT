@@ -4,23 +4,12 @@ import { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
-import {
-  FormValue,
-  INITIAL_VALUES,
-  VALIDATION,
-  CLASSNAME,
-  TEXT,
-} from './constant';
-
+import { FormValue, INITIAL_VALUES, VALIDATION, CLASSNAME } from './constant';
 import { usePostSigninDataMutation } from '../../../Services/Api/module/imageApi';
 import { updateAuthState } from '../../../Store/Common';
-
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import {
-  CLASSNAME as LOGIN_SECTION_CLASSNAME,
-  TEXT as LOGIN_SECTION_TEXT,
-} from '../LoginSection/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
 export default function Signin() {
@@ -37,7 +26,7 @@ export default function Signin() {
   ) {
     try {
       const response = await post(values).unwrap();
-      toast(TEXT.LOGIN_SUCCESSFUL);
+      toast(COMMON_TEXT.LOGIN_SUCCESSFUL);
       resetForm();
       dispatch(updateAuthState(response));
       navigate(ROUTES_CONFIG.HOMEPAGE.path, { replace: true });
@@ -71,7 +60,7 @@ export default function Signin() {
                 <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
               </Link>
               {/* text */}
-              <h2 className={CLASSNAME.TITLE}>{TEXT.SIGN_IN}</h2>
+              <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.LOGIN}</h2>
               {/* cross */}
               <Link
                 className={CLASSNAME.CROSS}
@@ -145,30 +134,30 @@ export default function Signin() {
                 type={TYPE.SUBMIT}
                 disabled={isSubmitting}
               >
-                {TEXT.LOGIN}
+                {COMMON_TEXT.LOGIN}
               </button>
             </form>
-            {/* forget password*/}
+            {/* forget password */}
             <button
               className={CLASSNAME.FORGET}
               type={TYPE.BUTTON}
               title={COMMON_TEXT.PASSWORD_S}
               onClick={() => navigate(ROUTES_CONFIG.FORGETPASS.path)}
             >
-              {TEXT.FORGET_PASSWORD}
+              {COMMON_TEXT.FORGOT_PASSWORD}
             </button>
             {/* signup text */}
             <div className={CLASSNAME.SINUP}>
-              <span>{TEXT.DONOT_HAVE_ACCOUNT}</span>
-              <Link to={ROUTES_CONFIG.SIGNUP.path}>{TEXT.SIGN_UP}</Link>
+              <span>{COMMON_TEXT.DONOT_HAVE_ACCOUNT}</span>
+              <Link to={ROUTES_CONFIG.SIGNUP.path}>{COMMON_TEXT.SIGN_UP}</Link>
             </div>
             {/* footer section */}
             <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
               <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-                {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                {COMMON_TEXT.PERSONAL_DETAIL}
               </p>
               <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-                {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                {COMMON_TEXT.PRIVACY_POLICY}
               </p>
             </footer>
           </div>

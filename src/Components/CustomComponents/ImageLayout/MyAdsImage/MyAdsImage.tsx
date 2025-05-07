@@ -2,9 +2,10 @@ import './myAdsImage.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import ICONS from '../../../../assets';
-import { COMMON_TEXT, ImageProps } from '../../../../Helper/constant';
+import { COMMON_TEXT } from '../../../../Helper/constant';
+import { ImageProps } from '../../../../Helper/interface';
 import Modal from '../../Modal';
 import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import EditAds from '../../EditAds';
@@ -20,13 +21,13 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
 
   useEffect(() => {
     async function handleDelete() {
-      if (text === TEXT.DELETE_TEXT && answer === 'yes') {
+      if (text === COMMON_TEXT.DELETE_TEXT && answer === 'yes') {
         try {
           await post({ id: data.id }).unwrap();
-          toast.success(TEXT.SUCCESS);
+          toast.success(COMMON_TEXT.SUCCESS);
           refetch?.();
         } catch (error) {
-          toast.error(TEXT.ERROR);
+          toast.error(COMMON_TEXT.ERROR_IN_DELETING);
         }
       }
     }
@@ -40,13 +41,13 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
     setAnswer('no');
     setEditOpen(true);
     setOpen(true);
-    setText(TEXT.EDIT_TEXT);
+    setText(COMMON_TEXT.EDIT_TEXT);
   };
   const handleClickDelete = (e: React.MouseEvent) => {
     e.stopPropagation();
     setAnswer('no');
     setOpen(true);
-    setText(TEXT.DELETE_TEXT);
+    setText(COMMON_TEXT.DELETE_TEXT);
   };
 
   return (
@@ -81,28 +82,30 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
           </div>
           <div className={CLASSNAME.EDIT_DELETE}>
             <button
-              title={TEXT.EDIT}
+              title={COMMON_TEXT.EDIT}
               type="button"
               className={CLASSNAME.EDIT}
               onClick={(e) => handleClickEdit(e)}
             >
-              {TEXT.EDIT}
+              {COMMON_TEXT.EDIT}
             </button>
             <button
-              title={TEXT.DELETE}
+              title={COMMON_TEXT.DELETE}
               type="button"
               className={CLASSNAME.DELETE}
               onClick={handleClickDelete}
             >
-              {TEXT.DELETE}
+              {COMMON_TEXT.DELETE}
             </button>
           </div>
         </div>
       </button>
       {open && <Modal setAnswer={setAnswer} setOpen={setOpen} text={text} />}
-      {text === TEXT.EDIT_TEXT && answer === 'yes' && editOpen === true && (
-        <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch} />
-      )}
+      {text === COMMON_TEXT.EDIT_TEXT &&
+        answer === 'yes' &&
+        editOpen === true && (
+          <EditAds setEditOpen={setEditOpen} data={data} refetch={refetch} />
+        )}
     </>
   );
 }

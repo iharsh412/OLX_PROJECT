@@ -1,7 +1,5 @@
 import ICONS from '../../../assets';
-export const TEXT = {
-  CATEGORY: 'Choose Your Category',
-};
+
 export const CLASSNAME = {
   WRAPPER: 'sell-section__category-container',
   SUBTITLE: 'sell-section__subtitle',
@@ -15,9 +13,8 @@ export const CLASSNAME = {
   SUBCATEGORIES: 'sell-section__subcategories',
 };
 export const CATEGORIES = [
-    { id: 'mobile', name: 'Mobile', icon: ICONS.phone },
-    { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
-    { id: 'bikes', name: 'Bikes', icon: ICONS.bike },
-    // { id: 'multiWheelVehicles', name: 'Multi Wheel Vehicles', icon: ICONS.car },
-  ];
-  
+  { id: 'mobile', name: 'Mobile', icon: ICONS.phone },
+  { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
+  { id: 'bikes', name: 'Bikes', icon: ICONS.bike },
+  // { id: 'multiWheelVehicles', name: 'Multi Wheel Vehicles', icon: ICONS.car },
+];

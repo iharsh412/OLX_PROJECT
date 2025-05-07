@@ -4,19 +4,10 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePostChangePasswordDataMutation } from '../../../Services/Api/module/imageApi';
 import './newPass.css';
-import {
-  VALIDATION,
-  INITIAL_VALUES,
-  FormValue,
-  CLASSNAME,
-  TEXT,
-} from './constant';
+import { VALIDATION, INITIAL_VALUES, FormValue, CLASSNAME } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import {
-  CLASSNAME as LOGIN_SECTION_CLASSNAME,
-  TEXT as LOGIN_SECTION_TEXT,
-} from '../LoginSection/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
 export default function NewPass() {
@@ -36,9 +27,9 @@ export default function NewPass() {
         id,
       }).unwrap();
       setDisabled(true);
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.PASSWORD_CHANGED_SUCCESSFULLY);
     } catch (error) {
-      toast.error(TEXT.FAILURE);
+      toast.error(COMMON_TEXT.ERROR_IN_CHANGING_PASSWORD);
     }
   }
 
@@ -59,12 +50,12 @@ export default function NewPass() {
       }) => {
         return (
           <div className={CLASSNAME.WRAPPER}>
-            <h2 className={CLASSNAME.TITLE}>{TEXT.FORGET_PASWORD}</h2>
+            <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.FORGET_PASWORD}</h2>
             <form onSubmit={handleSubmit}>
               {/* password input */}
               <div className={CLASSNAME.PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                  {TEXT.PASSWORD}
+                  {COMMON_TEXT.NEW_PASSWORD}
                   <span className={CLASSNAME.REQUIRED}>*</span>
                 </label>
                 <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
@@ -101,7 +92,7 @@ export default function NewPass() {
               {/* confirm password input */}
               <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                  {TEXT.CONFIRM_PASSWORD}
+                  {COMMON_TEXT.CONFIRM_PASSWORD}
                   <span className={CLASSNAME.REQUIRED}>*</span>
                 </label>
                 <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
@@ -143,13 +134,13 @@ export default function NewPass() {
                   type="submit"
                   disabled={isSubmitting || isLoading || disabled}
                 >
-                  {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
+                  {isLoading ? COMMON_TEXT.SENDING : COMMON_TEXT.SET}
                 </button>
               )}
               {disabled && (
                 <div className={CLASSNAME.SUCCESS}>
                   <span className={CLASSNAME.SUCCESS_TEXT}>
-                    {TEXT.PASSWORD_CHANGED}
+                    {COMMON_TEXT.PASSWORD_CHANGED}
                   </span>
                   <span className={CLASSNAME.SUCCESS_LOGIN}>
                     <button
@@ -161,7 +152,7 @@ export default function NewPass() {
                         });
                       }}
                     >
-                      {TEXT.LOGIN}
+                      {COMMON_TEXT.SIGN_IN}
                     </button>
                   </span>
                 </div>
@@ -169,10 +160,10 @@ export default function NewPass() {
               {/* footer section */}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-                  {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                  {COMMON_TEXT.PERSONAL_DETAIL}
                 </p>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-                  {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                  {COMMON_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>
             </form>

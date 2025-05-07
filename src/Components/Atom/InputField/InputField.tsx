@@ -1,6 +1,7 @@
 import { ErrorMessage } from 'formik';
 import { CLASSNAME, COUNT } from '../../CustomComponents/Post/Common/constant';
-import { InputFieldProps } from './constant.ts';
+import { InputFieldProps } from '../../../Helper/interface';
+
 export default function InputField({
   compulsory,
   label,

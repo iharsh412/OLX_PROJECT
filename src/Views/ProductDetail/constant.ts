@@ -30,14 +30,3 @@ export const CLASSNAME = {
   MAP: 'imageDetailMap',
 };
 
-export const TEXT = {
-  DETAIL: 'Details',
-  TITLE: 'Title',
-  DESCRIPTION: 'Description',
-  PRODUCT: 'Product',
-  OLX_INDIA: 'OLX India',
-  CHAT_WITH_SELLER: 'Chat with Seller',
-  POSTE_IN: 'Posted in',
-  CHAT: 'chat',
-  DAYS_AGO: 'days ago',
-};

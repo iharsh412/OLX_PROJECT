@@ -5,6 +5,3 @@ export const CLASSNAME = {
   SELECTED_CATEGORY_NAME: 'postSelectedCategoryName',
   POST_DETAIL: 'postSellerDetail',
 };
-export const TEXT = {
-  SELECTED_CATEGORY: 'SELECTED CATEGORY',
-};

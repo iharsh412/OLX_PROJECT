@@ -1,9 +1,9 @@
 import './filter.css';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
-import { FilterProps, CLASSNAME, TEXT } from './constant';
-import { SampleData } from '../../Sample/constant';
-import { TYPE } from '../../../Helper/constant';
+import { CLASSNAME } from './constant';
+import { TYPE, COMMON_TEXT } from '../../../Helper/constant';
+import { FilterProps, SampleData } from '../../../Helper/interface';
 
 function Filter({
   category,
@@ -48,7 +48,7 @@ function Filter({
       </h3>
       {/* SUBCATEGORIES */}
       <div className={CLASSNAME.SUBCATEGORY}>
-        <h4>{TEXT.CATEGORY}</h4>
+        <h4>{COMMON_TEXT.CATEGORY}</h4>
 
         <div className={CLASSNAME.SUBCATEGORY_LIST}>
           {response?.subcategories && response?.subcategories?.length > 0 ? (
@@ -85,13 +85,13 @@ function Filter({
               )
             )
           ) : (
-            <h3 className={CLASSNAME.NO_PRODUCTS}>{TEXT.NO_CATEGORY}</h3>
+            <h3 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_CATEGORY}</h3>
           )}
         </div>
       </div>
       {/* BRANDS */}
       <div className={CLASSNAME.BRAND}>
-        <h4>{TEXT.BRAND}</h4>
+        <h4>{COMMON_TEXT.BRAND}</h4>
         <div className={CLASSNAME.BRAND_LIST}>
           {response?.Brand && response?.Brand?.length > 0 ? (
             response?.Brand?.map((brand: string | undefined) => (
@@ -110,14 +110,14 @@ function Filter({
               </button>
             ))
           ) : (
-            <h3 className={CLASSNAME.NO_PRODUCTS}>{TEXT.NO_BRAND}</h3>
+            <h3 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_BRAND}</h3>
           )}
         </div>
       </div>
 
       {/* BUDGET */}
       <div className={CLASSNAME.PRICE}>
-        <h4>{TEXT.PRICE}</h4>
+        <h4>{COMMON_TEXT.PRICE}</h4>
         <RangeSlider
           min={100}
           max={1500000}
@@ -127,7 +127,7 @@ function Filter({
         />
         <div className={CLASSNAME.PRICE_LIST}>
           <input
-            title={TEXT.PRICE_MIN}
+            title={COMMON_TEXT.PRICE_MIN}
             min={100}
             max={price?.[1] ?? 1500000}
             type={TYPE.NUMBER}
@@ -149,7 +149,7 @@ function Filter({
           />
 
           <input
-            title={TEXT.PRICE_MAX}
+            title={COMMON_TEXT.PRICE_MAX}
             min={price?.[0] ?? 100}
             max={1500000}
             type={TYPE.NUMBER}
@@ -178,7 +178,7 @@ function Filter({
             handlePriceRangeChange(price ?? [100, 1500000]);
           }}
         >
-          {TEXT.APPLY}
+          {COMMON_TEXT.APPLY}
         </button>
       </div>
     </div>

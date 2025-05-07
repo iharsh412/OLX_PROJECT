@@ -1,23 +1,18 @@
 import { Formik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import {
-  CLASSNAME,
-  EditAdsProps,
-  FormValues,
-  TEXT,
-  validationSchema,
-  initialValues,
-} from './constant';
-
+import { CLASSNAME, initialValues } from './constant';
+import { validationSchema } from '../Post/PostForm/constant';
 import './EditAds.css';
 import {
   usePostEditDataMutation,
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
 import Loader from '../../Atom/Loader';
-import Error from '../../Atom/ErrorSection';
+import ErrorSection from '../../Atom/ErrorSection';
 import Form from '../Form/index';
+import { COMMON_TEXT } from '../../../Helper/constant';
+import { InitialValuesProps, EditAdsProps } from '../../../Helper/interface';
 
 export default function EditAds({
   setEditOpen,
@@ -36,16 +31,19 @@ export default function EditAds({
       setFormInitialValues((prev) => ({
         ...prev,
         ...Object.keys(initialValues).reduce((acc, key) => {
-          acc[key as keyof FormValues] =
-            data[key] ?? prev[key as keyof FormValues];
+          acc[key as keyof InitialValuesProps] =
+            data[key] ?? prev[key as keyof InitialValuesProps];
+          if (key === 'photos') {
+            acc.photos = data.images;
+          }
           return acc;
-        }, {} as FormValues),
+        }, {} as InitialValuesProps),
       }));
     }
   }, [data]);
 
   const handleSubmit = async (
-    values: FormValues,
+    values: InitialValuesProps,
     { resetForm }: { resetForm: () => void }
   ) => {
     const formData = new FormData();
@@ -56,7 +54,7 @@ export default function EditAds({
       formData.append('subcategory', JSON.stringify(product.subcategory));
 
     Object.entries(values).forEach(([key, value]) => {
-      const typedKey = key as keyof FormValues;
+      const typedKey = key as keyof InitialValuesProps;
 
       if (Array.isArray(value)) {
         (value as File[]).forEach((file) => {
@@ -70,11 +68,11 @@ export default function EditAds({
     try {
       await post(formData).unwrap();
       setEditOpen(false);
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.SUCCESS_IN_EDITING);
       resetForm();
       refetch?.();
     } catch (error) {
-      toast.error(TEXT.ERROR);
+      toast.error(COMMON_TEXT.ERROR_IN_EDITING);
     }
   };
   const handleClickOutside = (event: MouseEvent) => {
@@ -94,7 +92,7 @@ export default function EditAds({
   }, []);
 
   if (isLoading) return <Loader />;
-  if (isError) return <Error />;
+  if (isError) return <ErrorSection />;
 
   return (
     <div className={CLASSNAME.WRAPPER}>
@@ -134,7 +132,7 @@ export default function EditAds({
                 className={CLASSNAME.POST}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? TEXT.EDITING : TEXT.EDIT}
+                {isSubmitting ? COMMON_TEXT.EDITING : COMMON_TEXT.EDIT}
               </button>
             </form>
           );

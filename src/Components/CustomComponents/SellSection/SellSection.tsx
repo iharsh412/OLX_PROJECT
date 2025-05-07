@@ -2,7 +2,7 @@ import './SellSection.css';
 import { useState } from 'react';
 import ICONS from '../../../assets';
 import SubCategory from '../SellCategory/SellCategory';
-import { CATEGORIES, CLASSNAME, TEXT } from './constant';
+import { CATEGORIES, CLASSNAME } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
 
 export default function SellSection() {
@@ -11,7 +11,7 @@ export default function SellSection() {
   return (
     <div className={CLASSNAME.WRAPPER}>
       {/* choose your category text */}
-      <h2 className={CLASSNAME.SUBTITLE}>{TEXT.CATEGORY}</h2>
+      <h2 className={CLASSNAME.SUBTITLE}>{COMMON_TEXT.CHOOSE_YOUR_CATEGORY}</h2>
       <div className={CLASSNAME.CATEGORIES}>
         {/* categories section / left hand side section */}
         {CATEGORIES.map((category) => (

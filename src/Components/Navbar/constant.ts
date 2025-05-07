@@ -19,12 +19,5 @@ export const CLASSNAME = {
   SELL_INNER: 'home_nav_sell_inner',
   SELL_ADD: 'home_nav_sell_add',
   SELL_TEXT: 'home_nav_sell_text',
-  WISHLIST_WRAPPER:"navWishlistWrapper"
-
+  WISHLIST_WRAPPER: 'navWishlistWrapper',
 };
-
-export const TEXT = {
-  SELL: "SELL",
-  LOGIN_TO_ACCESS_WISHLIST: "Sign in to view your wishlist",
-  lOGIN_TO_ADD_PRODUCT: "Sign in to start listing your product"
-}

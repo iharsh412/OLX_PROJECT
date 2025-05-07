@@ -30,11 +30,3 @@ export const CLASSNAME = {
   EYE: 'signin_isSeenPassword',
   INPUT_PASSWORD_WRAPPER: 'signin_passwordWrapper',
 };
-export const TEXT = {
-  LOGIN: 'Login',
-  SIGN_IN: 'Login',
-  FORGET_PASSWORD: 'forgot password?',
-  LOGIN_SUCCESSFUL: 'Login Successfull',
-  DONOT_HAVE_ACCOUNT: "Don't have an account ?",
-  SIGN_UP: 'Sign Up',
-};

@@ -38,46 +38,9 @@ export const initialValues = {
   brand: '',
   year: '',
   price: '',
-  images: [] as File[],
+  photos: [] as File[],
   state: '',
   city: '',
+  sellerName: '',
+  mobileNumber: '',
 };
-export interface FormValues {
-  title?: string;
-  description?: string;
-  brand?: string;
-  year?: string;
-  price?: string;
-  images?: File[];
-  state?: string;
-  city?: string;
-}
-export const TEXT = {
-  INCLUDE_DETAIL: 'EDIT YOUR ADS',
-  CONFIRM_LOCATION: 'CONFIRM YOUR LOCATION',
-  EDIT: 'Edit',
-  REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
-  EDITING: 'Sending...',
-  SUCCESS: 'ADs edited successfully',
-  ERROR: 'Error in editing',
-};
-export interface EditAdsProps {
-  setEditOpen: (open: boolean) => void;
-  refetch?: () => void;
-  data: {
-    created_at?: React.ReactNode;
-    id: number;
-    name: string;
-    price: React.ReactNode;
-    display_photo?: string | null;
-    category?: React.ReactNode;
-    city?: React.ReactNode;
-    district?: React.ReactNode;
-    state?: React.ReactNode;
-    status?: React.ReactNode;
-    subcategory?: React.ReactNode;
-    user?: React.ReactNode;
-    description?: string;
-    is_favourite?: boolean;
-  };
-}

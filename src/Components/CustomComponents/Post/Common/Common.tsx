@@ -3,16 +3,10 @@ import { ErrorMessage } from 'formik';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './common.css';
 import InputField from '../../../Atom/InputField';
-import {
-  CLASSNAME,
-  COUNT,
-  LOCATION,
-  PhotosProps,
-  TEXT,
-  TextFieldProps,
-} from './constant';
+import { CLASSNAME, COUNT, LOCATION } from './constant';
 import ICONS from '../../../../assets';
 import { COMMON_TEXT } from '../../../../Helper/constant';
+import { PhotosProps, TextFieldProps } from '../../../../Helper/interface';
 
 function handleChangeMobileNumber(
   e: ChangeEvent<HTMLInputElement>,
@@ -168,8 +162,10 @@ function Seller({
 }: Readonly<TextFieldProps>) {
   return (
     <>
-      <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{TEXT.VERIFY}</h3>
-      <span className={CLASSNAME.SELLER_CODE_TEXT}>{TEXT.CONFIRMATION}</span>
+      <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{COMMON_TEXT.VERIFY}</h3>
+      <span className={CLASSNAME.SELLER_CODE_TEXT}>
+        {COMMON_TEXT.CONFIRMATION}
+      </span>
       <PhoneNumber
         {...{
           htmlFor,
@@ -201,7 +197,7 @@ function PhoneNumber({
   return (
     <>
       <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
-        <span>{TEXT.CODE}</span>
+        <span>{COMMON_TEXT.CODE}</span>
         <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
           {label}{' '}
           {compulsory && (
@@ -234,7 +230,7 @@ function PhoneNumber({
 function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
   return (
     <>
-      <h3 className={CLASSNAME.UPLOAD_TEXT}>{TEXT.UPLOAD_PHOTOS}</h3>
+      <h3 className={CLASSNAME.UPLOAD_TEXT}>{COMMON_TEXT.UPLOAD_PHOTOS}</h3>
       <div className={CLASSNAME.PHOTO_CONTAINER}>
         {Array.from({
           length: Math.max(5, 0),
@@ -297,7 +293,9 @@ function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
                 <span className={CLASSNAME.CAMERA}>
                   <img src={ICONS.camera} alt={COMMON_TEXT.IMG} />
                 </span>
-                <span className={CLASSNAME.ADD_PHOT0}>{TEXT.ADD_PHOTO}</span>
+                <span className={CLASSNAME.ADD_PHOT0}>
+                  {COMMON_TEXT.ADD_PHOTO}
+                </span>
               </label>
             )}
           </div>

@@ -1,11 +1,11 @@
 import './promotedContent.css';
-import { CLASSNAME, CONTENTS, TEXT } from './constant';
+import { CLASSNAME, CONTENTS } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function PromotedContent() {
   return (
     <div className={CLASSNAME.WRAPPER}>
-      <h4>{TEXT.TITLE}</h4>
+      <h4>{COMMON_TEXT.PROMOTED_CONTENT}</h4>
       <div className={CLASSNAME.CONTENT}>
         {CONTENTS.map((data) => (
           <button
@@ -18,7 +18,7 @@ export default function PromotedContent() {
               <>
                 <iframe
                   src={data.src}
-                  title={data.label || 'Video content'}
+                  title={data.label || COMMON_TEXT.VIDEO_CONTENT}
                   allow="autoplay; encrypted-media"
                 />
                 <span className={CLASSNAME.LABEL}>{data.label}</span>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ImageTransition from '../../Components/CustomComponents/ProductDetailImageTransition';
 import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
@@ -34,6 +34,7 @@ export default function ProductDetail() {
       navigate(ROUTES_CONFIG.SINGLE_CHAT.path);
     }
   }
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
@@ -56,9 +57,9 @@ export default function ProductDetail() {
         <div className={CLASSNAME.DETAIL_DESCRIPTION}>
           {/* detail section */}
           <div className={CLASSNAME.DETAIL}>
-            <span className={CLASSNAME.DETAIL_TEXT}>{TEXT.DETAIL}</span>
+            <span className={CLASSNAME.DETAIL_TEXT}>{COMMON_TEXT.DETAIL}</span>
             <div className={CLASSNAME.BRAND}>
-              <span className={CLASSNAME.BRAND_TEXT}>{TEXT.TITLE}</span>
+              <span className={CLASSNAME.BRAND_TEXT}>{COMMON_TEXT.TITLE}</span>
               <span className={CLASSNAME.BRAND_VALUE}>{product?.name}</span>
             </div>
           </div>
@@ -66,7 +67,7 @@ export default function ProductDetail() {
           {/* description section */}
           <div className={CLASSNAME.DESCRIPTION}>
             <span className={CLASSNAME.DESCRIPTION_TITLE}>
-              {TEXT.DESCRIPTION}
+              {COMMON_TEXT.DESCRIPTION}
             </span>
             <span className={CLASSNAME.DESCRITION_VALUE}>
               {product?.description}
@@ -80,7 +81,7 @@ export default function ProductDetail() {
         <div className={CLASSNAME.PRICE}>
           <span className={CLASSNAME.PRICE_VALUE}>₹ {product?.price}</span>
           <span className={CLASSNAME.PRICE_TEXT}>
-            {product?.status} {TEXT.PRODUCT}
+            {product?.status} {COMMON_TEXT.PRODUCT}
           </span>
           <div className={CLASSNAME.PRICE_TAG}>
             <span className={CLASSNAME.PRICE_PLACE}>{product?.city}</span>
@@ -101,21 +102,23 @@ export default function ProductDetail() {
                   alt={COMMON_TEXT.IMG}
                 />
               </span>
-              <span className={CLASSNAME.CHAT_TEXT}>{TEXT.OLX_INDIA}</span>
+              <span className={CLASSNAME.CHAT_TEXT}>
+                {COMMON_TEXT.OLX_INDIA}
+              </span>
             </div>
             <button
               type="button"
-              title={TEXT.CHAT}
+              title={COMMON_TEXT.CHAT}
               className={CLASSNAME.CHAT_BUTTON}
               onClick={handleClickChat}
             >
-              {TEXT.CHAT_WITH_SELLER}
+              {COMMON_TEXT.CHAT_WITH_SELLER}
             </button>
           </div>
         )}
         {/* post section */}
         <div className={CLASSNAME.POST}>
-          <span className={CLASSNAME.POST_TEXT}>{TEXT.POSTE_IN}</span>
+          <span className={CLASSNAME.POST_TEXT}>{COMMON_TEXT.POSTED_IN}</span>
           <span className={CLASSNAME.POST_VALUE}>
             {product?.state} , {product?.city || product?.district}
           </span>
@@ -124,7 +127,7 @@ export default function ProductDetail() {
         <div className={CLASSNAME.MAP}>
           <LocationMap
             cityName={product?.city}
-            mapHeadingText={TEXT.POSTE_IN}
+            mapHeadingText={COMMON_TEXT.POSTED_IN}
           />
         </div>
       </div>

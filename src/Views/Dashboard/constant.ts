@@ -5,6 +5,3 @@ export const CLASSNAME = {
   NO_PRODUCTS: 'homeNoProducts',
   LOADER: 'loader',
 };
-export const TEXT = {
-  LOAD: 'Load More',
-};

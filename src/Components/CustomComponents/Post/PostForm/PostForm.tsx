@@ -6,8 +6,10 @@ import { usePostNewProductsMutation } from '../../../../Services/Api/module/imag
 import './postForm.css';
 import { validationSchema, initialValues } from './constant';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { TEXT, FormValues, CLASSNAME } from '../Common/constant';
+import { CLASSNAME } from '../Common/constant';
 import Form from '../../Form';
+import { COMMON_TEXT } from '../../../../Helper/constant';
+import { InitialValuesProps } from '../../../../Helper/interface';
 
 export default function CarForm() {
   const { state } = useLocation();
@@ -17,17 +19,15 @@ export default function CarForm() {
 
   // HandleSubmit
   const handleSubmit = async (
-    values: FormValues,
+    values: InitialValuesProps,
     { resetForm }: { resetForm: () => void }
   ) => {
     const formData = new FormData();
     formData.append('user', '1');
     formData.append('category', state.categoryId);
     formData.append('subcategory', state.subcategory);
-
     Object.keys(values).forEach((key) => {
-      const typedKey = key as keyof FormValues;
-
+      const typedKey = key as keyof InitialValuesProps;
       if (Array.isArray(values[typedKey])) {
         (values[typedKey] as File[]).forEach((file) => {
           formData.append(`${typedKey}`, file);
@@ -39,12 +39,12 @@ export default function CarForm() {
 
     try {
       await postNewProducts(formData).unwrap();
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.POSTED_SUCCESSFULLY);
       setShowResponse('Added');
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
       resetForm();
     } catch (error) {
-      toast.error(TEXT.ERROR);
+      toast.error(COMMON_TEXT.ERROR);
       setShowResponse('Error');
     }
   };
@@ -93,9 +93,11 @@ export default function CarForm() {
               disabled={isSubmitting}
             >
               {(() => {
-                if (showResponse === 'Added') return 'POST SUCCESSFULLY';
-                if (showResponse === 'Error') return 'ERROR IN POSTING';
-                return 'POST';
+                if (showResponse === 'Added')
+                  return COMMON_TEXT.POSTED_SUCCESSFULLY;
+                if (showResponse === 'Error')
+                  return COMMON_TEXT.ERROR_IN_POSTING;
+                return COMMON_TEXT.POST;
               })()}
             </button>
           </>

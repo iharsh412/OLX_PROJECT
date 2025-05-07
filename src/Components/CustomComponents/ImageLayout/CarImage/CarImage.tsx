@@ -6,9 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
 import ICONS from '../../../../assets';
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { COMMON_TEXT, ImageProps } from '../../../../Helper/constant';
+import { COMMON_TEXT } from '../../../../Helper/constant';
+import { ImageProps } from '../../../../Helper/interface';
 import { RootState } from '../../../../Store';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { getDaysFromNow } from '../../../../Helper/function';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
@@ -32,23 +33,25 @@ export default function Images({
     e.stopPropagation();
     if (!token) {
       navigate(ROUTES_CONFIG.LOGIN.path);
-      toast.error(TEXT.ADD_TO_Wishlist);
+      toast.error(COMMON_TEXT.LOGIN_TO_ADD_TO_WISHLIST);
       return;
     }
     try {
       const response = await post({ id: 1, product_id: data.id }).unwrap();
-      setShowAdded(response.msg === TEXT.ADDED_IN_FAV ? TEXT.ADDED : '');
+      setShowAdded(
+        response.msg === COMMON_TEXT.ADDED_IN_FAV ? COMMON_TEXT.ADDED : ''
+      );
       refetch?.();
-      if (response.msg === TEXT.ADDED_IN_FAV) {
+      if (response.msg === COMMON_TEXT.ADDED_IN_FAV) {
         dispatch(setWishlistCount(wishlistCount + 1));
-        toast.success(TEXT.ADDED_IN_WISHLIST);
+        toast.success(COMMON_TEXT.ADDED_IN_WISHLIST);
       } else {
         dispatch(setWishlistCount(wishlistCount - 1));
-        toast.success(TEXT.REMOVE_FROM_WISHLIST);
+        toast.success(COMMON_TEXT.REMOVE_FROM_WISHLIST);
       }
       refetchDashboard?.();
     } catch (error) {
-      toast.error(TEXT.ERROR_IN_ADDING);
+      toast.error(COMMON_TEXT.ERROR_IN_ADDING);
     }
   };
   // on click layout section
@@ -58,7 +61,7 @@ export default function Images({
 
   // HOOKS
   useEffect(() => {
-    setShowAdded(data.is_favourite ? TEXT.ADDED : '');
+    setShowAdded(data.is_favourite ? COMMON_TEXT.ADDED : '');
   }, [data.is_favourite]);
 
   return (
@@ -85,8 +88,8 @@ export default function Images({
           disabled={isLoading}
         >
           <Heart
-            fill={showAdded === TEXT.ADDED ? 'red' : 'none'}
-            color={showAdded === TEXT.ADDED ? 'red' : 'black'}
+            fill={showAdded === COMMON_TEXT.ADDED ? 'red' : 'none'}
+            color={showAdded === COMMON_TEXT.ADDED ? 'red' : 'black'}
           />
         </button>
       </div>

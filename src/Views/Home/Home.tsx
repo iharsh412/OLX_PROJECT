@@ -9,8 +9,9 @@ import Ads from '../../Components/PromotedContent';
 import Footer from '../../Components/Footer';
 import { RootState } from '../../Store';
 import { setLoading } from '../../Store/Loader';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { setItem } from '../../Store/AreaItem';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function HomeLayout() {
   const location = useLocation();
@@ -26,7 +27,7 @@ export default function HomeLayout() {
   // for session expired
   useEffect(() => {
     if (loader) {
-      toast.error(TEXT.SESSION_EXPIRED, {
+      toast.error(COMMON_TEXT.SESSION_EXPIRED, {
         position: 'top-center',
         autoClose: 5000,
         closeOnClick: true,
@@ -47,8 +48,6 @@ export default function HomeLayout() {
       </div>
       {/* add section */}
       <Ads />
-      {/* footerINfo */}
-      {/* <FooterInfo /> */}
       {/* Footer */}
       <Footer />
     </div>

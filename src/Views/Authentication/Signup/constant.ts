@@ -54,15 +54,4 @@ export const CLASSNAME = {
   EYE: 'signup_isSeenPassword',
   INPUT_PASSWORD_WRAPPER: 'signup_passwordWrapper',
 };
-export const TEXT = {
-  TITLE: 'Sign Up',
-  USERNAME: 'Username',
-  USERNAME_S: 'username',
-  EMAIL: 'Email',
-  PASSWORD: 'Password',
-  CONFIRM_PASSWORD: 'Confirm Password',
-  SUBMIT: 'Sign Up',
-  SUCCESS: 'Signup Successfully',
-  SIGN_IN: 'Login',
-  HAVE_ACCOUNT: 'Already have an account ?',
-};
+

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, useEffect, useState, useCallback } from 'react';
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../../Helper/constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import ICONS from '../../../assets';
@@ -50,10 +50,10 @@ export default function ItemsSelector() {
       <input
         type="text"
         className={CLASSNAME.INPUT}
-        placeholder={TEXT.PLACEHOLDER}
+        placeholder={COMMON_TEXT.FINDS_CARS_MOBILE_AND_MORE}
         value={localValue ?? ''}
         onChange={handleChange}
-        aria-label={TEXT.PLACEHOLDER}
+        aria-label={COMMON_TEXT.FINDS_CARS_MOBILE_AND_MORE}
       />
 
       <button

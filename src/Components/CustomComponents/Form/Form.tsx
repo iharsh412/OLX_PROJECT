@@ -7,8 +7,9 @@ import {
   State,
   City,
 } from '../Post/Common/Common';
-import { FormProps } from './constant';
-import { TEXT, CLASSNAME } from '../Post/Common/constant';
+import { CLASSNAME } from '../Post/Common/constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
+import { FormProps } from '../../../Helper/interface';
 
 export default function Form({
   touched,
@@ -19,7 +20,7 @@ export default function Form({
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>
-        <h3 className={CLASSNAME.DETAIL_TEXT}>{TEXT.INCLUDE_DETAIL}</h3>
+        <h3 className={CLASSNAME.DETAIL_TEXT}>{COMMON_TEXT.INCLUDE_DETAIL}</h3>
         <TextField
           type="text"
           htmlFor="brand"
@@ -90,7 +91,9 @@ export default function Form({
       <hr />
       {/* Location */}
       <div className={CLASSNAME.LOCATION_WRAPPER}>
-        <h3 className={CLASSNAME.LOCATION_TEXT}>{TEXT.CONFIRM_LOCATION}</h3>
+        <h3 className={CLASSNAME.LOCATION_TEXT}>
+          {COMMON_TEXT.CONFIRM_LOCATION}
+        </h3>
         <State
           type="text"
           htmlFor="state"
@@ -116,7 +119,7 @@ export default function Form({
       <hr />
       {/* Review Your Detail */}
       <div className={CLASSNAME.SELLER_WRAPPER}>
-        <h3 className={CLASSNAME.SELLER_TEXT}>{TEXT.REVIEW_DETAIL}</h3>
+        <h3 className={CLASSNAME.SELLER_TEXT}>{COMMON_TEXT.REVIEW_DETAIL}</h3>
         <TextField
           type="text"
           htmlFor="sellerName"
@@ -124,6 +127,7 @@ export default function Form({
           label="Name"
           err={errors.sellerName}
           tch={touched.sellerName}
+          compulsory
           {...share}
         />
         <Seller

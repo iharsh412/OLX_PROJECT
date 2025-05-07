@@ -4,9 +4,10 @@ import './firebaseChatApp.css';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../../firebase';
 import { RootState } from '../../Store';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
 import { setUserId } from '../../Store/ChatUser/index';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function FirebaseChatApp() {
   const dispatch = useDispatch();
@@ -48,11 +49,11 @@ export default function FirebaseChatApp() {
     <>
       {}
       {uniqueUsers.length === 0 ? (
-        <div className={CLASSNAME.NO_USERS}>{TEXT.NO_CONVERSATIONS}</div>
+        <div className={CLASSNAME.NO_USERS}>{COMMON_TEXT.NO_CONVERSATIONS}</div>
       ) : (
         <div className={CLASSNAME.CHAT_APP}>
           <div className={CLASSNAME.USER_WRAPPER}>
-            <div className={CLASSNAME.USER}>{TEXT.USER}</div>
+            <div className={CLASSNAME.USER}>{COMMON_TEXT.USER}</div>
             <div className={CLASSNAME.USER_LIST}>
               {uniqueUsers.map((user) => (
                 <button

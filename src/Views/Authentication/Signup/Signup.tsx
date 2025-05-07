@@ -4,19 +4,10 @@ import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
 import './signup.css';
-import {
-  VALIDATION,
-  INITIAL_VALUES,
-  FormValue,
-  CLASSNAME,
-  TEXT,
-} from './constant';
+import { VALIDATION, INITIAL_VALUES, FormValue, CLASSNAME } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import {
-  CLASSNAME as LOGIN_SECTION_CLASSNAME,
-  TEXT as LOGIN_SECTION_TEXT,
-} from '../LoginSection/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 
 export default function Signup() {
@@ -39,7 +30,7 @@ export default function Signup() {
         state: { email: values.email },
         replace: true,
       });
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.SIGNUP_SUCCESSFULLY);
     } catch (error) {
       toast.error((error as any)?.data?.email?.[0]);
     }
@@ -69,7 +60,7 @@ export default function Signup() {
                 <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
               </Link>
               {/* text */}
-              <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+              <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.SIGN_UP}</h2>
               {/* cross */}
               <Link
                 className={CLASSNAME.CROSS}
@@ -82,20 +73,20 @@ export default function Signup() {
             <form onSubmit={handleSubmit}>
               {/* username */}
               <div className={CLASSNAME.USERNAME_INPUT}>
-                <label htmlFor={TEXT.USERNAME}>
-                  {TEXT.USERNAME}
+                <label htmlFor={COMMON_TEXT.USERNAME}>
+                  {COMMON_TEXT.USERNAME}
                   <div className={CLASSNAME.REQUIRED}>*</div>{' '}
                 </label>
                 <input
-                  title={TEXT.USERNAME}
+                  title={COMMON_TEXT.USERNAME}
                   type="text"
-                  name={TEXT.USERNAME_S}
+                  name={COMMON_TEXT.USERNAME_S}
                   value={values.username}
                   onChange={(e) =>
                     setFieldValue('username', e.target.value.trim())
                   }
                   onBlur={handleBlur}
-                  id={TEXT.USERNAME}
+                  id={COMMON_TEXT.USERNAME}
                 />
                 {errors.username && touched.username && (
                   <div className={CLASSNAME.ERROR}>{errors.username}</div>
@@ -104,7 +95,7 @@ export default function Signup() {
               {/* email */}
               <div className={CLASSNAME.EMAIL_INPUT}>
                 <label htmlFor={COMMON_TEXT.EMAIL_S}>
-                  {TEXT.EMAIL}
+                  {COMMON_TEXT.EMAIL}
                   <div className={CLASSNAME.REQUIRED}>*</div>
                 </label>
 
@@ -126,7 +117,7 @@ export default function Signup() {
               {/* password */}
               <div className={CLASSNAME.PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
-                  {TEXT.PASSWORD}
+                  {COMMON_TEXT.PASSWORD}
                   <div className={CLASSNAME.REQUIRED}>*</div>
                 </label>
                 <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
@@ -162,8 +153,8 @@ export default function Signup() {
               </div>
               {/* confirm password */}
               <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
-                <label htmlFor={TEXT.CONFIRM_PASSWORD}>
-                  {TEXT.CONFIRM_PASSWORD}
+                <label htmlFor={COMMON_TEXT.CONFIRM_PASSWORD}>
+                  {COMMON_TEXT.CONFIRM_PASSWORD}
                   <div className={CLASSNAME.REQUIRED}>*</div>
                 </label>
                 <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
@@ -176,7 +167,7 @@ export default function Signup() {
                       setFieldValue('confirmPassword', e.target.value.trim())
                     }
                     onBlur={handleBlur}
-                    id={TEXT.CONFIRM_PASSWORD}
+                    id={COMMON_TEXT.CONFIRM_PASSWORD}
                   />
                   {values.confirmPassword && (
                     <button
@@ -207,20 +198,20 @@ export default function Signup() {
                 type="submit"
                 disabled={isSubmitting || isLoading}
               >
-                {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT}
+                {isLoading ? COMMON_TEXT.SENDING : COMMON_TEXT.SIGN_UP}
               </button>
               {/* Sign in text */}
               <div className={CLASSNAME.SIGNIN}>
-                <span>{TEXT.HAVE_ACCOUNT}</span>
-                <Link to={ROUTES_CONFIG.SIGNIN.path}>{TEXT.SIGN_IN}</Link>
+                <span>{COMMON_TEXT.HAVE_ACCOUNT}</span>
+                <Link to={ROUTES_CONFIG.SIGNIN.path}>{COMMON_TEXT.LOGIN}</Link>
               </div>
               {/* footer section */}
               <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-                  {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                  {COMMON_TEXT.PERSONAL_DETAIL}
                 </p>
                 <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-                  {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                  {COMMON_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>
             </form>

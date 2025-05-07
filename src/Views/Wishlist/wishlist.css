@@ -5,6 +5,7 @@
   background-color: rgb(242, 253, 255);
   padding: 10px;
 }
+
 /* NO PRODUCTS */
 .cart_Wrapper h1 {
   width: 100%;
@@ -17,20 +18,22 @@
   color: #333;
   text-align: center;
 }
+
 /* WISHLIST TEXT */
 .cart_text {
   width: 100%;
   font-weight: 800;
   text-align: center;
 }
-/* cart image section */
 
+/* cart image section */
 .cart_imageSection {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Default: 4 columns */
   gap: 16px;
   width: 100%;
 }
+
 /* Medium screens: 3 images per row */
 @media (max-width: 992px) {
   .cart_imageSection {

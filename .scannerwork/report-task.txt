@@ -2,5 +2,5 @@ projectKey=olxProject
 serverUrl=http://localhost:9000
 serverVersion=25.4.0.105899
 dashboardUrl=http://localhost:9000/dashboard?id=olxProject
-ceTaskId=f489a377-b248-4cd3-a6a5-098dd7352514
-ceTaskUrl=http://localhost:9000/api/ce/task?id=f489a377-b248-4cd3-a6a5-098dd7352514
+ceTaskId=a731fe61-f005-478a-bf52-2a8856b2b8e9
+ceTaskUrl=http://localhost:9000/api/ce/task?id=a731fe61-f005-478a-bf52-2a8856b2b8e9

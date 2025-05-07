@@ -1,9 +1,10 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import Form from '../../Components/CustomComponents/Post/PostForm';
 import './postForm.css';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { capitalizeFirstLetter } from '../../Helper/function';
+import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function PostForm() {
   const location = useLocation();
@@ -18,7 +19,7 @@ export default function PostForm() {
       <div className={CLASSNAME.SELECTED_CATEGORY}>
         {/* selected category text */}
         <span className={CLASSNAME.SELECTED_CATEGORY_TITLE}>
-          {TEXT.SELECTED_CATEGORY}
+          {COMMON_TEXT.SELECTED_CATEGORY}
         </span>
         <span className={CLASSNAME.SELECTED_CATEGORY_NAME}>
           {capitalizeFirstLetter(location.state.categoryId)} /{' '}

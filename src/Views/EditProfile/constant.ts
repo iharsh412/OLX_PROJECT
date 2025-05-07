@@ -7,15 +7,6 @@ export const CLASSNAME = {
   CROSS: 'edit-profile-cross',
   VIEW_PROFILE: 'edit-profile-view-profile',
 };
-export const TEXT = {
-  TITLE: 'Edit Profile',
-  SUBMIT_BUTTON: 'Save Changes',
-  EDIT: 'Edit',
-  VIEW_PROFILE: 'View Profile',
-  SUCCESS: 'Profile updated successfully',
-  ERROR: 'Error updating profile',
-};
-
 export const validationSchema = Yup.object().shape({
   phonenumber: Yup.string().matches(
     /^\d{10}$/,
@@ -39,9 +30,3 @@ export const initialValues = {
   ['about me']: '',
   email: '',
 };
-export interface FormValues {
-  username: string;
-  phonenumber: string;
-  ['about me']: string;
-  email: string;
-}

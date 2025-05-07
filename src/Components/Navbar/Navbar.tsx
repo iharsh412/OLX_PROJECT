@@ -9,7 +9,7 @@ import { RootState } from '../../Store';
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
 import Item from '../CustomComponents/ItemsSelector';
 import ProfileUpDown from '../CustomComponents/LoginUpDown';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
@@ -37,7 +37,7 @@ export default function Navbar() {
     if (access) {
       navigate(ROUTES_CONFIG.SELL.path);
     } else {
-      toast.error(TEXT.lOGIN_TO_ADD_PRODUCT);
+      toast.error(COMMON_TEXT.SIGNIN_TO_ADD_PRODUCT);
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
@@ -46,7 +46,7 @@ export default function Navbar() {
     if (access) {
       navigate(ROUTES_CONFIG.WISHLIST.path);
     } else {
-      toast.error(TEXT.LOGIN_TO_ACCESS_WISHLIST);
+      toast.error(COMMON_TEXT.SIGNIN_TO_ACCESS_WISHLIST);
       navigate(ROUTES_CONFIG.LOGIN.path);
     }
   }
@@ -186,7 +186,7 @@ export default function Navbar() {
           {/* If not logged in, show login */}
           {!access && (
             <Link to={ROUTES_CONFIG.LOGIN.path} className={CLASSNAME.LOGIN}>
-              Login
+              {COMMON_TEXT.LOGIN}
             </Link>
           )}
           {/* Sell button */}
@@ -207,7 +207,7 @@ export default function Navbar() {
                 alt={COMMON_TEXT.IMG}
                 className={CLASSNAME.SELL_ADD}
               />
-              <span className={CLASSNAME.SELL_TEXT}>{TEXT.SELL}</span>
+              <span className={CLASSNAME.SELL_TEXT}>{COMMON_TEXT.SELL}</span>
             </span>
           </button>
         </div>

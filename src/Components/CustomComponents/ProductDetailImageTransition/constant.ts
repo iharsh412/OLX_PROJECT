@@ -1,7 +1,3 @@
-export interface ImageSectionProps {
-  images?: string | string[];
-}
-
 export const CLASSNAME = {
   IMAGE_SECTION: 'imageDetailimageSection',
   IMAGE_SLIDE: 'imageDetailSlide',

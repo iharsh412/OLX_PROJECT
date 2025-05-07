@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import './locationMap.css';
-import { CLASSNAME, TEXT, PropsType } from './constant';
+import { CLASSNAME } from './constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
+import { LocationMapProps } from '../../../Helper/interface';
 
 export default function LocationMap({
   cityName,
   mapHeadingText,
-}: Readonly<PropsType>) {
+}: Readonly<LocationMapProps>) {
   const [center, setCenter] = useState<[number, number] | null>(null);
 
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function LocationMap({
     }
   }, [cityName]);
 
-  if (!center) return <p>{TEXT.LOADING}</p>;
+  if (!center) return <p>{COMMON_TEXT.LOADING_MAPS}</p>;
 
   const [lat, lon] = center;
   const bbox = `${lon - 0.01},${lat - 0.01},${lon + 0.01},${lat + 0.01}`;
@@ -43,7 +45,7 @@ export default function LocationMap({
       {mapHeadingText && <h5 className={CLASSNAME.TEXT}>{mapHeadingText}</h5>}
       <iframe
         className={CLASSNAME.IFRAMES}
-        title={`Map of ${cityName}`}
+        title={`${cityName}`}
         src={mapSrc}
       />
     </div>

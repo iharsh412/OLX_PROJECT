@@ -7,20 +7,17 @@ import { RootState } from '../../../Store';
 import { updateAuthState } from '../../../Store/Common';
 import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
 import './loginUpDown.css';
-import {
-  ProfileDropdownProps,
-  dropdownItems,
-  CLASSNAME,
-  TEXT,
-} from './constant';
+import { dropdownItems, CLASSNAME } from './constant';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 import Modal from '../Modal';
 import { setWishlistCount } from '../../../Store/WishlistCount';
 import { setUserId } from '../../../Store/ChatUser';
+import { COMMON_TEXT } from '../../../Helper/constant';
+import { LoginUpDownProps } from '../../../Helper/interface';
 
 export default function LoginUpDown({
   setOpenProfile,
-}: Readonly<ProfileDropdownProps>) {
+}: Readonly<LoginUpDownProps>) {
   const { username, refresh } = useSelector(
     (state: RootState) => state?.common
   );
@@ -48,10 +45,10 @@ export default function LoginUpDown({
         })
       );
       dispatch(setUserId(null));
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.SIGN_OUT_SUCCESSFULLY);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {
-      toast.error(TEXT.ERROR_LOGOUT);
+      toast.error(COMMON_TEXT.ERROR_SIGNOUT);
     }
   };
 
@@ -78,7 +75,7 @@ export default function LoginUpDown({
               }}
               className={CLASSNAME.PROFILE_EDIT_PROFILE}
             >
-              {TEXT.VIEW_EDIT}
+              {COMMON_TEXT.VIEW_AND_EDIT_PROFILE}
             </button>
           </div>
         </div>
@@ -105,7 +102,7 @@ export default function LoginUpDown({
           })}
           <button
             type="button"
-            title={TEXT.LOGOUT}
+            title={COMMON_TEXT.SIGNOUT}
             onClick={(e) => {
               e.stopPropagation();
               setOpenModal(true);
@@ -113,14 +110,14 @@ export default function LoginUpDown({
             className={CLASSNAME.PROFILE_MENU_ITEM}
           >
             <LogOut />
-            <span>{TEXT.LOGOUT}</span>
+            <span>{COMMON_TEXT.SIGNOUT}</span>
           </button>
         </div>
         {openModal && (
           <Modal
             setAnswer={setAnswer}
             setOpen={setOpenModal}
-            text={TEXT.ARE_YOU_SURE}
+            text={COMMON_TEXT.ARE_YOU_SURE}
             setDropdown={() => setOpenProfile?.((prev) => !prev)}
           />
         )}

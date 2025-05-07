@@ -11,11 +11,3 @@ export const CLASSNAME = {
   PLACE: 'carImage_place',
   DATE: 'carImage_date',
 };
-export const TEXT = {
-  ADD_TO_Wishlist: 'Please login to add to wishlist',
-  ERROR_IN_ADDING: 'Error adding to wishlist',
-  ADDED_IN_FAV: 'Added in Favourites',
-  ADDED: 'Added',
-  ADDED_IN_WISHLIST: 'Added to your wishlist!',
-  REMOVE_FROM_WISHLIST: 'Removed from your wishlist.',
-};

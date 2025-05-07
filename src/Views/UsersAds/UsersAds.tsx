@@ -2,9 +2,10 @@ import './usersAds.css';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
-import { Product } from '../../Helper/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
+import { Product } from '../../Helper/interface';
 import ErrorSection from '../../Components/Atom/ErrorSection';
 import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
 import { ROUTES_CONFIG } from '../../Shared/Constants';
@@ -15,7 +16,6 @@ export default function UsersAds() {
   const [totalpage, setTotalpage] = useState<number>(1);
   const [page, setPage] = useState<number>(1);
   const [showButton, setShowButton] = useState({ prev: false, next: false });
-
   const { data, refetch, isError, isLoading } = useGetAdsDataQuery(
     { page: page < totalpage ? page : totalpage, limit },
     { refetchOnMountOrArgChange: true }
@@ -26,13 +26,13 @@ export default function UsersAds() {
 
     const totalPages = Math.max(1, Math.ceil((data?.total_count ?? 0) / limit));
     setTotalpage(totalPages);
-
     setShowButton({
       prev: page > 1,
       next: page < totalPages,
     });
     if (page > totalPages) setPage(totalPages);
   }, [data?.total_count, page]);
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
@@ -40,7 +40,8 @@ export default function UsersAds() {
   return (
     <div className={CLASSNAME.WRAPPER}>
       {/* my ads text */}
-      <h1 className={CLASSNAME.TITLE}>{TEXT.MY_ADS}</h1>
+      <h1 className={CLASSNAME.TITLE}>{COMMON_TEXT.MY_ADS}</h1>
+
       {/* schemer  */}
       <div className={CLASSNAME.AD_WRAPPER}>
         {isLoading && (
@@ -50,11 +51,13 @@ export default function UsersAds() {
             ))}
           </div>
         )}
+
         {isError && <ErrorSection />}
         {/* no ads */}
         {page === 1 && data?.products?.length === 0 && (
           <div className={CLASSNAME.NO_ADS}>
-            {TEXT.NO_ADS} <Link to={ROUTES_CONFIG.SELL.path}>{TEXT.ADS}</Link>
+            {COMMON_TEXT.NO_ADS}{' '}
+            <Link to={ROUTES_CONFIG.SELL.path}>{COMMON_TEXT.CLICK}</Link>
           </div>
         )}
         {data?.products?.map((product: Product) => (

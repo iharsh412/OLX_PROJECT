@@ -4,19 +4,9 @@ import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { usePostForgetPasswordDataMutation } from '../../../Services/Api/module/imageApi';
-import {
-  VALIDATION,
-  INITIAL_VALUES,
-  FormValue,
-  CLASSNAME,
-  TEXT,
-} from './constant';
-
+import { VALIDATION, INITIAL_VALUES, FormValue, CLASSNAME } from './constant';
 import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import {
-  CLASSNAME as LOGIN_SECTION_CLASSNAME,
-  TEXT as LOGIN_SECTION_TEXT,
-} from '../LoginSection/constant';
+import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
 import ICONS from '../../../assets';
 import { ROUTES_CONFIG } from '../../../Shared/Constants';
 
@@ -29,9 +19,9 @@ export default function ForgetPassEmailValidation() {
     try {
       await post(values).unwrap();
       setDisabled(true);
-      toast.success(TEXT.SUCCESS);
+      toast.success(COMMON_TEXT.CHECK_YOUR_INBOX);
     } catch (error) {
-      toast.error(TEXT.FAILURE);
+      toast.error(COMMON_TEXT.SOMETHING_WENT_WRONG_TRY_AGAIN);
     }
   }
 
@@ -59,7 +49,7 @@ export default function ForgetPassEmailValidation() {
                 <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
               </Link>
               {/* text */}
-              <h2 className={CLASSNAME.TITLE}>{TEXT.TITLE}</h2>
+              <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.FORGOT_PASSWORD}</h2>
               {/* cross */}
               <Link
                 className={CLASSNAME.CROSS}
@@ -87,7 +77,9 @@ export default function ForgetPassEmailValidation() {
               )}
             </div>
             {/* validation text */}
-            <span className={CLASSNAME.TEXT}>{TEXT.VALID}</span>
+            <span className={CLASSNAME.TEXT}>
+              {COMMON_TEXT.PLEASE_ENTER_YOUR_EMAIL}
+            </span>
             {/* send reset link text */}
             {!disabled && (
               <button
@@ -97,16 +89,16 @@ export default function ForgetPassEmailValidation() {
                 disabled={isSubmitting || isLoading || disabled}
                 onClick={() => handleSubmit()}
               >
-                {isLoading ? COMMON_TEXT.SENDING : TEXT.SUBMIT_BUTTON}
+                {isLoading ? COMMON_TEXT.SENDING : COMMON_TEXT.SEND_RESET_LINK}
               </button>
             )}
             {/* footer section */}
             <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
               <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
-                {LOGIN_SECTION_TEXT.PERSONAL_DETAIL}
+                {COMMON_TEXT.PERSONAL_DETAIL}
               </p>
               <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
-                {LOGIN_SECTION_TEXT.PRIVACY_POLICY}
+                {COMMON_TEXT.PRIVACY_POLICY}
               </p>
             </footer>
           </div>

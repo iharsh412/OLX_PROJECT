@@ -1,5 +1,3 @@
-import { FormikErrors } from 'formik';
-
 export const CLASSNAME = {
   LABEL: 'post-label',
   DETAIL_TEXT: 'postForm_detailText',
@@ -62,59 +60,3 @@ export enum COUNT {
   'Ad title' = 100,
   'Mobile Number' = 10,
 }
-export interface TextFieldProps {
-  handleChange?: (e: React.ChangeEvent<any>) => void;
-  handleBlur?: (e: React.FocusEvent<any>) => void;
-  htmlFor: string;
-  label: string;
-  value?: string | number | boolean | [];
-  type?: string;
-  err: string | object | boolean | undefined;
-  tch?: boolean;
-  setFieldValue?: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean
-  ) => Promise<void | FormikErrors<any>>;
-  state?: string;
-  countRequired?: boolean;
-  compulsory?: boolean;
-}
-export interface FormValues {
-  title?: string;
-  description?: string;
-  brand?: string;
-  year?: string;
-  fuel?: string;
-  distance?: string;
-  price?: string;
-  photos?: File[];
-  state?: string;
-  city?: string;
-  sellerName?: string;
-  mobileNumber?: string;
-}
-export interface PhotosProps {
-  value: File[];
-  type?: string;
-  label: string;
-  setFieldValue?: (
-    field: string,
-    value: any,
-    shouldValidate?: boolean
-  ) => Promise<void | FormikErrors<any>>;
-}
-
-export const TEXT = {
-  VERIFY: "Let's verify your account",
-  CONFIRMATION:
-    ' We will send you a confirmation code by sms on the next step.',
-  CODE: '+91',
-  UPLOAD_PHOTOS: 'UPLOAD UP TO 5 PHOTOS',
-  ADD_PHOTO: 'Add Photo',
-  SUCCESS: 'Posted Successfuly!',
-  ERROR: 'Error',
-  INCLUDE_DETAIL: 'INCLUDE SOME DETAILS',
-  CONFIRM_LOCATION: 'CONFIRM YOUR LOCATION',
-  REVIEW_DETAIL: 'REVIEW YOUR DETAILS',
-};

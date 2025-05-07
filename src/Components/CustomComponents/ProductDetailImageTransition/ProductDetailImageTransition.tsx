@@ -1,10 +1,13 @@
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import './productDetailImageTransition.css';
-import { CLASSNAME, ImageSectionProps } from './constant';
+import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../../Helper/constant';
+import { ProductDetailProps } from '../../../Helper/interface';
 
-function ProductDetailImageTransition({ images }: Readonly<ImageSectionProps>) {
+function ProductDetailImageTransition({
+  images,
+}: Readonly<ProductDetailProps>) {
   let imageArray: string[] = [];
   if (images) {
     imageArray = Array.isArray(images) ? images : [images];

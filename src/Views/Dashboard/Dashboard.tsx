@@ -4,8 +4,9 @@ import Schemer from '../../Components/Atom/Schemer/Schemer';
 import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index';
 import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index';
 import './dashboard.css';
-import { COMMON_TEXT, Product } from '../../Helper/constant';
-import { CLASSNAME, TEXT } from './constant';
+import { COMMON_TEXT } from '../../Helper/constant';
+import { Product } from '../../Helper/interface';
+import { CLASSNAME } from './constant';
 import { RootState } from '../../Store/index';
 import ErrorSection from '../../Components/Atom/ErrorSection';
 
@@ -69,7 +70,7 @@ export default function Dashboard() {
               className={CLASSNAME.LOAD}
               onClick={() => setPage((prev) => prev + 1)}
             >
-              {TEXT.LOAD}
+              {COMMON_TEXT.LOAD_MORE}
             </button>
           )}
         </div>

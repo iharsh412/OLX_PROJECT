@@ -51,6 +51,3 @@ export const CLASSNAME = {
   IMAGE: 'adsSection_ContentImage',
   VIDEO: 'adsSection_ContentVideo',
 };
-export const TEXT = {
-  TITLE: 'PROMOTED CONTENT',
-};

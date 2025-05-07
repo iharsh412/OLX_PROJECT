@@ -1,5 +1,3 @@
-import { ResponseData, SampleData } from '../../Sample/constant';
-
 export const CLASSNAME = {
   MAIN_SECTION_FILTER: 'sample-mainSectionFilter',
   FILTER_TITLE: 'sample-filterTitle',
@@ -16,22 +14,4 @@ export const CLASSNAME = {
   PRICE_MAX: 'sample_priceMax',
   APPLY: 'sample-priceOption__apply',
   ACTIVE: 'sample-active',
-};
-export interface FilterProps {
-  category?: string;
-  response?: ResponseData;
-  sampleData?: SampleData;
-  setSampleData?: (arg: any) => void;
-  price?: [number, number];
-  setPrice?: (arg: any) => void;
-}
-export const TEXT = {
-  CATEGORY: 'Category',
-  NO_CATEGORY: 'No category available',
-  NO_BRAND: 'No brand available',
-  BRAND: 'Brand',
-  PRICE: 'Price',
-  PRICE_MIN: 'Min',
-  PRICE_MAX: 'Max',
-  APPLY: 'Apply',
 };

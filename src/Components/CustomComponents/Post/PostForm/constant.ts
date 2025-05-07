@@ -1,11 +1,5 @@
 import * as Yup from 'yup';
-export const FuelOptions = [
-  { id: '1', label: 'CNG' },
-  { id: '2', label: 'Diesel' },
-  { id: '3', label: 'Electric' },
-  { id: '4', label: 'LPG' },
-  { id: '5', label: 'Petrol' },
-];
+
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Required')
@@ -17,8 +11,6 @@ export const validationSchema = Yup.object().shape({
     .integer('year must be integer')
     .min(1900, 'Must be greater than 1900')
     .max(new Date().getFullYear(), 'Select correct year'),
-  fuel: Yup.string().required('Required'),
-  distance: Yup.number().required('Required').min(0, 'Select valid distance'),
   price: Yup.number()
     .required('Required')
     .min(100, 'Must be greater than 100')
@@ -42,8 +34,6 @@ export const initialValues = {
   description: '',
   brand: '',
   year: '',
-  fuel: '',
-  distance: '',
   price: '',
   photos: [],
   state: '',

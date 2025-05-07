@@ -1,6 +1,6 @@
 import './footer.css';
 import ICONS from '../../assets';
-import { CLASSNAME, LINK, TEXT } from './constant';
+import { CLASSNAME, LINK } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function Footer() {
@@ -73,10 +73,10 @@ export default function Footer() {
         </div>
         <div className={CLASSNAME.SECTION_TEXT}>
           <button className={CLASSNAME.SECTION_HELP} type="button">
-            {TEXT.HELP_SITEMAP}
+            {COMMON_TEXT.HELP_SITEMAP}
           </button>
           <span className={CLASSNAME.ALL_RIGHT_RESERVED}>
-            {TEXT.ALL_RIGHT_RESERVED}
+            {COMMON_TEXT.ALL_RIGHT_RESERVED}
           </span>
         </div>
       </div>

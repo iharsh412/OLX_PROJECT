@@ -3,10 +3,4 @@ export const CLASSNAME = {
   CONTAINER: 'map-container-div',
   TEXT: 'detail-page-minor-title',
 };
-export const TEXT = {
-  LOADING: 'Loading map...',
-};
-export interface PropsType {
-  cityName: string;
-  mapHeadingText: string;
-}
+

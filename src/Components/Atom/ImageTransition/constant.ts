@@ -5,3 +5,13 @@ export const QUOTES = [
   'Life is 10% what happens to us and 90% how we react to it.',
   'The only way to do great work is to love what you do.',
 ];
+export const CLASSNAME = {
+  IMAGE_SECTION: 'imageSection',
+  LOGIN_SLIDE_BUTTON: 'login_slide_button',
+  LOGIN_SLIDE_PREV: 'login_slide_prev',
+  LOGIN_SLIDE_NEXT: ' login_slide_next',
+  LOGIN_DOTS_CONTAINER: 'login_dots_container',
+  SLIDE: 'slide',
+  ACTIVE: 'active',
+  DOT: 'dot',
+};

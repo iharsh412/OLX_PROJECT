@@ -3,9 +3,10 @@ import { useParams } from 'react-router-dom';
 import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
 import './sample.css';
 import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
-import { COMMON_TEXT, Product } from '../../Helper/constant';
+import { COMMON_TEXT } from '../../Helper/constant';
+import { SampleData, ResponseData, Product } from '../../Helper/interface';
 import ICONS from '../../assets';
-import { SampleData, ResponseData, CLASSNAME, TEXT } from './constant';
+import { CLASSNAME } from './constant';
 import Pagination from '../Atom/Pagination/Pagination';
 import ErrorSection from '../Atom/ErrorSection';
 import Filter from '../Atom/Filter';
@@ -150,7 +151,7 @@ export default function Sample() {
               ))}
             {!isLoading && response && response?.products?.length === 0 && (
               <h3 className={CLASSNAME.NO_PRODUCTS}>
-                {TEXT.NO_PRODUCT_AVAILABLE}
+                {COMMON_TEXT.NO_PRODUCT_AVAILABLE}
               </h3>
             )}
           </div>

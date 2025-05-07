@@ -1,7 +1,8 @@
 import './modal.css';
 import { useEffect, useRef } from 'react';
-import { CLASSNAME, ModalProps, TEXT } from './constant';
-import { TYPE } from '../../../Helper/constant';
+import { CLASSNAME } from './constant';
+import { TYPE, COMMON_TEXT } from '../../../Helper/constant';
+import { ModalProps } from '../../../Helper/interface';
 
 export default function Modal({
   setAnswer,
@@ -50,19 +51,19 @@ export default function Modal({
         <div className={CLASSNAME.BUTTON}>
           <button
             type={TYPE.BUTTON}
-            title={TEXT.YES}
+            title={COMMON_TEXT.YES}
             onClick={handleYes}
             className={CLASSNAME.YES}
           >
-            {TEXT.YES}
+            {COMMON_TEXT.YES}
           </button>
           <button
             type={TYPE.BUTTON}
-            title={TEXT.NO}
+            title={COMMON_TEXT.NO}
             onClick={handleNo}
             className={CLASSNAME.NO}
           >
-            {TEXT.NO}
+            {COMMON_TEXT.NO}
           </button>
         </div>
       </div>

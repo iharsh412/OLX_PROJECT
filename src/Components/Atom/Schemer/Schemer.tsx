@@ -1,7 +1,8 @@
 import { Heart } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { CLASSNAME } from '../../CustomComponents/ImageLayout/CarImage/constant';
-import { CLASSNAME as SCHEMER_CLASSNAME, TEXT } from './constant';
+import { CLASSNAME as SCHEMER_CLASSNAME } from './constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
 import './schemer.css';
 
 export default function Schemer() {
@@ -12,7 +13,7 @@ export default function Schemer() {
       <div className={`${CLASSNAME.IMAGE_WRAPPER} ${SCHEMER_CLASSNAME.COMMON}`}>
         <div className={`${CLASSNAME.IMAGE} ${SCHEMER_CLASSNAME.COMMON_BOX}`} />
         <button
-          title={TEXT.WISHLIST}
+          title={COMMON_TEXT.ADD_TO_WISHLIST}
           type="button"
           className={`${CLASSNAME.CART_WRAPPER} ${SCHEMER_CLASSNAME.COMMON_BOX}`}
         >

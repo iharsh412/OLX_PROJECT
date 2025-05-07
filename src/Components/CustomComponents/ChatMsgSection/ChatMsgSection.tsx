@@ -14,14 +14,13 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import { db } from '../../../firebase';
 import { RootState } from '../../../Store';
-import {
-  CLASSNAME,
-  TEXT,
-  MessageProps,
-} from '../../../Views/FirebaseChatApp/constant';
-import { UserProps } from './constant';
+import { CLASSNAME } from '../../../Views/FirebaseChatApp/constant';
+import { ChatMsgSectionProps, MessageProps } from '../../../Helper/interface';
+import { COMMON_TEXT } from '../../../Helper/constant';
 
-export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
+export default function ChatMsgSection({
+  roomId,
+}: Readonly<ChatMsgSectionProps>) {
   const { userId } = useSelector((state: RootState) => state.chatUser);
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
@@ -63,8 +62,7 @@ export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
         prev.map((msg) => (msg.id === tempId ? { ...msg, id: docRef.id } : msg))
       );
     } catch (error) {
-      toast.error(TEXT.ERROR);
-
+      toast.error(COMMON_TEXT.ERROR_SENDING_MESSAGE);
       setMessages((prev) => prev.filter((msg) => msg.id !== tempId));
     }
   };
@@ -214,7 +212,7 @@ export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
   }, [messages]);
   return (
     <div className={CLASSNAME.MESSAGE_WRAPPER}>
-      <div className={CLASSNAME.MESSAGE}>{TEXT.MESSAGES}</div>
+      <div className={CLASSNAME.MESSAGE}>{COMMON_TEXT.MESSAGES}</div>
       <div
         className={CLASSNAME.MESSAGE_LIST}
         ref={(el) => {
@@ -227,7 +225,7 @@ export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
         }}
       >
         {messages.length === 0 ? (
-          <div className={CLASSNAME.NO_MSG}>{TEXT.NO_MSG}</div>
+          <div className={CLASSNAME.NO_MSG}>{COMMON_TEXT.NO_MSG}</div>
         ) : (
           messages.map((msg) => (
             <div
@@ -265,7 +263,7 @@ export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
           <input
             className={CLASSNAME.MESSAGE_INPUT}
             type="text"
-            placeholder={TEXT.TYPE_MESSAGE}
+            placeholder={COMMON_TEXT.TYPE_MESSAGE}
             value={newmsg}
             onChange={(e) => setNewmsg(e.target.value)}
             onKeyDown={(e) => {
@@ -277,7 +275,7 @@ export default function ChatMsgSection({ roomId }: Readonly<UserProps>) {
             className={CLASSNAME.SEND_BUTTON}
             onClick={handleSendMessage}
           >
-            Send
+            {COMMON_TEXT.SEND}
           </button>
         </div>
       )}

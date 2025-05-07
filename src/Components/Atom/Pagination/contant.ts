@@ -1,9 +1,3 @@
-export interface PaginationProps {
-  page: number;
-  totalpage: number;
-  setPage: (prev: any) => any;
-  showButton: { prev: boolean; next: boolean };
-}
 export const CLASSNAME = {
   WRAPPER: 'sample-PageChange',
   PREV: 'sample-PREV',
@@ -12,8 +6,4 @@ export const CLASSNAME = {
   PAGE_NUMBER: 'sample-pageNumber',
   ACTIVE_PAGE: 'sample-activepage',
   NEXT: 'sample-NEXT',
-};
-export const TEXT = {
-  NEXT: 'Next',
-  PREV: 'Prev',
 };
