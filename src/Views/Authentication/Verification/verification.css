@@ -1,6 +1,10 @@
 /* VERIFICATION WRAPPER - PERFECTED WITH ORIGINAL BG */
 .verification_wrapper {
-  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%); /* Original gradient preserved */
+  background: linear-gradient(
+    135deg,
+    #faf1fe 0%,
+    #d6fcff 100%
+  ); /* Original gradient preserved */
   border-radius: 16px;
   min-height: 420px;
   width: 100%;
@@ -13,16 +17,16 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  box-shadow: 
+  box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.05),
     0 10px 24px rgba(0, 0, 0, 0.08);
-  font-family: 
-    'Segoe UI', 
-    -apple-system, 
-    BlinkMacSystemFont, 
-    'Roboto', 
-    'Oxygen', 
-    'Ubuntu', 
+  font-family:
+    'Segoe UI',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Roboto',
+    'Oxygen',
+    'Ubuntu',
     sans-serif;
   position: relative;
   overflow: hidden;
@@ -38,7 +42,7 @@
   right: -50px;
   width: 150px;
   height: 150px;
-  background: rgba(250, 241, 254, 0.5); /* Matching original light purple */
+  background: rgba(250, 241, 254, 0.5);
   border-radius: 50%;
 }
 
@@ -49,7 +53,7 @@
   left: -30px;
   width: 100px;
   height: 100px;
-  background: rgba(214, 252, 255, 0.5); /* Matching original light blue */
+  background: rgba(214, 252, 255, 0.5);
   border-radius: 50%;
 }
 
@@ -58,14 +62,13 @@
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 16px;
-  color: #5a2a7e; /* Original purple text */
+  color: #5a2a7e;
   position: relative;
   z-index: 1;
 }
 
-
 .verification_email_text {
-  color: #ff5a5a; /* Original pinkish-red */
+  color: #ff5a5a;
   font-weight: 600;
   word-break: break-all;
   display: inline-block;
@@ -86,15 +89,20 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 /* BUTTON STYLING */
 .verification_login_button {
   background: none;
   border: none;
-  color: #5a2a7e; /* Changed to match original purple */
+  color: #5a2a7e;
   text-decoration: none;
   cursor: pointer;
   font-size: 16px;
@@ -109,12 +117,12 @@
   z-index: 1;
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(90, 42, 126, 0.3); /* Original purple border */
+  border: 1px solid rgba(90, 42, 126, 0.3);
 }
 
 .verification_login_button:hover {
   color: #fff;
-  background-color: #5a2a7e; /* Original purple */
+  background-color: #5a2a7e;
   box-shadow: 0 4px 8px rgba(90, 42, 126, 0.2);
   transform: translateY(-2px);
   border-color: #5a2a7e;
@@ -144,15 +152,17 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  border: 3px solid rgba(90, 42, 126, 0.3); /* Original purple */
+  border: 3px solid rgba(90, 42, 126, 0.3);
   border-radius: 50%;
-  border-top-color: #5a2a7e; /* Original purple */
+  border-top-color: #5a2a7e;
   animation: spin 1s ease-in-out infinite;
   margin-right: 8px;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* RESPONSIVE DESIGN */
@@ -162,16 +172,16 @@
     min-height: 380px;
     border-radius: 12px;
   }
-  
+
   .verification_title {
     font-size: 22px;
   }
-  
+
   .verification_wrapper p {
     font-size: 15px;
     margin: 20px 0;
   }
-  
+
   .verification_icon {
     font-size: 56px;
   }
@@ -183,16 +193,16 @@
     margin: 16px auto;
     width: 95%;
   }
-  
+
   .verification_title {
     font-size: 20px;
   }
-  
+
   .verification_wrapper p {
     font-size: 14px;
     max-width: 280px;
   }
-  
+
   .verification_login_button {
     font-size: 15px;
     padding: 8px 14px;
@@ -203,14 +213,12 @@
   .verification_wrapper {
     padding: 28px 16px;
   }
-  
+
   .verification_wrapper p {
     font-size: 13px;
   }
-  
+
   .verification_icon {
     font-size: 48px;
   }
 }
-
-/

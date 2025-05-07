@@ -1,1 +1,1 @@
-export {default} from "./ImageTransition"
+export { default } from './ImageTransition';

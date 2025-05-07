@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import Schemer from '../../Components/Atom/Schemer/Schemer';
 import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index';
-import ImagesLayout from '../../Components/CustomComponents/ImageLayout/CarImage/index';
+import ImagesLayout from '../../Components/CustomComponents/ImageLayout/ProductImage/index';
 import './dashboard.css';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { Product } from '../../Helper/interface';

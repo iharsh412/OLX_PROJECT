@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
 import './sample.css';
-import ImagesLayout from '../CustomComponents/ImageLayout/CarImage';
+import ImagesLayout from '../CustomComponents/ImageLayout/ProductImage';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { SampleData, ResponseData, Product } from '../../Helper/interface';
 import ICONS from '../../assets';

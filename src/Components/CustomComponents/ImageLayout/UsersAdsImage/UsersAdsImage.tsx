@@ -1,4 +1,4 @@
-import './myAdsImage.css';
+import './usersAdsImage.css';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';

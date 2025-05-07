@@ -94,7 +94,7 @@ export default function Navbar() {
       where('receiverId', '==', String(id)),
       where('seen', '==', false)
     );
-
+    
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {

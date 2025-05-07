@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
-import ImageLayout from '../../Components/CustomComponents/ImageLayout/CarImage';
+import ImageLayout from '../../Components/CustomComponents/ImageLayout/ProductImage';
 import './wishlist.css';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { Product } from '../../Helper/interface';

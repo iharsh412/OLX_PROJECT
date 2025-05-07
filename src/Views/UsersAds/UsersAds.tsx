@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
 import { CLASSNAME } from './constant';
-import Images from '../../Components/CustomComponents/ImageLayout/MyAdsImage';
+import Images from '../../Components/CustomComponents/ImageLayout/UsersAdsImage';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { Product } from '../../Helper/interface';
 import ErrorSection from '../../Components/Atom/ErrorSection';

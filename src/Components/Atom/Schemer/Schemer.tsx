@@ -1,6 +1,6 @@
 import { Heart } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
-import { CLASSNAME } from '../../CustomComponents/ImageLayout/CarImage/constant';
+import { CLASSNAME } from '../../CustomComponents/ImageLayout/ProductImage/constant';
 import { CLASSNAME as SCHEMER_CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../../Helper/constant';
 import './schemer.css';

@@ -12,7 +12,7 @@
 
 .footerSection {
     width: 80%;
-    max-width: 1200px; /* Ensures the footer doesn’t stretch too wide */
+    max-width: 1200px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -27,8 +27,8 @@
     width: 100%;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap; /* Allow wrapping for responsiveness */
-    gap: 16px; /* Add spacing between items */
+    flex-wrap: wrap; 
+    gap: 16px; 
     padding: 16px 0;
 }
 
@@ -77,7 +77,7 @@
     font-size: 12px;
     flex-wrap: wrap;
     text-align: left;
-    width: 90%; /* Ensures full width on all screens */
+    width: 90%; 
 }
 
 /* Help Section */
@@ -134,13 +134,13 @@
     .footerSectionBikewale,
     .footerSectionCarTrade,
     .footerSectionMobilityOutlook {
-        width: 120px; /* Adjust widths for mobile */
+        width: 120px;
         height: 45px;
         padding: 6px;
     }
 
     .footerSectionCarTradeTech {
-        border-right: none; /* Remove border on mobile */
+        border-right: none; 
         padding-right: 0;
         width: 100%;
         height: auto;
@@ -151,7 +151,7 @@
         flex-direction: column;
         text-align: center;
         font-size: 12px;
-        padding: 10px 20px; /* Adjust padding for mobile */
+        padding: 10px 20px; 
     }
 
     .footerSectionHelp {
@@ -162,11 +162,11 @@
 /* Very Small Screens (Extra small mobile) */
 @media (max-width: 480px) {
     .footerSectionParent {
-        padding: 8px; /* Reduce padding for small screens */
+        padding: 8px; 
     }
 
     .footerSectionText {
-        padding: 8px 10px; /* Reduce padding on small screens */
+        padding: 8px 10px; 
     }
 
     .footerSectionOlx,
@@ -174,7 +174,7 @@
     .footerSectionBikewale,
     .footerSectionCarTrade,
     .footerSectionMobilityOutlook {
-        width: 100px; /* Adjust widths for very small screens */
+        width: 100px; 
         height: 40px;
     }
 

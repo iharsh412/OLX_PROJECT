@@ -1,1 +1,1 @@
-export {default} from "./EditAds";
+export { default } from './EditAds';
