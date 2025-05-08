@@ -88,9 +88,6 @@ export default function LoginUpDown({
                 type="button"
                 key={item.label}
                 onClick={() => {
-                  if (item.clickHandler) {
-                    item.clickHandler(navigate);
-                  }
                   item?.clickHandler?.(navigate);
                 }}
                 className={CLASSNAME.PROFILE_MENU_ITEM}

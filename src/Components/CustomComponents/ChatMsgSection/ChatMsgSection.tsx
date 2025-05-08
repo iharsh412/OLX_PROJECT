@@ -90,51 +90,77 @@ export default function ChatMsgSection({
   }, [roomId]);
 
   useEffect(() => {
-    if (!roomId || !id || messages.length === 0) return;
+    if (!roomId || !id) return;
 
     const observerOptions = {
       root: messageListRef.current,
       threshold: 0.5,
     };
 
+    const observers = setupMessageObservers(observerOptions);
+    return () => cleanupObservers(observers);
+  }, [messages, id, roomId]);
+  const setupMessageObservers = (options: IntersectionObserverInit) => {
     const observers: IntersectionObserver[] = [];
 
     messages.forEach((msg) => {
-      if (msg.senderId == id || msg.receiverId != id || msg.seen) return;
-      const messageElement = document.getElementById(msg.id);
+      if (shouldSkipMessage(msg)) return;
 
+      const messageElement = document.getElementById(msg.id);
       if (!messageElement) return;
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Update in Firebase
-            const msgRef = doc(db, 'messages', msg.id);
-
-            updateDoc(msgRef, { seen: true })
-              .then(() => {
-                // Update local state
-                setMessages((prev) =>
-                  prev.map((m) => (m.id === msg.id ? { ...m, seen: true } : m))
-                );
-              })
-              .catch((error) => {
-                console.error('Error updating seen status:', error);
-              });
-
-            observer.disconnect();
-          }
-        });
-      }, observerOptions);
-
+      const observer = createMessageObserver(msg, options);
       observer.observe(messageElement);
       observers.push(observer);
     });
 
-    return () => {
-      observers.forEach((obs) => obs.disconnect());
+    return observers;
+  };
+
+  const shouldSkipMessage = (msg: MessageProps) => {
+    return msg.senderId == id || msg.receiverId != id || msg.seen;
+  };
+
+  const createMessageObserver = (
+    msg: MessageProps,
+    options: IntersectionObserverInit
+  ) => {
+    const observer = new IntersectionObserver(handleIntersection(msg), options);
+    return observer;
+  };
+
+  const handleIntersection =
+    (msg: MessageProps) => (entries: IntersectionObserverEntry[]) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          markMessageAsSeen(msg);
+        }
+      });
     };
-  }, [messages, id, roomId]);
+
+  const markMessageAsSeen = async (msg: MessageProps) => {
+    try {
+      await updateSeenStatusInFirebase(msg.id);
+      updateSeenStatusLocally(msg.id);
+    } catch (error) {
+      console.error('Error updating seen status:', error);
+    }
+  };
+
+  const updateSeenStatusInFirebase = async (messageId: string) => {
+    const msgRef = doc(db, 'messages', messageId);
+    await updateDoc(msgRef, { seen: true });
+  };
+
+  const updateSeenStatusLocally = (messageId: string) => {
+    setMessages((prev) =>
+      prev.map((m) => (m.id === messageId ? { ...m, seen: true } : m))
+    );
+  };
+
+  const cleanupObservers = (observers: IntersectionObserver[]) => {
+    observers.forEach((obs) => obs.disconnect());
+  };
 
   useEffect(() => {
     const el = messagEnd.current;
@@ -143,7 +169,6 @@ export default function ChatMsgSection({
     }
   }, [messages]);
 
-  // console.log(messages, 'messages');
   return (
     <div className={CLASSNAME.MESSAGE_WRAPPER}>
       <div className={CLASSNAME.MESSAGE}>{COMMON_TEXT.MESSAGES}</div>

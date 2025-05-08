@@ -81,6 +81,8 @@ export default function Navbar() {
     };
   }, []);
 
+  console.log(id,"id")
+
   // for unseen message count
   useEffect(() => {
     if (!id) {
@@ -98,6 +100,7 @@ export default function Navbar() {
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
+        console.log(snapshot.size, "snapshot.size")
         setUnseenMsgCount(snapshot.size);
         setLoading(false);
       },
