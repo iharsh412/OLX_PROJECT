@@ -13,7 +13,6 @@ import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
-
 import { db } from '../../firebase';
 
 export default function Navbar() {
@@ -29,7 +28,11 @@ export default function Navbar() {
   const profileRef = useRef<HTMLButtonElement>(null);
   const { data } = useGetWishlistProductsQuery(
     {},
-    { refetchOnMountOrArgChange: true, refetchOnFocus: true }
+    {
+      skip: !access,
+      refetchOnMountOrArgChange: true,
+      refetchOnFocus: true,
+    }
   );
 
   // handle click on sell
@@ -94,7 +97,7 @@ export default function Navbar() {
       where('receiverId', '==', String(id)),
       where('seen', '==', false)
     );
-    
+
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {

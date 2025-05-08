@@ -33,7 +33,7 @@ export default function ItemsSelector() {
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      const value = e.target.value.trim();
+      const value = e.target.value.trimStart();
       setLocalValue(value);
       if (value) navigate(ROUTES_CONFIG.HOMEPAGE.path);
     },

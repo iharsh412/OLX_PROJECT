@@ -1,5 +1,4 @@
 import { ErrorMessage } from 'formik';
-
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import './common.css';
 import InputField from '../../../Atom/InputField';
@@ -25,10 +24,9 @@ function handleChange(
   setFieldValue: (field: string, value: any) => void,
   label: string
 ) {
-  const value: string = e.target.value.slice(
-    0,
-    COUNT[label as keyof typeof COUNT]
-  );
+  const value: string = e.target.value
+    .trimStart()
+    .slice(0, COUNT[label as keyof typeof COUNT]);
   setFieldValue?.(htmlFor, value);
 }
 
@@ -131,7 +129,7 @@ function Description({
         onChange={(e) => {
           setFieldValue?.(
             htmlFor,
-            e.target.value.slice(0, COUNT['Description'])
+            e.target.value.trimStart().slice(0, COUNT['Description'])
           );
         }}
         onBlur={handleBlur}
@@ -161,25 +159,19 @@ function Seller({
   compulsory,
 }: Readonly<TextFieldProps>) {
   return (
-    <>
-      <h3 className={CLASSNAME.SELLER_VERIFY_TEXT}>{COMMON_TEXT.VERIFY}</h3>
-      <span className={CLASSNAME.SELLER_CODE_TEXT}>
-        {COMMON_TEXT.CONFIRMATION}
-      </span>
-      <PhoneNumber
-        {...{
-          htmlFor,
-          err,
-          label,
-          value,
-          tch,
-          type,
-          handleBlur,
-          setFieldValue,
-          compulsory,
-        }}
-      />
-    </>
+    <PhoneNumber
+      {...{
+        htmlFor,
+        err,
+        label,
+        value,
+        tch,
+        type,
+        handleBlur,
+        setFieldValue,
+        compulsory,
+      }}
+    />
   );
 }
 

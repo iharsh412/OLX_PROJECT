@@ -5,7 +5,7 @@ import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function Footer() {
   const handleClick = (link: string) => {
-    window.location.href = link;
+    window.open(link, '_blank', 'noopener,noreferrer');
   };
 
   return (
@@ -72,9 +72,6 @@ export default function Footer() {
           </button>
         </div>
         <div className={CLASSNAME.SECTION_TEXT}>
-          <button className={CLASSNAME.SECTION_HELP} type="button">
-            {COMMON_TEXT.HELP_SITEMAP}
-          </button>
           <span className={CLASSNAME.ALL_RIGHT_RESERVED}>
             {COMMON_TEXT.ALL_RIGHT_RESERVED}
           </span>

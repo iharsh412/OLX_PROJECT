@@ -53,6 +53,7 @@ export const productApi = api.injectEndpoints({
         method: 'POST',
       }),
     }),
+    // signup
     postSignupData: builder.mutation({
       query: (data) => ({
         url: `account/signup/`,

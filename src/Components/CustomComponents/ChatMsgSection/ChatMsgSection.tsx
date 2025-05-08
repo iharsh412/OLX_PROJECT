@@ -107,7 +107,6 @@ export default function ChatMsgSection({
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
-          console.log("hello")
           if (entry.isIntersecting) {
             // Update in Firebase
             const msgRef = doc(db, 'messages', msg.id);
@@ -136,7 +135,7 @@ export default function ChatMsgSection({
       observers.forEach((obs) => obs.disconnect());
     };
   }, [messages, id, roomId]);
-   console.log(messages, 'messages')
+
   useEffect(() => {
     const el = messagEnd.current;
     if (el) {
@@ -144,7 +143,6 @@ export default function ChatMsgSection({
     }
   }, [messages]);
 
-  // console.log(messages, 'messages');
   return (
     <div className={CLASSNAME.MESSAGE_WRAPPER}>
       <div className={CLASSNAME.MESSAGE}>{COMMON_TEXT.MESSAGES}</div>
