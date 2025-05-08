@@ -90,7 +90,7 @@ export default function ChatMsgSection({
   }, [roomId]);
 
   useEffect(() => {
-    if (!roomId || !id || messages.length === 0) return;
+    if (!roomId || !id) return;
 
     const observerOptions = {
       root: messageListRef.current,
@@ -107,6 +107,7 @@ export default function ChatMsgSection({
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
+          console.log("hello")
           if (entry.isIntersecting) {
             // Update in Firebase
             const msgRef = doc(db, 'messages', msg.id);
@@ -135,7 +136,7 @@ export default function ChatMsgSection({
       observers.forEach((obs) => obs.disconnect());
     };
   }, [messages, id, roomId]);
-
+   console.log(messages, 'messages')
   useEffect(() => {
     const el = messagEnd.current;
     if (el) {
