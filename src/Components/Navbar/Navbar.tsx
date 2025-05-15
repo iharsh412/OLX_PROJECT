@@ -13,7 +13,7 @@ import { CLASSNAME } from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { setWishlistCount } from '../../Store/WishlistCount';
-import { db } from '../../firebase';
+import { db } from '../../Services/firebase';
 
 export default function Navbar() {
   const [unseenMsgCount, setUnseenMsgCount] = useState(0);

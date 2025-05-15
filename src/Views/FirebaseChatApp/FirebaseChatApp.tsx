@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './firebaseChatApp.css';
 import { collection, onSnapshot, query } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db } from '../../Services/firebase';
 import { RootState } from '../../Store';
 import { CLASSNAME } from './constant';
 import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';

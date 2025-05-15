@@ -12,7 +12,7 @@ import {
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
-import { db } from '../../../firebase';
+import { db } from '../../../Services/firebase';
 import { RootState } from '../../../Store';
 import { CLASSNAME } from '../../../Views/FirebaseChatApp/constant';
 import { ChatMsgSectionProps, MessageProps } from '../../../Helper/interface';
