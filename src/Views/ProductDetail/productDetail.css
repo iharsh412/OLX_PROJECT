@@ -1,0 +1,267 @@
+/* IMAGE DETAIL PARENT CONTAINER */
+.imageDetailWrapper {
+  width: 85vw;
+  height: auto;
+  margin: 0 auto 100px;
+  display: flex;
+  gap: 20px;
+  padding: 100px;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  background-color: rgb(242, 253, 255);
+}
+
+/* MAIN CONTENT SECTION (Image + Description) */
+.imageDetailImagesDetailsDescription {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 1 1 60%;
+  gap: 16px;
+  box-sizing: border-box;
+}
+
+/* IMAGE SECTION */
+.imageDetailImageSection {
+  width: 100%;
+  height: 480px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.imageDetailImageSection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+/* DETAILS & DESCRIPTION SECTION */
+.imageDetailDetailsDescription {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.imageDetailDetails {
+  margin-bottom: 10px;
+}
+
+.imageDetailTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+
+.imageDetailBrand {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #666;
+  margin-right: 15px;
+  padding: 20px;
+}
+
+.imageDetailBrandValue {
+  color: #222;
+  font-weight: 500;
+  margin-right: 100px;
+  margin-left: 20px;
+  width: fit-content;
+}
+
+/* DESCRIPTION SECTION */
+.imageDetailDescription {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+}
+
+.imageDetailDescriptionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.imageDetailDescriptionValue {
+  font-size: 14px;
+  color: #555;
+  margin-top: 15px;
+  line-height: 1.6;
+}
+
+/* PRICE + CHAT SECTION */
+.imageDetailPriceChatSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1 1 35%;
+}
+
+/* PRICE CARD */
+.imageDetailPriceSection {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.imageDetailPriceValue {
+  font-size: 34px;
+  font-weight: 700;
+  color: #222;
+}
+
+.imageDetailPriceName {
+  font-size: 16px;
+  color: #406367;
+  margin-top: 10px;
+}
+
+.imageDetailPriceTags {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #888;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed #ddd;
+}
+
+/* CHAT CARD */
+.imageDetailChatSection {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.imageDetailChatSellerPhotoText {
+  display: flex;
+  align-items: center;
+}
+
+.imageDetailChatSeller img {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px solid #f0f0f0;
+}
+
+.imageDetailChatText {
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 12px;
+}
+
+.imageDetailChat {
+  height: 48px;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  background: #fff;
+  border: 2px solid #222;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.imageDetailChat:hover {
+  background: #222;
+  color: #fff;
+}
+
+/* POST METADATA */
+.imageDetailPost {
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+}
+
+.imageDetailPostText {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.imageDetailPostValue {
+  font-size: 14px;
+  color: rgba(0, 47, 52, 0.6);
+  margin: 8px 20px;
+  line-height: 1.4;
+}
+
+/* MAP SECTION */
+.imageDetailMap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  width: 100%;
+  height: 300px;
+  box-sizing: border-box;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 868px) {
+  .imageDetailWrapper {
+    width: 90vw;
+    padding: 8px;
+  }
+
+  .imageDetailImageSection {
+    height: 360px;
+  }
+
+  .imageDetailPriceChatSection {
+    flex-direction: column;
+  }
+
+  .imageDetailMap {
+    height: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .imageDetailImageSection {
+    height: 280px;
+  }
+
+  .imageDetailTitle {
+    font-size: 18px;
+  }
+
+  .imageDetailPriceValue {
+    font-size: 28px;
+  }
+
+  .imageDetailChatSeller img {
+    width: 56px;
+    height: 56px;
+  }
+
+  .imageDetailMap {
+    height: 300px;
+  }
+}

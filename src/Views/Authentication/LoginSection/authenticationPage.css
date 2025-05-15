@@ -1,0 +1,109 @@
+/*LOGIN PAGE */
+.loginPageParent {
+  background: linear-gradient(135deg, #faf1fe 0%, #d6fcff 100%);
+  border-radius: 16px;
+  width: 500px;
+  margin: 24px auto;
+  padding: 32px;
+  box-sizing: border-box;
+  box-shadow:
+    0 12px 32px rgba(92, 41, 126, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+  font-family:
+    'Inter',
+    -apple-system,
+    sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transform: translateY(0);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/*  LOGIN CONTAINER */
+.loginPageChild {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+}
+/*  SIGNUP LINK - FLOATING */
+.login_signup {
+  color: blue;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid black;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: 'Google Sans', sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+}
+.login_signin_link {
+  color: blue;
+  font-weight: 600;
+  text-decoration: none;
+}
+.login_signin_link:hover {
+  color: #3a1a5e;
+  text-decoration: underline;
+}
+
+.login_signup:hover {
+  color: #3a1a5e;
+  text-decoration: underline;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(192, 192, 192, 0.4);
+}
+
+/*  FOOTER - GLASS MORPHISM */
+.login_footer_parent {
+  width: 100%;
+  padding: 16px;
+  margin-top: 24px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-size: 13px;
+  color: #5a2a7e;
+  text-align: center;
+  line-height: 1.6;
+}
+
+/*  RESPONSIVE MAGIC */
+@media (max-width: 768px) {
+  .loginPageParent {
+    width: 90%;
+    padding: 28px;
+    margin: 16px auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginPageParent {
+    width: 100%;
+    border-radius: 0;
+    margin: 0;
+    padding: 24px 16px;
+    box-shadow: none;
+    border: none;
+  }
+
+  .loginPageChild {
+    gap: 20px;
+  }
+
+  .login_footer_parent {
+    padding: 12px;
+    font-size: 12px;
+  }
+}

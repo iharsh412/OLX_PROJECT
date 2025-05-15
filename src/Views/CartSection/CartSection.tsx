@@ -21,12 +21,11 @@ import { useState } from 'react';
 //   date: string;
 // }
 
-
 export default function CartSection() {
   const uid = useSelector((state: RootState) => state?.common?.uId);
   const [start] = useState(0);
   const { data, error, isLoading } = useGetProductsQuery({ start, limit: 10 });
-//    console.log(data,"data1")
+  //    console.log(data,"data1")
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error loading products</div>;
 

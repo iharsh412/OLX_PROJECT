@@ -1,30 +1,140 @@
 import api from '../../api';
-interface Product {
-  id: number;
-  imageUrl: string;
-  price: React.ReactNode;
-  images: string;
-  name: string;
-}
-
-interface PaginationParams {
-  start?: number;
-  limit?: number;
-}
+import { Product, PaginationParams } from '../../../../Helper/interface';
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    getProducts: builder.query<Product[], PaginationParams>({
-      query: ({ start, limit }) => ({
-        url: `categories/listall/?start=${start}&limit=${limit}`,
+    // for geting type product and dashboard product
+    getTypeProducts: builder.query<Product[], PaginationParams>({
+      query: ({ page, limit, search }) => ({
+        url: `categories/list/?page=${page}&limit=${limit}&search=${search}`,
         method: 'GET',
+      }),
+    }),
+    getListALLProducts: builder.query<Product[], PaginationParams>({
+      query: ({ page, limit }) => ({
+        url: `categories/listall/?page=${page}&limit=${limit}`,
+        method: 'GET',
+      }),
+    }),
 
-        // params: { start, limit }, // Pass pagination parameters
+    getProductsDetail: builder.query({
+      query: (params) => ({
+        url: `categories/item`,
+        method: 'GET',
+        params,
+      }),
+    }),
+    //  wishlist section product
+    getWishlistProducts: builder.query<Product[], PaginationParams>({
+      query: (params) => ({
+        url: `categories/Favourites`,
+        method: 'GET',
+        params,
       }),
     }),
     postProducts: builder.mutation({
       query: (data) => ({
-        url: 'products',
+        url: `categories/userfavourites/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    postCategoryProducts: builder.mutation({
+      query: ({ sampleData, page, limit }) => ({
+        url: `categories/filters/?page=${page}&limit=${limit}`,
+        body: sampleData,
+        method: 'POST',
+      }),
+    }),
+    postNewProducts: builder.mutation({
+      query: (data) => ({
+        url: `categories/putad/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // signup
+    postSignupData: builder.mutation({
+      query: (data) => ({
+        url: `account/signup/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    postForgetPasswordData: builder.mutation({
+      query: (data) => ({
+        url: `account/forgotpass/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // change password
+    postChangePasswordData: builder.mutation({
+      query: (data) => ({
+        url: `account/changepass/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    //  login
+    postSigninData: builder.mutation({
+      query: (data) => ({
+        url: `account/login/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // logout
+    postLogoutData: builder.mutation({
+      query: (data) => ({
+        url: `account/logout/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // post edit
+    postEditData: builder.mutation({
+      query: (data) => ({
+        url: `categories/editads/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // user ads
+    getAdsData: builder.query({
+      query: (params) => ({
+        url: `categories/userads/`,
+        method: 'GET',
+        params,
+      }),
+    }),
+    // delete ads
+    getDeleteAds: builder.query({
+      query: (params) => ({
+        url: `categories/removead/`,
+        method: 'GET',
+        params,
+      }),
+    }),
+    // useINFO
+    getUserInfo: builder.query({
+      query: () => ({
+        url: `account/userinfo/`,
+        method: 'GET',
+      }),
+    }),
+    // edit user info
+    postEditProfileData: builder.mutation({
+      query: (data) => ({
+        url: `account/updateuserdetails/`,
+        body: data,
+        method: 'POST',
+      }),
+    }),
+    // email valid
+    postEmailValid: builder.mutation({
+      query: (data) => ({
+        url: `account/isvalidemail/`,
         body: data,
         method: 'POST',
       }),
@@ -33,4 +143,23 @@ export const productApi = api.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useGetProductsQuery, usePostProductsMutation } = productApi;
+export const {
+  useGetTypeProductsQuery,
+  useGetListALLProductsQuery,
+  useGetWishlistProductsQuery,
+  useGetProductsDetailQuery,
+  usePostSignupDataMutation,
+  usePostSigninDataMutation,
+  usePostProductsMutation,
+  usePostCategoryProductsMutation,
+  usePostNewProductsMutation,
+  usePostChangePasswordDataMutation,
+  usePostForgetPasswordDataMutation,
+  usePostLogoutDataMutation,
+  useGetAdsDataQuery,
+  useLazyGetDeleteAdsQuery,
+  usePostEditDataMutation,
+  useGetUserInfoQuery,
+  usePostEditProfileDataMutation,
+  usePostEmailValidMutation,
+} = productApi;

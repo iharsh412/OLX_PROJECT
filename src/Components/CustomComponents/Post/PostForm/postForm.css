@@ -1,0 +1,95 @@
+/* Wrapper for form */
+.postFormWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* Details text */
+.postForm_detailText {
+  padding-bottom: 15px;
+}
+
+/* Fuel button */
+.postForm_FuelOption button {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+/* Label */
+.post-label {
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+/* Error messages */
+
+.textFieldError {
+  margin-top: 0px;
+  font-size: 0.9rem;
+  padding: 0 5px;
+  color: red;
+}
+
+/* Location Section */
+.postForm_LocationWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  position: relative;
+}
+
+/* Seller Details */
+.postForm_SellerWrapper {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+}
+
+/* Post Button Section */
+.postForm_post {
+  padding: 10px 200px;
+  margin: 10px;
+  margin-left: 25%;
+  cursor: pointer;
+}
+
+/* Responsive Styles */
+
+/* For screens smaller than 768px */
+@media (max-width: 768px) {
+  .postFormWrapper {
+    padding: 12px;
+  }
+
+  .postForm_FuelOption button {
+    font-size: 16px;
+    padding: 8px;
+    height: 40px;
+  }
+
+  .postForm_post {
+    padding: 10px 40px;
+    margin-left: 10%;
+  }
+}
+
+/* For screens smaller than 480px (phones) */
+@media (max-width: 480px) {
+  .postFormWrapper {
+    padding: 8px;
+  }
+
+  .postForm_FuelOption button {
+    font-size: 14px;
+    padding: 6px;
+    height: 36px;
+  }
+
+  .postForm_post {
+    padding: 10px 20px;
+    margin-left: 5%;
+  }
+}

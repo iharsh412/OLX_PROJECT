@@ -1,0 +1,218 @@
+/* NEW PASSWORD WRAPPER */
+.newpass_Wrapper {
+  background-color: #faf1fe;
+  border-radius: 12px;
+  min-height: 420px;
+  width: 400px;
+  margin: 20px auto;
+  padding: 28px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  font-family:
+    'Segoe UI',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  position: relative;
+  overflow: visible;
+}
+
+/* TITLE SECTION  */
+.newpass_title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: 650;
+  color: #5a2a7e;
+  margin: 0 0 28px 0;
+  position: relative;
+}
+
+/* REQUIRED */
+.newpass_required{
+  color: red;
+  margin: 1px;
+}
+/* INPUT FIELDS  */
+.newpass_passwordInput,
+.newpass_confirmPasswordInput,
+.newpass_emailInput {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.newpass_passwordInput label,
+.newpass_confirmPasswordInput label,
+.newpass_emailInput label {
+  min-width: 150px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #555;
+  padding-right: 12px;
+  
+}
+
+.newpass_passwordInput input,
+.newpass_confirmPasswordInput input,
+.newpass_emailInput input {
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.newpass_passwordInput input:hover,
+.newpass_confirmPasswordInput input:hover,
+.newpass_emailInput input:hover {
+  border-color: #b88ae0;
+}
+
+.newpass_passwordInput input:focus,
+.newpass_confirmPasswordInput input:focus,
+.newpass_emailInput input:focus {
+  border-color: #a269d6;
+  box-shadow: 0 0 0 3px rgba(162, 105, 214, 0.15);
+  outline: none;
+}
+
+/* SUBMIT BUTTON  */
+.newpass_submitButton {
+  width: 100%;
+  padding: 12px;
+  margin: 16px 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00c8c8, #00a8e0);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 200, 200, 0.2);
+}
+
+.newpass_submitButton:hover {
+  background: linear-gradient(135deg, #00b4b4, #0094c8);
+  box-shadow: 0 6px 12px rgba(0, 180, 180, 0.25);
+  transform: translateY(-1px);
+}
+
+.newpass_submitButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 180, 180, 0.3);
+}
+
+/*ERROR MESSAGE */
+.newpass_error {
+  font-size: 12px;
+  color: #d32f2f;
+  margin: -16px 0 12px 150px;
+  font-weight: 500;
+  min-height: 16px;
+  display: block;
+}
+
+/*  SUCCESS MESSAGE  */
+.newpass_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.newpass_successText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #28a745;
+  margin-bottom: 16px;
+}
+
+.newpass_sucessLogin  {
+  font-size: 14px;
+  font-weight: 500;
+  color: #4a4a4a;
+  margin-top: 8px;
+}
+
+.newpass_sucessLogin button {
+  background: none;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #007bff;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.newpass_successLogin button:hover {
+  color: #0056b3;
+  background-color: rgba(0, 123, 255, 0.1);
+  text-decoration: none;
+}
+/* password eye button */
+.newpass_isSeenPassword {
+  position: absolute;
+  right: 2%;
+  top: 25%;
+  border: none;
+  background-color: white;
+}
+.newpass_passwordWrapper{
+  position:relative;
+}
+.newpass_passwordWrapper input{
+ padding-right:40px
+}
+
+/*
+     RESPONSIVE DESIGN */
+@media (max-width: 480px) {
+  .newpass_Wrapper {
+    width: 90%;
+    padding: 24px 20px;
+  }
+
+  .newpass_passwordInput,
+  .newpass_confirmPasswordInput,
+  .newpass_emailInput {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .newpass_passwordInput label,
+  .newpass_confirmPasswordInput label,
+  .newpass_emailInput label {
+    min-width: auto;
+    margin-bottom: 8px;
+    padding-right: 0;
+  }
+
+  .newpass_error {
+    margin: -12px 0 8px 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .newpass_Wrapper {
+    padding: 20px 16px;
+  }
+
+  .newpass_title {
+    font-size: 22px;
+  }
+
+  .newpass_successText {
+    font-size: 16px;
+  }
+}
