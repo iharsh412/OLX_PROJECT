@@ -34,7 +34,7 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
     handleDelete();
   }, [post, answer, text, open]);
   const onClickImages = () => {
-    navigate(`/product/${data.name}/${data.id}`);
+    navigate(`/product/${data.brand}/${data.id}`);
   };
   const handleClickEdit = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -60,8 +60,8 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
       >
         <div className={CLASSNAME.IMAGE}>
           <img
-            src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
-            alt={data.name}
+            src={`${data.photos?.[0]} ?? ''`}
+            alt={COMMON_TEXT.IMG}
             loading="lazy"
           />
         </div>
@@ -69,14 +69,14 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
           <span className={CLASSNAME.COST}>
             <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
           </span>
-          <span className={CLASSNAME.NAME}>{data.name}</span>
+          <span className={CLASSNAME.NAME}>{data.brand}</span>
           <div className={CLASSNAME.PLACE_DATE}>
             <span className={CLASSNAME.LOCATION}>
               {data.city} , {data.state}
             </span>
             <span className={CLASSNAME.DATE}>
-              {typeof data?.created_at === 'string'
-                ? getDaysFromNow(data.created_at)
+              {typeof data?.createdAt === 'string'
+                ? getDaysFromNow(data.createdAt)
                 : ''}
             </span>
           </div>

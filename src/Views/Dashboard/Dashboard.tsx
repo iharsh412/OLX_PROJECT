@@ -1,47 +1,77 @@
-import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import Schemer from '../../Components/Atom/Schemer/Schemer';
-import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index';
-import ImagesLayout from '../../Components/CustomComponents/ImageLayout/ProductImage/index';
+// import { useSelector } from 'react-redux';
+// import { useEffect, useRef, useState } from 'react';
 import './dashboard.css';
+// import { RootState } from '../../Store/index';
+// import ErrorSection from '../../Components/Atom/ErrorSection';
+import { QueryDocumentSnapshot, DocumentData } from 'firebase/firestore';
+import { useEffect, useRef, useState } from 'react';
+import ImagesLayout from '../../Components/CustomComponents/ImageLayout/ProductImage/index';
+import { ProductDetail } from '../../Helper/interface';
 import { COMMON_TEXT } from '../../Helper/constant';
-import { Product } from '../../Helper/interface';
 import { CLASSNAME } from './constant';
-import { RootState } from '../../Store/index';
-import ErrorSection from '../../Components/Atom/ErrorSection';
+import { dashboardFirstPage, dashboardNextPage } from '../../Helper/function';
+import Schemer from '../../Components/Atom/Schemer/Schemer';
+
 
 export default function Dashboard() {
-  const search = useSelector((state: RootState) => state?.areaItem?.item);
-  const [page, setPage] = useState(1);
-  const limit = 20;
-  const { data, isError, isLoading } = useGetTypeProductsQuery(
-    { page, limit, search },
-    { refetchOnFocus: true, refetchOnMountOrArgChange: true }
+  const [data, setData] = useState<ProductDetail[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [lastAds, setLastAds] =
+    useState<QueryDocumentSnapshot<DocumentData> | null>(null);
+  const lastVisibleAds = useRef<QueryDocumentSnapshot<DocumentData> | null>(
+    null
   );
-  const [totalImages, setTotalImages] = useState<Product[]>([]);
+  const limit = 3;
+  // const search = useSelector((state: RootState) => state?.areaItem?.item);
+  // const [page, setPage] = useState(1);
 
-  // Hooks
-  useEffect(() => {
-    setTotalImages([]);
-    setPage(1);
-  }, [search]);
+  // const [totalImages, setTotalImages] = useState<Product[]>([]);
 
+  // useEffect(() => {
+  //   setTotalImages([]);
+  //   setPage(1);
+  // }, [search]);
+
+  // useEffect(() => {
+  //   if (data && page === 1) {
+  //     setTotalImages(() => {
+  //       return [...data];
+  //     });
+  //   } else if (data) {
+  //     setTotalImages((prev) => {
+  //       return [...prev, ...data];
+  //     });
+  //   }
+  // }, [data, search]);
   useEffect(() => {
-    if (data && page === 1) {
-      setTotalImages(() => {
-        return [...data];
-      });
-    } else if (data) {
-      setTotalImages((prev) => {
-        return [...prev, ...data];
-      });
+    async function fetchData() {
+      const { adsData, lastVisible } = await dashboardFirstPage();
+      setData(adsData);
+      lastVisibleAds.current = lastVisible;
+      setIsLoading(false);
     }
-  }, [data, search]);
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchData() {
+      if (lastAds) {
+        const { adsData, lastVisible } = await dashboardNextPage(lastAds);
+        setData((prev) => [...prev, ...adsData]);
+        lastVisibleAds.current = lastVisible;
+        setLastAds(null);
+      }
+    }
+
+    if (lastAds) {
+      fetchData();
+    }
+  }, [lastAds]);
 
   return (
     <>
       {/* total images  */}
-      {totalImages && (
+      {data && (
         <div className={CLASSNAME.WRAPPER}>
           {isLoading && (
             <div className={CLASSNAME.LOADER}>
@@ -50,25 +80,25 @@ export default function Dashboard() {
               ))}
             </div>
           )}
-          {isError && <ErrorSection />}
+          {/* {isError && <ErrorSection />} */}
           <div className={CLASSNAME.IMAGE_SECTION}>
             {/* totalImages.length greater then 0 */}
             {data &&
-              totalImages.length > 0 &&
-              totalImages?.map((product: Product) => (
+              data.length > 0 &&
+              data?.map((product: ProductDetail) => (
                 <ImagesLayout key={product.id} data={product} />
               ))}
             {/* totalImages.length is eqauls to 0 */}
           </div>
-          {data && totalImages.length === 0 && (
+          {data && data.length === 0 && (
             <h2 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_PRODUCTS}</h2>
           )}
           {/* load section */}
-          {data?.length !== 0 && data?.length === limit && (
+          {data && data.length !== 0 && data.length % limit === 0 && (
             <button
               type="button"
               className={CLASSNAME.LOAD}
-              onClick={() => setPage((prev) => prev + 1)}
+              onClick={() => setLastAds(lastVisibleAds.current)}
             >
               {COMMON_TEXT.LOAD_MORE}
             </button>

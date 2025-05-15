@@ -41,8 +41,8 @@ export default function PostForm() {
         photos: urls,
         category: state?.categoryId,
         subCategory: state?.subcategory,
-        created_at: new Date().toISOString(),
-        id: id ?? '',
+        createdAt: new Date().toISOString(),
+        uid: id ?? '',
         username: username ?? '',
       };
 

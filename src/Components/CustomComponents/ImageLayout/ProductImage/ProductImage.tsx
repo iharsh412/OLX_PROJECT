@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useState } from 'react';
 import './productImage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -14,14 +14,15 @@ import { getDaysFromNow } from '../../../../Helper/function';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
-export default function Images({
+export default function ProductImage({
   data,
   refetch,
   refetchDashboard,
 }: Readonly<ImageProps>) {
+  // console.log(data, 'datager');
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
-  const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
+  // const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
   const navigate = useNavigate();
   const { access: token } = useSelector((state: RootState) => state?.common);
   const wishlistCount = useSelector(
@@ -38,9 +39,9 @@ export default function Images({
     }
     try {
       const response = await post({ id: 1, product_id: data.id }).unwrap();
-      setShowAdded(
-        response.msg === COMMON_TEXT.ADDED_IN_FAV ? COMMON_TEXT.ADDED : ''
-      );
+      // setShowAdded(
+      // response.msg === COMMON_TEXT.ADDED_IN_FAV ? COMMON_TEXT.ADDED : ''
+      // );
       refetch?.();
       if (response.msg === COMMON_TEXT.ADDED_IN_FAV) {
         dispatch(setWishlistCount(wishlistCount + 1));
@@ -56,13 +57,13 @@ export default function Images({
   };
   // on click layout section
   const onClickImages = async () => {
-    navigate(`/product/${data.name}/${data.id}`);
+    navigate(`/product/${data.brand}/${data.id}`);
   };
 
   // HOOKS
-  useEffect(() => {
-    setShowAdded(data.is_favourite ? COMMON_TEXT.ADDED : '');
-  }, [data.is_favourite]);
+  // useEffect(() => {
+  //   setShowAdded(data.is_favourite ? COMMON_TEXT.ADDED : '');
+  // }, [data.is_favourite]);
 
   return (
     <button
@@ -74,8 +75,8 @@ export default function Images({
       <div className={CLASSNAME.IMAGE_WRAPPER}>
         {/* image section */}
         <img
-          src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
-          alt={data.name}
+          src={`${data?.photos?.[0] ?? ''}`}
+          alt={COMMON_TEXT.IMG}
           className={CLASSNAME.IMAGE}
           loading="lazy"
         />
@@ -88,8 +89,8 @@ export default function Images({
           disabled={isLoading}
         >
           <Heart
-            fill={showAdded === COMMON_TEXT.ADDED ? 'red' : 'none'}
-            color={showAdded === COMMON_TEXT.ADDED ? 'red' : 'black'}
+          // fill={showAdded === COMMON_TEXT.ADDED ? 'red' : 'none'}
+          // color={showAdded === COMMON_TEXT.ADDED ? 'red' : 'black'}
           />
         </button>
       </div>
@@ -98,14 +99,14 @@ export default function Images({
         <span className={CLASSNAME.COST}>
           <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
         </span>
-        <span className={CLASSNAME.NAME}>{data.name}</span>
+        <span className={CLASSNAME.NAME}>{data.title}</span>
         <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
           <span className={CLASSNAME.PLACE}>
             {data.city},{data.state}
           </span>
           <span className={CLASSNAME.DATE}>
-            {typeof data?.created_at === 'string'
-              ? getDaysFromNow(data.created_at)
+            {typeof data?.createdAt === 'string'
+              ? getDaysFromNow(data.createdAt)
               : ''}
           </span>
         </div>
