@@ -16,5 +16,9 @@ export const CATEGORIES = [
   { id: 'mobile', name: 'Mobile', icon: ICONS.phone },
   { id: 'electronics', name: 'Electronics', icon: ICONS.electronics },
   { id: 'bikes', name: 'Bikes', icon: ICONS.bike },
-  // { id: 'multiWheelVehicles', name: 'Multi Wheel Vehicles', icon: ICONS.car },
+  { id: 'multiWheelVehicles', name: 'Multi Wheel Vehicles', icon: ICONS.car },
+  { id: 'pets', name: 'Pets', icon: ICONS.car },
+  { id: 'jewellery', name: 'Jewellery', icon: ICONS.car },
+  { id: 'books', name: 'Books', icon: ICONS.car },
+  { id: 'clothing', name: 'Clothing', icon: ICONS.car },
 ];

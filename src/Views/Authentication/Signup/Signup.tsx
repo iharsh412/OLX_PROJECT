@@ -83,7 +83,7 @@ export default function Signup() {
                   name={COMMON_TEXT.USERNAME_S}
                   value={values.username}
                   onChange={(e) =>
-                    setFieldValue('username', e.target.value.trim())
+                    setFieldValue('username', e.target.value.trimStart())
                   }
                   onBlur={handleBlur}
                   id={COMMON_TEXT.USERNAME}

@@ -6,7 +6,7 @@ export const INITIAL_VALUES = {
   password: '',
   confirmPassword: '',
 };
-const emailRegex =  /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/
+const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/;
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
 export const VALIDATION = Yup.object().shape({
@@ -54,4 +54,3 @@ export const CLASSNAME = {
   EYE: 'signup_isSeenPassword',
   INPUT_PASSWORD_WRAPPER: 'signup_passwordWrapper',
 };
-

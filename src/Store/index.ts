@@ -15,7 +15,6 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import api from '../Services/Api/api';
 import common from './Common';
 import loader from './Loader';
-import language from './Language';
 import areaItem from './AreaItem';
 import chatUser from './ChatUser';
 import wishlistCount from './WishlistCount';
@@ -28,7 +27,6 @@ const rootPersistConfig = {
 const reducers = combineReducers({
   common,
   loader,
-  language,
   areaItem,
   chatUser,
   wishlistCount,

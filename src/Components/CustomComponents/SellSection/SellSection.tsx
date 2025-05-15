@@ -3,7 +3,7 @@ import { useState } from 'react';
 import ICONS from '../../../assets';
 import SubCategory from '../SellCategory/SellCategory';
 import { CATEGORIES, CLASSNAME } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
+import { COMMON_TEXT } from '../../../Helper/constant';
 
 export default function SellSection() {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
@@ -17,7 +17,7 @@ export default function SellSection() {
         {CATEGORIES.map((category) => (
           <div key={category.id} className={CLASSNAME.CATEGORY}>
             <button
-              type={TYPE.BUTTON}
+              type="button"
               className={`${CLASSNAME.CATEGORY_BUTTON} ${
                 selectedCategory === category.id ? CLASSNAME.ACTIVE : ''
               }`}

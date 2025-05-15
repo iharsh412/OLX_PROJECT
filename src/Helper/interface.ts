@@ -262,3 +262,21 @@ export interface MessageProps {
   receiverId: string;
   seen: boolean;
 }
+// post data to firebase
+export interface ProductDetail {
+  title?: string;
+  description?: string;
+  brand?: string;
+  year?: string;
+  price?: string;
+  photos?: string[];
+  state?: string;
+  city?: string;
+  sellerName?: string;
+  mobileNumber?: string;
+  category?: string;
+  subCategory?: string;
+  created_at?: string;
+  id?: string;
+  username?: string;
+}

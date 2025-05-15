@@ -159,6 +159,7 @@ export const COMMON_TEXT = {
   MY_ADS: 'My Ads',
   CLICK: 'click',
   GO_TO_HOME: 'Go to Home',
+  POSTING: 'Posting...',
 };
 
 // inputTypes.ts

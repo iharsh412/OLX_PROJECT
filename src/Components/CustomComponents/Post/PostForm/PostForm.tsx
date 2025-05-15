@@ -1,55 +1,61 @@
 import { Formik } from 'formik';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
+import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './postForm.css';
 import { validationSchema, initialValues } from './constant';
-import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 import { CLASSNAME } from '../Common/constant';
 import Form from '../../Form';
 import { COMMON_TEXT } from '../../../../Helper/constant';
-import { InitialValuesProps } from '../../../../Helper/interface';
+import {
+  InitialValuesProps,
+  ProductDetail,
+} from '../../../../Helper/interface';
+import { getURLfromSupabase, uploadAds } from '../../../../Helper/function';
+import { RootState } from '../../../../Store/index';
 
-export default function CarForm() {
+export default function PostForm() {
+  const { id, username } = useSelector((state: RootState) => state.common);
   const { state } = useLocation();
-  const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
-  const [postNewProducts] = usePostNewProductsMutation();
 
   // HandleSubmit
   const handleSubmit = async (
     values: InitialValuesProps,
     { resetForm }: { resetForm: () => void }
   ) => {
-    const formData = new FormData();
-    formData.append('user', '1');
-    formData.append('category', state.categoryId);
-    formData.append('subcategory', state.subcategory);
-    Object.keys(values).forEach((key) => {
-      const typedKey = key as keyof InitialValuesProps;
-      if (Array.isArray(values[typedKey])) {
-        (values[typedKey] as File[]).forEach((file) => {
-          formData.append(`${typedKey}`, file);
-        });
-      } else {
-        formData.append(typedKey, values[typedKey] as string);
-      }
-    });
-
     try {
-      await postNewProducts(formData).unwrap();
-      toast.success(COMMON_TEXT.POSTED_SUCCESSFULLY);
+      const { photos } = values;
+
+      // Upload all images to Supabase using Promise.all
+      const urls = await Promise.all(
+        (photos ?? []).map(async (photo) => {
+          const result = await getURLfromSupabase(photo);
+          return result?.publicUrl || '';
+        })
+      );
+
+      const productDetail: ProductDetail = {
+        ...values,
+        photos: urls,
+        category: state?.categoryId,
+        subCategory: state?.subcategory,
+        created_at: new Date().toISOString(),
+        id: id ?? '',
+        username: username ?? '',
+      };
+
+      // upload to the the firebase
+      await uploadAds(productDetail);
       setShowResponse('Added');
-      navigate(ROUTES_CONFIG.HOMEPAGE.path);
       resetForm();
     } catch (error) {
-      toast.error(COMMON_TEXT.ERROR);
+      toast.error(COMMON_TEXT.ERROR_IN_POSTING);
       setShowResponse('Error');
     }
   };
 
-  // HOOKS
   useEffect(() => {
     if (showResponse) {
       const timer = setTimeout(() => {
@@ -93,6 +99,7 @@ export default function CarForm() {
               disabled={isSubmitting}
             >
               {(() => {
+                if (isSubmitting) return COMMON_TEXT.POSTING;
                 if (showResponse === 'Added')
                   return COMMON_TEXT.POSTED_SUCCESSFULLY;
                 if (showResponse === 'Error')
