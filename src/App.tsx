@@ -6,11 +6,12 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { ToastContainer } from 'react-toastify';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './Store';
 import RootRouter from './Routes/RootRouter';
 import './App.css';
-import { ToastContainer } from 'react-toastify';
+
 
 const baseName = import.meta.env.VITE_BASE_NAME;
 
