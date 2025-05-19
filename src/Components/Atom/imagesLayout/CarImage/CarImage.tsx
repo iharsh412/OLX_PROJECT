@@ -7,30 +7,27 @@ import { RootState } from '../../../../Store';
 
 interface ImageProps {
   data: {
-
-        id: number;
-        name: string;
-        price: number;
-        description: string;
-        status: string;
-        availability: string;
-        category: number;
-        subcategory: number;
-        city: string;
-        state: string;
-        district: string;
-        created_at: string;
-        user: number;
-        date: string; // Add this line
-      };
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    status: string;
+    availability: string;
+    category: number;
+    subcategory: number;
+    city: string;
+    state: string;
+    district: string;
+    created_at: string;
+    user: number;
+    date: string; // Add this line
   };
-
+}
 
 // eslint-disable-next-line react/function-component-definition
 const Images: React.FC<ImageProps> = ({ data }) => {
-  
   const [post, { error }] = usePostProductsMutation();
-  const uid = useSelector((state: RootState) => state?.common?.uId);
+  const uid = useSelector((state: RootState) => state?.common?.id);
 
   async function onClickCart() {
     try {

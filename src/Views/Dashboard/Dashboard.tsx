@@ -4,26 +4,6 @@ import Schemer from '../../Components/Atom/Schemer/Schemer';
 import { useGetTypeProductsQuery } from '../../Services/Api/module/imageApi/index';
 import ImagesLayout from '../../Components/CustomComponents/ImageLayout/ProductImage/index';
 import './dashboard.css';
-<<<<<<< HEAD
-import { useState, useRef, useEffect } from 'react';
-
-export default function Dashboard() {
-  const [start, setStart] = useState(1);
-  const limit = 1;
-
-  const { data, error, isLoading } = useGetProductsQuery({ start, limit });
-
-  const imagesData = useRef<any[]>([]); // Use ref to store loaded products
-  const [, forceRender] = useState({}); // Dummy state to trigger re-render
-
-  // Append new data to ref and trigger re-render
-  useEffect(() => {
-    if (data && data.length) {
-      imagesData.current = [...imagesData.current, ...data]; // Concatenate old and new data
-      forceRender({}); // Trigger a re-render
-    }
-  }, [data]);
-=======
 import { COMMON_TEXT } from '../../Helper/constant';
 import { Product } from '../../Helper/interface';
 import { CLASSNAME } from './constant';
@@ -45,7 +25,6 @@ export default function Dashboard() {
     setTotalImages([]);
     setPage(1);
   }, [search]);
->>>>>>> features
 
   useEffect(() => {
     if (data && page === 1) {
@@ -60,21 +39,6 @@ export default function Dashboard() {
   }, [data, search]);
 
   return (
-<<<<<<< HEAD
-    <div className="homeImageSectionWraper">
-      <div className="homeImageSection">
-        {imagesData.current.map((product: any) => (
-          <ImagesLayout key={product?.id} data={product} />
-        ))}
-      </div>
-      <div
-        className="homeImageLoadMore"
-        onClick={() => setStart((prev) => prev + limit)}
-      >
-        Load More
-      </div>
-    </div>
-=======
     <>
       {/* total images  */}
       {totalImages && (
@@ -112,6 +76,5 @@ export default function Dashboard() {
         </div>
       )}
     </>
->>>>>>> features
   );
 }

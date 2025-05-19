@@ -3,14 +3,6 @@ import { Product, PaginationParams } from '../../../../Helper/interface';
 
 export const productApi = api.injectEndpoints({
   endpoints: (builder) => ({
-<<<<<<< HEAD
-    getProducts: builder.query<Product[], PaginationParams>({
-      query: ({ start, limit }) => ({
-        url: `categories/listall/?start=${start}&limit=${limit}`,
-        method: 'GET',
-
-        // params: { start, limit }, // Pass pagination parameters
-=======
     // for geting type product and dashboard product
     getTypeProducts: builder.query<Product[], PaginationParams>({
       query: ({ page, limit, search }) => ({
@@ -38,7 +30,6 @@ export const productApi = api.injectEndpoints({
         url: `categories/Favourites`,
         method: 'GET',
         params,
->>>>>>> features
       }),
     }),
     postProducts: builder.mutation({
