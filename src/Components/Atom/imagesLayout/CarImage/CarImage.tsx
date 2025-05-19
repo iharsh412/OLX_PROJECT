@@ -27,7 +27,7 @@ interface ImageProps {
 // eslint-disable-next-line react/function-component-definition
 const Images: React.FC<ImageProps> = ({ data }) => {
   const [post, { error }] = usePostProductsMutation();
-  const uid = useSelector((state: RootState) => state?.common?.uId);
+  const uid = useSelector((state: RootState) => state?.common?.id);
 
   async function onClickCart() {
     try {
