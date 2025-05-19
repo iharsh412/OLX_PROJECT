@@ -10,6 +10,8 @@ import {
 import { CLASSNAME } from '../Post/Common/constant';
 import { COMMON_TEXT } from '../../../Helper/constant';
 import { FormProps } from '../../../Helper/interface';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 export default function Form({
   touched,
@@ -17,6 +19,7 @@ export default function Form({
   values,
   share,
 }: Readonly<FormProps>) {
+  const { username } = useSelector((state: RootState) => state.common);
   return (
     <>
       <div className={CLASSNAME.WRAPPER}>
@@ -123,7 +126,7 @@ export default function Form({
         <TextField
           type="text"
           htmlFor="sellerName"
-          value={values.sellerName}
+          value={username}
           label="Name"
           err={errors.sellerName}
           tch={touched.sellerName}

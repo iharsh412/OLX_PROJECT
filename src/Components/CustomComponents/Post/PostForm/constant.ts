@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Required')
-    .max(50, 'Must be less than 50 characters'),
+    .max(100, 'Must be less than 50 characters'),
   description: Yup.string().required('Required'),
   brand: Yup.string().required('Required'),
   year: Yup.number()

@@ -247,7 +247,7 @@ export interface PhotosProps {
 
 // product detail
 export interface ProductDetailProps {
-  images?: string | string[];
+  photos?: string[];
 }
 
 // sellcategory props

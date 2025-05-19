@@ -15,11 +15,12 @@ import {
 import { getURLfromSupabase, uploadAds } from '../../../../Helper/function';
 import { RootState } from '../../../../Store/index';
 
+
 export default function PostForm() {
   const { id, username } = useSelector((state: RootState) => state.common);
   const { state } = useLocation();
   const [showResponse, setShowResponse] = useState<string>('');
-
+  initialValues.sellerName = username ?? '';
   // HandleSubmit
   const handleSubmit = async (
     values: InitialValuesProps,
@@ -82,6 +83,7 @@ export default function PostForm() {
         isSubmitting,
       }) => {
         const share = { handleChange, handleBlur, setFieldValue };
+        console.log(values, 'values');
 
         return (
           <>

@@ -6,11 +6,12 @@ import { COMMON_TEXT } from '../../../Helper/constant';
 import { ProductDetailProps } from '../../../Helper/interface';
 
 function ProductDetailImageTransition({
-  images,
+  photos,
 }: Readonly<ProductDetailProps>) {
+  console.log(photos, 'photos');
   let imageArray: string[] = [];
-  if (images) {
-    imageArray = Array.isArray(images) ? images : [images];
+  if (photos) {
+    imageArray = Array.isArray(photos) ? photos : [photos];
   }
   const [currentIndex, setCurrentIndex] = useState(0);
   const prevSlide = () => {
@@ -37,7 +38,7 @@ function ProductDetailImageTransition({
           }`}
         >
           <img
-            src={`${import.meta.env.VITE_BASE_URL}${image}`}
+            src={`${image}`}
             alt={COMMON_TEXT.IMG}
             className={CLASSNAME.ACTIVE_IMAGES}
           />
@@ -69,10 +70,7 @@ function ProductDetailImageTransition({
             }`}
             onClick={() => goToSlide(index)}
           >
-            <img
-              src={`${import.meta.env.VITE_BASE_URL}${image}`}
-              alt={COMMON_TEXT.IMG}
-            />
+            <img src={`${image}`} alt={COMMON_TEXT.IMG} />
           </button>
         ))}
       </div>

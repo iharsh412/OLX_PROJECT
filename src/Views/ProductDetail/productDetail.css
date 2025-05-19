@@ -52,29 +52,33 @@
 }
 
 .imageDetailDetails {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .imageDetailTitle {
+  display: inline-block;
   font-size: 20px;
   font-weight: 700;
+  margin-bottom: 20px;
   color: #333;
 }
-
+.imageDetailBrandTitle{
+  width: 100px;
+}
 .imageDetailBrand {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 800;
   color: #666;
   margin-right: 15px;
-  padding: 20px;
+  padding: 5px 20px;
 }
 
 .imageDetailBrandValue {
   color: #222;
   font-weight: 500;
-  margin-right: 100px;
+  /* margin-right: 100px; */
   margin-left: 20px;
   width: fit-content;
 }
@@ -97,6 +101,7 @@
   color: #555;
   margin-top: 15px;
   line-height: 1.6;
+  padding: 5px 20px;
 }
 
 /* PRICE + CHAT SECTION */
@@ -193,6 +198,9 @@
   border-radius: 8px;
   background: #fff;
   width: 100%;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 .imageDetailPostText {

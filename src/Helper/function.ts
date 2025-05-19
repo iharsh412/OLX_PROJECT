@@ -10,6 +10,7 @@ import {
   DocumentData,
   doc,
   setDoc,
+  getDoc,
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { db } from '../Services/firebase';
@@ -113,6 +114,17 @@ const dashboardNextPage = async (
   return { adsData, lastVisible: newLastVisible };
 };
 
+// get product detail by id
+const getProductById = async (productId: string) => {
+  const docRef = doc(db, 'ads', productId);
+  const docSnap = await getDoc(docRef);
+
+  if (docSnap.exists()) {
+    return docSnap.data();
+  }
+  return null;
+};
+
 export {
   getDaysFromNow,
   capitalizeFirstLetter,
@@ -120,4 +132,5 @@ export {
   uploadAds,
   dashboardFirstPage,
   dashboardNextPage,
+  getProductById,
 };

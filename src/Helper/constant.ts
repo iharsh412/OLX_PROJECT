@@ -1,3 +1,5 @@
+import { SUBCATEGORIES } from '../Components/CustomComponents/SellCategory/constant';
+
 export const COMMON_TEXT = {
   IMG: 'img',
   BUTTON: 'button',
@@ -160,6 +162,8 @@ export const COMMON_TEXT = {
   CLICK: 'click',
   GO_TO_HOME: 'Go to Home',
   POSTING: 'Posting...',
+  SUBCATEGORY: 'Subcategory',
+  PURCHASE_IN: 'Purchase in',
 };
 
 // inputTypes.ts
