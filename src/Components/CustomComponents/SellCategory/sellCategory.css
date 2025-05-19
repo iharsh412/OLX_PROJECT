@@ -1,0 +1,26 @@
+.sell-category {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sell-category__option {
+  height: 48px;
+  padding: 8px 16px;
+  background: #fff;
+  border: none;
+  border-bottom: 1px solid #ccd5d6;
+  text-align: left;
+  font-size: 16px;
+  color: #002f34;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sell-category__option:hover {
+  background-color: #9ca4ac;
+}
+
+.sell-category__option:last-child {
+  border-bottom: none;
+}

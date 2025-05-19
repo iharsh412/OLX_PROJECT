@@ -1,10 +1,8 @@
 import { AppLayoutProps } from '../AppLayout.d';
 
-
-function PrivateLayout({ children }: AppLayoutProps): JSX.Element {
+function PrivateLayout({ children }: Readonly<AppLayoutProps>): JSX.Element {
   return (
     <>
-     
       {children}
       {/* <Footer /> */}
     </>

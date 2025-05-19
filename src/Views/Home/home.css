@@ -1,0 +1,16 @@
+/* wrapper */
+.AppWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+/* outlet */
+.AppOutlet {
+  flex-grow: 1;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}

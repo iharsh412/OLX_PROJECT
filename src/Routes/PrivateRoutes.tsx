@@ -1,37 +1,47 @@
 import { Navigate } from 'react-router-dom';
 import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
 import { CustomRouter } from './RootRoutes';
-import { HomeLayout } from '../Views/Home/HomeLayout';
-import Login from '../Views/Login/LoginLayout';
-import LoginWithPhone from "../Views/Login/LoginContinueWithPhoneEmail";
-import LoginPhoneSms from "../Views/Login/OtpSection/LoginOtp"
+import HomeLayout from '../Views/Home';
 import Dashboard from '../Views/Dashboard';
-import SellSection from "../Views/Sell"
-import Cart from "../Views/CartSection"
+import SellLayout from '../Views/Sell';
+import SellSection from '../Components/CustomComponents/SellSection/SellSection';
+import Wishlist from '../Views/Wishlist';
+import Post from '../Views/PostForm';
+import ProductDetail from '../Views/ProductDetail';
+import TypeSection from '../Views/TypeSection';
+import NewPass from '../Views/Authentication/NewPass';
+import MyAds from '../Views/UsersAds';
+import Profile from '../Views/Profile';
+import EditProfile from '../Views/EditProfile';
+import FirebaseChatApp from '../Views/FirebaseChatApp';
+import SingleChatApp from '../Views/FirebaseSingleChat';
 
-// eslint-disable-next-line import/prefer-default-export
-export const PRIVATE_ROUTES: Array<CustomRouter> = [
+const PRIVATE_ROUTES: Array<CustomRouter> = [
   {
-    path: ROUTES_CONFIG.ABOUT.path,
-    element: '<ABOUT />',
-    title: ROUTES_CONFIG.ABOUT.title,
+    path: ROUTES_CONFIG.HOMEPAGE.path,
+    element: <HomeLayout />,
+    title: ROUTES_CONFIG.HOMEPAGE.title,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: ROUTES_CONFIG.NEWPASSWORD.path, element: <NewPass /> },
+      { path: ROUTES_CONFIG.WISHLIST.path, element: <Wishlist /> },
+      { path: ROUTES_CONFIG.PRODUCT.path, element: <ProductDetail /> },
+      { path: ROUTES_CONFIG.MYADS.path, element: <MyAds /> },
+      { path: ROUTES_CONFIG.CATEGORY.path, element: <TypeSection /> },
+      { path: ROUTES_CONFIG.PROFILE.path, element: <Profile /> },
+      { path: ROUTES_CONFIG.EDIT_PROFILE.path, element: <EditProfile /> },
+      { path: ROUTES_CONFIG.FIREBASE_CHAT.path, element: <FirebaseChatApp /> },
+      { path: ROUTES_CONFIG.SINGLE_CHAT.path, element: <SingleChatApp /> },
+    ],
   },
-   {
-      path: ROUTES_CONFIG.HOMEPAGE.path,
-      element: <HomeLayout />,
-      title: ROUTES_CONFIG.HOMEPAGE.title,
-      children: [
-        { index: true, element: <Dashboard /> },
-        { path: "login", element: <Login /> }
-        , { path: "loginPhone", element: <LoginWithPhone /> }
-        , { path: "loginphonesms", element: <LoginPhoneSms /> }
-        ,{path: "cart",element:<Cart/>}
-      ]
-    },
   {
-    path: 'sell',
-    element: <SellSection/>,
-    title: 'SellSection',
+    path: ROUTES_CONFIG.SELL.path,
+    element: <SellLayout />,
+    title: ROUTES_CONFIG.SELL.title,
+    children: [
+      { index: true, element: <SellSection /> },
+      { path: ROUTES_CONFIG.ATTRIBUTES.path, element: <Post /> },
+    ],
   },
   {
     path: '*',
@@ -39,3 +49,5 @@ export const PRIVATE_ROUTES: Array<CustomRouter> = [
     title: 'Rendering wildcard',
   },
 ];
+
+export { PRIVATE_ROUTES };

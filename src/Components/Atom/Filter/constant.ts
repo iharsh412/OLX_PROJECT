@@ -1,0 +1,17 @@
+export const CLASSNAME = {
+  MAIN_SECTION_FILTER: 'sample-mainSectionFilter',
+  FILTER_TITLE: 'sample-filterTitle',
+  SUBCATEGORY: 'sample-subcategory',
+  BRAND: 'sample-brand',
+  PRICE: 'sample-price',
+  SUBCATEGORY_LIST: 'sample-subcategoryOption',
+  SUBCATEGORY_ITEM: 'sample-subcategoryOption__item',
+  NO_PRODUCTS: 'sample-brandOption__noBrand',
+  BRAND_LIST: 'sample-brandOption',
+  BRAND_ITEMS: 'sample-brandOption__item',
+  PRICE_LIST: 'sample-priceOption',
+  PRICE_MIN: 'sample_priceMin',
+  PRICE_MAX: 'sample_priceMax',
+  APPLY: 'sample-priceOption__apply',
+  ACTIVE: 'sample-active',
+};
