@@ -1,4 +1,4 @@
-export const CLASSNAME = {
+const CLASSNAME = {
   WRAPPER: 'imageDetailWrapper',
   IMAGE_DETAIL_DESCRIPTION: 'imageDetailImagesDetailsDescription',
   IMAGE: 'imageDetailImageSection',
@@ -28,5 +28,8 @@ export const CLASSNAME = {
   POST_TEXT: 'imageDetailPostText',
   POST_VALUE: 'imageDetailPostValue',
   MAP: 'imageDetailMap',
+  POSTED_BY_TEXT: 'imageDetailPostedByText',
+  CONTACT_NUMBER_TEXT: 'imageDetailContactNumberText',
 };
 
+export default CLASSNAME;

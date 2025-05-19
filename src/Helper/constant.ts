@@ -163,7 +163,9 @@ export const COMMON_TEXT = {
   GO_TO_HOME: 'Go to Home',
   POSTING: 'Posting...',
   SUBCATEGORY: 'Subcategory',
-  PURCHASE_IN: 'Purchase in',
+  PURCHASE_IN: 'Purchased in',
+  POSTED_BY: 'Posted By',
+  CONTACT_NUMBER: 'Contact Number',
 };
 
 // inputTypes.ts

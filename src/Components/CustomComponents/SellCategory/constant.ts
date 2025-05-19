@@ -1,13 +1,13 @@
 export const SUBCATEGORIES: Record<string, string[]> = {
-  multiWheelVehicles: ['Cars', 'Trucks', 'Buses'],
+  multiWheelVehicles: ['Car', 'Truck', 'Bus'],
   mobile: ['Mobile', 'Tablet'],
-  electronics: ['Computer', 'TVs', 'Camera'],
-  bikes: ['Motorcycles', 'Scooters', 'Bicycles'],
-  pets: ['Dogs', 'Cats', 'Birds'],
-  furniture: ['Chairs', 'Tables', 'Beds'],
-  jewellery: ['Rings', 'Earrings', 'Necklaces'],
-  books: ['Fiction', 'Magazines', 'Newspapers'],
-  clothing: ['Shirts', 'Pants', 'Shoes'],
+  electronics: ['Computer', 'TV', 'Camera'],
+  bikes: ['Motorcycle', 'Scooter', 'Bicycle'],
+  pets: ['Dog', 'Cat', 'Bird'],
+  furniture: ['Chair', 'Table', 'Bed'],
+  jewellery: ['Ring', 'Earring', 'Necklace'],
+  books: ['Fiction', 'Magazine', 'Newspaper'],
+  clothing: ['Shirt', 'Pant', 'Shoe'],
 };
 
 export const CLASSNAME = {

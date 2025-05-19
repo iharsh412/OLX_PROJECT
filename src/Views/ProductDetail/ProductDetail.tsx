@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import ImageTransition from '../../Components/CustomComponents/ProductDetailImageTransition';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
@@ -132,7 +132,18 @@ export default function ProductDetails() {
                 {COMMON_TEXT.OLX_INDIA}
               </span>
             </div>
-            <span>{data?.username}</span>
+            <span>
+              <small className={CLASSNAME.POSTED_BY_TEXT}>
+                {COMMON_TEXT.POSTED_BY}
+              </small>{' '}
+              : {data?.username}
+            </span>
+            <span>
+              <small className={CLASSNAME.CONTACT_NUMBER_TEXT}>
+                {COMMON_TEXT.CONTACT_NUMBER}
+              </small>{' '}
+              : {data?.mobileNumber}
+            </span>
             <button
               type="button"
               title={COMMON_TEXT.CHAT}

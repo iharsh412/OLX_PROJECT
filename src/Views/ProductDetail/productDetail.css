@@ -62,7 +62,7 @@
   margin-bottom: 20px;
   color: #333;
 }
-.imageDetailBrandTitle{
+.imageDetailBrandTitle {
   width: 100px;
 }
 .imageDetailBrand {
@@ -168,6 +168,11 @@
   border: 2px solid #f0f0f0;
 }
 
+.imageDetailContactNumberText,
+.imageDetailPostedByText {
+  color: red;
+}
+
 .imageDetailChatText {
   font-size: 18px;
   font-weight: 600;
@@ -232,7 +237,7 @@
 
 /* RESPONSIVE DESIGN */
 
-@media (max-width: 868px) {
+@media (max-width: 1050px) {
   .imageDetailWrapper {
     width: 90vw;
     padding: 8px;

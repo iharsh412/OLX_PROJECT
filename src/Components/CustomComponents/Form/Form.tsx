@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import {
   Description,
   TextField,
@@ -7,11 +8,11 @@ import {
   State,
   City,
 } from '../Post/Common/Common';
+
 import { CLASSNAME } from '../Post/Common/constant';
 import { COMMON_TEXT } from '../../../Helper/constant';
 import { FormProps } from '../../../Helper/interface';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
+import { RootState } from '../../../Store';
 
 export default function Form({
   touched,
