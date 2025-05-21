@@ -109,9 +109,7 @@ export default function Navbar() {
       }
     );
 
-    return () => {
-      unsubscribe();
-    };
+    return () => unsubscribe();
   }, [id]);
 
   return (

@@ -3,4 +3,3 @@ export const CLASSNAME = {
   CONTAINER: 'map-container-div',
   TEXT: 'detail-page-minor-title',
 };
-

@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../Store';
-import { CLASSNAME } from '../FirebaseChatApp/constant';
+import CLASSNAME from '../FirebaseChatApp/constant';
 import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
 
 export default function FirebaseSingleChatApp() {

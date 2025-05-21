@@ -15,7 +15,6 @@ import {
 import { getURLfromSupabase, uploadAds } from '../../../../Helper/function';
 import { RootState } from '../../../../Store/index';
 
-
 export default function PostForm() {
   const { id, username } = useSelector((state: RootState) => state.common);
   const { state } = useLocation();

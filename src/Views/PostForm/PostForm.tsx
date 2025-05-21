@@ -1,7 +1,7 @@
 import { Navigate, useLocation } from 'react-router-dom';
 import Form from '../../Components/CustomComponents/Post/PostForm';
 import './postForm.css';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import { capitalizeFirstLetter } from '../../Helper/function';
 import { COMMON_TEXT } from '../../Helper/constant';

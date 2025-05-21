@@ -4,7 +4,7 @@ import ImageLayout from '../../Components/CustomComponents/ImageLayout/ProductIm
 import './wishlist.css';
 import { COMMON_TEXT } from '../../Helper/constant';
 import { Product } from '../../Helper/interface';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import Schemer from '../../Components/Atom/Schemer';
 import ErrorSection from '../../Components/Atom/ErrorSection';
 import { ROUTES_CONFIG } from '../../Shared/Constants';

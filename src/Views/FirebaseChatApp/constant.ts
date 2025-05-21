@@ -1,4 +1,4 @@
-export const CLASSNAME = {
+const CLASSNAME = {
   NO_USERS: 'no_users',
   CHAT_APP: 'chat-app',
   USER_WRAPPER: 'userWrapper',
@@ -22,3 +22,5 @@ export const CLASSNAME = {
   MESSAGE: 'message',
   UNREAD: 'unreadcount',
 };
+
+export default CLASSNAME;

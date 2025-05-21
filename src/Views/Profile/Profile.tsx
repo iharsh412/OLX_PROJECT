@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useGetUserInfoQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import './profile.css';
 import { ROUTES_CONFIG } from '../../Shared/Constants';
 import ICONS from '../../assets';

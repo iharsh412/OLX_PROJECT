@@ -9,7 +9,7 @@ import Ads from '../../Components/PromotedContent';
 import Footer from '../../Components/Footer';
 import { RootState } from '../../Store';
 import { setLoading } from '../../Store/Loader';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import { setItem } from '../../Store/AreaItem';
 import { COMMON_TEXT } from '../../Helper/constant';
 

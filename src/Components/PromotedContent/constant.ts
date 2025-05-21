@@ -1,4 +1,5 @@
 import ICONS from '../../assets/index';
+
 export const CONTENTS = [
   {
     id: 1,

@@ -1,1 +1,1 @@
-export {default} from './Schemer';
+export { default } from './Schemer';

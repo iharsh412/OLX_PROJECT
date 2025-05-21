@@ -2,7 +2,7 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import ICONS from '../../assets';
 import Footer from '../../Components/Footer';
 import './sell.css';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import { COMMON_TEXT } from '../../Helper/constant';
 
 export default function Sell() {

@@ -48,8 +48,8 @@ export const CLASSNAME = {
 export const LOCATION = {
   Punjab: ['Mohali', 'Jalandhar', 'Amritsar', 'Chandigarh', 'Ludhiana'],
   Haryana: ['Panipat', 'Ambala', 'Yamunanagar', 'Rohtak', 'Hisar', 'Karnal'],
-  ['Uttar Pradesh']: ['Agra', 'Lucknow', 'Varanasi', 'Kanpur', 'Noida'],
-  ['Himachal Pradesh']: ['Shimla', 'Manali', 'Dharamshala', 'Kullu'],
+  'Uttar Pradesh': ['Agra', 'Lucknow', 'Varanasi', 'Kanpur', 'Noida'],
+  'Himachal Pradesh': ['Shimla', 'Manali', 'Dharamshala', 'Kullu'],
 };
 export enum COUNT {
   Description = 4000,

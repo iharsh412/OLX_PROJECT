@@ -1,1 +1,1 @@
-export {default} from './LocationMap';
+export { default } from './LocationMap';

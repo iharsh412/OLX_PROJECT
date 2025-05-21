@@ -1,4 +1,4 @@
-export const CLASSNAME = {
+const CLASSNAME = {
   WRAPPER: 'profile-section-wrapper',
   PROFILE_TEXT_WRAPPER: 'profile-section-profile-text-wrapper',
   CROSS: 'profile-section-cross',
@@ -14,3 +14,5 @@ export const CLASSNAME = {
   ADS_TEXT: 'profile-section-adds-text',
   ADS_COUNT: 'profile-section-adds-count',
 };
+
+export default CLASSNAME;

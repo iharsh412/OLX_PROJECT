@@ -8,7 +8,6 @@ import { ProductDetailProps } from '../../../Helper/interface';
 function ProductDetailImageTransition({
   photos,
 }: Readonly<ProductDetailProps>) {
-  console.log(photos, 'photos');
   let imageArray: string[] = [];
   if (photos) {
     imageArray = Array.isArray(photos) ? photos : [photos];

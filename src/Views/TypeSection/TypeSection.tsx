@@ -1,4 +1,4 @@
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import Sample from '../../Components/Sample';
 
 export default function TypeSection() {

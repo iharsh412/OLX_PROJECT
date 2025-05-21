@@ -1,1 +1,1 @@
-export {default} from "./PromotedContent"
+export { default } from './PromotedContent';

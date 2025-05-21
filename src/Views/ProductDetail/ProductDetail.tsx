@@ -23,7 +23,7 @@ export default function ProductDetails() {
   const { productId } = useParams();
 
   const { access, id: uid } = useSelector((state: RootState) => state?.common);
-  const id = productId !== undefined ? Number(productId) : undefined;
+  // const id = productId !== undefined ? Number(productId) : undefined;
   const navigate = useNavigate();
   const [data, setData] = useState<ProductDetail | null>(null);
   const product = Array.isArray(data) ? data[0] : data;
@@ -31,12 +31,11 @@ export default function ProductDetails() {
   useEffect(() => {
     const fetchProduct = async () => {
       const productData = await getProductById(productId as string);
-      console.log(productData, 'product data');
       setData(productData);
     };
     fetchProduct();
   }, [productId]);
-  console.log(data, 'data');
+
   // handle click on chat
   function handleClickChat() {
     if (!access) {

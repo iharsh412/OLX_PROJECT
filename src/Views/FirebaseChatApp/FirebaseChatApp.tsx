@@ -4,7 +4,7 @@ import './firebaseChatApp.css';
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../../Services/firebase';
 import { RootState } from '../../Store';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
 import { setUserId } from '../../Store/ChatUser/index';
 import { COMMON_TEXT } from '../../Helper/constant';
@@ -24,7 +24,7 @@ export default function FirebaseChatApp() {
     const queryMessages = query(messageRef);
 
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      let uniqueRooms: Set<string> = new Set();
+      const uniqueRooms: Set<string> = new Set();
       const counts: { [roomId: string]: number } = {};
       snapshot.forEach((doc) => {
         if (doc.data().room.split('_').includes(String(id))) {

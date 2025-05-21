@@ -11,6 +11,8 @@ import {
   doc,
   setDoc,
   getDoc,
+  where,
+  deleteDoc,
 } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 import { db } from '../Services/firebase';
@@ -18,7 +20,8 @@ import supabase from '../Services/supabaseClient';
 import { COMMON_TEXT } from './constant';
 import { ProductDetail } from './interface';
 
-//  convert ISO date string to days from now
+// ====================== convert ISO date string to days from now =========================================
+
 function getDaysFromNow(isoDateString: string): string {
   const now = new Date();
   const target = new Date(isoDateString);
@@ -38,12 +41,14 @@ function getDaysFromNow(isoDateString: string): string {
   });
 }
 
-// Capitalise the first letter of a string
+// ========================= Capitalise the first letter of a string ===========================================
+
 const capitalizeFirstLetter = (str: string): string => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 };
 
-// save image in supaBase and return publicurl
+//  ======================= save image in supaBase and return publicurl ============================================
+
 const getURLfromSupabase = async (file: File) => {
   const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
   const filePath = `${Date.now()}_${cleanFileName}`;
@@ -62,7 +67,8 @@ const getURLfromSupabase = async (file: File) => {
   }
 };
 
-// add product to firebase
+// ======================= add product to firebase ============================================================
+
 const uploadAds = async (productDetail: ProductDetail) => {
   try {
     // Remove undefined fields from the object
@@ -82,7 +88,8 @@ const uploadAds = async (productDetail: ProductDetail) => {
   }
 };
 
-// render first page product to dashboard
+// =================== render first page product to dashboard ====================================================
+
 const dashboardFirstPage = async () => {
   const q = query(
     collection(db, 'ads'),
@@ -97,7 +104,8 @@ const dashboardFirstPage = async () => {
   return { adsData, lastVisible };
 };
 
-// render next page product to dashboard
+// ============================ render next page product to dashboard ===========================================
+
 const dashboardNextPage = async (
   lastVisible: QueryDocumentSnapshot<DocumentData>
 ) => {
@@ -114,7 +122,8 @@ const dashboardNextPage = async (
   return { adsData, lastVisible: newLastVisible };
 };
 
-// get product detail by id
+// ============================== get product detail by id======================================================
+
 const getProductById = async (productId: string) => {
   const docRef = doc(db, 'ads', productId);
   const docSnap = await getDoc(docRef);
@@ -125,6 +134,35 @@ const getProductById = async (productId: string) => {
   return null;
 };
 
+// ============================== add to wishlist ============================================================
+
+const inWishlist = async (productId: string, userId: string) => {
+  const q = query(
+    collection(db, 'wishlist'),
+    where('productId', '==', productId),
+    where('userId', '==', userId)
+  );
+  const snapshot = await getDocs(q);
+  if (snapshot.empty) {
+    await addDoc(collection(db, 'wishlist'), { productId, userId });
+    toast.success(COMMON_TEXT.ADDED_IN_WISHLIST);
+    return true;
+  }
+  await deleteDoc(doc(db, 'wishlist', snapshot.docs[0].id));
+  return false;
+};
+// ============================== get wishlist product by userId ===============================================
+const getWishlistProductByUserId = async (userId: string) => {
+  const q = query(collection(db, 'wishlist'), where('userId', '==', userId));
+  const snapshot = await getDocs(q);
+  const wishlistData = snapshot.docs.map((doc) => ({
+    id: doc.id,
+    ...doc.data(),
+  }));
+  return wishlistData;
+};
+// ===========================================================================================================
+
 export {
   getDaysFromNow,
   capitalizeFirstLetter,
@@ -133,4 +171,6 @@ export {
   dashboardFirstPage,
   dashboardNextPage,
   getProductById,
+  inWishlist,
+  getWishlistProductByUserId,
 };

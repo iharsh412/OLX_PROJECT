@@ -1,4 +1,5 @@
 import ICONS from '../../../assets';
+
 export const IMAGES = [ICONS.olx1, ICONS.olx2, ICONS.olx3];
 export const QUOTES = [
   'The best way to predict the future is to invent it.',

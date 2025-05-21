@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+
 export const CLASSNAME = {
   WRAPPER: 'edit-profile-wrapper',
   HEADER_WRAPPER: 'edit-profile-header-wrapper',
@@ -27,6 +28,6 @@ export const validationSchema = Yup.object().shape({
 export const initialValues = {
   username: '',
   phonenumber: '',
-  ['about me']: '',
+  'about me': '',
   email: '',
 };

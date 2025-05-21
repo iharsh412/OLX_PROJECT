@@ -80,8 +80,6 @@ export default function EditProfile() {
         handleSubmit,
         isSubmitting,
       }) => {
-        const share = { handleChange, handleBlur, setFieldValue };
-
         return (
           <div className={CLASSNAME.WRAPPER}>
             {/* header wrapper */}
@@ -108,7 +106,9 @@ export default function EditProfile() {
               label="Name"
               err={errors.username}
               tch={touched.username}
-              {...share}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
             />
             {/* email section */}
 
@@ -120,7 +120,9 @@ export default function EditProfile() {
               err={errors.email}
               tch={touched.email}
               compulsory
-              {...share}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
             />
             {/* phone number */}
             <PhoneNumber
@@ -130,7 +132,9 @@ export default function EditProfile() {
               label="Mobile Number"
               err={errors.phonenumber}
               tch={touched.phonenumber}
-              {...share}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
             />
             {/* About Me Input */}
             <Description
@@ -140,7 +144,9 @@ export default function EditProfile() {
               err={errors['about me']}
               tch={touched['about me']}
               label="About me"
-              {...share}
+              handleChange={handleChange}
+              handleBlur={handleBlur}
+              setFieldValue={setFieldValue}
             />
             <hr />
             {/* Submit Button */}

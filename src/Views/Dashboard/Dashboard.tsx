@@ -8,10 +8,9 @@ import { useEffect, useRef, useState } from 'react';
 import ImagesLayout from '../../Components/CustomComponents/ImageLayout/ProductImage/index';
 import { ProductDetail } from '../../Helper/interface';
 import { COMMON_TEXT } from '../../Helper/constant';
-import { CLASSNAME } from './constant';
+import CLASSNAME from './constant';
 import { dashboardFirstPage, dashboardNextPage } from '../../Helper/function';
 import Schemer from '../../Components/Atom/Schemer/Schemer';
-
 
 export default function Dashboard() {
   const [data, setData] = useState<ProductDetail[]>([]);

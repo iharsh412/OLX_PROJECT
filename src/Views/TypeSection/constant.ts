@@ -2,4 +2,4 @@ const CLASSNAME = {
   WRAPPER: 'carWrapper',
 };
 
-export { CLASSNAME };
+export default CLASSNAME;

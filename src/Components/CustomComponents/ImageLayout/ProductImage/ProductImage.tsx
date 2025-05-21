@@ -1,4 +1,5 @@
 // import { useState } from 'react';
+import React from 'react';
 import './productImage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -13,16 +14,17 @@ import { CLASSNAME } from './constant';
 import { getDaysFromNow } from '../../../../Helper/function';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
 import { ROUTES_CONFIG } from '../../../../Shared/Constants';
+// import { useState } from 'react';
 
 export default function ProductImage({
   data,
   refetch,
   refetchDashboard,
 }: Readonly<ImageProps>) {
-  // console.log(data, 'datager');
   const dispatch = useDispatch();
   const [post, { isLoading }] = usePostProductsMutation();
-  // const [showAdded, setShowAdded] = useState(data.is_favourite ? 'Added' : '');
+  //  const [isAddedToWishlist, setIsAddedToWishlist] = useState<boolean>(false);
+
   const navigate = useNavigate();
   const { access: token } = useSelector((state: RootState) => state?.common);
   const wishlistCount = useSelector(

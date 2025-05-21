@@ -1,4 +1,4 @@
-export const CLASSNAME = {
+const CLASSNAME = {
   WRAPPER: 'sell-section',
   HEADER: 'sell-section__header',
   BACK_BUTTON: 'sell-section__back-button',
@@ -6,3 +6,5 @@ export const CLASSNAME = {
   OUTLET: 'sell-section-Outlet',
   FOOTER: 'sell-section-footer',
 };
+
+export default CLASSNAME;

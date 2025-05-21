@@ -111,7 +111,7 @@ export default function Signin() {
                   />
                   {values.password && (
                     <button
-                      type={TYPE.BUTTON}
+                      type="button"
                       className={CLASSNAME.EYE}
                       onClick={() => {
                         setIsPasswordVisible(!isPasswordVisible);
@@ -131,7 +131,7 @@ export default function Signin() {
               {/* submit button */}
               <button
                 className={CLASSNAME.SUBMIT_BUTTON}
-                type={TYPE.SUBMIT}
+                type="button"
                 disabled={isSubmitting}
               >
                 {COMMON_TEXT.LOGIN}
@@ -140,7 +140,7 @@ export default function Signin() {
             {/* forget password */}
             <button
               className={CLASSNAME.FORGET}
-              type={TYPE.BUTTON}
+              type="button"
               title={COMMON_TEXT.PASSWORD_S}
               onClick={() => navigate(ROUTES_CONFIG.FORGETPASS.path)}
             >

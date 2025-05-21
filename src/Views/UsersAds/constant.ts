@@ -1,4 +1,4 @@
-export const CLASSNAME = {
+const CLASSNAME = {
   WRAPPER: 'myads-wrapper',
   TITLE: 'myads-title',
   AD_WRAPPER: 'myads-ad-wrapper',
@@ -6,3 +6,5 @@ export const CLASSNAME = {
   ERROR: 'myads-error',
   LOADING: 'myads-loading',
 };
+
+export default CLASSNAME;

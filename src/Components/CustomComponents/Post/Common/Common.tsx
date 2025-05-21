@@ -129,7 +129,7 @@ function Description({
         onChange={(e) => {
           setFieldValue?.(
             htmlFor,
-            e.target.value.trimStart().slice(0, COUNT['Description'])
+            e.target.value.trimStart().slice(0, COUNT.Description)
           );
         }}
         onBlur={handleBlur}

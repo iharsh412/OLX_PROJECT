@@ -1,3 +1,3 @@
-export const CLASSNAME= {
-    LOADING:"loading",
-}
+export const CLASSNAME = {
+  LOADING: 'loading',
+};
