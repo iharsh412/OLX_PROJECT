@@ -3,12 +3,12 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../Store';
 
 // components
-import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
+import MessageSection from '../../Components/CustomComponents/ChatMsg/index';
 
 // constants
 import CLASSNAME from '../../Helper/classes';
 
-export default function FirebaseSingleChatApp() {
+export default function ChatSingle() {
   const { userId } = useSelector((state: RootState) => state.chatUser);
   const { id } = useSelector((state: RootState) => state?.common);
   const roomId =

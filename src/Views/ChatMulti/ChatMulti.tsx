@@ -11,13 +11,13 @@ import { RootState } from '../../Store';
 import { setUserId } from '../../Store/ChatUser/index';
 
 // components
-import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
+import MessageSection from '../../Components/CustomComponents/ChatMsg/index';
 
 // constants
 import CLASSNAME from '../../Helper/classes';
 import { COMMON_TEXT } from '../../Helper/text';
 
-export default function FirebaseChatApp() {
+export default function MultiChat() {
   const dispatch = useDispatch();
   const [receiverId, setReceiverId] = useState<string | null>(null);
   const { id } = useSelector((state: RootState) => state?.common);

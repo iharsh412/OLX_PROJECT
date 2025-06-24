@@ -25,9 +25,7 @@ import CLASSNAME from '../../../Helper/classes';
 import { ChatMsgSectionProps, MessageProps } from '../../../Helper/interface';
 import { COMMON_TEXT } from '../../../Helper/text';
 
-export default function ChatMsgSection({
-  roomId,
-}: Readonly<ChatMsgSectionProps>) {
+export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
   const { userId } = useSelector((state: RootState) => state.chatUser);
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
