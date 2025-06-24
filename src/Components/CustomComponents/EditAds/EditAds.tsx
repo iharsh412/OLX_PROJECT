@@ -1,17 +1,24 @@
+// libs
 import { Formik } from 'formik';
 import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-toastify';
-import { CLASSNAME, initialValues } from './constant';
-import { validationSchema } from '../Post/PostForm/constant';
-import './EditAds.css';
+
+// api
 import {
   usePostEditDataMutation,
   useGetProductsDetailQuery,
 } from '../../../Services/Api/module/imageApi';
-import Loader from '../../Atom/Loader';
+
+// components
 import ErrorSection from '../../Atom/ErrorSection';
 import Form from '../Form/index';
-import { COMMON_TEXT } from '../../../Helper/constant';
+import Loader from '../../Atom/Loader';
+
+// constants
+import { initialValues } from './constant';
+import { validationSchema } from '../Post/PostForm/constant';
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { InitialValuesProps, EditAdsProps } from '../../../Helper/interface';
 
 export default function EditAds({
@@ -95,7 +102,7 @@ export default function EditAds({
   if (isError) return <ErrorSection />;
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.EDIT_ADS.WRAPPER}>
       <Formik
         initialValues={formInitialValues}
         enableReinitialize
@@ -116,7 +123,7 @@ export default function EditAds({
 
           return (
             <form
-              className={CLASSNAME.MAIN}
+              className={CLASSNAME.EDIT_ADS.MAIN}
               ref={dropdownRef}
               onSubmit={handleSubmit}
             >
@@ -129,7 +136,7 @@ export default function EditAds({
 
               <button
                 type="submit"
-                className={CLASSNAME.POST}
+                className={CLASSNAME.EDIT_ADS.POST}
                 disabled={isSubmitting}
               >
                 {isSubmitting ? COMMON_TEXT.EDITING : COMMON_TEXT.EDIT}

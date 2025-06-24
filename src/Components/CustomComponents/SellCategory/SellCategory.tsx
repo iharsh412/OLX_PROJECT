@@ -1,9 +1,12 @@
+// libs
 import { useNavigate } from 'react-router-dom';
-import './SellCategory.css';
-import { CLASSNAME, SUBCATEGORIES } from './constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import SUBCATEGORIES from './constant';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { SellCategoryProps } from '../../../Helper/interface';
+import CLASSNAME from '../../../Helper/classes';
 
 export default function SellCategory({
   categoryId,
@@ -12,13 +15,13 @@ export default function SellCategory({
   const navigate = useNavigate();
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.SELL_CATEGORY.WRAPPER}>
       {subcategories.map((subcategory) => (
         <button
           title={COMMON_TEXT.SELECT_THIS_CATEGORY}
           type="button"
           key={subcategory}
-          className={CLASSNAME.OPTIONS}
+          className={CLASSNAME.SELL_CATEGORY.OPTIONS}
           onClick={() => {
             navigate(ROUTES_CONFIG.ATTRIBUTES.path, {
               state: { categoryId, subcategory },

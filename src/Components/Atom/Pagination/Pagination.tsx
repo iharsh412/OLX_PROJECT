@@ -1,6 +1,6 @@
-import './pagination.css';
-import { CLASSNAME } from './contant';
-import { COMMON_TEXT } from '../../../Helper/constant';
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { PaginationProps } from '../../../Helper/interface';
 
 function Pagination({
@@ -17,17 +17,17 @@ function Pagination({
   };
   if (totalpage < 2) return null;
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.PAGINATION.WRAPPER}>
       <button
         type="button"
-        className={`${CLASSNAME.PREV} ${
-          showButton.prev ? '' : CLASSNAME.DISABLED
+        className={`${CLASSNAME.PAGINATION.PREV} ${
+          showButton.prev ? '' : CLASSNAME.PAGINATION.DISABLED
         }`}
         onClick={handlePrevPage}
       >
         {COMMON_TEXT.PREV}
       </button>
-      <div className={CLASSNAME.PAGE_COUNT_WRAPPER}>
+      <div className={CLASSNAME.PAGINATION.PAGE_COUNT_WRAPPER}>
         {Array(totalpage)
           ?.fill('')
           ?.map((_, index) => {
@@ -37,8 +37,8 @@ function Pagination({
                 key={`${COMMON_TEXT.PAGE}-${index + 1}`}
                 onClick={() => setPage(index + 1)}
                 disabled={index + 1 === page}
-                className={`${CLASSNAME.PAGE_NUMBER} ${
-                  index + 1 === page ? CLASSNAME.ACTIVE_PAGE : ''
+                className={`${CLASSNAME.PAGINATION.PAGE_NUMBER} ${
+                  index + 1 === page ? CLASSNAME.PAGINATION.ACTIVE_PAGE : ''
                 }`}
               >
                 {index + 1}
@@ -49,8 +49,8 @@ function Pagination({
 
       <button
         type="button"
-        className={`${CLASSNAME.NEXT} ${
-          showButton.next ? '' : CLASSNAME.DISABLED
+        className={`${CLASSNAME.PAGINATION.NEXT} ${
+          showButton.next ? '' : CLASSNAME.PAGINATION.DISABLED
         }`}
         onClick={handleNextPage}
       >

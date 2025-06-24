@@ -22,18 +22,3 @@ export interface FormValue {
   password: string;
   confirmPassword: string;
 }
-export const CLASSNAME = {
-  WRAPPER: 'newpass_Wrapper',
-  TITLE: 'newpass_title',
-  PASSWORD_INPUT: 'newpass_passwordInput',
-  CONFIRM_PASSWORD_INPUT: 'newpass_confirmPasswordInput',
-  SUBMIT_BUTTON: 'newpass_submitButton',
-  EMAIL_INPUT: 'newpass_emailInput',
-  ERROR: 'newpass_error',
-  SUCCESS: 'newpass_success',
-  SUCCESS_TEXT: 'newpass_sucessText',
-  SUCCESS_LOGIN: 'newpass_sucessLogin',
-  REQUIRED: 'newpass_required',
-  EYE: 'newpass_isSeenPassword',
-  INPUT_PASSWORD_WRAPPER: 'newpass_passwordWrapper',
-};

@@ -1,9 +1,10 @@
-import './verification.css';
+// libs
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CLASSNAME } from './constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
-import { COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
+import { COMMON_TEXT } from '../../../Helper/text';
 
 export default function Verification() {
   const navigate = useNavigate();
@@ -12,29 +13,31 @@ export default function Verification() {
   } = useLocation();
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.VERIFICATION.WRAPPER}>
       {/* verification text */}
       <span>
         {COMMON_TEXT.VERIFICATION_TEXT}
-        <div className={CLASSNAME.EMAIL}>{email}</div>
+        <div className={CLASSNAME.VERIFICATION.EMAIL}>{email}</div>
       </span>
       {/* login button and text */}
-      <div className={CLASSNAME.TEXT_WRAPPER}>
+      <div className={CLASSNAME.VERIFICATION.TEXT_WRAPPER}>
         <button
           type="button"
-          className={CLASSNAME.LOGIN}
+          className={CLASSNAME.VERIFICATION.LOGIN}
           onClick={() => navigate(ROUTES_CONFIG.SIGNIN.path, { replace: true })}
         >
           {COMMON_TEXT.LOGIN}
         </button>
-        <span className={CLASSNAME.TEXT}>{COMMON_TEXT.AFTER_VERIFICATION}</span>
+        <span className={CLASSNAME.VERIFICATION.TEXT}>
+          {COMMON_TEXT.AFTER_VERIFICATION}
+        </span>
       </div>
       {/* footer section */}
-      <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
-        <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+      <footer className={CLASSNAME.LOGIN_SECTION.FOOTER}>
+        <p className={CLASSNAME.LOGIN_SECTION.FOOTER_UPPER_TEXT}>
           {COMMON_TEXT.PERSONAL_DETAIL}
         </p>
-        <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+        <p className={CLASSNAME.LOGIN_SECTION.FOOTER_SECOND_TEXT}>
           {COMMON_TEXT.PRIVACY_POLICY}
         </p>
       </footer>

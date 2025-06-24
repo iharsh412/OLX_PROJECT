@@ -12,15 +12,3 @@ export const VALIDATION = Yup.object().shape({
 export interface FormValue {
   email: string;
 }
-export const CLASSNAME = {
-  WRAPPER: 'forget_Wrapper',
-  HEADER: 'forget_Header',
-  CROSS: 'forget_Cross',
-  BACK: 'forget_Back',
-  TITLE: 'forget_title',
-  EMAIL_INPUT: 'forget_emailInput',
-  TEXT: 'forget_text',
-  SUBMIT_BUTTON: 'forget_submitButton',
-  ERROR: 'forget_error',
-  REQUIRED: 'forget_required',
-};

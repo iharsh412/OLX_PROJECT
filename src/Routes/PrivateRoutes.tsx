@@ -1,6 +1,7 @@
+// libs
 import { Navigate } from 'react-router-dom';
-import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
-import { CustomRouter } from './RootRoutes';
+
+// components
 import HomeLayout from '../Views/Home';
 import Dashboard from '../Views/Dashboard';
 import SellLayout from '../Views/Sell';
@@ -15,6 +16,10 @@ import Profile from '../Views/Profile';
 import EditProfile from '../Views/EditProfile';
 import FirebaseChatApp from '../Views/FirebaseChatApp';
 import SingleChatApp from '../Views/FirebaseSingleChat';
+
+// constants
+import { CustomRouter } from './RootRoutes';
+import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Helper/Routes';
 
 const PRIVATE_ROUTES: Array<CustomRouter> = [
   {

@@ -1,18 +1,27 @@
+// libs
 import { LogOut } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+
+// components
+import Modal from '../Modal';
+
+// redux
 import { RootState } from '../../../Store';
 import { updateAuthState } from '../../../Store/Common';
-import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
-import './loginUpDown.css';
-import { dropdownItems, CLASSNAME } from './constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import Modal from '../Modal';
-import { setWishlistCount } from '../../../Store/WishlistCount';
 import { setUserId } from '../../../Store/ChatUser';
-import { COMMON_TEXT } from '../../../Helper/constant';
+import { setWishlistCount } from '../../../Store/WishlistCount';
+
+// api
+import { usePostLogoutDataMutation } from '../../../Services/Api/module/imageApi';
+
+// constants
+import dropdownItems from './constant';
+import CLASSNAME from '../../../Helper/classes';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { LoginUpDownProps } from '../../../Helper/interface';
 
 export default function LoginUpDown({
@@ -59,12 +68,14 @@ export default function LoginUpDown({
   }, [answer]);
 
   return (
-    <div className={CLASSNAME.PROFILE_DROPDOWN}>
-      <div className={CLASSNAME.DROPDOWN_MENU}>
-        <div className={CLASSNAME.PROFILE_SECTION}>
-          <div className={CLASSNAME.PROFILE_HEADER}>
-            <div className={CLASSNAME.PROFILE_INFO}>
-              <div className={CLASSNAME.PROFILE_INITIAL}>{username?.[0]}</div>
+    <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_DROPDOWN}>
+      <div className={CLASSNAME.LOGIN_DROPDOWN.DROPDOWN_MENU}>
+        <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_SECTION}>
+          <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_HEADER}>
+            <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_INFO}>
+              <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_INITIAL}>
+                {username?.[0]}
+              </div>
               <h3>{username}</h3>
             </div>
             <button
@@ -73,14 +84,14 @@ export default function LoginUpDown({
                 handleItemClick();
                 navigate(ROUTES_CONFIG.PROFILE.path);
               }}
-              className={CLASSNAME.PROFILE_EDIT_PROFILE}
+              className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_EDIT_PROFILE}
             >
               {COMMON_TEXT.VIEW_AND_EDIT_PROFILE}
             </button>
           </div>
         </div>
 
-        <div className={CLASSNAME.PROFILE_MENU_ITEMS}>
+        <div className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_MENU_ITEMS}>
           {dropdownItems.map((item) => {
             const Icon = item.icon;
             return (
@@ -93,7 +104,7 @@ export default function LoginUpDown({
                   }
                   item?.clickHandler?.(navigate);
                 }}
-                className={CLASSNAME.PROFILE_MENU_ITEM}
+                className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_MENU_ITEM}
               >
                 <Icon />
                 <span>{item.label}</span>
@@ -107,7 +118,7 @@ export default function LoginUpDown({
               e.stopPropagation();
               setOpenModal(true);
             }}
-            className={CLASSNAME.PROFILE_MENU_ITEM}
+            className={CLASSNAME.LOGIN_DROPDOWN.PROFILE_MENU_ITEM}
           >
             <LogOut />
             <span>{COMMON_TEXT.SIGNOUT}</span>

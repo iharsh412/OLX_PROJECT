@@ -1,3 +1,4 @@
+// components
 import {
   Description,
   TextField,
@@ -7,8 +8,10 @@ import {
   State,
   City,
 } from '../Post/Common/Common';
-import { CLASSNAME } from '../Post/Common/constant';
-import { COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { FormProps } from '../../../Helper/interface';
 
 export default function Form({
@@ -19,8 +22,10 @@ export default function Form({
 }: Readonly<FormProps>) {
   return (
     <>
-      <div className={CLASSNAME.WRAPPER}>
-        <h3 className={CLASSNAME.DETAIL_TEXT}>{COMMON_TEXT.INCLUDE_DETAIL}</h3>
+      <div className={CLASSNAME.POST_COMMON.WRAPPER}>
+        <h3 className={CLASSNAME.POST_COMMON.DETAIL_TEXT}>
+          {COMMON_TEXT.INCLUDE_DETAIL}
+        </h3>
         <TextField
           type="text"
           htmlFor="brand"
@@ -90,8 +95,8 @@ export default function Form({
       />
       <hr />
       {/* Location */}
-      <div className={CLASSNAME.LOCATION_WRAPPER}>
-        <h3 className={CLASSNAME.LOCATION_TEXT}>
+      <div className={CLASSNAME.POST_COMMON.LOCATION_WRAPPER}>
+        <h3 className={CLASSNAME.POST_COMMON.LOCATION_TEXT}>
           {COMMON_TEXT.CONFIRM_LOCATION}
         </h3>
         <State
@@ -118,8 +123,10 @@ export default function Form({
       </div>
       <hr />
       {/* Review Your Detail */}
-      <div className={CLASSNAME.SELLER_WRAPPER}>
-        <h3 className={CLASSNAME.SELLER_TEXT}>{COMMON_TEXT.REVIEW_DETAIL}</h3>
+      <div className={CLASSNAME.POST_COMMON.SELLER_WRAPPER}>
+        <h3 className={CLASSNAME.POST_COMMON.SELLER_TEXT}>
+          {COMMON_TEXT.REVIEW_DETAIL}
+        </h3>
         <TextField
           type="text"
           htmlFor="sellerName"

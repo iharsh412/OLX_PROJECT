@@ -1,13 +1,21 @@
+// libs
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './firebaseChatApp.css';
+
+// firebse
 import { collection, onSnapshot, query } from 'firebase/firestore';
 import { db } from '../../firebase';
+
+// redux
 import { RootState } from '../../Store';
-import { CLASSNAME } from './constant';
-import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
 import { setUserId } from '../../Store/ChatUser/index';
-import { COMMON_TEXT } from '../../Helper/constant';
+
+// components
+import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
+
+// constants
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
 
 export default function FirebaseChatApp() {
   const dispatch = useDispatch();
@@ -24,7 +32,7 @@ export default function FirebaseChatApp() {
     const queryMessages = query(messageRef);
 
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      let uniqueRooms: Set<string> = new Set();
+      const uniqueRooms: Set<string> = new Set();
       const counts: { [roomId: string]: number } = {};
       snapshot.forEach((doc) => {
         if (doc.data().room.split('_').includes(String(id))) {
@@ -49,17 +57,19 @@ export default function FirebaseChatApp() {
     <>
       {}
       {uniqueUsers.length === 0 ? (
-        <div className={CLASSNAME.NO_USERS}>{COMMON_TEXT.NO_CONVERSATIONS}</div>
+        <div className={CLASSNAME.FIREBASE.NO_USERS}>
+          {COMMON_TEXT.NO_CONVERSATIONS}
+        </div>
       ) : (
-        <div className={CLASSNAME.CHAT_APP}>
-          <div className={CLASSNAME.USER_WRAPPER}>
-            <div className={CLASSNAME.USER}>{COMMON_TEXT.USER}</div>
-            <div className={CLASSNAME.USER_LIST}>
+        <div className={CLASSNAME.FIREBASE.CHAT_APP}>
+          <div className={CLASSNAME.FIREBASE.USER_WRAPPER}>
+            <div className={CLASSNAME.FIREBASE.USER}>{COMMON_TEXT.USER}</div>
+            <div className={CLASSNAME.FIREBASE.USER_LIST}>
               {uniqueUsers.map((user) => (
                 <button
                   type="button"
                   key={user}
-                  className={`${CLASSNAME.USER_ITEM} ${user == roomId ? CLASSNAME.ACTIVE_USER : ''} `}
+                  className={`${CLASSNAME.FIREBASE.USER_ITEM} ${user == roomId ? CLASSNAME.FIREBASE.ACTIVE_USER : ''} `}
                   disabled={user == roomId}
                   onClick={() => {
                     setRoomId(user);
@@ -72,7 +82,7 @@ export default function FirebaseChatApp() {
                 >
                   {user}
                   {user !== roomId && unreadCounts[user] > 0 && (
-                    <span className={CLASSNAME.UNREAD}>
+                    <span className={CLASSNAME.FIREBASE.UNREAD}>
                       {unreadCounts[user]}
                     </span>
                   )}

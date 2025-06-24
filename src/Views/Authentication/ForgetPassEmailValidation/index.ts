@@ -1,1 +1,1 @@
-export {default}  from "./ForgetPassEmailValidation"
+export { default } from './ForgetPassEmailValidation';

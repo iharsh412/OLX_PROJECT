@@ -1,18 +1,28 @@
+// libs
 import { useNavigate, useParams } from 'react-router-dom';
-import './productDetail.css';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+
+// components
 import ImageTransition from '../../Components/CustomComponents/ProductDetailImageTransition';
-import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
+import ErrorSection from '../../Components/Atom/ErrorSection';
 import LocationMap from '../../Components/CustomComponents/LocationMap';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
+import Loader from '../../Components/Atom/Loader';
+
+// api
+import { useGetProductsDetailQuery } from '../../Services/Api/module/imageApi';
+
+// constants
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
+import { ROUTES_CONFIG } from '../../Helper/Routes';
+
+// redux
 import { RootState } from '../../Store';
 import { setUserId } from '../../Store/ChatUser';
-import Loader from '../../Components/Atom/Loader';
-import ErrorSection from '../../Components/Atom/ErrorSection';
+
+// utils
 import { getDaysFromNow } from '../../Helper/function';
 
 export default function ProductDetail() {
@@ -46,55 +56,65 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.PRODUCT_DETAIL.WRAPPER}>
       {/* image transition / detail / description */}
-      <div className={CLASSNAME.IMAGE_DETAIL_DESCRIPTION}>
+      <div className={CLASSNAME.PRODUCT_DETAIL.IMAGE_DETAIL_DESCRIPTION}>
         {/* image section */}
-        <div className={CLASSNAME.IMAGE}>
+        <div className={CLASSNAME.PRODUCT_DETAIL.IMAGE}>
           <ImageTransition images={product?.images} />
         </div>
         {/* detail / description section */}
-        <div className={CLASSNAME.DETAIL_DESCRIPTION}>
+        <div className={CLASSNAME.PRODUCT_DETAIL.DETAIL_DESCRIPTION}>
           {/* detail section */}
-          <div className={CLASSNAME.DETAIL}>
-            <span className={CLASSNAME.DETAIL_TEXT}>{COMMON_TEXT.DETAIL}</span>
-            <div className={CLASSNAME.BRAND}>
-              <span className={CLASSNAME.BRAND_TEXT}>{COMMON_TEXT.TITLE}</span>
-              <span className={CLASSNAME.BRAND_VALUE}>{product?.name}</span>
+          <div className={CLASSNAME.PRODUCT_DETAIL.DETAIL}>
+            <span className={CLASSNAME.PRODUCT_DETAIL.DETAIL_TEXT}>
+              {COMMON_TEXT.DETAIL}
+            </span>
+            <div className={CLASSNAME.PRODUCT_DETAIL.BRAND}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_TEXT}>
+                {COMMON_TEXT.TITLE}
+              </span>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_VALUE}>
+                {product?.name}
+              </span>
             </div>
           </div>
           <hr />
           {/* description section */}
-          <div className={CLASSNAME.DESCRIPTION}>
-            <span className={CLASSNAME.DESCRIPTION_TITLE}>
+          <div className={CLASSNAME.PRODUCT_DETAIL.DESCRIPTION}>
+            <span className={CLASSNAME.PRODUCT_DETAIL.DESCRIPTION_TITLE}>
               {COMMON_TEXT.DESCRIPTION}
             </span>
-            <span className={CLASSNAME.DESCRITION_VALUE}>
+            <span className={CLASSNAME.PRODUCT_DETAIL.DESCRITION_VALUE}>
               {product?.description}
             </span>
           </div>
         </div>
       </div>
       {/*  price / chat/ map section */}
-      <div className={CLASSNAME.PRICE_CHAT_WRAPPER}>
+      <div className={CLASSNAME.PRODUCT_DETAIL.PRICE_CHAT_WRAPPER}>
         {/* price section */}
-        <div className={CLASSNAME.PRICE}>
-          <span className={CLASSNAME.PRICE_VALUE}>₹ {product?.price}</span>
-          <span className={CLASSNAME.PRICE_TEXT}>
+        <div className={CLASSNAME.PRODUCT_DETAIL.PRICE}>
+          <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_VALUE}>
+            ₹ {product?.price}
+          </span>
+          <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_TEXT}>
             {product?.status} {COMMON_TEXT.PRODUCT}
           </span>
-          <div className={CLASSNAME.PRICE_TAG}>
-            <span className={CLASSNAME.PRICE_PLACE}>{product?.city}</span>
-            <span className={CLASSNAME.PRICE_PLACE}>
+          <div className={CLASSNAME.PRODUCT_DETAIL.PRICE_TAG}>
+            <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_PLACE}>
+              {product?.city}
+            </span>
+            <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_PLACE}>
               {getDaysFromNow(product?.created_at)}
             </span>
           </div>
         </div>
         {/*  chat section */}
         {uid !== product.user && (
-          <div className={CLASSNAME.CHAT}>
-            <div className={CLASSNAME.CHAT_TEXT_PHOTO}>
-              <span className={CLASSNAME.CHAT_PHOTO}>
+          <div className={CLASSNAME.PRODUCT_DETAIL.CHAT}>
+            <div className={CLASSNAME.PRODUCT_DETAIL.CHAT_TEXT_PHOTO}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.CHAT_PHOTO}>
                 <img
                   src={`${
                     import.meta.env.VITE_BASE_URL
@@ -102,14 +122,14 @@ export default function ProductDetail() {
                   alt={COMMON_TEXT.IMG}
                 />
               </span>
-              <span className={CLASSNAME.CHAT_TEXT}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.CHAT_TEXT}>
                 {COMMON_TEXT.OLX_INDIA}
               </span>
             </div>
             <button
               type="button"
               title={COMMON_TEXT.CHAT}
-              className={CLASSNAME.CHAT_BUTTON}
+              className={CLASSNAME.PRODUCT_DETAIL.CHAT_BUTTON}
               onClick={handleClickChat}
             >
               {COMMON_TEXT.CHAT_WITH_SELLER}
@@ -117,14 +137,16 @@ export default function ProductDetail() {
           </div>
         )}
         {/* post section */}
-        <div className={CLASSNAME.POST}>
-          <span className={CLASSNAME.POST_TEXT}>{COMMON_TEXT.POSTED_IN}</span>
-          <span className={CLASSNAME.POST_VALUE}>
+        <div className={CLASSNAME.PRODUCT_DETAIL.POST}>
+          <span className={CLASSNAME.PRODUCT_DETAIL.POST_TEXT}>
+            {COMMON_TEXT.POSTED_IN}
+          </span>
+          <span className={CLASSNAME.PRODUCT_DETAIL.POST_VALUE}>
             {product?.state} , {product?.city || product?.district}
           </span>
         </div>
         {/* map section */}
-        <div className={CLASSNAME.MAP}>
+        <div className={CLASSNAME.PRODUCT_DETAIL.MAP}>
           <LocationMap
             cityName={product?.city}
             mapHeadingText={COMMON_TEXT.POSTED_IN}

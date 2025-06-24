@@ -1,18 +1,26 @@
+// libs
 import { useEffect, useState } from 'react';
-import './productImage.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { Heart } from 'lucide-react';
-import ICONS from '../../../../assets';
+
+// api
 import { usePostProductsMutation } from '../../../../Services/Api/module/imageApi';
-import { COMMON_TEXT } from '../../../../Helper/constant';
+
+// constants
+import ICONS from '../../../../assets';
+import { COMMON_TEXT } from '../../../../Helper/text';
 import { ImageProps } from '../../../../Helper/interface';
-import { RootState } from '../../../../Store';
-import { CLASSNAME } from './constant';
+import { ROUTES_CONFIG } from '../../../../Helper/Routes';
+import CLASSNAME from '../../../../Helper/classes';
+
+// utils
 import { getDaysFromNow } from '../../../../Helper/function';
+
+// redux
+import { RootState } from '../../../../Store';
 import { setWishlistCount } from '../../../../Store/WishlistCount';
-import { ROUTES_CONFIG } from '../../../../Shared/Constants';
 
 export default function Images({
   data,
@@ -66,17 +74,17 @@ export default function Images({
 
   return (
     <button
-      className={CLASSNAME.WRAPPER}
+      className={CLASSNAME.PRODUCT_IMAGE.WRAPPER}
       onClick={onClickImages}
       type="button"
       tabIndex={0}
     >
-      <div className={CLASSNAME.IMAGE_WRAPPER}>
+      <div className={CLASSNAME.PRODUCT_IMAGE.IMAGE_WRAPPER}>
         {/* image section */}
         <img
           src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
           alt={data.name}
-          className={CLASSNAME.IMAGE}
+          className={CLASSNAME.PRODUCT_IMAGE.IMAGE}
           loading="lazy"
         />
         {/* wishlist section */}
@@ -84,7 +92,7 @@ export default function Images({
           title={COMMON_TEXT.BUTTON}
           type="button"
           onClick={onClickWishlist}
-          className={CLASSNAME.CART_WRAPPER}
+          className={CLASSNAME.PRODUCT_IMAGE.CART_WRAPPER}
           disabled={isLoading}
         >
           <Heart
@@ -94,16 +102,16 @@ export default function Images({
         </button>
       </div>
       {/* content */}
-      <div className={CLASSNAME.CONTENT}>
-        <span className={CLASSNAME.COST}>
+      <div className={CLASSNAME.PRODUCT_IMAGE.CONTENT}>
+        <span className={CLASSNAME.PRODUCT_IMAGE.COST}>
           <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
         </span>
-        <span className={CLASSNAME.NAME}>{data.name}</span>
-        <div className={CLASSNAME.PLACE_DATE_WRAPPER}>
-          <span className={CLASSNAME.PLACE}>
+        <span className={CLASSNAME.PRODUCT_IMAGE.NAME}>{data.name}</span>
+        <div className={CLASSNAME.PRODUCT_IMAGE.PLACE_DATE_WRAPPER}>
+          <span className={CLASSNAME.PRODUCT_IMAGE.PLACE}>
             {data.city},{data.state}
           </span>
-          <span className={CLASSNAME.DATE}>
+          <span className={CLASSNAME.PRODUCT_IMAGE.DATE}>
             {typeof data?.created_at === 'string'
               ? getDaysFromNow(data.created_at)
               : ''}

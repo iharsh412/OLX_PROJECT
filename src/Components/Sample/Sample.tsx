@@ -1,16 +1,22 @@
+// libs
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+// api
 import { usePostCategoryProductsMutation } from '../../Services/Api/module/imageApi';
-import './sample.css';
+
+// components
 import ImagesLayout from '../CustomComponents/ImageLayout/ProductImage';
-import { COMMON_TEXT } from '../../Helper/constant';
+import Schemer from '../Atom/Schemer';
+import Pagination from '../Atom/Pagination/Pagination';
+import Filter from '../Atom/Filter';
+import ErrorSection from '../Atom/ErrorSection';
+
+// constants
+import { COMMON_TEXT } from '../../Helper/text';
 import { SampleData, ResponseData, Product } from '../../Helper/interface';
 import ICONS from '../../assets';
-import { CLASSNAME } from './constant';
-import Pagination from '../Atom/Pagination/Pagination';
-import ErrorSection from '../Atom/ErrorSection';
-import Filter from '../Atom/Filter';
-import Schemer from '../Atom/Schemer';
+import CLASSNAME from '../../Helper/classes';
 
 export default function Sample() {
   const limit = 8;
@@ -76,9 +82,9 @@ export default function Sample() {
   }, [page]);
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.SAMPLE.WRAPPER}>
       {/* TEXT SECTION */}
-      <div className={CLASSNAME.TEXT_SECTION}>
+      <div className={CLASSNAME.SAMPLE.TEXT_SECTION}>
         <h3>
           Buy & Sell Used{' '}
           {category === 'multiwheelvehicles'
@@ -88,15 +94,15 @@ export default function Sample() {
         </h3>
 
         {/* SELECTED OPTIONS */}
-        <div className={CLASSNAME.SELECTED_OPTION}>
+        <div className={CLASSNAME.SAMPLE.SELECTED_OPTION}>
           {sampleData.subcategory && (
-            <div className={CLASSNAME.SELECTED_OPTION_WRAPPER}>
-              <span className={CLASSNAME.SELECTED_OPTION_TEXT}>
+            <div className={CLASSNAME.SAMPLE.SELECTED_OPTION_WRAPPER}>
+              <span className={CLASSNAME.SAMPLE.SELECTED_OPTION_TEXT}>
                 {sampleData.subcategory}
               </span>
               <button
                 type="button"
-                className={CLASSNAME.SELECTED_OPTION_CROSS}
+                className={CLASSNAME.SAMPLE.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({ ...sampleData, subcategory: '' });
                 }}
@@ -107,11 +113,16 @@ export default function Sample() {
           )}
 
           {sampleData.brand.map((brand: string) => (
-            <div className={CLASSNAME.SELECTED_OPTION_WRAPPER} key={brand}>
-              <span className={CLASSNAME.SELECTED_OPTION_TEXT}>{brand}</span>
+            <div
+              className={CLASSNAME.SAMPLE.SELECTED_OPTION_WRAPPER}
+              key={brand}
+            >
+              <span className={CLASSNAME.SAMPLE.SELECTED_OPTION_TEXT}>
+                {brand}
+              </span>
               <button
                 type="button"
-                className={CLASSNAME.SELECTED_OPTION_CROSS}
+                className={CLASSNAME.SAMPLE.SELECTED_OPTION_CROSS}
                 onClick={() => {
                   setSampleData({
                     ...sampleData,
@@ -127,7 +138,7 @@ export default function Sample() {
       </div>
 
       {/* MAIN SECTION */}
-      <div className={CLASSNAME.MAIN_SECTION_WRAPPER}>
+      <div className={CLASSNAME.SAMPLE.MAIN_SECTION_WRAPPER}>
         {/* FILTER SECTION */}
         <Filter
           category={category}
@@ -138,9 +149,9 @@ export default function Sample() {
           setSampleData={setSampleData}
         />
         {/* Image Section */}
-        <div className={CLASSNAME.MAIN_IMAGE_SECTION_WRAPPER}>
+        <div className={CLASSNAME.SAMPLE.MAIN_IMAGE_SECTION_WRAPPER}>
           {isError && <ErrorSection />}
-          <div className={CLASSNAME.MAIN_SECTION_IMAGE}>
+          <div className={CLASSNAME.SAMPLE.MAIN_SECTION_IMAGE}>
             {isLoading &&
               Array.from({ length: 8 }, (_, i) => <Schemer key={i} />)}
             {!isLoading &&
@@ -150,7 +161,7 @@ export default function Sample() {
                 <ImagesLayout key={product.id} data={product} />
               ))}
             {!isLoading && response && response?.products?.length === 0 && (
-              <h3 className={CLASSNAME.NO_PRODUCTS}>
+              <h3 className={CLASSNAME.SAMPLE.NO_PRODUCTS}>
                 {COMMON_TEXT.NO_PRODUCT_AVAILABLE}
               </h3>
             )}

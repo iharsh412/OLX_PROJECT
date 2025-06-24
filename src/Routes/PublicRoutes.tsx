@@ -1,7 +1,8 @@
+// libs
 import { Navigate } from 'react-router-dom';
-import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Shared/Constants';
+
+// components
 import Dashboard from '../Views/Dashboard';
-import { CustomRouter } from './RootRoutes';
 import HomeLayout from '../Views/Home';
 import Login from '../Views/Authentication/LoginSection';
 import TypeSection from '../Views/TypeSection';
@@ -11,6 +12,10 @@ import Signin from '../Views/Authentication/Signin';
 import ForgetPass from '../Views/Authentication/ForgetPassEmailValidation';
 import Verification from '../Views/Authentication/Verification';
 import NewPass from '../Views/Authentication/NewPass';
+
+// constants
+import { ROUTES_CONFIG, WILDCARD_ROUTES } from '../Helper/Routes';
+import { CustomRouter } from './RootRoutes';
 
 // eslint-disable-next-line import/prefer-default-export
 export const PUBLIC_ROUTES: Array<CustomRouter> = [

@@ -1,7 +1,12 @@
+// libs
 import { useSelector } from 'react-redux';
 import { RootState } from '../../Store';
-import { CLASSNAME } from '../FirebaseChatApp/constant';
+
+// components
 import MessageSection from '../../Components/CustomComponents/ChatMsgSection/index';
+
+// constants
+import CLASSNAME from '../../Helper/classes';
 
 export default function FirebaseSingleChatApp() {
   const { userId } = useSelector((state: RootState) => state.chatUser);
@@ -12,7 +17,7 @@ export default function FirebaseSingleChatApp() {
       : '';
 
   return (
-    <div className={CLASSNAME.CHAT_APP}>
+    <div className={CLASSNAME.FIREBASE.CHAT_APP}>
       <MessageSection roomId={roomId} />
     </div>
   );

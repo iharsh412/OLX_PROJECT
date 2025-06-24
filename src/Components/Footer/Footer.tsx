@@ -1,7 +1,8 @@
-import './footer.css';
+// constants
 import ICONS from '../../assets';
-import { CLASSNAME, LINK } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
+import LINK from './constant';
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
 
 export default function Footer() {
   const handleClick = (link: string) => {
@@ -9,70 +10,70 @@ export default function Footer() {
   };
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
-      <div className={CLASSNAME.CHILD}>
-        <div className={CLASSNAME.IMAGES_LIST}>
-          <button className={CLASSNAME.CAR_TRADE_TECH} type="button">
+    <div className={CLASSNAME.FOOTER.WRAPPER}>
+      <div className={CLASSNAME.FOOTER.CHILD}>
+        <div className={CLASSNAME.FOOTER.IMAGES_LIST}>
+          <button className={CLASSNAME.FOOTER.CAR_TRADE_TECH} type="button">
             <img src={ICONS.carTradeTech} alt={COMMON_TEXT.IMG} />
           </button>
           <button
-            className={CLASSNAME.OLX}
+            className={CLASSNAME.FOOTER.OLX}
             type="button"
             onClick={() => handleClick(LINK.OLX)}
           >
             <img
-              className={CLASSNAME.IMAGES}
+              className={CLASSNAME.FOOTER.IMAGES}
               src={ICONS.OlxWhite}
               alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className={CLASSNAME.CARWALE}
+            className={CLASSNAME.FOOTER.CARWALE}
             type="button"
             onClick={() => handleClick(LINK.CARWALE)}
           >
             <img
-              className={CLASSNAME.IMAGES}
+              className={CLASSNAME.FOOTER.IMAGES}
               src={ICONS.carWale}
               alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className={CLASSNAME.BIKEWALE}
+            className={CLASSNAME.FOOTER.BIKEWALE}
             type="button"
             onClick={() => handleClick(LINK.BIKEWALE)}
           >
             <img
-              className={CLASSNAME.IMAGES}
+              className={CLASSNAME.FOOTER.IMAGES}
               src={ICONS.bikeWale}
               alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className={CLASSNAME.CAR_TRADE}
+            className={CLASSNAME.FOOTER.CAR_TRADE}
             type="button"
             onClick={() => handleClick(LINK.CARTRADE)}
           >
             <img
-              className={CLASSNAME.IMAGES}
+              className={CLASSNAME.FOOTER.IMAGES}
               src={ICONS.carTrade}
               alt={COMMON_TEXT.IMG}
             />
           </button>
           <button
-            className={CLASSNAME.MOBILITY_OUTLOOK}
+            className={CLASSNAME.FOOTER.MOBILITY_OUTLOOK}
             type="button"
             onClick={() => handleClick(LINK.MOBILITY_OUTLOOK)}
           >
             <img
-              className={CLASSNAME.IMAGES}
+              className={CLASSNAME.FOOTER.IMAGES}
               src={ICONS.mobilityOutlook}
               alt={COMMON_TEXT.IMG}
             />
           </button>
         </div>
-        <div className={CLASSNAME.SECTION_TEXT}>
-          <span className={CLASSNAME.ALL_RIGHT_RESERVED}>
+        <div className={CLASSNAME.FOOTER.SECTION_TEXT}>
+          <span className={CLASSNAME.FOOTER.ALL_RIGHT_RESERVED}>
             {COMMON_TEXT.ALL_RIGHT_RESERVED}
           </span>
         </div>

@@ -1,27 +1,36 @@
+// libs
 import { Formik } from 'formik';
-import './editProfile.css';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { CLASSNAME, validationSchema, initialValues } from './constant';
-import {
-  Description,
-  TextField,
-  PhoneNumber,
-} from '../../Components/CustomComponents/Post/Common/Common';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
-import ICONS from '../../assets';
-import { COMMON_TEXT } from '../../Helper/constant';
-import { EditProfileProps } from '../../Helper/interface';
+
+// api
 import {
   useGetUserInfoQuery,
   usePostEditProfileDataMutation,
   usePostEmailValidMutation,
 } from '../../Services/Api/module/imageApi';
-import { updateUsername } from '../../Store/Common';
-import Loader from '../../Components/Atom/Loader';
+
+// components
+import {
+  Description,
+  TextField,
+  PhoneNumber,
+} from '../../Components/CustomComponents/Post/Common/Common';
 import ErrorSection from '../../Components/Atom/ErrorSection';
+import Loader from '../../Components/Atom/Loader';
+
+// constants
+import { ROUTES_CONFIG } from '../../Helper/Routes';
+import ICONS from '../../assets';
+import { COMMON_TEXT } from '../../Helper/text';
+import { EditProfileProps } from '../../Helper/interface';
+import { validationSchema, initialValues } from './constant';
+import CLASSNAME from '../../Helper/classes';
+
+// redux
+import { updateUsername } from '../../Store/Common';
 
 export default function EditProfile() {
   const { data, isLoading, isError } = useGetUserInfoQuery({});
@@ -83,20 +92,23 @@ export default function EditProfile() {
         const share = { handleChange, handleBlur, setFieldValue };
 
         return (
-          <div className={CLASSNAME.WRAPPER}>
+          <div className={CLASSNAME.EDIT_PROFILE.WRAPPER}>
             {/* header wrapper */}
-            <div className={CLASSNAME.HEADER_WRAPPER}>
+            <div className={CLASSNAME.EDIT_PROFILE.HEADER_WRAPPER}>
               {/* cross */}
-              <Link className={CLASSNAME.CROSS} to={ROUTES_CONFIG.PROFILE.path}>
+              <Link
+                className={CLASSNAME.EDIT_PROFILE.CROSS}
+                to={ROUTES_CONFIG.PROFILE.path}
+              >
                 <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
               </Link>
               {/* text */}
-              <h3 className={CLASSNAME.EDIT_TEXT}>
+              <h3 className={CLASSNAME.EDIT_PROFILE.EDIT_TEXT}>
                 {COMMON_TEXT.EDIT_PROFILE}
               </h3>
               {/* view profile */}
               <Link
-                className={CLASSNAME.VIEW_PROFILE}
+                className={CLASSNAME.EDIT_PROFILE.VIEW_PROFILE}
                 to={ROUTES_CONFIG.PROFILE.path}
               />
             </div>
@@ -147,7 +159,7 @@ export default function EditProfile() {
             <button
               type="submit"
               onClick={() => handleSubmit()}
-              className={CLASSNAME.POST}
+              className={CLASSNAME.EDIT_PROFILE.POST}
               disabled={isSubmitting}
             >
               {isSubmitting ? COMMON_TEXT.EDITING : COMMON_TEXT.EDIT}

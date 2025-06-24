@@ -13,4 +13,3 @@ export const OlxWhite =
 export const playstore =
   'https://statics.olx.in/external/base/img/playstore.png';
 export const appstore = 'https://statics.olx.in/external/base/img/appstore.png';
-

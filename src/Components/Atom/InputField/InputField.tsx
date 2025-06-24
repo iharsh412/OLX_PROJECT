@@ -1,5 +1,9 @@
+// libs
 import { ErrorMessage } from 'formik';
-import { CLASSNAME, COUNT } from '../../CustomComponents/Post/Common/constant';
+
+// constants
+import { COUNT } from '../../CustomComponents/Post/Common/constant';
+import CLASSNAME from '../../../Helper/classes';
 import { InputFieldProps } from '../../../Helper/interface';
 
 export default function InputField({
@@ -16,9 +20,9 @@ export default function InputField({
   setFieldValue,
 }: Readonly<InputFieldProps>) {
   return (
-    <div className={CLASSNAME.CONTAINER}>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+    <div className={CLASSNAME.POST_COMMON.CONTAINER}>
+      <div className={CLASSNAME.POST_COMMON.LABEL_WRAPPER}>
+        <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
           {label}{' '}
           {compulsory && (
             <div
@@ -51,15 +55,15 @@ export default function InputField({
         onBlur={handleBlur}
         value={value as string}
         title={htmlFor}
-        className={`${CLASSNAME.INPUT} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
+        className={`${CLASSNAME.POST_COMMON.INPUT} ${
+          err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
         }`}
       />
 
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </div>
   );

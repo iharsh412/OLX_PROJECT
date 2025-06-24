@@ -1,17 +1,18 @@
-import './promotedContent.css';
-import { CLASSNAME, CONTENTS } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
+// constants
+import CONTENTS from './constant';
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
 
 export default function PromotedContent() {
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.PROMOTED_CONTENT.WRAPPER}>
       <h4>{COMMON_TEXT.PROMOTED_CONTENT}</h4>
-      <div className={CLASSNAME.CONTENT}>
+      <div className={CLASSNAME.PROMOTED_CONTENT.CONTENT}>
         {CONTENTS.map((data) => (
           <button
             type="button"
             key={data.id}
-            className={CLASSNAME.CONTAINER}
+            className={CLASSNAME.PROMOTED_CONTENT.CONTAINER}
             onClick={() => window.open(data.link || '')}
           >
             {data?.type === 'youtube' && (
@@ -21,13 +22,17 @@ export default function PromotedContent() {
                   title={data.label || COMMON_TEXT.VIDEO_CONTENT}
                   allow="autoplay; encrypted-media"
                 />
-                <span className={CLASSNAME.LABEL}>{data.label}</span>
+                <span className={CLASSNAME.PROMOTED_CONTENT.LABEL}>
+                  {data.label}
+                </span>
               </>
             )}
             {data.type === 'image' && (
               <>
                 <img src={data.src} alt={COMMON_TEXT.IMG} />
-                <span className={CLASSNAME.LABEL}>{data.label}</span>
+                <span className={CLASSNAME.PROMOTED_CONTENT.LABEL}>
+                  {data.label}
+                </span>
               </>
             )}
             {data?.type === 'video' && (

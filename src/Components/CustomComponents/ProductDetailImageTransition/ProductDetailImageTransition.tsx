@@ -1,8 +1,10 @@
+// libs
 import { useState } from 'react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
-import './productDetailImageTransition.css';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { ProductDetailProps } from '../../../Helper/interface';
 
 function ProductDetailImageTransition({
@@ -28,44 +30,46 @@ function ProductDetailImageTransition({
   };
 
   return (
-    <div className={CLASSNAME.IMAGE_SECTION}>
+    <div className={CLASSNAME.PRODUCT_DETAIL_IMG.IMAGE_SECTION}>
       {imageArray.map((image, index) => (
         <div
           key={image}
-          className={`${CLASSNAME.IMAGE_SLIDE} ${
-            index === currentIndex ? CLASSNAME.ACTIVE : ''
+          className={`${CLASSNAME.PRODUCT_DETAIL_IMG.IMAGE_SLIDE} ${
+            index === currentIndex ? CLASSNAME.PRODUCT_DETAIL_IMG.ACTIVE : ''
           }`}
         >
           <img
             src={`${import.meta.env.VITE_BASE_URL}${image}`}
             alt={COMMON_TEXT.IMG}
-            className={CLASSNAME.ACTIVE_IMAGES}
+            className={CLASSNAME.PRODUCT_DETAIL_IMG.ACTIVE_IMAGES}
           />
         </div>
       ))}
 
       <button
         type="button"
-        className={`${CLASSNAME.BUTTON} ${CLASSNAME.PREV}`}
+        className={`${CLASSNAME.PRODUCT_DETAIL_IMG.BUTTON} ${CLASSNAME.PRODUCT_DETAIL_IMG.PREV}`}
         onClick={prevSlide}
       >
         <ChevronLeft size={30} />
       </button>
       <button
         type="button"
-        className={`${CLASSNAME.BUTTON} ${CLASSNAME.NEXT}`}
+        className={`${CLASSNAME.PRODUCT_DETAIL_IMG.BUTTON} ${CLASSNAME.PRODUCT_DETAIL_IMG.NEXT}`}
         onClick={nextSlide}
       >
         <ChevronRight size={30} />
       </button>
 
-      <div className={CLASSNAME.DOTS_CONTAINER}>
+      <div className={CLASSNAME.PRODUCT_DETAIL_IMG.DOTS_CONTAINER}>
         {imageArray.map((image, index) => (
           <button
             type="button"
             key={`loginDots${index + 1}`}
-            className={`${CLASSNAME.DOTS} ${
-              currentIndex === index ? CLASSNAME.ACTIVE_DOTS : ''
+            className={`${CLASSNAME.PRODUCT_DETAIL_IMG.DOTS} ${
+              currentIndex === index
+                ? CLASSNAME.PRODUCT_DETAIL_IMG.ACTIVE_DOTS
+                : ''
             }`}
             onClick={() => goToSlide(index)}
           >

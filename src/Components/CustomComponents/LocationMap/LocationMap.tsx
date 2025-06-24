@@ -1,7 +1,9 @@
+// libs
 import { useEffect, useState } from 'react';
-import './locationMap.css';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { LocationMapProps } from '../../../Helper/interface';
 
 export default function LocationMap({
@@ -41,10 +43,12 @@ export default function LocationMap({
   const mapSrc = `https://www.openstreetmap.org/export/embed.html?bbox=${bbox}&layer=mapnik&marker=${lat},${lon}`;
 
   return (
-    <div className={CLASSNAME.CONTAINER}>
-      {mapHeadingText && <h5 className={CLASSNAME.TEXT}>{mapHeadingText}</h5>}
+    <div className={CLASSNAME.LOCATION.CONTAINER}>
+      {mapHeadingText && (
+        <h5 className={CLASSNAME.LOCATION.TEXT}>{mapHeadingText}</h5>
+      )}
       <iframe
-        className={CLASSNAME.IFRAMES}
+        className={CLASSNAME.LOCATION.IFRAMES}
         title={`${cityName}`}
         src={mapSrc}
       />

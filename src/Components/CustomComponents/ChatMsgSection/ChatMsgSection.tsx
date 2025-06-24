@@ -1,4 +1,9 @@
+// libs
 import { useEffect, useRef, useState } from 'react';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+
+// firebase
 import {
   addDoc,
   collection,
@@ -10,13 +15,15 @@ import {
   doc,
   updateDoc,
 } from 'firebase/firestore';
-import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 import { db } from '../../../firebase';
+
+// redux
 import { RootState } from '../../../Store';
-import { CLASSNAME } from '../../../Views/FirebaseChatApp/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
 import { ChatMsgSectionProps, MessageProps } from '../../../Helper/interface';
-import { COMMON_TEXT } from '../../../Helper/constant';
+import { COMMON_TEXT } from '../../../Helper/text';
 
 export default function ChatMsgSection({
   roomId,
@@ -144,10 +151,10 @@ export default function ChatMsgSection({
   }, [messages]);
 
   return (
-    <div className={CLASSNAME.MESSAGE_WRAPPER}>
-      <div className={CLASSNAME.MESSAGE}>{COMMON_TEXT.MESSAGES}</div>
+    <div className={CLASSNAME.FIREBASE.MESSAGE_WRAPPER}>
+      <div className={CLASSNAME.FIREBASE.MESSAGE}>{COMMON_TEXT.MESSAGES}</div>
       <div
-        className={CLASSNAME.MESSAGE_LIST}
+        className={CLASSNAME.FIREBASE.MESSAGE_LIST}
         ref={(el) => {
           if (el) {
             // Type assertion to bypass read-only restriction
@@ -158,18 +165,22 @@ export default function ChatMsgSection({
         }}
       >
         {messages.length === 0 ? (
-          <div className={CLASSNAME.NO_MSG}>{COMMON_TEXT.NO_MSG}</div>
+          <div className={CLASSNAME.FIREBASE.NO_MSG}>{COMMON_TEXT.NO_MSG}</div>
         ) : (
           messages.map((msg) => (
             <div
               key={msg.id}
               id={msg.id}
-              className={`${CLASSNAME.MESSAGE_ITEM} ${
-                msg.user === username ? CLASSNAME.SENT : CLASSNAME.RECEIVED
+              className={`${CLASSNAME.FIREBASE.MESSAGE_ITEM} ${
+                msg.user === username
+                  ? CLASSNAME.FIREBASE.SENT
+                  : CLASSNAME.FIREBASE.RECEIVED
               }`}
             >
-              <span className={CLASSNAME.MESSAGE_TEXT}>{msg.text}</span>
-              <span className={CLASSNAME.MESSAGE_TIME}>
+              <span className={CLASSNAME.FIREBASE.MESSAGE_TEXT}>
+                {msg.text}
+              </span>
+              <span className={CLASSNAME.FIREBASE.MESSAGE_TIME}>
                 {msg.createdAt
                   ? new Date(
                       (msg.createdAt as any).seconds * 1000
@@ -180,7 +191,7 @@ export default function ChatMsgSection({
                   : ''}
                 {msg.user === username && (
                   <span
-                    className={`${CLASSNAME.TICK_STATUS} ${msg.seen ? CLASSNAME.SEEN : ''}`}
+                    className={`${CLASSNAME.FIREBASE.TICK_STATUS} ${msg.seen ? CLASSNAME.FIREBASE.SEEN : ''}`}
                   >
                     {msg.seen ? '✓✓' : '✓'}
                   </span>
@@ -192,9 +203,9 @@ export default function ChatMsgSection({
       </div>
       {/* send button and input wrapper  */}
       {roomId !== '' && (
-        <div className={CLASSNAME.INPUT_WRAPPER}>
+        <div className={CLASSNAME.FIREBASE.INPUT_WRAPPER}>
           <input
-            className={CLASSNAME.MESSAGE_INPUT}
+            className={CLASSNAME.FIREBASE.MESSAGE_INPUT}
             type="text"
             placeholder={COMMON_TEXT.TYPE_MESSAGE}
             value={newmsg}
@@ -205,7 +216,7 @@ export default function ChatMsgSection({
           />
           <button
             type="button"
-            className={CLASSNAME.SEND_BUTTON}
+            className={CLASSNAME.FIREBASE.SEND_BUTTON}
             onClick={handleSendMessage}
           >
             {COMMON_TEXT.SEND}

@@ -1,17 +1,23 @@
+// libs
 import { Formik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import './postForm.css';
-import { validationSchema, initialValues } from './constant';
-import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { CLASSNAME } from '../Common/constant';
+
+// components
 import Form from '../../Form';
-import { COMMON_TEXT } from '../../../../Helper/constant';
+
+// api
+import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
+
+// constants
+import { validationSchema, initialValues } from './constant';
+import { ROUTES_CONFIG } from '../../../../Helper/Routes';
+import CLASSNAME from '../../../../Helper/classes';
+import { COMMON_TEXT } from '../../../../Helper/text';
 import { InitialValuesProps } from '../../../../Helper/interface';
 
-export default function CarForm() {
+export default function PostForm() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
@@ -89,7 +95,7 @@ export default function CarForm() {
             <button
               type="submit"
               onClick={() => handleSubmit()}
-              className={CLASSNAME.POST}
+              className={CLASSNAME.POST_COMMON.POST}
               disabled={isSubmitting}
             >
               {(() => {
