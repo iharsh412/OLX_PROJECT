@@ -14,8 +14,8 @@ import NewPass from '../Views/Authentication/NewPass';
 import MyAds from '../Views/UsersAds';
 import Profile from '../Views/Profile';
 import EditProfile from '../Views/EditProfile';
-import FirebaseChatApp from '../Views/FirebaseChatApp';
-import SingleChatApp from '../Views/FirebaseSingleChat';
+import FirebaseChatApp from '../Views/ChatMulti';
+import SingleChatApp from '../Views/ChatSingle';
 
 // constants
 import { CustomRouter } from './RootRoutes';

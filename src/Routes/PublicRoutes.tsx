@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 // components
 import Dashboard from '../Views/Dashboard';
 import HomeLayout from '../Views/Home';
-import Login from '../Views/Authentication/LoginSection';
+import Login from '../Views/Authentication/AuthenticationPage';
 import TypeSection from '../Views/TypeSection';
 import Signup from '../Views/Authentication/Signup';
 import ProductDetail from '../Views/ProductDetail';
