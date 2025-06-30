@@ -1,12 +1,5 @@
 import * as Yup from 'yup';
-export const CLASSNAME = {
-  WRAPPER: 'edit-profile-wrapper',
-  HEADER_WRAPPER: 'edit-profile-header-wrapper',
-  EDIT_TEXT: 'edit-profile-text',
-  POST: 'edit-profile-edit',
-  CROSS: 'edit-profile-cross',
-  VIEW_PROFILE: 'edit-profile-view-profile',
-};
+
 export const validationSchema = Yup.object().shape({
   phonenumber: Yup.string().matches(
     /^\d{10}$/,
@@ -27,6 +20,6 @@ export const validationSchema = Yup.object().shape({
 export const initialValues = {
   username: '',
   phonenumber: '',
-  ['about me']: '',
+  'about me': '',
   email: '',
 };

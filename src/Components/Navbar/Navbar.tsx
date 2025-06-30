@@ -1,19 +1,29 @@
-import './navbar.css';
+// libs
 import { toast } from 'react-toastify';
-import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { useState, useRef, useEffect } from 'react';
-import ICONS from '../../assets';
-import { RootState } from '../../Store';
-import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
-import Item from '../CustomComponents/ItemsSelector';
-import ProfileUpDown from '../CustomComponents/LoginUpDown';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
-import { setWishlistCount } from '../../Store/WishlistCount';
+import { useSelector, useDispatch } from 'react-redux';
+
+// firebase
+import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
+
+// components
+import ProfileUpDown from '../CustomComponents/LoginUpDown';
+import Item from '../CustomComponents/ItemsSelector';
+
+// api
+import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
+
+// redux
+import { RootState } from '../../Store';
+import { setWishlistCount } from '../../Store/WishlistCount';
+
+// constants
+import ICONS from '../../assets';
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
+import { ROUTES_CONFIG } from '../../Helper/Routes';
 
 export default function Navbar() {
   const [unseenMsgCount, setUnseenMsgCount] = useState(0);
@@ -83,7 +93,6 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
   // for unseen message count
   useEffect(() => {
     if (!id) {
@@ -114,14 +123,15 @@ export default function Navbar() {
     };
   }, [id]);
 
+
   return (
-    <div className={CLASSNAME.NAV_PARENT}>
-      <div className={CLASSNAME.NAV}>
+    <div className={CLASSNAME.NAVBAR.NAV_PARENT}>
+      <div className={CLASSNAME.NAVBAR.NAV}>
         {/* olx logo */}
         <button
           type="button"
           title={COMMON_TEXT.BUTTON}
-          className={CLASSNAME.LOGO}
+          className={CLASSNAME.NAVBAR.LOGO}
           onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}
         >
           <img src={ICONS.Olx} alt={COMMON_TEXT.IMG} />
@@ -131,19 +141,19 @@ export default function Navbar() {
         <Item />
 
         {/* cart login sell section */}
-        <div className={CLASSNAME.CART_LOGIN_SELL}>
+        <div className={CLASSNAME.NAVBAR.CART_LOGIN_SELL}>
           {/* cart section */}
-          <div className={CLASSNAME.WISHLIST_WRAPPER}>
+          <div className={CLASSNAME.NAVBAR.WISHLIST_WRAPPER}>
             <button
               type="button"
-              className={CLASSNAME.CART}
+              className={CLASSNAME.NAVBAR.CART}
               onClick={onClickWishlist}
               title={COMMON_TEXT.BUTTON}
             >
               <img
                 src={ICONS.heartIcon}
                 alt={COMMON_TEXT.IMG}
-                className={CLASSNAME.CART_ICON}
+                className={CLASSNAME.NAVBAR.CART_ICON}
               />
             </button>
             {count > 0 && <span>{count}</span>}
@@ -152,10 +162,10 @@ export default function Navbar() {
           {access && (
             <>
               {/* chat section */}
-              <div className={CLASSNAME.WISHLIST_WRAPPER}>
+              <div className={CLASSNAME.NAVBAR.WISHLIST_WRAPPER}>
                 <button
                   type="button"
-                  className={CLASSNAME.CHAT}
+                  className={CLASSNAME.NAVBAR.CHAT}
                   onClick={handleClickChat}
                 >
                   <img src={ICONS.chat} alt={COMMON_TEXT.IMG} />
@@ -168,16 +178,16 @@ export default function Navbar() {
               {/* Profile dropdown */}
               <button
                 type="button"
-                className={CLASSNAME.PROFILE}
+                className={CLASSNAME.NAVBAR.PROFILE}
                 ref={profileRef}
                 onClick={onClickProfileUpDown}
               >
-                <span className={CLASSNAME.PROFILE_PHOTO}>
-                  <div className={CLASSNAME.PROFILE_INITIAL}>
+                <span className={CLASSNAME.NAVBAR.PROFILE_PHOTO}>
+                  <div className={CLASSNAME.NAVBAR.PROFILE_INITIAL}>
                     {username?.[0]}
                   </div>
                 </span>
-                <span className={CLASSNAME.PROFILE_UPDOWN}>
+                <span className={CLASSNAME.NAVBAR.PROFILE_UPDOWN}>
                   <img src={ICONS.upDown} alt={COMMON_TEXT.IMG} />
                 </span>
                 {openProfile && (
@@ -188,7 +198,10 @@ export default function Navbar() {
           )}
           {/* If not logged in, show login */}
           {!access && (
-            <Link to={ROUTES_CONFIG.LOGIN.path} className={CLASSNAME.LOGIN}>
+            <Link
+              to={ROUTES_CONFIG.LOGIN.path}
+              className={CLASSNAME.NAVBAR.LOGIN}
+            >
               {COMMON_TEXT.LOGIN}
             </Link>
           )}
@@ -196,21 +209,23 @@ export default function Navbar() {
           <button
             title={COMMON_TEXT.BUTTON}
             type="button"
-            className={CLASSNAME.SELL}
+            className={CLASSNAME.NAVBAR.SELL}
             onClick={onClickSell}
           >
             <img
               src={ICONS.sellImage}
               alt={COMMON_TEXT.IMG}
-              className={CLASSNAME.SELL_ICON}
+              className={CLASSNAME.NAVBAR.SELL_ICON}
             />
-            <span className={CLASSNAME.SELL_INNER}>
+            <span className={CLASSNAME.NAVBAR.SELL_INNER}>
               <img
                 src={ICONS.addIcon}
                 alt={COMMON_TEXT.IMG}
-                className={CLASSNAME.SELL_ADD}
+                className={CLASSNAME.NAVBAR.SELL_ADD}
               />
-              <span className={CLASSNAME.SELL_TEXT}>{COMMON_TEXT.SELL}</span>
+              <span className={CLASSNAME.NAVBAR.SELL_TEXT}>
+                {COMMON_TEXT.SELL}
+              </span>
             </span>
           </button>
         </div>

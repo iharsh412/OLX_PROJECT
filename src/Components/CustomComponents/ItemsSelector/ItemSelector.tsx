@@ -1,12 +1,16 @@
-import './itemSelector.css';
+// libs
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { ChangeEvent, useEffect, useState, useCallback } from 'react';
+
+// redux
 import { RootState } from '../../../Store';
 import { setItem } from '../../../Store/AreaItem';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../../Helper/constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
 import ICONS from '../../../assets';
 
 export default function ItemsSelector() {
@@ -46,10 +50,10 @@ export default function ItemsSelector() {
   }, [dispatch]);
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.ITEM_SELECTOR.WRAPPER}>
       <input
         type="text"
-        className={CLASSNAME.INPUT}
+        className={CLASSNAME.ITEM_SELECTOR.INPUT}
         placeholder={COMMON_TEXT.FINDS_CARS_MOBILE_AND_MORE}
         value={localValue ?? ''}
         onChange={handleChange}
@@ -58,12 +62,12 @@ export default function ItemsSelector() {
 
       <button
         type="button"
-        className={CLASSNAME.SEARCH}
+        className={CLASSNAME.ITEM_SELECTOR.SEARCH}
         onClick={handleClear}
         aria-label="Clear search"
       >
         <img
-          className={CLASSNAME.SEARCH_ICON}
+          className={CLASSNAME.ITEM_SELECTOR.SEARCH_ICON}
           src={ICONS.cross}
           alt={COMMON_TEXT.IMG}
         />

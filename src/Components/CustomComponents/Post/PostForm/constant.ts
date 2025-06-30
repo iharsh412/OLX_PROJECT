@@ -14,7 +14,7 @@ export const validationSchema = Yup.object().shape({
   price: Yup.number()
     .required('Required')
     .min(100, 'Must be greater than 100')
-    .max(15000000, 'Must be less than 15 lakhs'),
+    .max(200000000, 'Must be less than 20 crores'),
   photos: Yup.array().min(1, 'Required').required('Required'),
   city: Yup.string().required('Required'),
   state: Yup.string().required('Required'),

@@ -1,13 +1,17 @@
+// libs
 import { Formik } from 'formik';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+
+// api
 import { usePostChangePasswordDataMutation } from '../../../Services/Api/module/imageApi';
-import './newPass.css';
-import { VALIDATION, INITIAL_VALUES, FormValue, CLASSNAME } from './constant';
-import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
+
+// constants
+import { VALIDATION, INITIAL_VALUES, FormValue } from './constant';
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT, TYPE } from '../../../Helper/text';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
 import ICONS from '../../../assets';
 
 export default function NewPass() {
@@ -49,16 +53,18 @@ export default function NewPass() {
         setFieldValue,
       }) => {
         return (
-          <div className={CLASSNAME.WRAPPER}>
-            <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.FORGET_PASWORD}</h2>
+          <div className={CLASSNAME.NEW_PASSWORD.WRAPPER}>
+            <h2 className={CLASSNAME.NEW_PASSWORD.TITLE}>
+              {COMMON_TEXT.FORGET_PASWORD}
+            </h2>
             <form onSubmit={handleSubmit}>
               {/* password input */}
-              <div className={CLASSNAME.PASSWORD_INPUT}>
+              <div className={CLASSNAME.NEW_PASSWORD.PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                   {COMMON_TEXT.NEW_PASSWORD}
-                  <span className={CLASSNAME.REQUIRED}>*</span>
+                  <span className={CLASSNAME.NEW_PASSWORD.REQUIRED}>*</span>
                 </label>
-                <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                <div className={CLASSNAME.NEW_PASSWORD.INPUT_PASSWORD_WRAPPER}>
                   <input
                     type={isPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
                     name={COMMON_TEXT.PASSWORD_S}
@@ -73,7 +79,7 @@ export default function NewPass() {
                   {values.password && (
                     <button
                       type="button"
-                      className={CLASSNAME.EYE}
+                      className={CLASSNAME.NEW_PASSWORD.EYE}
                       onClick={() => {
                         setIsPasswordVisible(!isPasswordVisible);
                       }}
@@ -87,15 +93,17 @@ export default function NewPass() {
                 </div>
               </div>
               {errors.password && touched.password && (
-                <div className={CLASSNAME.ERROR}>{errors.password}</div>
+                <div className={CLASSNAME.NEW_PASSWORD.ERROR}>
+                  {errors.password}
+                </div>
               )}
               {/* confirm password input */}
-              <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
+              <div className={CLASSNAME.NEW_PASSWORD.CONFIRM_PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                   {COMMON_TEXT.CONFIRM_PASSWORD}
-                  <span className={CLASSNAME.REQUIRED}>*</span>
+                  <span className={CLASSNAME.NEW_PASSWORD.REQUIRED}>*</span>
                 </label>
-                <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                <div className={CLASSNAME.NEW_PASSWORD.INPUT_PASSWORD_WRAPPER}>
                   <input
                     title={COMMON_TEXT.CONFIRM_PASSWORD_S}
                     type={isConfirmPasswordVisible ? TYPE.TEXT : TYPE.PASSWORD}
@@ -110,7 +118,7 @@ export default function NewPass() {
                   {values.confirmPassword && (
                     <button
                       type="button"
-                      className={CLASSNAME.EYE}
+                      className={CLASSNAME.NEW_PASSWORD.EYE}
                       onClick={() => {
                         setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
                       }}
@@ -126,11 +134,13 @@ export default function NewPass() {
                 </div>
               </div>
               {errors.confirmPassword && touched.confirmPassword && (
-                <div className={CLASSNAME.ERROR}>{errors.confirmPassword}</div>
+                <div className={CLASSNAME.NEW_PASSWORD.ERROR}>
+                  {errors.confirmPassword}
+                </div>
               )}
               {!disabled && (
                 <button
-                  className={CLASSNAME.SUBMIT_BUTTON}
+                  className={CLASSNAME.NEW_PASSWORD.SUBMIT_BUTTON}
                   type="submit"
                   disabled={isSubmitting || isLoading || disabled}
                 >
@@ -138,11 +148,11 @@ export default function NewPass() {
                 </button>
               )}
               {disabled && (
-                <div className={CLASSNAME.SUCCESS}>
-                  <span className={CLASSNAME.SUCCESS_TEXT}>
+                <div className={CLASSNAME.NEW_PASSWORD.SUCCESS}>
+                  <span className={CLASSNAME.NEW_PASSWORD.SUCCESS_TEXT}>
                     {COMMON_TEXT.PASSWORD_CHANGED}
                   </span>
-                  <span className={CLASSNAME.SUCCESS_LOGIN}>
+                  <span className={CLASSNAME.NEW_PASSWORD.SUCCESS_LOGIN}>
                     <button
                       title={COMMON_TEXT.BUTTON}
                       type="button"
@@ -158,11 +168,11 @@ export default function NewPass() {
                 </div>
               )}
               {/* footer section */}
-              <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+              <footer className={CLASSNAME.LOGIN_SECTION.FOOTER}>
+                <p className={CLASSNAME.LOGIN_SECTION.FOOTER_UPPER_TEXT}>
                   {COMMON_TEXT.PERSONAL_DETAIL}
                 </p>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                <p className={CLASSNAME.LOGIN_SECTION.FOOTER_SECOND_TEXT}>
                   {COMMON_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>

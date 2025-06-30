@@ -1,13 +1,17 @@
+// libs
 import { Formik } from 'formik';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
+
+// api
 import { usePostSignupDataMutation } from '../../../Services/Api/module/imageApi';
-import './signup.css';
-import { VALIDATION, INITIAL_VALUES, FormValue, CLASSNAME } from './constant';
-import { ROUTES_CONFIG } from '../../../Shared/Constants';
-import { COMMON_TEXT, TYPE } from '../../../Helper/constant';
-import { CLASSNAME as LOGIN_SECTION_CLASSNAME } from '../LoginSection/constant';
+
+// constants
+import { VALIDATION, INITIAL_VALUES, FormValue } from './constant';
+import { ROUTES_CONFIG } from '../../../Helper/Routes';
+import { COMMON_TEXT, TYPE } from '../../../Helper/text';
+import CLASSNAME from '../../../Helper/classes';
 import ICONS from '../../../assets';
 
 export default function Signup() {
@@ -52,18 +56,21 @@ export default function Signup() {
         setFieldValue,
       }) => {
         return (
-          <div className={CLASSNAME.WRAPPER}>
+          <div className={CLASSNAME.SIGNUP.WRAPPER}>
             {/* header */}
-            <div className={CLASSNAME.HEADER}>
+            <div className={CLASSNAME.SIGNUP.HEADER}>
               {/* Back */}
-              <Link className={CLASSNAME.BACK} to={ROUTES_CONFIG.LOGIN.path}>
+              <Link
+                className={CLASSNAME.SIGNUP.BACK}
+                to={ROUTES_CONFIG.LOGIN.path}
+              >
                 <img src={ICONS.arrow} alt={COMMON_TEXT.IMG} />
               </Link>
               {/* text */}
-              <h2 className={CLASSNAME.TITLE}>{COMMON_TEXT.SIGN_UP}</h2>
+              <h2 className={CLASSNAME.SIGNUP.TITLE}>{COMMON_TEXT.SIGN_UP}</h2>
               {/* cross */}
               <Link
-                className={CLASSNAME.CROSS}
+                className={CLASSNAME.SIGNUP.CROSS}
                 to={ROUTES_CONFIG.HOMEPAGE.path}
               >
                 <img src={ICONS.cross} alt={COMMON_TEXT.IMG} />
@@ -72,10 +79,10 @@ export default function Signup() {
             {/* form section */}
             <form onSubmit={handleSubmit}>
               {/* username */}
-              <div className={CLASSNAME.USERNAME_INPUT}>
+              <div className={CLASSNAME.SIGNUP.USERNAME_INPUT}>
                 <label htmlFor={COMMON_TEXT.USERNAME}>
                   {COMMON_TEXT.USERNAME}
-                  <div className={CLASSNAME.REQUIRED}>*</div>{' '}
+                  <div className={CLASSNAME.SIGNUP.REQUIRED}>*</div>{' '}
                 </label>
                 <input
                   title={COMMON_TEXT.USERNAME}
@@ -89,14 +96,16 @@ export default function Signup() {
                   id={COMMON_TEXT.USERNAME}
                 />
                 {errors.username && touched.username && (
-                  <div className={CLASSNAME.ERROR}>{errors.username}</div>
+                  <div className={CLASSNAME.SIGNUP.ERROR}>
+                    {errors.username}
+                  </div>
                 )}
               </div>
               {/* email */}
-              <div className={CLASSNAME.EMAIL_INPUT}>
+              <div className={CLASSNAME.SIGNUP.EMAIL_INPUT}>
                 <label htmlFor={COMMON_TEXT.EMAIL_S}>
                   {COMMON_TEXT.EMAIL}
-                  <div className={CLASSNAME.REQUIRED}>*</div>
+                  <div className={CLASSNAME.SIGNUP.REQUIRED}>*</div>
                 </label>
 
                 <input
@@ -111,16 +120,16 @@ export default function Signup() {
                   id={COMMON_TEXT.EMAIL_S}
                 />
                 {errors.email && touched.email && (
-                  <div className={CLASSNAME.ERROR}>{errors.email}</div>
+                  <div className={CLASSNAME.SIGNUP.ERROR}>{errors.email}</div>
                 )}
               </div>
               {/* password */}
-              <div className={CLASSNAME.PASSWORD_INPUT}>
+              <div className={CLASSNAME.SIGNUP.PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.PASSWORD_S}>
                   {COMMON_TEXT.PASSWORD}
-                  <div className={CLASSNAME.REQUIRED}>*</div>
+                  <div className={CLASSNAME.SIGNUP.REQUIRED}>*</div>
                 </label>
-                <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                <div className={CLASSNAME.SIGNUP.INPUT_PASSWORD_WRAPPER}>
                   <input
                     name={COMMON_TEXT.PASSWORD_S}
                     title={COMMON_TEXT.PASSWORD_S}
@@ -135,7 +144,7 @@ export default function Signup() {
                   {values.password && (
                     <button
                       type="button"
-                      className={CLASSNAME.EYE}
+                      className={CLASSNAME.SIGNUP.EYE}
                       onClick={() => {
                         setIsPasswordVisible(!isPasswordVisible);
                       }}
@@ -148,16 +157,18 @@ export default function Signup() {
                   )}
                 </div>
                 {errors.password && touched.password && (
-                  <div className={CLASSNAME.ERROR}>{errors.password}</div>
+                  <div className={CLASSNAME.SIGNUP.ERROR}>
+                    {errors.password}
+                  </div>
                 )}
               </div>
               {/* confirm password */}
-              <div className={CLASSNAME.CONFIRM_PASSWORD_INPUT}>
+              <div className={CLASSNAME.SIGNUP.CONFIRM_PASSWORD_INPUT}>
                 <label htmlFor={COMMON_TEXT.CONFIRM_PASSWORD}>
                   {COMMON_TEXT.CONFIRM_PASSWORD}
-                  <div className={CLASSNAME.REQUIRED}>*</div>
+                  <div className={CLASSNAME.SIGNUP.REQUIRED}>*</div>
                 </label>
-                <div className={CLASSNAME.INPUT_PASSWORD_WRAPPER}>
+                <div className={CLASSNAME.SIGNUP.INPUT_PASSWORD_WRAPPER}>
                   <input
                     title={COMMON_TEXT.CONFIRM_PASSWORD_S}
                     name={COMMON_TEXT.CONFIRM_PASSWORD_S}
@@ -172,7 +183,7 @@ export default function Signup() {
                   {values.confirmPassword && (
                     <button
                       type="button"
-                      className={CLASSNAME.EYE}
+                      className={CLASSNAME.SIGNUP.EYE}
                       onClick={() => {
                         setIsConfirmPasswordVisible(!isConfirmPasswordVisible);
                       }}
@@ -187,30 +198,30 @@ export default function Signup() {
                   )}
                 </div>
                 {errors.confirmPassword && touched.confirmPassword && (
-                  <div className={CLASSNAME.ERROR}>
+                  <div className={CLASSNAME.SIGNUP.ERROR}>
                     {errors.confirmPassword}
                   </div>
                 )}
               </div>
               {/* send button */}
               <button
-                className={CLASSNAME.SUBMIT_BUTTON}
+                className={CLASSNAME.SIGNUP.SUBMIT_BUTTON}
                 type="submit"
                 disabled={isSubmitting || isLoading}
               >
                 {isLoading ? COMMON_TEXT.SENDING : COMMON_TEXT.SIGN_UP}
               </button>
               {/* Sign in text */}
-              <div className={CLASSNAME.SIGNIN}>
+              <div className={CLASSNAME.SIGNUP.SIGNIN}>
                 <span>{COMMON_TEXT.HAVE_ACCOUNT}</span>
                 <Link to={ROUTES_CONFIG.SIGNIN.path}>{COMMON_TEXT.LOGIN}</Link>
               </div>
               {/* footer section */}
-              <footer className={LOGIN_SECTION_CLASSNAME.FOOTER}>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_UPPER_TEXT}>
+              <footer className={CLASSNAME.LOGIN_SECTION.FOOTER}>
+                <p className={CLASSNAME.LOGIN_SECTION.FOOTER_UPPER_TEXT}>
                   {COMMON_TEXT.PERSONAL_DETAIL}
                 </p>
-                <p className={LOGIN_SECTION_CLASSNAME.FOOTER_SECOND_TEXT}>
+                <p className={CLASSNAME.LOGIN_SECTION.FOOTER_SECOND_TEXT}>
                   {COMMON_TEXT.PRIVACY_POLICY}
                 </p>
               </footer>

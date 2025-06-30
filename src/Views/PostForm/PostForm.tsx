@@ -1,10 +1,16 @@
+// libs
 import { Navigate, useLocation } from 'react-router-dom';
+
+// components
 import Form from '../../Components/CustomComponents/Post/PostForm';
-import './postForm.css';
-import { CLASSNAME } from './constant';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
+
+// utils
 import { capitalizeFirstLetter } from '../../Helper/function';
-import { COMMON_TEXT } from '../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../Helper/classes';
+import { ROUTES_CONFIG } from '../../Helper/Routes';
+import { COMMON_TEXT } from '../../Helper/text';
 
 export default function PostForm() {
   const location = useLocation();
@@ -14,19 +20,19 @@ export default function PostForm() {
   }
   return (
     // sell form section
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.POST_FORM.WRAPPER}>
       {/* header */}
-      <div className={CLASSNAME.SELECTED_CATEGORY}>
+      <div className={CLASSNAME.POST_FORM.SELECTED_CATEGORY}>
         {/* selected category text */}
-        <span className={CLASSNAME.SELECTED_CATEGORY_TITLE}>
+        <span className={CLASSNAME.POST_FORM.SELECTED_CATEGORY_TITLE}>
           {COMMON_TEXT.SELECTED_CATEGORY}
         </span>
-        <span className={CLASSNAME.SELECTED_CATEGORY_NAME}>
+        <span className={CLASSNAME.POST_FORM.SELECTED_CATEGORY_NAME}>
           {capitalizeFirstLetter(location.state.categoryId)} /{' '}
           {location.state.subcategory}
         </span>
       </div>
-      <div className={CLASSNAME.POST_DETAIL}>
+      <div className={CLASSNAME.POST_FORM.POST_DETAIL}>
         <Form />
       </div>
     </div>

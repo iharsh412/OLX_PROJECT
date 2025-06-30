@@ -1,15 +1,23 @@
-import './usersAdsImage.css';
+// libs
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useEffect, useState } from 'react';
-import { CLASSNAME } from './constant';
-import ICONS from '../../../../assets';
-import { COMMON_TEXT } from '../../../../Helper/constant';
-import { ImageProps } from '../../../../Helper/interface';
+
+// components
 import Modal from '../../Modal';
-import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
 import EditAds from '../../EditAds';
+
+// api
+import { useLazyGetDeleteAdsQuery } from '../../../../Services/Api/module/imageApi';
+
+// utils
 import { getDaysFromNow } from '../../../../Helper/function';
+
+// constants
+import ICONS from '../../../../assets';
+import { COMMON_TEXT } from '../../../../Helper/text';
+import CLASSNAME from '../../../../Helper/classes';
+import { ImageProps } from '../../../../Helper/interface';
 
 export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
   const navigate = useNavigate();
@@ -53,38 +61,38 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
   return (
     <>
       <button
-        className={CLASSNAME.WRAPPER}
+        className={CLASSNAME.USERS_ADS_IMG.WRAPPER}
         onClick={onClickImages}
         type="button"
         tabIndex={0}
       >
-        <div className={CLASSNAME.IMAGE}>
+        <div className={CLASSNAME.USERS_ADS_IMG.IMAGE}>
           <img
             src={`${import.meta.env.VITE_BASE_URL}${data.display_photo}`}
             alt={data.name}
             loading="lazy"
           />
         </div>
-        <div className={CLASSNAME.CONTENT}>
-          <span className={CLASSNAME.COST}>
+        <div className={CLASSNAME.USERS_ADS_IMG.CONTENT}>
+          <span className={CLASSNAME.USERS_ADS_IMG.COST}>
             <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} /> {data.price}
           </span>
-          <span className={CLASSNAME.NAME}>{data.name}</span>
-          <div className={CLASSNAME.PLACE_DATE}>
-            <span className={CLASSNAME.LOCATION}>
+          <span className={CLASSNAME.USERS_ADS_IMG.NAME}>{data.name}</span>
+          <div className={CLASSNAME.USERS_ADS_IMG.PLACE_DATE}>
+            <span className={CLASSNAME.USERS_ADS_IMG.LOCATION}>
               {data.city} , {data.state}
             </span>
-            <span className={CLASSNAME.DATE}>
+            <span className={CLASSNAME.USERS_ADS_IMG.DATE}>
               {typeof data?.created_at === 'string'
                 ? getDaysFromNow(data.created_at)
                 : ''}
             </span>
           </div>
-          <div className={CLASSNAME.EDIT_DELETE}>
+          <div className={CLASSNAME.USERS_ADS_IMG.EDIT_DELETE}>
             <button
               title={COMMON_TEXT.EDIT}
               type="button"
-              className={CLASSNAME.EDIT}
+              className={CLASSNAME.USERS_ADS_IMG.EDIT}
               onClick={(e) => handleClickEdit(e)}
             >
               {COMMON_TEXT.EDIT}
@@ -92,7 +100,7 @@ export default function MyAdsImage({ data, refetch }: Readonly<ImageProps>) {
             <button
               title={COMMON_TEXT.DELETE}
               type="button"
-              className={CLASSNAME.DELETE}
+              className={CLASSNAME.USERS_ADS_IMG.DELETE}
               onClick={handleClickDelete}
             >
               {COMMON_TEXT.DELETE}

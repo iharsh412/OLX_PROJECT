@@ -1,5 +1,6 @@
 import ICONS from '../../assets/index';
-export const CONTENTS = [
+
+const CONTENTS = [
   {
     id: 1,
     type: 'youtube',
@@ -43,11 +44,5 @@ export const CONTENTS = [
     link: 'https://www.youtube.com/watch?v=2vIi8Y2PWEE',
   },
 ];
-export const CLASSNAME = {
-  WRAPPER: 'adsSection_Wrapper',
-  CONTENT: 'adsSection_Content',
-  CONTAINER: 'adsSection_ContentContainer',
-  LABEL: 'adsSection_ContentLabel',
-  IMAGE: 'adsSection_ContentImage',
-  VIDEO: 'adsSection_ContentVideo',
-};
+
+export default CONTENTS;

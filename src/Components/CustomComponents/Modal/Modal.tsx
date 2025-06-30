@@ -1,7 +1,9 @@
-import './modal.css';
+// libs
 import { useEffect, useRef } from 'react';
-import { CLASSNAME } from './constant';
-import { TYPE, COMMON_TEXT } from '../../../Helper/constant';
+
+// constants
+import CLASSNAME from '../../../Helper/classes';
+import { COMMON_TEXT } from '../../../Helper/text';
 import { ModalProps } from '../../../Helper/interface';
 
 export default function Modal({
@@ -45,23 +47,23 @@ export default function Modal({
   }, []);
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
-      <div className={CLASSNAME.CONTENT} ref={dropdownRef}>
-        <span className={CLASSNAME.TEXT}>{text}</span>
-        <div className={CLASSNAME.BUTTON}>
+    <div className={CLASSNAME.MODAL.WRAPPER}>
+      <div className={CLASSNAME.MODAL.CONTENT} ref={dropdownRef}>
+        <span className={CLASSNAME.MODAL.TEXT}>{text}</span>
+        <div className={CLASSNAME.MODAL.BUTTON}>
           <button
-            type={TYPE.BUTTON}
+            type="button"
             title={COMMON_TEXT.YES}
             onClick={handleYes}
-            className={CLASSNAME.YES}
+            className={CLASSNAME.MODAL.YES}
           >
             {COMMON_TEXT.YES}
           </button>
           <button
-            type={TYPE.BUTTON}
+            type="button"
             title={COMMON_TEXT.NO}
             onClick={handleNo}
-            className={CLASSNAME.NO}
+            className={CLASSNAME.MODAL.NO}
           >
             {COMMON_TEXT.NO}
           </button>

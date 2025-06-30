@@ -1,9 +1,13 @@
-import './filter.css';
+// libs
 import RangeSlider from 'react-range-slider-input';
+
+// styles
 import 'react-range-slider-input/dist/style.css';
-import { CLASSNAME } from './constant';
-import { TYPE, COMMON_TEXT } from '../../../Helper/constant';
+
+// constants and utils
 import { FilterProps, SampleData } from '../../../Helper/interface';
+import CLASSNAME from '../../../Helper/classes';
+import { TYPE, COMMON_TEXT } from '../../../Helper/text';
 
 function Filter({
   category,
@@ -40,17 +44,17 @@ function Filter({
   };
 
   return (
-    <div className={CLASSNAME.MAIN_SECTION_FILTER}>
-      <h3 className={CLASSNAME.FILTER_TITLE}>
+    <div className={CLASSNAME.FILTER.MAIN_SECTION_FILTER}>
+      <h3 className={CLASSNAME.FILTER.FILTER_TITLE}>
         {category === 'multiwheelvehicles'
           ? 'MULTI WHEEL VEHICLES'
           : category?.toUpperCase()}
       </h3>
       {/* SUBCATEGORIES */}
-      <div className={CLASSNAME.SUBCATEGORY}>
+      <div className={CLASSNAME.FILTER.SUBCATEGORY}>
         <h4>{COMMON_TEXT.CATEGORY}</h4>
 
-        <div className={CLASSNAME.SUBCATEGORY_LIST}>
+        <div className={CLASSNAME.FILTER.SUBCATEGORY_LIST}>
           {response?.subcategories && response?.subcategories?.length > 0 ? (
             response?.subcategories?.map(
               (category: {
@@ -62,8 +66,8 @@ function Filter({
                   key={category.subcategory_name}
                   className={
                     category.subcategory_name === sampleData?.subcategory
-                      ? CLASSNAME.ACTIVE
-                      : CLASSNAME.SUBCATEGORY_ITEM
+                      ? CLASSNAME.FILTER.ACTIVE
+                      : CLASSNAME.FILTER.SUBCATEGORY_ITEM
                   }
                   type="button"
                   onClick={() => {
@@ -85,14 +89,16 @@ function Filter({
               )
             )
           ) : (
-            <h3 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_CATEGORY}</h3>
+            <h3 className={CLASSNAME.FILTER.NO_PRODUCTS}>
+              {COMMON_TEXT.NO_CATEGORY}
+            </h3>
           )}
         </div>
       </div>
       {/* BRANDS */}
-      <div className={CLASSNAME.BRAND}>
+      <div className={CLASSNAME.FILTER.BRAND}>
         <h4>{COMMON_TEXT.BRAND}</h4>
-        <div className={CLASSNAME.BRAND_LIST}>
+        <div className={CLASSNAME.FILTER.BRAND_LIST}>
           {response?.Brand && response?.Brand?.length > 0 ? (
             response?.Brand?.map((brand: string | undefined) => (
               <button
@@ -101,8 +107,8 @@ function Filter({
                 key={brand}
                 className={
                   sampleData?.brand.includes(brand as string)
-                    ? CLASSNAME.ACTIVE
-                    : CLASSNAME.BRAND_ITEMS
+                    ? CLASSNAME.FILTER.ACTIVE
+                    : CLASSNAME.FILTER.BRAND_ITEMS
                 }
                 onClick={handleBrandClick}
               >
@@ -110,40 +116,42 @@ function Filter({
               </button>
             ))
           ) : (
-            <h3 className={CLASSNAME.NO_PRODUCTS}>{COMMON_TEXT.NO_BRAND}</h3>
+            <h3 className={CLASSNAME.FILTER.NO_PRODUCTS}>
+              {COMMON_TEXT.NO_BRAND}
+            </h3>
           )}
         </div>
       </div>
 
       {/* BUDGET */}
-      <div className={CLASSNAME.PRICE}>
+      <div className={CLASSNAME.FILTER.PRICE}>
         <h4>{COMMON_TEXT.PRICE}</h4>
         <RangeSlider
           min={100}
-          max={1500000}
+          max={200000000}
           step={100}
-          value={price ?? [100, 1500000]}
+          value={price ?? [100, 200000000]}
           onInput={(value: [number, number]) => handlePrice(value)}
         />
-        <div className={CLASSNAME.PRICE_LIST}>
+        <div className={CLASSNAME.FILTER.PRICE_LIST}>
           <input
             title={COMMON_TEXT.PRICE_MIN}
             min={100}
-            max={price?.[1] ?? 1500000}
+            max={price?.[1] ?? 200000000}
             type={TYPE.NUMBER}
-            className={CLASSNAME.PRICE_MIN}
+            className={CLASSNAME.FILTER.PRICE_MIN}
             value={price?.[0] ?? ''}
             placeholder="Min"
             onChange={(e) => {
               const value = Math.max(
                 100,
-                Math.min(Number(e.target.value) || 100, price?.[1] ?? 1500000)
+                Math.min(Number(e.target.value) || 100, price?.[1] ?? 200000000)
               );
-              setPrice?.([value, price?.[1] ?? 1500000]);
+              setPrice?.([value, price?.[1] ?? 2000000000]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([100, price?.[1] ?? 1500000]);
+                setPrice?.([100, price?.[1] ?? 200000000]);
               }
             }}
           />
@@ -151,31 +159,31 @@ function Filter({
           <input
             title={COMMON_TEXT.PRICE_MAX}
             min={price?.[0] ?? 100}
-            max={1500000}
+            max={200000000}
             type={TYPE.NUMBER}
-            className={CLASSNAME.PRICE_MAX}
+            className={CLASSNAME.FILTER.PRICE_MAX}
             value={price?.[1] ?? ''}
             placeholder="Max"
             onChange={(e) => {
               const value = Math.max(
                 price?.[0] ?? 100,
-                Math.min(Number(e.target.value) || 100, 1500000)
+                Math.min(Number(e.target.value) || 100, 200000000)
               );
               setPrice?.([price?.[0] ?? 100, value]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([price?.[0] ?? 100, 1500000]);
+                setPrice?.([price?.[0] ?? 100, 200000000]);
               }
             }}
           />
         </div>
         <button
-          className={CLASSNAME.APPLY}
+          className={CLASSNAME.FILTER.APPLY}
           type="button"
-          disabled={!price || (price[0] === 100 && price[1] === 1500001)}
+          disabled={!price || (price[0] === 100 && price[1] === 200000001)}
           onClick={() => {
-            handlePriceRangeChange(price ?? [100, 1500000]);
+            handlePriceRangeChange(price ?? [100, 200000000]);
           }}
         >
           {COMMON_TEXT.APPLY}

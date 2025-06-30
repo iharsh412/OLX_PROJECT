@@ -1,8 +1,10 @@
+// libs
 import { useNavigate } from 'react-router-dom';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
-import './navCategory.css';
-import { CLASSNAME } from './constant';
-import { COMMON_TEXT } from '../../Helper/constant';
+
+// constants
+import { ROUTES_CONFIG } from '../../Helper/Routes';
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
 
 export default function NavCategory() {
   const navigate = useNavigate();
@@ -16,36 +18,39 @@ export default function NavCategory() {
   function handleElecyronicsClick() {
     navigate('/type/electronics');
   }
+  function handleMultiWheelVehicleClick() {
+    navigate('/type/MultiWheelVehicles');
+  }
   return (
-    <div className={CLASSNAME.WRAPPER}>
-      <div className={CLASSNAME.CHILD}>
-        <div className={CLASSNAME.ALL_CATEGORY}>
+    <div className={CLASSNAME.NAVCATEGORY.WRAPPER}>
+      <div className={CLASSNAME.NAVCATEGORY.CHILD}>
+        <div className={CLASSNAME.NAVCATEGORY.ALL_CATEGORY}>
           <button
             type="button"
-            className={CLASSNAME.ALL_CATEGORY_TEXT}
+            className={CLASSNAME.NAVCATEGORY.ALL_CATEGORY_TEXT}
             onClick={() => navigate(ROUTES_CONFIG.HOMEPAGE.path)}
           >
             {COMMON_TEXT.ALL_CATEGORIES}
           </button>
         </div>
-        <div className={CLASSNAME.LIST}>
-          {/* <button
-            type={TYPE.BUTTON}
-            className={CLASSNAME.CARS}
-            onClick={handleCarClick}
-          >
-            {TEXT.MULTI_WHEEL_VEHICLE}
-          </button> */}
+        <div className={CLASSNAME.NAVCATEGORY.LIST}>
           <button
             type="button"
-            className={CLASSNAME.MOTORCYCLE}
+            className={CLASSNAME.NAVCATEGORY.CARS}
+            onClick={handleMultiWheelVehicleClick}
+          >
+            {COMMON_TEXT.MULTI_WHEEL_VEHICLE}
+          </button>
+          <button
+            type="button"
+            className={CLASSNAME.NAVCATEGORY.MOTORCYCLE}
             onClick={handleMotorcycleClick}
           >
             {COMMON_TEXT.BIKES}
           </button>
           <button
             type="button"
-            className={CLASSNAME.MOBILEPHONE}
+            className={CLASSNAME.NAVCATEGORY.MOBILEPHONE}
             onClick={handleMobilePhoneClick}
           >
             {COMMON_TEXT.MOBILE_PHONE}
@@ -53,7 +58,7 @@ export default function NavCategory() {
 
           <button
             type="button"
-            className={CLASSNAME.COMMERCIAL}
+            className={CLASSNAME.NAVCATEGORY.COMMERCIAL}
             onClick={handleElecyronicsClick}
           >
             {COMMON_TEXT.ELECTRONICS}

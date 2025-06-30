@@ -1,15 +1,21 @@
-import './usersAds.css';
+// libs
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+
+// api
 import { useGetAdsDataQuery } from '../../Services/Api/module/imageApi';
-import { CLASSNAME } from './constant';
-import Images from '../../Components/CustomComponents/ImageLayout/UsersAdsImage';
-import { COMMON_TEXT } from '../../Helper/constant';
-import { Product } from '../../Helper/interface';
+
+// components
 import ErrorSection from '../../Components/Atom/ErrorSection';
-import Schemer from '../../Components/Atom/Schemer'; // Import Schemer component
-import { ROUTES_CONFIG } from '../../Shared/Constants';
 import Pagination from '../../Components/Atom/Pagination';
+import Schemer from '../../Components/Atom/Schemer';
+import Images from '../../Components/CustomComponents/ImageLayout/UsersAdsImage';
+
+// constants
+import CLASSNAME from '../../Helper/classes';
+import { COMMON_TEXT } from '../../Helper/text';
+import { Product } from '../../Helper/interface';
+import { ROUTES_CONFIG } from '../../Helper/Routes';
 
 export default function UsersAds() {
   const limit = 12;
@@ -38,12 +44,12 @@ export default function UsersAds() {
   }, [page]);
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
+    <div className={CLASSNAME.USERS_ADS.WRAPPER}>
       {/* my ads text */}
-      <h1 className={CLASSNAME.TITLE}>{COMMON_TEXT.MY_ADS}</h1>
+      <h1 className={CLASSNAME.USERS_ADS.TITLE}>{COMMON_TEXT.MY_ADS}</h1>
 
       {/* schemer  */}
-      <div className={CLASSNAME.AD_WRAPPER}>
+      <div className={CLASSNAME.USERS_ADS.AD_WRAPPER}>
         {isLoading && (
           <div className="loader">
             {Array.from({ length: 10 }, (_, i) => (
@@ -55,7 +61,7 @@ export default function UsersAds() {
         {isError && <ErrorSection />}
         {/* no ads */}
         {page === 1 && data?.products?.length === 0 && (
-          <div className={CLASSNAME.NO_ADS}>
+          <div className={CLASSNAME.USERS_ADS.NO_ADS}>
             {COMMON_TEXT.NO_ADS}{' '}
             <Link to={ROUTES_CONFIG.SELL.path}>{COMMON_TEXT.CLICK}</Link>
           </div>

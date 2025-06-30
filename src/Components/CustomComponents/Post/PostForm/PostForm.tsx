@@ -1,17 +1,24 @@
+// libs
 import { Formik } from 'formik';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
-import './postForm.css';
-import { validationSchema, initialValues } from './constant';
-import { ROUTES_CONFIG } from '../../../../Shared/Constants';
-import { CLASSNAME } from '../Common/constant';
-import Form from '../../Form';
-import { COMMON_TEXT } from '../../../../Helper/constant';
-import { InitialValuesProps } from '../../../../Helper/interface';
 
-export default function CarForm() {
+// components
+import Form from '../../Form';
+
+// api
+import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
+
+// constants and utils
+import { validationSchema, initialValues } from './constant';
+import { ROUTES_CONFIG } from '../../../../Helper/Routes';
+import CLASSNAME from '../../../../Helper/classes';
+import { COMMON_TEXT } from '../../../../Helper/text';
+import { InitialValuesProps } from '../../../../Helper/interface';
+import { capitalizeFirstLetter } from '../../../../Helper/function';
+
+export default function PostForm() {
   const { state } = useLocation();
   const navigate = useNavigate();
   const [showResponse, setShowResponse] = useState<string>('');
@@ -24,7 +31,7 @@ export default function CarForm() {
   ) => {
     const formData = new FormData();
     formData.append('user', '1');
-    formData.append('category', state.categoryId);
+    formData.append('category', capitalizeFirstLetter(state.categoryId));
     formData.append('subcategory', state.subcategory);
     Object.keys(values).forEach((key) => {
       const typedKey = key as keyof InitialValuesProps;
@@ -89,7 +96,7 @@ export default function CarForm() {
             <button
               type="submit"
               onClick={() => handleSubmit()}
-              className={CLASSNAME.POST}
+              className={CLASSNAME.POST_COMMON.POST}
               disabled={isSubmitting}
             >
               {(() => {
@@ -106,3 +113,5 @@ export default function CarForm() {
     </Formik>
   );
 }
+
+

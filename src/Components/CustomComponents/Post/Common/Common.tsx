@@ -1,10 +1,15 @@
+// libs
 import { ErrorMessage } from 'formik';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import './common.css';
+
+// components
 import InputField from '../../../Atom/InputField';
-import { CLASSNAME, COUNT, LOCATION } from './constant';
+
+// constants
+import CLASSNAME from '../../../../Helper/classes';
+import { COUNT, LOCATION } from './constant';
 import ICONS from '../../../../assets';
-import { COMMON_TEXT } from '../../../../Helper/constant';
+import { COMMON_TEXT } from '../../../../Helper/text';
 import { PhotosProps, TextFieldProps } from '../../../../Helper/interface';
 
 function handleChangeMobileNumber(
@@ -70,12 +75,12 @@ function Price({
   handleBlur,
 }: Readonly<TextFieldProps>) {
   return (
-    <div className={CLASSNAME.PRICE_WRAPPER}>
-      <h3 className={CLASSNAME.PRICE_TEXT}>SET A PRICE</h3>
-      <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+    <div className={CLASSNAME.POST_COMMON.PRICE_WRAPPER}>
+      <h3 className={CLASSNAME.POST_COMMON.PRICE_TEXT}>SET A PRICE</h3>
+      <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
         {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
-      <div className={CLASSNAME.PRICE_INPUT_WRAPPER}>
+      <div className={CLASSNAME.POST_COMMON.PRICE_INPUT_WRAPPER}>
         <span>
           <img src={ICONS.rupees} alt={COMMON_TEXT.IMG} width="10px" />
         </span>
@@ -86,15 +91,15 @@ function Price({
           onChange={handleChange}
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.PRICE} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
+          className={`${CLASSNAME.POST_COMMON.PRICE} ${
+            err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
           }`}
         />
       </div>
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </div>
   );
@@ -112,8 +117,8 @@ function Description({
 }: Readonly<TextFieldProps>) {
   return (
     <>
-      <div className={CLASSNAME.LABEL_WRAPPER}>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+      <div className={CLASSNAME.POST_COMMON.LABEL_WRAPPER}>
+        <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
           {label}
           {compulsory && (
             <div style={{ display: 'inline-block', color: 'red' }}>*</div>
@@ -129,19 +134,19 @@ function Description({
         onChange={(e) => {
           setFieldValue?.(
             htmlFor,
-            e.target.value.trimStart().slice(0, COUNT['Description'])
+            e.target.value.trimStart().slice(0, COUNT.Description)
           );
         }}
         onBlur={handleBlur}
         value={value as string}
-        className={`${CLASSNAME.DESCRIPTION} ${
-          err && tch ? CLASSNAME.INPUTERROR : ''
+        className={`${CLASSNAME.POST_COMMON.DESCRIPTION} ${
+          err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
         }`}
       />
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </>
   );
@@ -188,9 +193,9 @@ function PhoneNumber({
 }: Readonly<TextFieldProps>) {
   return (
     <>
-      <div className={CLASSNAME.MOBILE_NUMBER_WRAPPER}>
+      <div className={CLASSNAME.POST_COMMON.MOBILE_NUMBER_WRAPPER}>
         <span>{COMMON_TEXT.CODE}</span>
-        <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+        <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
           {label}{' '}
           {compulsory && (
             <div style={{ display: 'inline-block', color: 'red' }}>*</div>
@@ -205,15 +210,15 @@ function PhoneNumber({
           }
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.MOBILE_NUMBER} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
+          className={`${CLASSNAME.POST_COMMON.MOBILE_NUMBER} ${
+            err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
           }`}
         />
       </div>
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </>
   );
@@ -222,14 +227,19 @@ function PhoneNumber({
 function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
   return (
     <>
-      <h3 className={CLASSNAME.UPLOAD_TEXT}>{COMMON_TEXT.UPLOAD_PHOTOS}</h3>
-      <div className={CLASSNAME.PHOTO_CONTAINER}>
+      <h3 className={CLASSNAME.POST_COMMON.UPLOAD_TEXT}>
+        {COMMON_TEXT.UPLOAD_PHOTOS}
+      </h3>
+      <div className={CLASSNAME.POST_COMMON.PHOTO_CONTAINER}>
         {Array.from({
           length: Math.max(5, 0),
         }).map((_, index) => (
-          <div key={`label-${index + 1}`} className={CLASSNAME.PHOTO_BOX}>
+          <div
+            key={`label-${index + 1}`}
+            className={CLASSNAME.POST_COMMON.PHOTO_BOX}
+          >
             {value?.[index] ? (
-              <div className={CLASSNAME.PREVIEW_WRAPPER}>
+              <div className={CLASSNAME.POST_COMMON.PREVIEW_WRAPPER}>
                 <button
                   type="button"
                   className="post-form-remove-btn"
@@ -248,13 +258,13 @@ function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
                       : URL.createObjectURL(value?.[index])
                   }
                   alt={COMMON_TEXT.IMG}
-                  className={CLASSNAME.PREVIEW}
+                  className={CLASSNAME.POST_COMMON.PREVIEW}
                 />
                 <label>
                   <input
                     type={type}
                     accept="image/*"
-                    className={CLASSNAME.FILE_INPUT}
+                    className={CLASSNAME.POST_COMMON.FILE_INPUT}
                     onChange={(e) => {
                       const { files } = e.target;
                       if (files?.[0]) {
@@ -270,11 +280,11 @@ function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
                 </label>
               </div>
             ) : (
-              <label className={CLASSNAME.UPLOAD}>
+              <label className={CLASSNAME.POST_COMMON.UPLOAD}>
                 <input
                   type={type}
                   accept="image/*"
-                  className={CLASSNAME.FILE_INPUT}
+                  className={CLASSNAME.POST_COMMON.FILE_INPUT}
                   onChange={(e) => {
                     const { files } = e.target;
                     if (files) {
@@ -282,10 +292,10 @@ function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
                     }
                   }}
                 />
-                <span className={CLASSNAME.CAMERA}>
+                <span className={CLASSNAME.POST_COMMON.CAMERA}>
                   <img src={ICONS.camera} alt={COMMON_TEXT.IMG} />
                 </span>
-                <span className={CLASSNAME.ADD_PHOT0}>
+                <span className={CLASSNAME.POST_COMMON.ADD_PHOT0}>
                   {COMMON_TEXT.ADD_PHOTO}
                 </span>
               </label>
@@ -294,7 +304,11 @@ function Photos({ type, value, label, setFieldValue }: Readonly<PhotosProps>) {
         ))}
       </div>
 
-      <ErrorMessage name={label} component="div" className={CLASSNAME.ERROR} />
+      <ErrorMessage
+        name={label}
+        component="div"
+        className={CLASSNAME.POST_COMMON.ERROR}
+      />
     </>
   );
 }
@@ -333,11 +347,11 @@ function State({
 
   return (
     <>
-      <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+      <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
         {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
       <button
-        className={CLASSNAME.STATE_INPUT_WRAPPER}
+        className={CLASSNAME.POST_COMMON.STATE_INPUT_WRAPPER}
         type="button"
         onClick={(e) => handleState(e)}
       >
@@ -348,8 +362,8 @@ function State({
           onBlur={handleBlur}
           value={value as string}
           readOnly
-          className={`${CLASSNAME.STATE} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
+          className={`${CLASSNAME.POST_COMMON.STATE} ${
+            err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
           }`}
         />
         <span>
@@ -357,11 +371,11 @@ function State({
         </span>
       </button>
       {state && (
-        <div className={CLASSNAME.STATE_LIST} ref={wrapperRef}>
+        <div className={CLASSNAME.POST_COMMON.STATE_LIST} ref={wrapperRef}>
           {Object.keys(LOCATION).map((state) => (
             <button
               type="button"
-              className={CLASSNAME.STATE_ITEMS}
+              className={CLASSNAME.POST_COMMON.STATE_ITEMS}
               key={state}
               onClick={(e) => {
                 setFieldValue?.('city', '');
@@ -378,7 +392,7 @@ function State({
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </>
   );
@@ -421,7 +435,7 @@ function City({
 
   return (
     <div ref={dropdownRef} className="postForm_CityWrapper">
-      <label htmlFor={htmlFor} className={CLASSNAME.LABEL}>
+      <label htmlFor={htmlFor} className={CLASSNAME.POST_COMMON.LABEL}>
         {label} <div style={{ display: 'inline-block', color: 'red' }}>*</div>
       </label>
 
@@ -437,8 +451,8 @@ function City({
           readOnly
           onBlur={handleBlur}
           value={value as string}
-          className={`${CLASSNAME.CITY} ${
-            err && tch ? CLASSNAME.INPUTERROR : ''
+          className={`${CLASSNAME.POST_COMMON.CITY} ${
+            err && tch ? CLASSNAME.POST_COMMON.INPUTERROR : ''
           }`}
           placeholder="Select City"
         />
@@ -448,11 +462,11 @@ function City({
       </button>
 
       {isDropdownOpen && (
-        <div className={CLASSNAME.CITY_LIST}>
+        <div className={CLASSNAME.POST_COMMON.CITY_LIST}>
           {LOCATION?.[state as keyof typeof LOCATION]?.map((cityName) => (
             <button
               type="button"
-              className={CLASSNAME.STATE_ITEMS}
+              className={CLASSNAME.POST_COMMON.STATE_ITEMS}
               key={cityName}
               onClick={(e) => {
                 e.stopPropagation();
@@ -469,7 +483,7 @@ function City({
       <ErrorMessage
         name={htmlFor}
         component="div"
-        className={CLASSNAME.ERROR}
+        className={CLASSNAME.POST_COMMON.ERROR}
       />
     </div>
   );

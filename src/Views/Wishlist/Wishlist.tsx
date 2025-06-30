@@ -1,13 +1,19 @@
+// libs
 import { Link } from 'react-router-dom';
+
+// api
 import { useGetWishlistProductsQuery } from '../../Services/Api/module/imageApi';
+
+// components
 import ImageLayout from '../../Components/CustomComponents/ImageLayout/ProductImage';
-import './wishlist.css';
-import { COMMON_TEXT } from '../../Helper/constant';
-import { Product } from '../../Helper/interface';
-import { CLASSNAME } from './constant';
-import Schemer from '../../Components/Atom/Schemer';
 import ErrorSection from '../../Components/Atom/ErrorSection';
-import { ROUTES_CONFIG } from '../../Shared/Constants';
+import Schemer from '../../Components/Atom/Schemer';
+
+// styles
+import { COMMON_TEXT } from '../../Helper/text';
+import { Product } from '../../Helper/interface';
+import CLASSNAME from '../../Helper/classes';
+import { ROUTES_CONFIG } from '../../Helper/Routes';
 
 export default function Wishlist() {
   const { data, isError, isLoading, refetch } = useGetWishlistProductsQuery(
@@ -16,12 +22,12 @@ export default function Wishlist() {
   );
 
   return (
-    <div className={CLASSNAME.WRAPPER}>
-      <span className={CLASSNAME.TEXT}>{COMMON_TEXT.WISHLIST}</span>
+    <div className={CLASSNAME.WISHLIST.WRAPPER}>
+      <span className={CLASSNAME.WISHLIST.TEXT}>{COMMON_TEXT.WISHLIST}</span>
       {isError && <ErrorSection />}
 
       {/*  data LENGTH>0 then render */}
-      <div className={CLASSNAME.IMAGE_SECTION}>
+      <div className={CLASSNAME.WISHLIST.IMAGE_SECTION}>
         {isLoading
           ? Array.from({ length: 12 }, (_, i) => <Schemer key={i} />)
           : data &&

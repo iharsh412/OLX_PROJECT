@@ -1,14 +1,5 @@
 import * as Yup from 'yup';
 
-export const CLASSNAME = {
-  DETAIL_TEXT: 'editForm_detailText',
-  WRAPPER: 'editForm_Wrapper',
-  MAIN: 'editForm_Main',
-  LOCATION_WRAPPER: 'editForm_LocationWrapper',
-  LOCATION_TEXT: 'editForm_LocationText',
-  POST: 'editForm_post',
-};
-
 export const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required('Required')

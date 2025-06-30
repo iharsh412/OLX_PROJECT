@@ -158,6 +158,7 @@ export interface FormProps {
     city?: string;
     sellerName?: string;
     mobileNumber?: string;
+
   }>;
   errors: any;
   values: {
@@ -261,4 +262,5 @@ export interface MessageProps {
   senderId: string;
   receiverId: string;
   seen: boolean;
+  receiverName: string;
 }

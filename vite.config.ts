@@ -15,6 +15,7 @@ export default ({ mode }) => {
     ],
     server: {
       allowedHosts: true, 
+      port: 3000,
     }
   })
 }
