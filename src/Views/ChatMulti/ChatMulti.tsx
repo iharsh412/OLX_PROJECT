@@ -23,8 +23,8 @@ export default function MultiChat() {
   const { id } = useSelector((state: RootState) => state?.common);
   const messageRef = collection(db, 'messages');
   const [uniqueUsers, setUniqueUsers] = useState<
-  { roomId: string; userName: string }[]
->([]);
+    { roomId: string; userName: string }[]
+  >([]);
   const [roomId, setRoomId] = useState('');
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function MultiChat() {
 
        if (!participants.includes(String(id))) return;
 
-        const isReceiver = data.receiverId === id;   
+        const isReceiver = data.receiverId == id;   
          const userName = isReceiver ? data.user : data.receiverName;
 
         if (!roomMap.has(room)) {

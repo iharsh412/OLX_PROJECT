@@ -107,7 +107,7 @@ export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
     };
 
     const observers: IntersectionObserver[] = [];
-
+    console.log(messages,"<><><>")
     messages.forEach((msg) => {
       if (msg.senderId == id || msg.receiverId != id || msg.seen) return;
       const messageElement = document.getElementById(msg.id);
@@ -174,7 +174,7 @@ export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
               key={msg.id}
               id={msg.id}
               className={`${CLASSNAME.FIREBASE.MESSAGE_ITEM} ${
-                msg.user === username
+                msg.senderId == id
                   ? CLASSNAME.FIREBASE.SENT
                   : CLASSNAME.FIREBASE.RECEIVED
               }`}
