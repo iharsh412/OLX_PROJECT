@@ -159,6 +159,13 @@ export const COMMON_TEXT = {
   MY_ADS: 'My Ads',
   CLICK: 'click',
   GO_TO_HOME: 'Go to Home',
+  CATEGORY$: 'category',
+  SUBCATEGORY_DETAILS: 'subcategory_details',
+  SUBCATEGORY: 'subcategory',
+  SUBCATEGORY$: 'Subcategory',
+  _BRAND: 'brand',
+  YEAR: 'year',
+  BOUGHT_IN: 'Bought in',
 };
 
 // inputTypes.ts

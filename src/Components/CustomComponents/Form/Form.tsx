@@ -123,6 +123,7 @@ export default function Form({
       </div>
       <hr />
       {/* Review Your Detail */}
+     
       <div className={CLASSNAME.POST_COMMON.SELLER_WRAPPER}>
         <h3 className={CLASSNAME.POST_COMMON.SELLER_TEXT}>
           {COMMON_TEXT.REVIEW_DETAIL}

@@ -2,11 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const loader = createSlice({
   name: 'chatUser',
-  initialState: { userId: null },
+  initialState: { userId: null, userName: null },
   reducers: {
     setUserId: (state, action) => ({
       ...state,
-      userId: action.payload,
+      userName: action.payload.userName,
+      userId: action.payload.userId,
     }),
   },
 });

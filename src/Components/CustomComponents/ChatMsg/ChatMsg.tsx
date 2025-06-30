@@ -26,7 +26,9 @@ import { ChatMsgSectionProps, MessageProps } from '../../../Helper/interface';
 import { COMMON_TEXT } from '../../../Helper/text';
 
 export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
-  const { userId } = useSelector((state: RootState) => state.chatUser);
+  const { userId = '', userName: receiverName = '' } = useSelector(
+  (state: RootState) => state.chatUser || {}
+ );
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
@@ -48,6 +50,7 @@ export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
         seen: false,
         senderId: id ?? '',
         receiverId: userId ?? '',
+        receiverName: receiverName ?? '',
       };
       setMessages((prev) => [...prev, newMessage]);
       setNewmsg('');
@@ -61,6 +64,7 @@ export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
         seen: false,
         senderId: id,
         receiverId: userId,
+        receiverName,
       });
 
       setMessages((prev) =>

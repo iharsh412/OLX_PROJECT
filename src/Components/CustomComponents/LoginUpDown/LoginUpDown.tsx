@@ -53,7 +53,7 @@ export default function LoginUpDown({
           username: null,
         })
       );
-      dispatch(setUserId(null));
+      dispatch(setUserId({ userId: null, userName: null }));
       toast.success(COMMON_TEXT.SIGN_OUT_SUCCESSFULLY);
       navigate(ROUTES_CONFIG.HOMEPAGE.path);
     } catch (error) {

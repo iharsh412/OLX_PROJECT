@@ -30,7 +30,10 @@ export default function ProductDetail() {
   const { access, id: uid } = useSelector((state: RootState) => state?.common);
   const id = productId !== undefined ? Number(productId) : undefined;
   const navigate = useNavigate();
-  const { data, isLoading, isError } = useGetProductsDetailQuery({ id });
+  const { data, isLoading, isError } = useGetProductsDetailQuery(
+    { id },
+    { refetchOnMountOrArgChange: true }
+  );
   const product = Array.isArray(data) ? data[0] : data;
   const dispatch = useDispatch();
 
@@ -40,7 +43,7 @@ export default function ProductDetail() {
       toast.error(COMMON_TEXT.LOGIN_TO_CHAT);
       navigate(ROUTES_CONFIG.LOGIN.path);
     } else {
-      dispatch(setUserId(data?.user));
+      dispatch(setUserId({ userId: data?.user, userName: data?.user_name }));
       navigate(ROUTES_CONFIG.SINGLE_CHAT.path);
     }
   }
@@ -72,6 +75,30 @@ export default function ProductDetail() {
             </span>
             <div className={CLASSNAME.PRODUCT_DETAIL.BRAND}>
               <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_TEXT}>
+                {COMMON_TEXT.CATEGORY}
+              </span>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_VALUE}>
+                {product?.category}
+              </span>
+            </div>
+            <div className={CLASSNAME.PRODUCT_DETAIL.BRAND}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_TEXT}>
+                {COMMON_TEXT.SUBCATEGORY$}
+              </span>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_VALUE}>
+                {product?.subcategory}
+              </span>
+            </div>
+            <div className={CLASSNAME.PRODUCT_DETAIL.BRAND}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_TEXT}>
+                {COMMON_TEXT.BRAND}
+              </span>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_VALUE}>
+                {product?.subcategory_details?.brand}
+              </span>
+            </div>
+            <div className={CLASSNAME.PRODUCT_DETAIL.BRAND}>
+              <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_TEXT}>
                 {COMMON_TEXT.TITLE}
               </span>
               <span className={CLASSNAME.PRODUCT_DETAIL.BRAND_VALUE}>
@@ -99,7 +126,7 @@ export default function ProductDetail() {
             ₹ {product?.price}
           </span>
           <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_TEXT}>
-            {product?.status} {COMMON_TEXT.PRODUCT}
+            {COMMON_TEXT.BOUGHT_IN} {product?.subcategory_details?.year}
           </span>
           <div className={CLASSNAME.PRODUCT_DETAIL.PRICE_TAG}>
             <span className={CLASSNAME.PRODUCT_DETAIL.PRICE_PLACE}>
@@ -125,6 +152,10 @@ export default function ProductDetail() {
               <span className={CLASSNAME.PRODUCT_DETAIL.CHAT_TEXT}>
                 {COMMON_TEXT.OLX_INDIA}
               </span>
+            </div>
+            <div>👤 {product?.user_name}</div>
+            <div>
+              📞 <a href={`tel:${product?.phone}`}>{product?.phone}</a>
             </div>
             <button
               type="button"

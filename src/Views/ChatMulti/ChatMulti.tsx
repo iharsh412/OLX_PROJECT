@@ -19,44 +19,51 @@ import { COMMON_TEXT } from '../../Helper/text';
 
 export default function MultiChat() {
   const dispatch = useDispatch();
-  const [receiverId, setReceiverId] = useState<string | null>(null);
+  // const [receiverId, setReceiverId] = useState<string | null>(null);
   const { id } = useSelector((state: RootState) => state?.common);
   const messageRef = collection(db, 'messages');
-  const [uniqueUsers, setUniqueUsers] = useState<string[]>([]);
+  const [uniqueUsers, setUniqueUsers] = useState<
+  { roomId: string; userName: string }[]
+>([]);
   const [roomId, setRoomId] = useState('');
-  const [unreadCounts, setUnreadCounts] = useState<{
-    [roomId: string]: number;
-  }>({});
 
   useEffect(() => {
     const queryMessages = query(messageRef);
 
     const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
-      const uniqueRooms: Set<string> = new Set();
-      const counts: { [roomId: string]: number } = {};
+      const roomMap = new Map<string, { roomId: string; userName: string }>();
+
       snapshot.forEach((doc) => {
-        if (doc.data().room.split('_').includes(String(id))) {
-          uniqueRooms.add(doc.data().room);
-          if (doc.data().receiverId == id && !doc.data().seen) {
-            counts[doc.data().room] = (counts[doc.data().room] || 0) + 1;
-          }
-        }
-      });
-      setUniqueUsers(Array.from(uniqueRooms));
-      setUnreadCounts(counts);
-    });
+        const data = doc.data();
+        const { room } = data;
+        const participants = room.split('_');
 
-    return () => unsubscribe();
-  }, []);
+       if (!participants.includes(String(id))) return;
 
-  useEffect(() => {
-    dispatch(setUserId(receiverId));
-  }, [receiverId]);
+        const isReceiver = data.receiverId === id;   
+         const userName = isReceiver ? data.user : data.receiverName;
+
+        if (!roomMap.has(room)) {
+          roomMap.set(room, {
+            roomId: room,
+            userName: userName || "Unknown",
+        });
+       }
+   });
+
+    // Convert Map values to array
+        const uniqueUserList = Array.from(roomMap.values());
+
+    setUniqueUsers(uniqueUserList); // you can change state type accordingly
+  
+ });
+  return () => unsubscribe();
+}, []);
 
   return (
     <>
       {}
-      {uniqueUsers.length === 0 ? (
+      {uniqueUsers?.length === 0 ? (
         <div className={CLASSNAME.FIREBASE.NO_USERS}>
           {COMMON_TEXT.NO_CONVERSATIONS}
         </div>
@@ -65,29 +72,28 @@ export default function MultiChat() {
           <div className={CLASSNAME.FIREBASE.USER_WRAPPER}>
             <div className={CLASSNAME.FIREBASE.USER}>{COMMON_TEXT.USER}</div>
             <div className={CLASSNAME.FIREBASE.USER_LIST}>
-              {uniqueUsers.map((user) => (
-                <button
-                  type="button"
-                  key={user}
-                  className={`${CLASSNAME.FIREBASE.USER_ITEM} ${user == roomId ? CLASSNAME.FIREBASE.ACTIVE_USER : ''} `}
-                  disabled={user == roomId}
-                  onClick={() => {
-                    setRoomId(user);
-                    setReceiverId(
-                      user.split('_')[0] == id
-                        ? user.split('_')[1]
-                        : user.split('_')[0]
-                    );
-                  }}
-                >
-                  {user}
-                  {user !== roomId && unreadCounts[user] > 0 && (
-                    <span className={CLASSNAME.FIREBASE.UNREAD}>
-                      {unreadCounts[user]}
-                    </span>
-                  )}
-                </button>
-              ))}
+            {uniqueUsers.map(({ roomId: room, userName }) => (
+         <button
+          type="button"
+          key={room}
+          className={`${CLASSNAME.FIREBASE.USER_ITEM} ${room == roomId ? CLASSNAME.FIREBASE.ACTIVE_USER : ''}`}
+            disabled={room == roomId}
+    onClick={() => {
+      setRoomId(room);
+      dispatch(
+        setUserId({
+          userId:
+            room.split('_')[0] == id
+              ? room.split('_')[1]
+              : room.split('_')[0],
+          userName,
+        })
+      );
+    }}
+  >
+    <span >{userName}</span>
+  </button>
+))}
             </div>
           </div>
           <MessageSection roomId={roomId} />

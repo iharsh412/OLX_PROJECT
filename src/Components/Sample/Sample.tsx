@@ -28,9 +28,9 @@ export default function Sample() {
     category,
     subcategory: '',
     brand: [],
-    price: [100, 1500000],
+    price: [100, 200000000],
   });
-  const [price, setPrice] = useState<[number, number]>([100, 1500000]);
+  const [price, setPrice] = useState<[number, number]>([100, 200000000]);
   const [response, setResponse] = useState<ResponseData | undefined>();
   const [productData, { isLoading, isError }] =
     usePostCategoryProductsMutation();
@@ -62,7 +62,7 @@ export default function Sample() {
       category,
       subcategory: '',
       brand: [],
-      price: [100, 1500000],
+      price: [100, 200000000],
     });
   }, [JSON.stringify(category)]);
 
@@ -87,7 +87,7 @@ export default function Sample() {
       <div className={CLASSNAME.SAMPLE.TEXT_SECTION}>
         <h3>
           Buy & Sell Used{' '}
-          {category === 'multiwheelvehicles'
+          {category === 'MultiWheelVehicles'
             ? 'MULTI WHEEL VEHICLES'
             : category?.toUpperCase()}{' '}
           in India

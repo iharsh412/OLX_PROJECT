@@ -29,6 +29,7 @@ export default function Signin() {
     values: FormValue,
     { resetForm }: { resetForm: () => void }
   ) {
+    console.log("hello")
     try {
       const response = await post(values).unwrap();
       toast(COMMON_TEXT.LOGIN_SUCCESSFUL);
@@ -141,7 +142,7 @@ export default function Signin() {
               {/* submit button */}
               <button
                 className={CLASSNAME.SIGNIN.SUBMIT_BUTTON}
-                type="button"
+                type="submit"
                 disabled={isSubmitting}
               >
                 {COMMON_TEXT.LOGIN}

@@ -43,6 +43,21 @@ export default function EditAds({
           if (key === 'photos') {
             acc.photos = data.images;
           }
+          else if (key === 'title') {
+            acc.title = data.name;
+          }
+          else if (key === 'mobileNumber') {
+            acc.mobileNumber = data?.phone;
+          }
+          else if (key === 'sellerName') {
+            acc.sellerName= data?.user_name;
+          }
+          else if (key === 'year') {
+            acc.year = data?.subcategory_details?.year;
+          }
+          else if (key === 'brand') {
+            acc.brand = data?.subcategory_details?.brand;
+          }
           return acc;
         }, {} as InitialValuesProps),
       }));
@@ -60,17 +75,48 @@ export default function EditAds({
     if (product?.subcategory !== undefined)
       formData.append('subcategory', JSON.stringify(product.subcategory));
 
-    Object.entries(values).forEach(([key, value]) => {
-      const typedKey = key as keyof InitialValuesProps;
+await Promise.all(  
+  Object.entries(values).map(async ([key, value]) => {
+    const typedKey = key as keyof InitialValuesProps;
 
-      if (Array.isArray(value)) {
-        (value as File[]).forEach((file) => {
-          formData.append(typedKey, file);
-        });
-      } else if (value !== undefined && value !== null) {
-        formData.append(typedKey, String(value));
-      }
-    });
+    if (Array.isArray(value)) {
+      await Promise.all(
+        (value as (File | string)[]).map(async (file) => {
+          if (typeof file === 'object') {
+            formData.append(typedKey, file);
+          } else if (typeof file === 'string') {
+            // Check if it's an image path or URL
+            if (/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(file)) {
+              console.log(file,"<><><>")
+              try {
+                const res = await fetch(`${import.meta.env.VITE_BASE_URL}${file}`);
+                console.log(res,"<><>res<>")
+                if (!res.ok) throw new Error(`Failed to fetch: ${file}`);
+                console.log(res,"<><><>")
+               
+                const blob = await res.blob();
+                const filename = file.split('/').pop() || 'image';
+                const fileFromUrl = new File([blob], filename, {
+                  type: blob.type,
+                });
+                formData.append(typedKey, fileFromUrl);
+              } catch (err) {
+                // Optionally handle error or fallback
+                // formData.append(typedKey, file);
+              }
+            } else {
+              // Not an image path, append string
+              formData.append(typedKey, file);
+            }
+          }
+        })
+      );
+    } else if (value !== undefined && value !== null) {
+      formData.append(typedKey, String(value));
+    }
+  })
+);
+
 
     try {
       await post(formData).unwrap();

@@ -128,16 +128,16 @@ function Filter({
         <h4>{COMMON_TEXT.PRICE}</h4>
         <RangeSlider
           min={100}
-          max={1500000}
+          max={200000000}
           step={100}
-          value={price ?? [100, 1500000]}
+          value={price ?? [100, 200000000]}
           onInput={(value: [number, number]) => handlePrice(value)}
         />
         <div className={CLASSNAME.FILTER.PRICE_LIST}>
           <input
             title={COMMON_TEXT.PRICE_MIN}
             min={100}
-            max={price?.[1] ?? 1500000}
+            max={price?.[1] ?? 200000000}
             type={TYPE.NUMBER}
             className={CLASSNAME.FILTER.PRICE_MIN}
             value={price?.[0] ?? ''}
@@ -145,13 +145,13 @@ function Filter({
             onChange={(e) => {
               const value = Math.max(
                 100,
-                Math.min(Number(e.target.value) || 100, price?.[1] ?? 1500000)
+                Math.min(Number(e.target.value) || 100, price?.[1] ?? 200000000)
               );
-              setPrice?.([value, price?.[1] ?? 1500000]);
+              setPrice?.([value, price?.[1] ?? 2000000000]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([100, price?.[1] ?? 1500000]);
+                setPrice?.([100, price?.[1] ?? 200000000]);
               }
             }}
           />
@@ -159,7 +159,7 @@ function Filter({
           <input
             title={COMMON_TEXT.PRICE_MAX}
             min={price?.[0] ?? 100}
-            max={1500000}
+            max={200000000}
             type={TYPE.NUMBER}
             className={CLASSNAME.FILTER.PRICE_MAX}
             value={price?.[1] ?? ''}
@@ -167,13 +167,13 @@ function Filter({
             onChange={(e) => {
               const value = Math.max(
                 price?.[0] ?? 100,
-                Math.min(Number(e.target.value) || 100, 1500000)
+                Math.min(Number(e.target.value) || 100, 200000000)
               );
               setPrice?.([price?.[0] ?? 100, value]);
             }}
             onBlur={(e) => {
               if (!e.target.value) {
-                setPrice?.([price?.[0] ?? 100, 1500000]);
+                setPrice?.([price?.[0] ?? 100, 200000000]);
               }
             }}
           />
@@ -181,9 +181,9 @@ function Filter({
         <button
           className={CLASSNAME.FILTER.APPLY}
           type="button"
-          disabled={!price || (price[0] === 100 && price[1] === 1500001)}
+          disabled={!price || (price[0] === 100 && price[1] === 200000001)}
           onClick={() => {
-            handlePriceRangeChange(price ?? [100, 1500000]);
+            handlePriceRangeChange(price ?? [100, 200000000]);
           }}
         >
           {COMMON_TEXT.APPLY}

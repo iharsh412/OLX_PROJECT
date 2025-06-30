@@ -10,12 +10,13 @@ import Form from '../../Form';
 // api
 import { usePostNewProductsMutation } from '../../../../Services/Api/module/imageApi';
 
-// constants
+// constants and utils
 import { validationSchema, initialValues } from './constant';
 import { ROUTES_CONFIG } from '../../../../Helper/Routes';
 import CLASSNAME from '../../../../Helper/classes';
 import { COMMON_TEXT } from '../../../../Helper/text';
 import { InitialValuesProps } from '../../../../Helper/interface';
+import { capitalizeFirstLetter } from '../../../../Helper/function';
 
 export default function PostForm() {
   const { state } = useLocation();
@@ -30,7 +31,7 @@ export default function PostForm() {
   ) => {
     const formData = new FormData();
     formData.append('user', '1');
-    formData.append('category', state.categoryId);
+    formData.append('category', capitalizeFirstLetter(state.categoryId));
     formData.append('subcategory', state.subcategory);
     Object.keys(values).forEach((key) => {
       const typedKey = key as keyof InitialValuesProps;
@@ -112,3 +113,5 @@ export default function PostForm() {
     </Formik>
   );
 }
+
+

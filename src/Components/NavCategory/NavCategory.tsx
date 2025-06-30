@@ -18,6 +18,9 @@ export default function NavCategory() {
   function handleElecyronicsClick() {
     navigate('/type/electronics');
   }
+  function handleMultiWheelVehicleClick() {
+    navigate('/type/MultiWheelVehicles');
+  }
   return (
     <div className={CLASSNAME.NAVCATEGORY.WRAPPER}>
       <div className={CLASSNAME.NAVCATEGORY.CHILD}>
@@ -31,13 +34,13 @@ export default function NavCategory() {
           </button>
         </div>
         <div className={CLASSNAME.NAVCATEGORY.LIST}>
-          {/* <button
-            type={TYPE.BUTTON}
-            className={CLASSNAME.CARS}
-            onClick={handleCarClick}
+          <button
+            type="button"
+            className={CLASSNAME.NAVCATEGORY.CARS}
+            onClick={handleMultiWheelVehicleClick}
           >
-            {TEXT.MULTI_WHEEL_VEHICLE}
-          </button> */}
+            {COMMON_TEXT.MULTI_WHEEL_VEHICLE}
+          </button>
           <button
             type="button"
             className={CLASSNAME.NAVCATEGORY.MOTORCYCLE}
