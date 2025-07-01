@@ -38,27 +38,26 @@ export default function MultiChat() {
         const { room } = data;
         const participants = room.split('_');
 
-       if (!participants.includes(String(id))) return;
+        if (!participants.includes(String(id))) return;
 
-        const isReceiver = data.receiverId == id;   
-         const userName = isReceiver ? data.user : data.receiverName;
+        const isReceiver = data.receiverId == id;
+        const userName = isReceiver ? data.user : data.receiverName;
 
         if (!roomMap.has(room)) {
           roomMap.set(room, {
             roomId: room,
-            userName: userName || "Unknown",
-        });
-       }
-   });
+            userName: userName || 'Unknown',
+          });
+        }
+      });
 
-    // Convert Map values to array
-        const uniqueUserList = Array.from(roomMap.values());
+      // Convert Map values to array
+      const uniqueUserList = Array.from(roomMap.values());
 
-    setUniqueUsers(uniqueUserList); // you can change state type accordingly
-  
- });
-  return () => unsubscribe();
-}, []);
+      setUniqueUsers(uniqueUserList); // you can change state type accordingly
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <>
@@ -72,28 +71,28 @@ export default function MultiChat() {
           <div className={CLASSNAME.FIREBASE.USER_WRAPPER}>
             <div className={CLASSNAME.FIREBASE.USER}>{COMMON_TEXT.USER}</div>
             <div className={CLASSNAME.FIREBASE.USER_LIST}>
-            {uniqueUsers.map(({ roomId: room, userName }) => (
-         <button
-          type="button"
-          key={room}
-          className={`${CLASSNAME.FIREBASE.USER_ITEM} ${room == roomId ? CLASSNAME.FIREBASE.ACTIVE_USER : ''}`}
-            disabled={room == roomId}
-    onClick={() => {
-      setRoomId(room);
-      dispatch(
-        setUserId({
-          userId:
-            room.split('_')[0] == id
-              ? room.split('_')[1]
-              : room.split('_')[0],
-          userName,
-        })
-      );
-    }}
-  >
-    <span >{userName}</span>
-  </button>
-))}
+              {uniqueUsers.map(({ roomId: room, userName }) => (
+                <button
+                  type="button"
+                  key={room}
+                  className={`${CLASSNAME.FIREBASE.USER_ITEM} ${room == roomId ? CLASSNAME.FIREBASE.ACTIVE_USER : ''}`}
+                  disabled={room == roomId}
+                  onClick={() => {
+                    setRoomId(room);
+                    dispatch(
+                      setUserId({
+                        userId:
+                          room.split('_')[0] == id
+                            ? room.split('_')[1]
+                            : room.split('_')[0],
+                        userName,
+                      })
+                    );
+                  }}
+                >
+                  <span>{userName}</span>
+                </button>
+              ))}
             </div>
           </div>
           <MessageSection roomId={roomId} />
