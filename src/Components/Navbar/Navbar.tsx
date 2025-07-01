@@ -93,7 +93,6 @@ export default function Navbar() {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-  console.log(id,"id")
   // for unseen message count
   useEffect(() => {
     if (!id) {
@@ -123,7 +122,6 @@ export default function Navbar() {
       unsubscribe();
     };
   }, [id]);
-
 
   return (
     <div className={CLASSNAME.NAVBAR.NAV_PARENT}>

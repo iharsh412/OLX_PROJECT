@@ -158,7 +158,6 @@ export interface FormProps {
     city?: string;
     sellerName?: string;
     mobileNumber?: string;
-
   }>;
   errors: any;
   values: {

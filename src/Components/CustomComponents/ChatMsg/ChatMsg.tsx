@@ -27,8 +27,8 @@ import { COMMON_TEXT } from '../../../Helper/text';
 
 export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
   const { userId = '', userName: receiverName = '' } = useSelector(
-  (state: RootState) => state.chatUser || {}
- );
+    (state: RootState) => state.chatUser || {}
+  );
   const { username, id } = useSelector((state: RootState) => state?.common);
   const [newmsg, setNewmsg] = useState('');
   const [messages, setMessages] = useState<MessageProps[]>([]);
@@ -107,7 +107,6 @@ export default function ChatMsg({ roomId }: Readonly<ChatMsgSectionProps>) {
     };
 
     const observers: IntersectionObserver[] = [];
-    console.log(messages,"<><><>")
     messages.forEach((msg) => {
       if (msg.senderId == id || msg.receiverId != id || msg.seen) return;
       const messageElement = document.getElementById(msg.id);

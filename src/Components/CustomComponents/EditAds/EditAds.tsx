@@ -42,20 +42,15 @@ export default function EditAds({
             data[key] ?? prev[key as keyof InitialValuesProps];
           if (key === 'photos') {
             acc.photos = data.images;
-          }
-          else if (key === 'title') {
+          } else if (key === 'title') {
             acc.title = data.name;
-          }
-          else if (key === 'mobileNumber') {
+          } else if (key === 'mobileNumber') {
             acc.mobileNumber = data?.phone;
-          }
-          else if (key === 'sellerName') {
-            acc.sellerName= data?.user_name;
-          }
-          else if (key === 'year') {
+          } else if (key === 'sellerName') {
+            acc.sellerName = data?.user_name;
+          } else if (key === 'year') {
             acc.year = data?.subcategory_details?.year;
-          }
-          else if (key === 'brand') {
+          } else if (key === 'brand') {
             acc.brand = data?.subcategory_details?.brand;
           }
           return acc;
@@ -74,49 +69,45 @@ export default function EditAds({
       formData.append('category', JSON.stringify(product.category));
     if (product?.subcategory !== undefined)
       formData.append('subcategory', JSON.stringify(product.subcategory));
+    await Promise.all(
+      Object.entries(values).map(async ([key, value]) => {
+        const typedKey = key as keyof InitialValuesProps;
 
-await Promise.all(  
-  Object.entries(values).map(async ([key, value]) => {
-    const typedKey = key as keyof InitialValuesProps;
+        if (Array.isArray(value)) {
+          await Promise.all(
+            (value as (File | string)[]).map(async (file) => {
+              if (typeof file === 'object') {
+                formData.append(typedKey, file);
+              } else if (typeof file === 'string') {
+                // Check if it's an image path or URL
+                if (/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(file)) {
+                  try {
+                    const res = await fetch(
+                      `${import.meta.env.VITE_BASE_URL}${file}`
+                    );
+                    if (!res.ok) throw new Error(`Failed to fetch: ${file}`);
 
-    if (Array.isArray(value)) {
-      await Promise.all(
-        (value as (File | string)[]).map(async (file) => {
-          if (typeof file === 'object') {
-            formData.append(typedKey, file);
-          } else if (typeof file === 'string') {
-            // Check if it's an image path or URL
-            if (/\.(jpg|jpeg|png|gif|webp|bmp|svg)$/i.test(file)) {
-              console.log(file,"<><><>")
-              try {
-                const res = await fetch(`${import.meta.env.VITE_BASE_URL}${file}`);
-                console.log(res,"<><>res<>")
-                if (!res.ok) throw new Error(`Failed to fetch: ${file}`);
-                console.log(res,"<><><>")
-               
-                const blob = await res.blob();
-                const filename = file.split('/').pop() || 'image';
-                const fileFromUrl = new File([blob], filename, {
-                  type: blob.type,
-                });
-                formData.append(typedKey, fileFromUrl);
-              } catch (err) {
-                // Optionally handle error or fallback
-                // formData.append(typedKey, file);
+                    const blob = await res.blob();
+                    const filename = file.split('/').pop() || 'image';
+                    const fileFromUrl = new File([blob], filename, {
+                      type: blob.type,
+                    });
+                    formData.append(typedKey, fileFromUrl);
+                  } catch (err) {
+                    // Optionally handle error or fallback
+                    // formData.append(typedKey, file);
+                  }
+                } else {
+                  formData.append(typedKey, file);
+                }
               }
-            } else {
-              // Not an image path, append string
-              formData.append(typedKey, file);
-            }
-          }
-        })
-      );
-    } else if (value !== undefined && value !== null) {
-      formData.append(typedKey, String(value));
-    }
-  })
-);
-
+            })
+          );
+        } else if (value !== undefined && value !== null) {
+          formData.append(typedKey, String(value));
+        }
+      })
+    );
 
     try {
       await post(formData).unwrap();
@@ -179,7 +170,6 @@ await Promise.all(
                 touched={touched}
                 errors={errors}
               />
-
               <button
                 type="submit"
                 className={CLASSNAME.EDIT_ADS.POST}
