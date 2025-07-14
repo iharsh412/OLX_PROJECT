@@ -2517,7 +2517,7 @@ button {
 .imageDetailImageSection img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   transition: transform 0.3s ease;
 }
 
@@ -4207,7 +4207,7 @@ button {
 .myadsImages_images img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   transition: transform 0.5s ease;
 }
 
@@ -4397,7 +4397,7 @@ button {
 .carImages_image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover; */
   transition: transform 0.5s ease;
 }
 
